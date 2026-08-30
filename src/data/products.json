@@ -1,0 +1,150 @@
+[
+  {
+    "id": "product-jam-tracks-hub",
+    "name": { "en": "Jam Tracks Hub", "zhTW": "Jam Tracks Hub" },
+    "description": { "en": "The public site and its shared experience.", "zhTW": "公開網站與共用體驗。" },
+    "kind": "site",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 1,
+    "href": "https://jamtrackshub.com/"
+  },
+  {
+    "id": "product-homepage",
+    "name": { "en": "Homepage", "zhTW": "首頁" },
+    "description": { "en": "The starting point for discovering tools and backing tracks.", "zhTW": "探索工具與伴奏音軌的起點。" },
+    "kind": "page",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 2,
+    "href": "https://jamtrackshub.com/"
+  },
+  {
+    "id": "product-tracks",
+    "name": { "en": "Tracks", "zhTW": "音軌" },
+    "description": { "en": "The backing-track library and weekly slide collection.", "zhTW": "伴奏音軌資料庫與每週投影片集合。" },
+    "kind": "content-library",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 3,
+    "href": "https://jamtrackshub.com/tracks.html"
+  },
+  {
+    "id": "product-key-finder",
+    "name": { "en": "Key Finder", "zhTW": "調性偵測器" },
+    "description": { "en": "Audio analysis for identifying a track's likely musical key.", "zhTW": "分析音訊並辨識可能的音樂調性。" },
+    "kind": "tool",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 4,
+    "href": "https://jamtrackshub.com/key-finder.html"
+  },
+  {
+    "id": "product-scale-explorer",
+    "name": { "en": "Scale Explorer", "zhTW": "音階探索器" },
+    "description": { "en": "An interactive reference for exploring musical scales.", "zhTW": "互動式音階探索參考工具。" },
+    "kind": "tool",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 5,
+    "href": "https://jamtrackshub.com/scale.html"
+  },
+  {
+    "id": "product-chord-dictionary",
+    "name": { "en": "Chord Dictionary", "zhTW": "和弦字典" },
+    "description": { "en": "A browsable reference for guitar chord shapes.", "zhTW": "可瀏覽的吉他和弦指型參考。" },
+    "kind": "tool",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 6,
+    "href": "https://jamtrackshub.com/chord-dictionary.html"
+  },
+  {
+    "id": "product-chord-progressions",
+    "name": { "en": "Chord Progressions", "zhTW": "和弦進行" },
+    "description": { "en": "A reference library of practical chord progressions.", "zhTW": "實用和弦進行的參考資料庫。" },
+    "kind": "content-library",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 7,
+    "href": "https://jamtrackshub.com/chord-progressions.html"
+  },
+  {
+    "id": "product-fretboard-trainer",
+    "name": { "en": "Fretboard Trainer", "zhTW": "指板訓練器" },
+    "description": { "en": "A practice tool for learning notes across the guitar fretboard.", "zhTW": "練習辨識吉他指板音名的工具。" },
+    "kind": "tool",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 8,
+    "href": "https://jamtrackshub.com/fretboard-trainer.html"
+  },
+  {
+    "id": "product-progression-writer",
+    "name": { "en": "Progression Writer", "zhTW": "和弦進行編寫器" },
+    "description": { "en": "A workspace for drafting and hearing chord progressions.", "zhTW": "編寫與試聽和弦進行的工作區。" },
+    "kind": "tool",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 9,
+    "href": "https://jamtrackshub.com/progression-writer.html"
+  },
+  {
+    "id": "product-song-workspace",
+    "name": { "en": "Song Workspace", "zhTW": "歌曲工作區" },
+    "description": { "en": "A local-first workspace for creating, editing, and performing guitar charts.", "zhTW": "以本機優先方式建立、編輯與演奏吉他譜的工作區。" },
+    "kind": "workspace",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 10,
+    "href": "https://jamtrackshub.com/song-workspace.html"
+  },
+  {
+    "id": "product-my-songs",
+    "name": { "en": "My Songs", "zhTW": "我的歌曲" },
+    "description": { "en": "The saved-song view within Song Workspace.", "zhTW": "歌曲工作區中的已儲存歌曲檢視。" },
+    "kind": "workspace",
+    "classification": "SECONDARY_PUBLIC_PAGE",
+    "status": "active",
+    "displayOrder": 11
+  },
+  {
+    "id": "product-feedback",
+    "name": { "en": "Feedback", "zhTW": "意見回饋" },
+    "description": { "en": "A public page for sharing product feedback.", "zhTW": "提供產品意見的公開頁面。" },
+    "kind": "page",
+    "classification": "SECONDARY_PUBLIC_PAGE",
+    "status": "active",
+    "displayOrder": 12,
+    "href": "https://jamtrackshub.com/feedback.html"
+  },
+  {
+    "id": "product-legal",
+    "name": { "en": "Legal", "zhTW": "法律資訊" },
+    "description": { "en": "Public legal information for the site and Song Workspace.", "zhTW": "網站與歌曲工作區的公開法律資訊。" },
+    "kind": "page",
+    "classification": "SECONDARY_PUBLIC_PAGE",
+    "status": "active",
+    "displayOrder": 13,
+    "href": "https://jamtrackshub.com/legal.html"
+  },
+  {
+    "id": "product-privacy",
+    "name": { "en": "Privacy Policy", "zhTW": "隱私權政策" },
+    "description": { "en": "The site's public privacy policy.", "zhTW": "網站的公開隱私權政策。" },
+    "kind": "page",
+    "classification": "SECONDARY_PUBLIC_PAGE",
+    "status": "active",
+    "displayOrder": 14,
+    "href": "https://jamtrackshub.com/privacy-policy.html"
+  },
+  {
+    "id": "product-service-support",
+    "name": { "en": "Service support pages", "zhTW": "服務支援頁面" },
+    "description": { "en": "Service-waking and not-found support routes.", "zhTW": "服務喚醒與找不到頁面的支援路由。" },
+    "kind": "page",
+    "classification": "SYSTEM_SUPPORT_PAGE",
+    "status": "active",
+    "displayOrder": 15
+  }
+]

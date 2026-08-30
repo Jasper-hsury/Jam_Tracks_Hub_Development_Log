@@ -1,0 +1,15 @@
+{
+  "name": "jam-tracks-hub-development-log",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-data.mjs",
+    "test": "node --test",
+    "build": "node scripts/build.mjs",
+    "check": "npm run validate && npm test && npm run build"
+  }
+}

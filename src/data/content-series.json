@@ -1,0 +1,53 @@
+[
+  {
+    "id": "series-2026-06-backing-tracks",
+    "title": { "en": "June backing tracks", "zhTW": "六月伴奏音軌" },
+    "period": "2026-06",
+    "productId": "product-tracks",
+    "prefix": "W",
+    "startNumber": 1,
+    "endNumber": 8,
+    "summary": { "en": "The initial W1–W8 backing-track and slide collection.", "zhTW": "最初的 W1–W8 伴奏音軌與投影片集合。" },
+    "itemLinks": [
+      { "number": 1, "url": "https://jamtrackshub.com/slides/w1.html" },
+      { "number": 2, "url": "https://jamtrackshub.com/slides/w2.html" },
+      { "number": 3, "url": "https://jamtrackshub.com/slides/w3.html" },
+      { "number": 4, "url": "https://jamtrackshub.com/slides/w4.html" },
+      { "number": 5, "url": "https://jamtrackshub.com/slides/w5.html" },
+      { "number": 6, "url": "https://jamtrackshub.com/slides/w6.html" },
+      { "number": 7, "url": "https://jamtrackshub.com/slides/w7.html" },
+      { "number": 8, "url": "https://jamtrackshub.com/slides/w8.html" }
+    ]
+  },
+  {
+    "id": "series-2026-07-backing-tracks",
+    "title": { "en": "July backing tracks", "zhTW": "七月伴奏音軌" },
+    "period": "2026-07",
+    "productId": "product-tracks",
+    "prefix": "W",
+    "startNumber": 10,
+    "endNumber": 16,
+    "summary": { "en": "Confirmed July additions W10–W13, W15, and W16.", "zhTW": "已確認的七月新增內容：W10–W13、W15 與 W16。" },
+    "itemLinks": [
+      { "number": 10, "url": "https://jamtrackshub.com/slides/w10.html" },
+      { "number": 11, "url": "https://jamtrackshub.com/slides/w11.html" },
+      { "number": 12, "url": "https://jamtrackshub.com/slides/w12.html" },
+      { "number": 13, "url": "https://jamtrackshub.com/slides/w13.html" },
+      { "number": 15, "url": "https://jamtrackshub.com/slides/w15.html" },
+      { "number": 16, "url": "https://jamtrackshub.com/slides/w16.html" }
+    ]
+  },
+  {
+    "id": "series-2026-08-backing-tracks",
+    "title": { "en": "August backing tracks", "zhTW": "八月伴奏音軌" },
+    "period": "2026-08",
+    "productId": "product-tracks",
+    "prefix": "W",
+    "startNumber": 19,
+    "endNumber": 19,
+    "summary": { "en": "The confirmed W19 backing-track addition.", "zhTW": "已確認的 W19 伴奏音軌新增內容。" },
+    "itemLinks": [
+      { "number": 19, "url": "https://jamtrackshub.com/slides/w19.html" }
+    ]
+  }
+]

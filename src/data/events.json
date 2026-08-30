@@ -1,0 +1,493 @@
+[
+  {
+    "id": "event-20260606-jam-tracks-hub-begins",
+    "date": "2026-06-06",
+    "sequence": 10,
+    "title": { "en": "Jam Tracks Hub begins", "zhTW": "Jam Tracks Hub 正式起步" },
+    "summary": { "en": "The Homepage, About section, Tracks, Chord Progressions, and the first site foundation entered Git history.", "zhTW": "首頁、關於區塊、音軌、和弦進行與最初的網站基礎進入 Git 歷史。" },
+    "details": { "en": "About was part of the Homepage rather than a separate HTML page. Chord Progressions originally used chords.html and later changed route without becoming a new product.", "zhTW": "「關於」是首頁的一部分，而不是獨立 HTML 頁面。和弦進行最初使用 chords.html，後來更換路由，但並非新產品。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "product",
+    "productIds": ["product-jam-tracks-hub", "product-homepage", "product-tracks", "product-chord-progressions"],
+    "status": "released",
+    "createdInGitDate": "2026-06-06",
+    "keywords": ["foundation", "homepage", "about", "tracks", "chords.html"],
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit 1ad1d86", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1ad1d86" }
+    ]
+  },
+  {
+    "id": "event-20260606-first-backing-track-library",
+    "date": "2026-06-06",
+    "sequence": 20,
+    "title": { "en": "The first backing-track library", "zhTW": "第一批伴奏音軌資料庫" },
+    "summary": { "en": "W1–W8 established the recurring backing-track and slide collection.", "zhTW": "W1–W8 建立了持續更新的伴奏音軌與投影片集合。" },
+    "kind": "content_series",
+    "level": "normal",
+    "categoryId": "content",
+    "productIds": ["product-tracks"],
+    "status": "released",
+    "seriesId": "series-2026-06-backing-tracks",
+    "keywords": ["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8"],
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit 1ad1d86", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1ad1d86" }
+    ]
+  },
+  {
+    "id": "event-20260623-key-finder-page-launch",
+    "date": "2026-06-23",
+    "sequence": 10,
+    "title": { "en": "Key Finder becomes a dedicated tool", "zhTW": "調性偵測器成為獨立工具" },
+    "summary": { "en": "Key Finder received its own public page for audio key analysis.", "zhTW": "調性偵測器獲得獨立公開頁面，用於音訊調性分析。" },
+    "kind": "page_launch",
+    "level": "primary",
+    "categoryId": "product",
+    "productIds": ["product-key-finder"],
+    "status": "released",
+    "createdInGitDate": "2026-06-23",
+    "keywords": ["key analysis", "audio"],
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit 3b7d52d", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/3b7d52d" }
+    ]
+  },
+  {
+    "id": "event-20260623-privacy-policy-launch",
+    "date": "2026-06-23",
+    "sequence": 20,
+    "title": { "en": "Privacy Policy introduced", "zhTW": "推出隱私權政策" },
+    "summary": { "en": "The site added a dedicated public privacy policy.", "zhTW": "網站新增獨立的公開隱私權政策。" },
+    "kind": "page_launch",
+    "level": "normal",
+    "categoryId": "product",
+    "productIds": ["product-privacy"],
+    "status": "released",
+    "createdInGitDate": "2026-06-23",
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit e26a1ee", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/e26a1ee" }
+    ]
+  },
+  {
+    "id": "event-20260623-service-support-pages",
+    "date": "2026-06-23",
+    "sequence": 30,
+    "title": { "en": "Service support routes added", "zhTW": "新增服務支援路由" },
+    "summary": { "en": "Service-waking and 404 support pages were added without being presented as headline products.", "zhTW": "新增服務喚醒與 404 支援頁面，但不將其視為主要產品。" },
+    "kind": "page_launch",
+    "level": "compact",
+    "categoryId": "platform",
+    "productIds": ["product-service-support"],
+    "status": "released",
+    "createdInGitDate": "2026-06-23",
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit 9f5a9d6", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/9f5a9d6" }
+    ]
+  },
+  {
+    "id": "event-20260623-shared-css-architecture",
+    "date": "2026-06-23",
+    "sequence": 40,
+    "title": { "en": "Shared styles become modular", "zhTW": "共用樣式模組化" },
+    "summary": { "en": "Shared CSS was reorganized into a more maintainable site-wide foundation.", "zhTW": "共用 CSS 重整為更易維護的全站基礎。" },
+    "kind": "site_update",
+    "level": "compact",
+    "categoryId": "platform",
+    "productIds": ["product-jam-tracks-hub"],
+    "status": "released",
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit fc52d31", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/fc52d31" }
+    ]
+  },
+  {
+    "id": "event-20260625-scale-explorer-launch",
+    "date": "2026-06-25",
+    "sequence": 10,
+    "title": { "en": "Scale Explorer launches", "zhTW": "音階探索器上線" },
+    "summary": { "en": "An interactive musical-scale reference joined the public toolset.", "zhTW": "互動式音階參考加入公開工具組。" },
+    "kind": "page_launch",
+    "level": "primary",
+    "categoryId": "product",
+    "productIds": ["product-scale-explorer"],
+    "status": "released",
+    "createdInGitDate": "2026-06-25",
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit 0053346", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/0053346" }
+    ]
+  },
+  {
+    "id": "event-20260625-chord-dictionary-launch",
+    "date": "2026-06-25",
+    "sequence": 20,
+    "title": { "en": "Chord Dictionary launches", "zhTW": "和弦字典上線" },
+    "summary": { "en": "A dedicated guitar chord-shape reference became available.", "zhTW": "吉他和弦指型的獨立參考工具正式提供。" },
+    "kind": "page_launch",
+    "level": "primary",
+    "categoryId": "product",
+    "productIds": ["product-chord-dictionary"],
+    "status": "released",
+    "createdInGitDate": "2026-06-25",
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit a901651", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/a901651" }
+    ]
+  },
+  {
+    "id": "event-20260626-fretboard-trainer-launch",
+    "date": "2026-06-26",
+    "sequence": 10,
+    "title": { "en": "Fretboard Trainer launches", "zhTW": "指板訓練器上線" },
+    "summary": { "en": "A focused practice tool for learning fretboard notes joined the site.", "zhTW": "專注於學習指板音名的練習工具加入網站。" },
+    "kind": "page_launch",
+    "level": "primary",
+    "categoryId": "product",
+    "productIds": ["product-fretboard-trainer"],
+    "status": "released",
+    "createdInGitDate": "2026-06-26",
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit 7acf53c", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/7acf53c" }
+    ]
+  },
+  {
+    "id": "event-20260718-homepage-and-track-evolution",
+    "date": "2026-07-18",
+    "sequence": 10,
+    "title": { "en": "Homepage motion and track library evolve", "zhTW": "首頁動態與音軌資料庫持續演進" },
+    "summary": { "en": "The Homepage entrance experience evolved while W10–W13 expanded the track collection.", "zhTW": "首頁進場體驗更新，同時 W10–W13 擴充音軌集合。" },
+    "kind": "content_series",
+    "level": "normal",
+    "categoryId": "content",
+    "productIds": ["product-homepage", "product-tracks"],
+    "status": "released",
+    "seriesId": "series-2026-07-backing-tracks",
+    "keywords": ["W10", "W11", "W12", "W13", "animation"],
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit 8b3c69e", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/8b3c69e" }
+    ]
+  },
+  {
+    "id": "event-20260725-progression-writer-published",
+    "date": "2026-07-25",
+    "sequence": 10,
+    "title": { "en": "Progression Writer is published", "zhTW": "和弦進行編寫器正式發布" },
+    "summary": { "en": "Progression Writer reached the canonical main branch after first being created in feature history on July 24.", "zhTW": "和弦進行編寫器於 7 月 24 日先在功能歷史中建立，並於 7 月 25 日進入正式 main 分支。" },
+    "kind": "page_launch",
+    "level": "primary",
+    "categoryId": "product",
+    "productIds": ["product-progression-writer"],
+    "status": "released",
+    "createdInGitDate": "2026-07-24",
+    "keywords": ["W15", "project reorganization"],
+    "sourceRefs": [
+      { "kind": "commit", "label": "Creation commit 35b8aa4", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/35b8aa4" },
+      { "kind": "pr", "label": "PR #1", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/1" },
+      { "kind": "commit", "label": "Main commit adb924e", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/adb924e" }
+    ]
+  },
+  {
+    "id": "event-20260727-responsive-refinement-and-w16",
+    "date": "2026-07-27",
+    "sequence": 10,
+    "title": { "en": "Responsive experience refined with W16", "zhTW": "響應式體驗改善並新增 W16" },
+    "summary": { "en": "Light-interface and responsive refinements accompanied the W16 track addition.", "zhTW": "淺色介面與響應式改善，並加入 W16 音軌。" },
+    "kind": "content_series",
+    "level": "normal",
+    "categoryId": "experience",
+    "productIds": ["product-jam-tracks-hub", "product-tracks"],
+    "status": "released",
+    "seriesId": "series-2026-07-backing-tracks",
+    "keywords": ["W16", "responsive", "light UI"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #4", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/4" },
+      { "kind": "commit", "label": "Commit 1af19c7", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1af19c7" }
+    ]
+  },
+  {
+    "id": "event-20260804-traditional-chinese-support",
+    "date": "2026-08-04",
+    "sequence": 10,
+    "title": { "en": "Traditional Chinese support arrives", "zhTW": "推出繁體中文支援" },
+    "summary": { "en": "Jam Tracks Hub added a Traditional Chinese experience across public content.", "zhTW": "Jam Tracks Hub 在公開內容中加入繁體中文體驗。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "experience",
+    "productIds": ["product-jam-tracks-hub"],
+    "status": "released",
+    "keywords": ["zh-TW", "localization", "language"],
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit 876a7b6", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/876a7b6" }
+    ]
+  },
+  {
+    "id": "event-20260804-feedback-page-launch",
+    "date": "2026-08-04",
+    "sequence": 20,
+    "title": { "en": "Feedback page opens", "zhTW": "意見回饋頁面上線" },
+    "summary": { "en": "A public feedback page and supporting submission flow were introduced.", "zhTW": "推出公開意見回饋頁面與提交流程。" },
+    "kind": "page_launch",
+    "level": "normal",
+    "categoryId": "product",
+    "productIds": ["product-feedback"],
+    "status": "released",
+    "createdInGitDate": "2026-08-04",
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit bf26a44", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/bf26a44" }
+    ]
+  },
+  {
+    "id": "event-20260816-w19-backing-track",
+    "date": "2026-08-16",
+    "sequence": 10,
+    "title": { "en": "W19 joins the backing-track library", "zhTW": "W19 加入伴奏音軌資料庫" },
+    "summary": { "en": "The recurring track collection expanded with the confirmed W19 entry.", "zhTW": "持續更新的音軌集合加入已確認的 W19。" },
+    "kind": "content_series",
+    "level": "compact",
+    "categoryId": "content",
+    "productIds": ["product-tracks"],
+    "status": "released",
+    "seriesId": "series-2026-08-backing-tracks",
+    "keywords": ["W19"],
+    "sourceRefs": [
+      { "kind": "commit", "label": "Commit 9b5ed9b", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/9b5ed9b" }
+    ]
+  },
+  {
+    "id": "event-20260828-song-workspace-v1",
+    "date": "2026-08-28",
+    "sequence": 10,
+    "title": { "en": "Song Workspace v1.0.0 is released", "zhTW": "歌曲工作區 v1.0.0 正式發布" },
+    "summary": { "en": "The local-first guitar chart workspace reached its first canonical public release.", "zhTW": "以本機優先的吉他譜工作區迎來第一個正式公開版本。" },
+    "details": { "en": "The feature was created in Git on August 26 and first published through canonical main on August 28. My Songs is a view within Song Workspace, not a separate HTML page.", "zhTW": "此功能於 8 月 26 日在 Git 中建立，並於 8 月 28 日首次透過正式 main 發布。「我的歌曲」是歌曲工作區內的檢視，而非獨立 HTML 頁面。" },
+    "kind": "page_launch",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-song-workspace", "product-my-songs"],
+    "status": "released",
+    "createdInGitDate": "2026-08-26",
+    "releaseId": "release-v1.0.0",
+    "sourceRefs": [
+      { "kind": "commit", "label": "Original commit 117ad41", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/117ad41" },
+      { "kind": "commit", "label": "Clean port f299bb6", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/f299bb6" },
+      { "kind": "pr", "label": "PR #5", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5" },
+      { "kind": "release", "label": "Release v1.0.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.0.0" }
+    ]
+  },
+  {
+    "id": "event-20260828-legal-page-published",
+    "date": "2026-08-28",
+    "sequence": 20,
+    "title": { "en": "Legal page is published", "zhTW": "法律資訊頁面正式發布" },
+    "summary": { "en": "The Legal page reached canonical main after being created in Git on August 27.", "zhTW": "法律資訊頁面於 8 月 27 日在 Git 中建立，並於 8 月 28 日進入正式 main。" },
+    "kind": "page_launch",
+    "level": "normal",
+    "categoryId": "product",
+    "productIds": ["product-legal"],
+    "status": "released",
+    "createdInGitDate": "2026-08-27",
+    "sourceRefs": [
+      { "kind": "commit", "label": "Original commit 1b13d62", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1b13d62" },
+      { "kind": "commit", "label": "Clean port dff2456", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/dff2456" }
+    ]
+  },
+  {
+    "id": "event-20260828-workspace-responsive-fixes",
+    "date": "2026-08-28",
+    "sequence": 30,
+    "title": { "en": "Workspace responsiveness and Homepage behavior refined", "zhTW": "改善工作區響應式與首頁行為" },
+    "summary": { "en": "Responsive workspace improvements shipped alongside Homepage regression fixes.", "zhTW": "推出工作區響應式改善與首頁回歸修正。" },
+    "kind": "product_update",
+    "level": "normal",
+    "categoryId": "experience",
+    "productIds": ["product-song-workspace", "product-homepage"],
+    "status": "released",
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #6", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/6" },
+      { "kind": "commit", "label": "Commit 85d9a15", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/85d9a15" }
+    ]
+  },
+  {
+    "id": "event-20260829-release-v1-1-0",
+    "date": "2026-08-29",
+    "sequence": 10,
+    "title": { "en": "v1.1.0 streamlines adding on mobile", "zhTW": "v1.1.0 簡化行動版新增流程" },
+    "summary": { "en": "Global Add and mobile alignment made common Song Workspace actions more direct.", "zhTW": "全域新增與行動版對齊，讓歌曲工作區的常用操作更直接。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-song-workspace"],
+    "status": "released",
+    "releaseId": "release-v1.1.0",
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #7", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/7" },
+      { "kind": "release", "label": "Release v1.1.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.1.0" }
+    ]
+  },
+  {
+    "id": "event-20260829-release-v1-2-0",
+    "date": "2026-08-29",
+    "sequence": 20,
+    "title": { "en": "v1.2.0 revises the Workspace interface", "zhTW": "v1.2.0 改版工作區介面" },
+    "summary": { "en": "Workspace settings, editing controls, and responsive layouts received a focused revision.", "zhTW": "工作區設定、編輯控制與響應式版面獲得重點改版。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-song-workspace"],
+    "status": "released",
+    "releaseId": "release-v1.2.0",
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #8", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/8" },
+      { "kind": "release", "label": "Release v1.2.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.2.0" }
+    ]
+  },
+  {
+    "id": "event-20260829-release-v1-3-0",
+    "date": "2026-08-29",
+    "sequence": 30,
+    "title": { "en": "v1.3.0 improves My Songs and navigation", "zhTW": "v1.3.0 改善我的歌曲與導覽" },
+    "summary": { "en": "Saved-song management and smart navigation became more cohesive.", "zhTW": "已儲存歌曲管理與智慧導覽變得更一致。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-song-workspace", "product-my-songs"],
+    "status": "released",
+    "releaseId": "release-v1.3.0",
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #9", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/9" },
+      { "kind": "release", "label": "Release v1.3.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.3.0" }
+    ]
+  },
+  {
+    "id": "event-20260829-application-security-hardening",
+    "date": "2026-08-29",
+    "sequence": 40,
+    "title": { "en": "Application protection is strengthened", "zhTW": "強化應用程式保護" },
+    "summary": { "en": "Public-facing validation, privacy boundaries, and abuse resistance were strengthened at a high level.", "zhTW": "以高層次方式強化公開介面的驗證、隱私邊界與濫用防護。" },
+    "details": { "en": "This record intentionally omits defensive rules, thresholds, credentials, and internal detection details.", "zhTW": "此紀錄刻意省略防禦規則、門檻、憑證與內部偵測細節。" },
+    "kind": "security",
+    "level": "primary",
+    "categoryId": "security",
+    "productIds": ["product-jam-tracks-hub", "product-song-workspace"],
+    "status": "released",
+    "securityDisclosure": "high_level",
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #10", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/10" },
+      { "kind": "commit", "label": "Commit 8fbad53", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/8fbad53" }
+    ]
+  },
+  {
+    "id": "event-20260830-key-finder-production-routing",
+    "date": "2026-08-30",
+    "sequence": 10,
+    "title": { "en": "Key Finder gains a protected public entry path", "zhTW": "調性偵測器採用受保護的公開入口" },
+    "summary": { "en": "Public Key Finder requests began using edge protection while the existing compute service remained responsible for audio analysis.", "zhTW": "調性偵測器公開請求開始使用邊緣保護，既有運算服務仍負責音訊分析。" },
+    "details": { "en": "The public record describes responsibilities only and omits defensive configuration details.", "zhTW": "公開紀錄僅說明職責分工，省略防禦設定細節。" },
+    "kind": "infrastructure",
+    "level": "primary",
+    "categoryId": "platform",
+    "productIds": ["product-key-finder"],
+    "status": "released",
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #12", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/12" },
+      { "kind": "commit", "label": "Commit 2154dd2", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/2154dd2" }
+    ]
+  },
+  {
+    "id": "event-20260830-release-v1-4-tag",
+    "date": "2026-08-30",
+    "sequence": 20,
+    "title": { "en": "v1.4.0 is recorded as a tag-only checkpoint", "zhTW": "v1.4.0 記錄為僅標籤檢查點" },
+    "summary": { "en": "The Git tag exists; no published GitHub Release was found.", "zhTW": "Git 標籤存在，但找不到已發布的 GitHub Release。" },
+    "kind": "site_update",
+    "level": "compact",
+    "categoryId": "release",
+    "productIds": ["product-jam-tracks-hub", "product-key-finder"],
+    "status": "released",
+    "releaseId": "release-v1.4.0",
+    "sourceRefs": [
+      { "kind": "tag", "label": "Tag v1.4.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0" },
+      { "kind": "commit", "label": "Commit bf05102", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/bf05102" }
+    ]
+  },
+  {
+    "id": "event-20260830-release-v2-0-0",
+    "date": "2026-08-30",
+    "sequence": 30,
+    "title": { "en": "v2.0.0 marks a security and infrastructure checkpoint", "zhTW": "v2.0.0 標誌安全與基礎設施檢查點" },
+    "summary": { "en": "A published release summarized application hardening and production protection without exposing defensive configuration.", "zhTW": "已發布版本概述應用程式強化與正式環境保護，且不揭露防禦設定。" },
+    "kind": "security",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-jam-tracks-hub", "product-song-workspace", "product-key-finder"],
+    "status": "released",
+    "releaseId": "release-v2.0.0",
+    "securityDisclosure": "high_level",
+    "sourceRefs": [
+      { "kind": "release", "label": "Release v2.0.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.0" },
+      { "kind": "tag", "label": "Tag v2.0.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v2.0.0" }
+    ]
+  },
+  {
+    "id": "event-20260830-typography-normalization",
+    "date": "2026-08-30",
+    "sequence": 40,
+    "title": { "en": "Site-wide typography normalization ships", "zhTW": "推出全站字體正規化" },
+    "summary": { "en": "A site-wide typography change was released and then reverted later the same day.", "zhTW": "全站字體變更發布後，於同日稍晚回復。" },
+    "kind": "site_update",
+    "level": "normal",
+    "categoryId": "experience",
+    "productIds": ["product-jam-tracks-hub"],
+    "status": "released",
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #14", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/14" },
+      { "kind": "commit", "label": "Commit af6d1b0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/af6d1b0" }
+    ]
+  },
+  {
+    "id": "event-20260830-typography-rollback",
+    "date": "2026-08-30",
+    "sequence": 50,
+    "title": { "en": "Typography change is rolled back", "zhTW": "回復字體變更" },
+    "summary": { "en": "The tracked site styles were restored to their pre-normalization state.", "zhTW": "網站追蹤的樣式已恢復到字體正規化前的狀態。" },
+    "kind": "rollback",
+    "level": "normal",
+    "categoryId": "maintenance",
+    "productIds": ["product-jam-tracks-hub"],
+    "status": "released",
+    "reverts": "event-20260830-typography-normalization",
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #15", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/15" },
+      { "kind": "commit", "label": "Commit 5c41a38", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/5c41a38" }
+    ]
+  },
+  {
+    "id": "event-20260830-responsive-content-polish",
+    "date": "2026-08-30",
+    "sequence": 60,
+    "title": { "en": "Tracks and shared page details improve", "zhTW": "改善音軌與共用頁面細節" },
+    "summary": { "en": "Responsive Tracks, footer, video, Legal, and Song Workspace entrance behavior received focused refinements.", "zhTW": "改善音軌、頁尾、影片、法律資訊與歌曲工作區進場行為的響應式細節。" },
+    "kind": "site_update",
+    "level": "normal",
+    "categoryId": "experience",
+    "productIds": ["product-tracks", "product-legal", "product-song-workspace"],
+    "status": "released",
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #16", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/16" },
+      { "kind": "pr", "label": "PR #17", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/17" }
+    ]
+  },
+  {
+    "id": "event-20260830-release-v2-0-1",
+    "date": "2026-08-30",
+    "sequence": 70,
+    "title": { "en": "v2.0.1 stabilizes Legal and Privacy pages", "zhTW": "v2.0.1 穩定法律與隱私權頁面" },
+    "summary": { "en": "Legal and Privacy typography and panels were stabilized across English and Traditional Chinese.", "zhTW": "穩定英文與繁體中文的法律與隱私權頁面字體及面板。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-legal", "product-privacy"],
+    "status": "released",
+    "releaseId": "release-v2.0.1",
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #18", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/18" },
+      { "kind": "release", "label": "Release v2.0.1", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.1" }
+    ]
+  }
+]

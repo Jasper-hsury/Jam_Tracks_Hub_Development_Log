@@ -52,6 +52,8 @@
   "hiddenTarget": "此項目已被目前的篩選條件隱藏。",
   "showItem": "顯示此項目",
   "language": "語言",
+  "darkMode": "深色模式",
+  "lightMode": "淺色模式",
   "historyNav": "歷史年份",
   "footerText": "Jam Tracks Hub 的公開歷史紀錄。本儲存庫不是正式產品應用程式儲存庫。"
 }

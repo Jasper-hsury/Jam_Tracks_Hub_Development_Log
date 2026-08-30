@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Jam Tracks Hub public development history, product evolution, and release index.">
   <title>Jam Tracks Hub — Development & Release Log</title>
+  <script>
+    (() => {
+      const key = "jam-tracks-hub-log-theme";
+      try {
+        const saved = localStorage.getItem(key);
+        document.documentElement.dataset.theme = saved === "light" || saved === "dark"
+          ? saved
+          : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      } catch {
+        document.documentElement.dataset.theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="./assets/site.css">
 </head>
 <body data-lang="en">

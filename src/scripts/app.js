@@ -8,7 +8,11 @@
   const noResults = document.querySelector("#no-results");
   const hiddenTarget = document.querySelector("#hidden-target");
   const filtersShell = document.querySelector(".filters-shell");
+  const themeToggle = document.querySelector("#theme-toggle");
+  const themeLabel = document.querySelector("#theme-label");
   const mobileFilters = matchMedia("(max-width: 760px)");
+  const darkMode = matchMedia("(prefers-color-scheme: dark)");
+  const themeStorageKey = "jam-tracks-hub-log-theme";
   const valid = {
     year: new Set(["all", ...payload.options.years]),
     product: new Set(["all", ...payload.options.products]),
@@ -36,6 +40,28 @@
   };
   let state = fromUrl();
 
+  const storedTheme = () => {
+    try {
+      const value = localStorage.getItem(themeStorageKey);
+      return value === "light" || value === "dark" ? value : null;
+    } catch { return null; }
+  };
+  const updateThemeControl = () => {
+    const isDark = document.documentElement.dataset.theme === "dark";
+    const nextThemeLabel = t(isDark ? "lightMode" : "darkMode");
+    themeToggle.hidden = false;
+    themeToggle.setAttribute("aria-label", nextThemeLabel);
+    themeToggle.title = nextThemeLabel;
+    themeLabel.textContent = nextThemeLabel;
+  };
+  const setTheme = (theme, { persist = true } = {}) => {
+    document.documentElement.dataset.theme = theme;
+    if (persist) {
+      try { localStorage.setItem(themeStorageKey, theme); } catch { /* Preference persistence is optional. */ }
+    }
+    updateThemeControl();
+  };
+
   const syncFilterPanelMode = (query) => { filtersShell.open = !query.matches; };
   syncFilterPanelMode(mobileFilters);
   mobileFilters.addEventListener("change", syncFilterPanelMode);
@@ -51,6 +77,7 @@
     for (const [value, names] of Object.entries(payload.optionLabels.products)) controls.product.querySelector(`option[value="${CSS.escape(value)}"]`).textContent = names[state.lang];
     for (const [value, names] of Object.entries(payload.optionLabels.categories)) controls.category.querySelector(`option[value="${CSS.escape(value)}"]`).textContent = names[state.lang];
     for (const [value, names] of Object.entries(payload.optionLabels.statuses)) controls.status.querySelector(`option[value="${CSS.escape(value)}"]`).textContent = names[state.lang];
+    updateThemeControl();
   };
   const writeUrl = () => {
     const params = new URLSearchParams();
@@ -126,6 +153,10 @@
   document.querySelector("#reset-filters").addEventListener("click", () => {
     state = { ...state, year: "all", product: "all", category: "all", release: "all", status: "all", search: "", sort: "newest" };
     syncControls(); apply(); search.focus();
+  });
+  themeToggle.addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
+  darkMode.addEventListener("change", (event) => {
+    if (!storedTheme()) setTheme(event.matches ? "dark" : "light", { persist: false });
   });
   document.querySelectorAll("[data-set-lang]").forEach((button) => button.addEventListener("click", () => { state.lang = button.dataset.setLang; apply(); }));
   document.querySelectorAll("[data-year-jump]").forEach((button) => button.addEventListener("click", () => {

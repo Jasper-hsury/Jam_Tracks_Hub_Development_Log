@@ -19,7 +19,7 @@ export const compareEventsNewest = (a, b) =>
   b.sequence - a.sequence ||
   a.id.localeCompare(b.id);
 
-export function deriveData({ events, releases, products, series }) {
+export function deriveData({ events, releases, products, series, dossiers = [] }) {
   const sortedEvents = [...events].sort(compareEventsNewest);
   const releaseById = new Map(releases.map((release) => [release.id, release]));
   const productById = new Map(products.map((product) => [product.id, product]));
@@ -48,6 +48,14 @@ export function deriveData({ events, releases, products, series }) {
     release.id,
     sortedEvents.filter((event) => event.releaseId === release.id)
   ]));
+  const visibleDossiers = dossiers
+    .filter((dossier) => dossier.status === "published")
+    .sort((a, b) => {
+      const aProduct = productById.get(a.productId);
+      const bProduct = productById.get(b.productId);
+      return (aProduct?.displayOrder || 999) - (bProduct?.displayOrder || 999) || a.id.localeCompare(b.id);
+    });
+  const dossierByProductId = new Map(visibleDossiers.map((dossier) => [dossier.productId, dossier]));
   return {
     sortedEvents,
     releaseById,
@@ -59,12 +67,24 @@ export function deriveData({ events, releases, products, series }) {
     visibleProducts,
     productStats,
     releaseChildren,
+    visibleDossiers,
+    dossierByProductId,
     metrics: {
       publishedReleases: published.length,
       productAreas: visibleProducts.length,
       developmentSince: [...events].sort((a, b) => a.date.localeCompare(b.date))[0]?.date
     }
   };
+}
+
+export function buildDossierSearchDocument(dossier, product) {
+  return normalizeText([
+    dossier.id,
+    dossier.slug,
+    product?.name?.en,
+    product?.name?.zhTW,
+    JSON.stringify(dossier)
+  ].filter(Boolean).join(" "));
 }
 
 export function buildSearchDocument(event, { releaseById, productById, seriesById }) {

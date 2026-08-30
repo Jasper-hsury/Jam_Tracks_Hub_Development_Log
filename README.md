@@ -8,16 +8,19 @@ This is **not** the Jam Tracks Hub production application repository. Production
 
 The project uses structured canonical JSON, a minimal Node.js build generator, pre-rendered static HTML, Vanilla CSS, and a small progressive-enhancement script. There is no framework, database, backend, authentication, analytics, or runtime package dependency.
 
-- `src/data/` — canonical public products, events, releases, content series, and roadmap records
+- `src/data/` — canonical public products, events, releases, content series, roadmap records, and one localized JSON record per Product Dossier
 - `src/locales/` — English and Traditional Chinese interface strings
-- `src/templates/` — static HTML shells
+- `src/templates/` — static HTML shells for the history, print view, and generated dossier pages
 - `src/styles/` — screen and print styles
-- `src/scripts/app.js` — search, filters, URL state, and language interaction
+- `src/scripts/app.js` — search, filters, URL state, language interaction, and mixed dossier discovery
+- `src/scripts/dossier.js` — dossier language, theme, print, and navigation enhancement
 - `scripts/` — validation, derivation, and build logic
 - `tests/` — data, build, search, filter, rollback, and regression tests
 - `dist/` — generated output; ignored by Git and produced by CI/Pages
 
 Generated metrics, year navigation, latest release, product dates, event counts, release children, and search documents all derive from canonical data. They are not maintained as separate counters or timelines.
+
+Product Dossiers are generated at stable static routes such as `products/chord-dictionary/`. Each dossier uses evidence-labeled facts (`verified`, `reconstructed`, or `unknown`), shares one semantic record across English and Traditional Chinese, links back to the filtered timeline, and prints independently. The chronological `print.html` remains intentionally separate from the longer retrospectives.
 
 ## Local development
 
@@ -32,6 +35,8 @@ npm run check
 ```
 
 Open `dist/index.html` through a local static server after building. `npm run check` runs validation, tests, and the production build. Deployment is intentionally not exposed as an npm script.
+
+Generated output includes `dist/products/<slug>/index.html` for every published dossier. Direct route access works under the GitHub Pages repository subpath because dossier assets and history links are emitted with depth-aware relative URLs.
 
 ## Canonical data workflow
 

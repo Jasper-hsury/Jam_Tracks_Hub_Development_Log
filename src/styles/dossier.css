@@ -1,0 +1,82 @@
+.dossier-page main { width: min(1120px, calc(100% - 2rem)); }
+.dossier-page .site-header { position: relative; }
+.dossier-page .site-header nav { flex-wrap: wrap; justify-content: flex-end; }
+.dossier-page .site-header button { min-height: 38px; }
+
+.dossier-hero { padding: clamp(3.5rem, 8vw, 7rem) 0 3rem; border-bottom: 1px solid var(--line); }
+.dossier-breadcrumb { margin: 0 0 2rem; color: var(--muted); font-size: .84rem; }
+.dossier-hero-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(280px, .7fr); gap: clamp(2rem, 6vw, 5rem); align-items: end; }
+.dossier-hero h1 { max-width: 820px; font-size: clamp(3.2rem, 8vw, 6.6rem); }
+.dossier-hero .lede { margin-bottom: 1.3rem; }
+.dossier-classification-note { max-width: 720px; color: var(--muted); font-size: .86rem; }
+.dossier-facts { display: grid; gap: .65rem; margin: 0; }
+.dossier-facts div { padding: .85rem 1rem; border-left: 3px solid var(--line); background: var(--paper); }
+.dossier-facts dd a { overflow-wrap: anywhere; }
+
+.dossier-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); padding: 3rem 0 6rem; }
+.dossier-toc { position: sticky; top: 1.5rem; align-self: start; padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.dossier-toc p { margin: 0 0 .55rem; color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.dossier-toc ol { display: grid; gap: .35rem; margin: 0; padding-left: 1.25rem; }
+.dossier-toc a { color: var(--ink); font-size: .82rem; text-decoration: none; }
+.dossier-toc a:hover { color: var(--teal); text-decoration: underline; }
+
+.dossier-content { min-width: 0; }
+.dossier-section { padding: 0 0 3.5rem; scroll-margin-top: 1rem; }
+.dossier-section + .dossier-section { padding-top: 3.5rem; border-top: 1px solid var(--line); }
+.dossier-section h2 { margin: 0 0 1.25rem; font-family: Georgia, serif; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.05; letter-spacing: -.025em; }
+.dossier-section h3 { margin: 0 0 .45rem; font-family: Georgia, serif; font-size: 1.35rem; }
+.section-intro { max-width: 720px; }
+.fact { position: relative; max-width: 800px; }
+.fact + .fact { margin-top: 1.1rem; }
+.fact > p { margin: .35rem 0 0; color: var(--event-copy); }
+.evidence-class { display: inline-flex; align-items: center; min-height: 24px; padding: .08rem .48rem; border: 1px solid currentColor; border-radius: 999px; font-size: .67rem; font-weight: 800; letter-spacing: .055em; text-transform: uppercase; }
+.classification-verified { color: var(--teal-ink); background: var(--teal-soft); }
+.classification-reconstructed { color: var(--amber); background: var(--amber-soft); }
+.classification-unknown { color: var(--red); background: var(--red-soft); }
+
+.purpose-grid, .feature-grid, .decision-grid, .responsive-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.purpose-card, .feature-card, .decision-card, .responsive-card { padding: 1.15rem; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.purpose-card .fact, .feature-card .fact, .decision-card .fact, .responsive-card .fact { margin-top: .7rem; }
+.original-version { display: grid; gap: 1.3rem; padding: 1.35rem; border-left: 4px solid var(--teal); border-radius: 0 14px 14px 0; background: var(--paper); }
+.original-version time { color: var(--brown); font-family: Georgia, serif; font-size: 1.4rem; font-weight: 700; }
+.fact-list { display: grid; gap: .8rem; margin: 0; padding: 0; list-style: none; }
+.architecture-list { display: grid; gap: 0; margin: 0; border-top: 1px solid var(--line); }
+.architecture-list > div { display: grid; grid-template-columns: minmax(150px, .45fr) minmax(0, 1.55fr); gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.architecture-list dt { color: var(--ink); font-size: .86rem; font-weight: 800; text-transform: none; letter-spacing: 0; }
+.architecture-list dd { margin: 0; }
+.evolution-list { position: relative; display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.evolution-item { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 1rem; padding: 1.15rem; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.evolution-item time { color: var(--brown); font-weight: 800; }
+.impact-label { display: inline-block; margin-top: .35rem; color: var(--muted); font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.related-list, .evidence-list { display: grid; gap: .65rem; padding-left: 1.2rem; }
+.source-path { display: block; margin-top: .2rem; color: var(--muted); font-size: .76rem; }
+.dossier-actions-bottom { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem; }
+
+@media (max-width: 900px) {
+  .dossier-page .site-header nav { display: none; }
+  .dossier-hero-grid, .dossier-layout { grid-template-columns: 1fr; }
+  .dossier-toc { position: static; }
+  .dossier-toc ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem 1.5rem; }
+}
+
+@media (max-width: 620px) {
+  .dossier-page main { width: min(100% - 1.25rem, 1120px); }
+  .dossier-page .site-header nav { display: none; }
+  .dossier-hero { padding-top: 2.5rem; }
+  .dossier-hero h1 { font-size: clamp(2.7rem, 14vw, 4.2rem); }
+  .purpose-grid, .feature-grid, .decision-grid, .responsive-grid, .dossier-toc ol { grid-template-columns: 1fr; }
+  .architecture-list > div, .evolution-item { grid-template-columns: 1fr; gap: .45rem; }
+  .dossier-layout { padding-top: 2rem; }
+  .dossier-section, .dossier-section + .dossier-section { padding-block: 2.5rem; }
+}
+
+@media print {
+  .dossier-page .site-header, .dossier-breadcrumb, .dossier-toc, .dossier-hero .hero-actions, .dossier-actions-bottom, .theme-toggle, .language-switch { display: none !important; }
+  .dossier-page main { width: 100%; }
+  .dossier-hero { padding: 0 0 8mm; }
+  .dossier-hero-grid, .dossier-layout { display: block; }
+  .dossier-facts { grid-template-columns: repeat(2, 1fr); margin-top: 6mm; }
+  .dossier-section, .dossier-section + .dossier-section { padding: 7mm 0; }
+  .purpose-card, .feature-card, .decision-card, .responsive-card, .original-version, .evolution-item { break-inside: avoid; box-shadow: none; }
+  a { text-decoration: none; }
+}

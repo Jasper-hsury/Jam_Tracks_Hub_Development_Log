@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { CATEGORY_LABELS, compareEventsNewest, deriveData } from "./site-core.mjs";
 
@@ -7,12 +7,15 @@ const dataUrl = (name) => new URL(`src/data/${name}.json`, root);
 
 export async function loadData() {
   const readJson = async (name) => JSON.parse(await readFile(dataUrl(name), "utf8"));
+  const dossierDirectory = new URL("src/data/dossiers/", root);
+  const dossierFiles = (await readdir(dossierDirectory)).filter((name) => name.endsWith(".json")).sort();
   return {
     products: await readJson("products"),
     events: await readJson("events"),
     releases: await readJson("releases"),
     series: await readJson("content-series"),
-    roadmap: await readJson("roadmap")
+    roadmap: await readJson("roadmap"),
+    dossiers: await Promise.all(dossierFiles.map(async (name) => JSON.parse(await readFile(new URL(name, dossierDirectory), "utf8"))))
   };
 }
 
@@ -26,6 +29,10 @@ const productStatuses = new Set(["active", "deprecated", "archived"]);
 const releaseStatuses = new Set(["published", "tag_only"]);
 const roadmapStatuses = new Set(["planned", "exploring", "deferred"]);
 const roadmapHorizons = new Set(["near-term", "later"]);
+const dossierStatuses = new Set(["published"]);
+const dossierSectionTypes = new Set(["text", "featureList", "architecture", "responsive", "timeline", "decision"]);
+const evidenceClassifications = new Set(["verified", "reconstructed", "unknown"]);
+const dossierSourceKinds = new Set(["commit", "pr", "release", "file", "docs"]);
 
 function isLocalized(value) {
   return value && typeof value.en === "string" && value.en.trim() && typeof value.zhTW === "string" && value.zhTW.trim();
@@ -39,6 +46,41 @@ function validDate(value) {
 
 function assert(condition, message, errors) {
   if (!condition) errors.push(message);
+}
+
+function validateFact(fact, field, errors) {
+  assert(fact && evidenceClassifications.has(fact.classification), `${field}: evidence classification required`, errors);
+  assert(isLocalized(fact?.text), `${field}: localized fact text required`, errors);
+}
+
+function validateDossierSection(section, dossier, eventIds, errors) {
+  const field = `${dossier.id}.${section.id || "section"}`;
+  assert(idPattern.test(section.id || ""), `${field}: invalid section ID`, errors);
+  assert(dossierSectionTypes.has(section.type), `${field}: unsupported section type`, errors);
+  assert(isLocalized(section.title), `${field}: localized section title required`, errors);
+  assert(Array.isArray(section.items) && section.items.length > 0, `${field}: non-empty items required`, errors);
+  if (section.intro) validateFact(section.intro, `${field}.intro`, errors);
+  for (const [index, item] of (section.items || []).entries()) {
+    const itemField = `${field}.items[${index}]`;
+    if (section.type === "text") validateFact(item, itemField, errors);
+    if (["featureList", "decision"].includes(section.type)) {
+      assert(isLocalized(item.title), `${itemField}: localized title required`, errors);
+      validateFact(item.body, `${itemField}.body`, errors);
+    }
+    if (["architecture", "responsive"].includes(section.type)) {
+      assert(isLocalized(item.label), `${itemField}: localized label required`, errors);
+      validateFact(item.body, `${itemField}.body`, errors);
+    }
+    if (section.type === "timeline") {
+      assert(validDate(item.date), `${itemField}: valid date required`, errors);
+      assert(Boolean(item.eventId || item.sourceUrl), `${itemField}: eventId or sourceUrl required`, errors);
+      if (item.eventId) assert(eventIds.has(item.eventId), `${itemField}: unknown event ${item.eventId}`, errors);
+      if (item.sourceUrl) assert(/^https:\/\/github\.com\/Jasper-hsury\/Jam_Tracks_Hub\/(?:commit|pull|releases\/tag)\//.test(item.sourceUrl), `${itemField}: invalid timeline source URL`, errors);
+      assert(["direct", "shared"].includes(item.impact), `${itemField}: impact must be direct or shared`, errors);
+      assert(isLocalized(item.title), `${itemField}: localized title required`, errors);
+      validateFact(item.body, `${itemField}.body`, errors);
+    }
+  }
 }
 
 function checkUniqueIds(groups, errors) {
@@ -69,8 +111,8 @@ export function scanPublicContent(data) {
 
 export function validateData(data) {
   const errors = [];
-  const { products, events, releases, series, roadmap } = data;
-  checkUniqueIds({ products, events, releases, series, roadmap }, errors);
+  const { products, events, releases, series, roadmap, dossiers = [] } = data;
+  checkUniqueIds({ products, events, releases, series, roadmap, dossiers }, errors);
   const productIds = new Set(products.map((item) => item.id));
   const eventIds = new Set(events.map((item) => item.id));
   const releaseIds = new Set(releases.map((item) => item.id));
@@ -160,6 +202,60 @@ export function validateData(data) {
     for (const productId of item.productIds || []) assert(productIds.has(productId), `${item.id}: unknown roadmap product`, errors);
   }
 
+  const dossierProductIds = new Set();
+  const dossierSlugs = new Set();
+  for (const dossier of dossiers) {
+    assert(dossierStatuses.has(dossier.status), `${dossier.id}: invalid dossier status`, errors);
+    assert(productIds.has(dossier.productId), `${dossier.id}: unknown product ${dossier.productId}`, errors);
+    assert(!dossierProductIds.has(dossier.productId), `${dossier.id}: duplicate dossier product ${dossier.productId}`, errors);
+    dossierProductIds.add(dossier.productId);
+    assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(dossier.slug || ""), `${dossier.id}: invalid dossier slug`, errors);
+    assert(!dossierSlugs.has(dossier.slug), `${dossier.id}: duplicate dossier slug ${dossier.slug}`, errors);
+    dossierSlugs.add(dossier.slug);
+    assert(validDate(dossier.latestSignificantUpdate), `${dossier.id}: invalid latest significant update`, errors);
+    validateFact(dossier.hero, `${dossier.id}.hero`, errors);
+    validateFact(dossier.overview, `${dossier.id}.overview`, errors);
+    assert(Array.isArray(dossier.purpose) && dossier.purpose.length > 0, `${dossier.id}: purpose facts required`, errors);
+    for (const [index, purpose] of (dossier.purpose || []).entries()) {
+      assert(isLocalized(purpose.label), `${dossier.id}.purpose[${index}]: localized label required`, errors);
+      validateFact(purpose.body, `${dossier.id}.purpose[${index}].body`, errors);
+    }
+    assert(validDate(dossier.originalVersion?.date), `${dossier.id}: original version date required`, errors);
+    validateFact(dossier.originalVersion?.summary, `${dossier.id}.originalVersion.summary`, errors);
+    for (const [index, fact] of (dossier.originalVersion?.features || []).entries()) validateFact(fact, `${dossier.id}.originalVersion.features[${index}]`, errors);
+    for (const [index, fact] of (dossier.originalVersion?.structure || []).entries()) validateFact(fact, `${dossier.id}.originalVersion.structure[${index}]`, errors);
+    assert((dossier.originalVersion?.features || []).length > 0, `${dossier.id}: original features required`, errors);
+    assert((dossier.originalVersion?.structure || []).length > 0, `${dossier.id}: original structure required`, errors);
+    const sectionIds = new Set();
+    assert(Array.isArray(dossier.sections) && dossier.sections.length > 0, `${dossier.id}: sections required`, errors);
+    for (const section of dossier.sections || []) {
+      assert(!sectionIds.has(section.id), `${dossier.id}: duplicate section ID ${section.id}`, errors);
+      sectionIds.add(section.id);
+      validateDossierSection(section, dossier, eventIds, errors);
+    }
+    validateFact(dossier.currentState, `${dossier.id}.currentState`, errors);
+    assert((dossier.lessons || []).length > 0, `${dossier.id}: lessons required`, errors);
+    for (const [index, fact] of (dossier.lessons || []).entries()) validateFact(fact, `${dossier.id}.lessons[${index}]`, errors);
+    for (const [index, fact] of (dossier.unknowns || []).entries()) {
+      validateFact(fact, `${dossier.id}.unknowns[${index}]`, errors);
+      assert(fact.classification === "unknown", `${dossier.id}.unknowns[${index}]: must use unknown classification`, errors);
+    }
+    assert(Array.isArray(dossier.relatedEventIds) && dossier.relatedEventIds.length > 0, `${dossier.id}: related events required`, errors);
+    assert(new Set(dossier.relatedEventIds || []).size === (dossier.relatedEventIds || []).length, `${dossier.id}: duplicate related event`, errors);
+    for (const eventId of dossier.relatedEventIds || []) {
+      assert(eventIds.has(eventId), `${dossier.id}: unknown related event ${eventId}`, errors);
+      assert(eventById.get(eventId)?.productIds.includes(dossier.productId), `${dossier.id}: related event ${eventId} does not reference product`, errors);
+    }
+    assert(Array.isArray(dossier.sourceRefs) && dossier.sourceRefs.length > 0, `${dossier.id}: source references required`, errors);
+    for (const [index, ref] of (dossier.sourceRefs || []).entries()) {
+      const refField = `${dossier.id}.sourceRefs[${index}]`;
+      assert(dossierSourceKinds.has(ref.kind), `${refField}: invalid source kind`, errors);
+      assert(isLocalized(ref.label), `${refField}: localized label required`, errors);
+      assert(/^https:\/\/github\.com\/Jasper-hsury\/Jam_Tracks_Hub\/(?:commit|pull|releases\/tag|blob|tree)\//.test(ref.url || ""), `${refField}: public source URL required`, errors);
+      if (ref.path) assert(!ref.path.startsWith("/") && !ref.path.includes(".."), `${refField}: source path must be repository-relative`, errors);
+    }
+  }
+
   const sorted = [...events].sort(compareEventsNewest);
   assert(sorted[sorted.length - 1]?.date === "2026-06-06", "history must begin on 2026-06-06", errors);
   assert(events.some((event) => event.date < "2026-07-25" && event.sourceRefs?.some((ref) => ref.kind === "commit") && !event.sourceRefs?.some((ref) => ref.kind === "pr")), "early non-PR history is required", errors);
@@ -186,7 +282,7 @@ export async function runValidation() {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   try {
     const data = await runValidation();
-    console.log(`Canonical data valid: ${data.products.length} products, ${data.events.length} events, ${data.releases.length} releases, ${data.series.length} content series, ${data.roadmap.length} roadmap items.`);
+    console.log(`Canonical data valid: ${data.products.length} products, ${data.events.length} events, ${data.releases.length} releases, ${data.series.length} content series, ${data.dossiers.length} product dossiers, ${data.roadmap.length} roadmap items.`);
   } catch (error) {
     console.error(error.message);
     process.exitCode = 1;

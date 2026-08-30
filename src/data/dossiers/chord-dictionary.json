@@ -1,0 +1,316 @@
+{
+  "id": "dossier-chord-dictionary",
+  "productId": "product-chord-dictionary",
+  "slug": "chord-dictionary",
+  "status": "published",
+  "latestSignificantUpdate": "2026-08-28",
+  "hero": {
+    "classification": "verified",
+    "text": {
+      "en": "A searchable guitar-chord reference that connects symbols and formulas to playable fretboard voicings.",
+      "zhTW": "可搜尋的吉他和弦參考工具，將和弦符號與公式連結到可彈奏的指板配置。"
+    }
+  },
+  "overview": {
+    "classification": "verified",
+    "text": {
+      "en": "Chord Dictionary lets a visitor choose or search for a chord, inspect its symbol, formula, and notes, hear it, and browse generated guitar shapes. The current page also filters shapes by fret area, root string, and string set.",
+      "zhTW": "和弦字典讓訪客選擇或搜尋和弦、查看符號、公式與音名、聆聽聲音，並瀏覽產生的吉他指型。目前頁面也可依琴格區域、根音弦與弦組篩選指型。"
+    }
+  },
+  "purpose": [
+    {
+      "label": { "en": "Problem", "zhTW": "問題" },
+      "body": {
+        "classification": "reconstructed",
+        "text": {
+          "en": "The implementation brings theoretical chord identity and practical guitar fingering into one lookup flow instead of separating formula reference from playable shapes.",
+          "zhTW": "從實作可回溯看出，此工具把和弦理論身分與實際吉他按法放在同一查詢流程，而非將公式參考與可彈指型分開。"
+        }
+      }
+    },
+    {
+      "label": { "en": "Target use case", "zhTW": "目標使用情境" },
+      "body": {
+        "classification": "verified",
+        "text": {
+          "en": "Browse by root and chord quality, or type a chord symbol, then compare voicings in standard E A D G B E tuning.",
+          "zhTW": "依根音與和弦種類瀏覽，或輸入和弦符號，再比較標準 E A D G B E 調弦下的各種配置。"
+        }
+      }
+    },
+    {
+      "label": { "en": "Original role", "zhTW": "原始角色" },
+      "body": {
+        "classification": "verified",
+        "text": {
+          "en": "The June 25 launch added a dedicated chord reference alongside the site's existing tracks, progressions, Key Finder, and Scale Explorer tools.",
+          "zhTW": "6 月 25 日推出時，它在既有音軌、和弦進行、調性偵測器與音階探索器旁新增一個獨立和弦參考工具。"
+        }
+      }
+    }
+  ],
+  "originalVersion": {
+    "date": "2026-06-25",
+    "summary": {
+      "classification": "verified",
+      "text": {
+        "en": "Commit a901651 introduced the dedicated HTML page, a 572-line interaction script, and a 559-line page stylesheet in one change.",
+        "zhTW": "Commit a901651 在同一變更中加入獨立 HTML 頁面、572 行互動腳本與 559 行頁面樣式。"
+      }
+    },
+    "features": [
+      {
+        "classification": "verified",
+        "text": { "en": "Twelve root-note controls and categorized chord-quality browsing.", "zhTW": "十二個根音控制與依類別整理的和弦種類瀏覽。" }
+      },
+      {
+        "classification": "verified",
+        "text": { "en": "Text filtering, selected-chord symbol, interval formula, spelled notes, and Web Audio playback.", "zhTW": "文字篩選、所選和弦符號、音程公式、音名拼寫與 Web Audio 播放。" }
+      },
+      {
+        "classification": "verified",
+        "text": { "en": "Generated guitar voicings, diagrams, shape counts, and pagination in standard tuning.", "zhTW": "以標準調弦產生吉他配置、圖表、指型數量與分頁。" }
+      }
+    ],
+    "structure": [
+      {
+        "classification": "verified",
+        "text": { "en": "Heading and tagline → two-column workspace → root/search browser → selected-chord detail → facts → shape grid and pagination.", "zhTW": "標題與標語 → 雙欄工作區 → 根音／搜尋瀏覽器 → 所選和弦詳細資訊 → 基本資料 → 指型網格與分頁。" }
+      },
+      {
+        "classification": "verified",
+        "text": { "en": "The browser and detail regions collapsed from two columns at 1120px; additional grid reductions were defined at 680px and 420px.", "zhTW": "瀏覽器與詳細資訊區在 1120px 以下由雙欄收合，並在 680px 與 420px 進一步縮減網格。" }
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "information-architecture",
+      "type": "featureList",
+      "title": { "en": "Page design & information architecture", "zhTW": "頁面設計與資訊架構" },
+      "intro": {
+        "classification": "reconstructed",
+        "text": {
+          "en": "The page reads as a browse-and-inspect workspace: selection stays on the left while the resulting musical and fingering detail stays on the right at wide widths.",
+          "zhTW": "從實作回溯可見，頁面採用「瀏覽並檢視」工作區：寬螢幕時左側保留選擇，右側呈現音樂與指法結果。"
+        }
+      },
+      "items": [
+        {
+          "title": { "en": "Browse", "zhTW": "瀏覽" },
+          "body": { "classification": "verified", "text": { "en": "Root buttons, symbol/type search, and chord categories provide both directed selection and text lookup.", "zhTW": "根音按鈕、符號／種類搜尋與和弦分類，同時支援直接選擇與文字查詢。" } }
+        },
+        {
+          "title": { "en": "Understand", "zhTW": "理解" },
+          "body": { "classification": "verified", "text": { "en": "The selected chord exposes its readable name, symbol, formula, spelled notes, description, and a play control before shape browsing.", "zhTW": "在瀏覽指型前，所選和弦會顯示易讀名稱、符號、公式、音名、說明與播放控制。" } }
+        },
+        {
+          "title": { "en": "Narrow shapes", "zhTW": "縮小指型範圍" },
+          "body": { "classification": "verified", "text": { "en": "Position, root-string, and string-set controls narrow the generated voicing collection without changing the selected chord.", "zhTW": "位置、根音弦與弦組控制可縮小產生的配置集合，而不改變所選和弦。" } }
+        },
+        {
+          "title": { "en": "Move to related tools", "zhTW": "前往相關工具" },
+          "body": { "classification": "verified", "text": { "en": "Current related-tool actions connect a chosen chord to other public music tools.", "zhTW": "目前的相關工具操作會把所選和弦連到其他公開音樂工具。" } }
+        }
+      ]
+    },
+    {
+      "id": "technical-structure",
+      "type": "architecture",
+      "title": { "en": "Technical structure", "zhTW": "技術結構" },
+      "items": [
+        {
+          "label": { "en": "Primary page", "zhTW": "主要頁面" },
+          "body": { "classification": "verified", "text": { "en": "chord-dictionary.html provides semantic regions, controls, empty render hosts, navigation, localization hooks, and public metadata.", "zhTW": "chord-dictionary.html 提供語意區域、控制項、空白渲染容器、導覽、在地化掛鉤與公開中繼資料。" } }
+        },
+        {
+          "label": { "en": "Page logic", "zhTW": "頁面邏輯" },
+          "body": { "classification": "verified", "text": { "en": "scripts/chord-dictionary.js contains chord taxonomy, symbol parsing, note spelling, voicing generation and scoring, filters, diagram rendering, pagination, and playback.", "zhTW": "scripts/chord-dictionary.js 包含和弦分類、符號解析、音名拼寫、配置產生與評分、篩選、圖表渲染、分頁與播放。" } }
+        },
+        {
+          "label": { "en": "Shared renderer", "zhTW": "共用渲染器" },
+          "body": { "classification": "verified", "text": { "en": "scripts/chord-shapes.js later extracted reusable chord parsing, voicing, and diagram models used by Song Workspace and Progression Writer; Chord Dictionary retains its richer page-specific interaction layer.", "zhTW": "scripts/chord-shapes.js 後來抽出可供歌曲工作區與和弦進行編寫器重用的和弦解析、配置與圖表模型；和弦字典仍保留更完整的頁面專屬互動層。" } }
+        },
+        {
+          "label": { "en": "Presentation", "zhTW": "呈現層" },
+          "body": { "classification": "verified", "text": { "en": "styles/chord-dictionary.css owns the two-column workspace, filters, diagrams, tone families, light/dark variants, and responsive breakpoints; shared base, component, theme, navigation, animation, and i18n files supply site-wide behavior.", "zhTW": "styles/chord-dictionary.css 管理雙欄工作區、篩選、圖表、音程色系、明暗變體與響應式斷點；共用基礎、元件、主題、導覽、動畫與 i18n 檔案提供全站行為。" } }
+        }
+      ]
+    },
+    {
+      "id": "responsive-strategy",
+      "type": "responsive",
+      "title": { "en": "Responsive strategy", "zhTW": "響應式策略" },
+      "items": [
+        {
+          "label": { "en": "Desktop", "zhTW": "桌面" },
+          "body": { "classification": "verified", "text": { "en": "A browser/detail grid gives the generated shapes more width than the selection panel, with multi-column chord and shape grids.", "zhTW": "瀏覽器／詳細資訊網格讓產生的指型區比選擇面板更寬，並使用多欄和弦與指型網格。" } }
+        },
+        {
+          "label": { "en": "Tablet", "zhTW": "平板" },
+          "body": { "classification": "verified", "text": { "en": "At 1120px the workspace becomes one column and chord-quality controls gain more columns, preserving scanning space before mobile compression.", "zhTW": "在 1120px 時工作區改為單欄，和弦種類控制增加欄數，在進入行動版壓縮前保留掃讀空間。" } }
+        },
+        {
+          "label": { "en": "Mobile", "zhTW": "行動裝置" },
+          "body": { "classification": "verified", "text": { "en": "Below 680px headings stack, root/quality/fact/shape grids reduce columns, filters stay wrapping, and below 420px the narrow controls simplify further.", "zhTW": "680px 以下標題堆疊，根音／種類／資料／指型網格縮減欄數，篩選可換行；420px 以下再簡化窄版控制。" } }
+        }
+      ]
+    },
+    {
+      "id": "evolution",
+      "type": "timeline",
+      "title": { "en": "Design & feature evolution", "zhTW": "設計與功能演進" },
+      "items": [
+        {
+          "date": "2026-06-25",
+          "eventId": "event-20260625-chord-dictionary-launch",
+          "impact": "direct",
+          "title": { "en": "Dedicated reference launches", "zhTW": "獨立參考工具推出" },
+          "body": { "classification": "verified", "text": { "en": "The first version already combined browsing, theory facts, audio, generated diagrams, and pagination.", "zhTW": "初版已結合瀏覽、理論資料、音訊、產生式圖表與分頁。" } }
+        },
+        {
+          "date": "2026-06-25",
+          "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/94f4b5e",
+          "impact": "direct",
+          "title": { "en": "Position browsing is added", "zhTW": "新增位置瀏覽" },
+          "body": { "classification": "verified", "text": { "en": "A second same-day change added fret-area filters and enlarged diagram labels for more legible shape comparison.", "zhTW": "同日第二項變更加入琴格區域篩選，並放大圖表標示以便比較指型。" } }
+        },
+        {
+          "date": "2026-07-17",
+          "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/8e889ba",
+          "impact": "direct",
+          "title": { "en": "Search and shape filters deepen", "zhTW": "搜尋與指型篩選深化" },
+          "body": { "classification": "verified", "text": { "en": "Chord-symbol search wording, root-string filters, string-set filters, larger tone labels, and light-theme diagram variables were added.", "zhTW": "新增和弦符號搜尋文字、根音弦篩選、弦組篩選、更大的音程標示與淺色主題圖表變數。" } }
+        },
+        {
+          "date": "2026-07-25",
+          "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/1",
+          "impact": "shared",
+          "title": { "en": "Repository structure is reorganized", "zhTW": "儲存庫結構重整" },
+          "body": { "classification": "verified", "text": { "en": "The page script moved under scripts/, while shared components and themes expanded; the product behavior remained a dedicated static page.", "zhTW": "頁面腳本移至 scripts/，共用元件與主題擴充；產品行為仍維持獨立靜態頁面。" } }
+        },
+        {
+          "date": "2026-08-04",
+          "eventId": "event-20260804-traditional-chinese-support",
+          "impact": "shared",
+          "title": { "en": "Traditional Chinese reaches the tool", "zhTW": "工具支援繁體中文" },
+          "body": { "classification": "verified", "text": { "en": "Page chrome, dynamic chord copy, controls, and accessibility labels gained localization hooks and bilingual dictionaries.", "zhTW": "頁面介面、動態和弦文字、控制與無障礙標籤加入在地化掛鉤與雙語字典。" } }
+        },
+        {
+          "date": "2026-08-28",
+          "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5",
+          "impact": "shared",
+          "title": { "en": "Chord shapes become a shared product system", "zhTW": "和弦指型成為共用產品系統" },
+          "body": { "classification": "verified", "text": { "en": "Song Workspace introduced scripts/chord-shapes.js so chord parsing and diagram models could be reused across products.", "zhTW": "歌曲工作區引入 scripts/chord-shapes.js，使和弦解析與圖表模型能跨產品重用。" } }
+        }
+      ]
+    },
+    {
+      "id": "decisions-and-tradeoffs",
+      "type": "decision",
+      "title": { "en": "Decisions & trade-offs", "zhTW": "決策與取捨" },
+      "items": [
+        {
+          "title": { "en": "Generated voicings over a fixed catalog", "zhTW": "產生式配置而非固定目錄" },
+          "body": { "classification": "reconstructed", "text": { "en": "The scoring and search code favors breadth across roots and qualities, but requires clear constraints, filters, and pagination to keep many valid shapes understandable.", "zhTW": "從評分與搜尋程式回溯可見，此方式優先涵蓋多種根音與種類，但也需要清楚限制、篩選與分頁，才能讓大量有效指型易於理解。" } }
+        },
+        {
+          "title": { "en": "Theory and fingering in one page", "zhTW": "理論與指法同頁" },
+          "body": { "classification": "reconstructed", "text": { "en": "Keeping formula, notes, playback, and shapes together reduces navigation, while making the responsive stacking order and visual hierarchy more important.", "zhTW": "將公式、音名、播放與指型放在一起可減少導覽，但也讓響應式堆疊順序與視覺層級更重要。" } }
+        },
+        {
+          "title": { "en": "Page-specific depth with shared primitives", "zhTW": "頁面深度搭配共用基礎" },
+          "body": { "classification": "reconstructed", "text": { "en": "The later shared renderer supports reuse without flattening the richer browsing workflow unique to Chord Dictionary.", "zhTW": "後來的共用渲染器支援重用，同時沒有削弱和弦字典獨有的深度瀏覽流程。" } }
+        }
+      ]
+    },
+    {
+      "id": "regressions-and-corrections",
+      "type": "text",
+      "title": { "en": "Regressions & corrections", "zhTW": "回歸與修正" },
+      "items": [
+        {
+          "classification": "verified",
+          "text": { "en": "Mobile chord-tool layout corrections landed on July 28 as part of a focused shared responsive fix.", "zhTW": "7 月 28 日的共用響應式修正包含行動版和弦工具版面調整。" }
+        },
+        {
+          "classification": "verified",
+          "text": { "en": "A site-wide typography normalization changed Chord Dictionary markup on August 30 and was explicitly reversed later the same day; the current page uses the restored pre-normalization treatment.", "zhTW": "8 月 30 日全站字體正規化曾修改和弦字典標記，並於同日明確回復；目前頁面使用回復後的原字體處理。" }
+        }
+      ]
+    }
+  ],
+  "currentState": {
+    "classification": "verified",
+    "text": {
+      "en": "Chord Dictionary remains a public static page at /chord-dictionary.html with English and Traditional Chinese, light/dark themes, symbol lookup, generated voicings, multiple shape filters, audio playback, responsive layouts, shared navigation, and links into related tools.",
+      "zhTW": "和弦字典目前仍是 /chord-dictionary.html 的公開靜態頁面，支援英文與繁體中文、明暗主題、符號查詢、產生式配置、多重指型篩選、音訊播放、響應式版面、共用導覽與相關工具連結。"
+    }
+  },
+  "lessons": [
+    {
+      "classification": "reconstructed",
+      "text": { "en": "A useful musical reference can expose complexity progressively: identify the chord first, then reveal theory, then let the player narrow physical shapes.", "zhTW": "實用的音樂參考可漸進揭露複雜度：先確認和弦，再呈現理論，最後讓演奏者縮小實際指型範圍。" }
+    },
+    {
+      "classification": "reconstructed",
+      "text": { "en": "Reusable chord-shape primitives became more valuable once multiple tools needed the same parsing and diagram model, but the product-specific interaction still deserved its own module.", "zhTW": "當多個工具需要相同解析與圖表模型後，可重用的和弦指型基礎更有價值；但產品專屬互動仍值得保留獨立模組。" }
+    }
+  ],
+  "unknowns": [
+    {
+      "classification": "unknown",
+      "text": { "en": "No original planning document, wireframe, user-research record, or documented comparison of rejected alternatives was found in the reviewed repository history.", "zhTW": "在已檢視的儲存庫歷史中，未找到原始規劃文件、線框圖、使用者研究紀錄或被否決替代方案的書面比較。" }
+    }
+  ],
+  "relatedEventIds": [
+    "event-20260625-chord-dictionary-launch"
+  ],
+  "sourceRefs": [
+    {
+      "kind": "commit",
+      "label": { "en": "Launch commit a901651", "zhTW": "推出 commit a901651" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/a901651"
+    },
+    {
+      "kind": "commit",
+      "label": { "en": "Shape-browsing refinement 94f4b5e", "zhTW": "指型瀏覽改善 94f4b5e" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/94f4b5e"
+    },
+    {
+      "kind": "commit",
+      "label": { "en": "Navigation and filter update 8e889ba", "zhTW": "導覽與篩選更新 8e889ba" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/8e889ba"
+    },
+    {
+      "kind": "pr",
+      "label": { "en": "Repository reorganization PR #1", "zhTW": "儲存庫重整 PR #1" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/1"
+    },
+    {
+      "kind": "file",
+      "label": { "en": "Current Chord Dictionary page", "zhTW": "目前和弦字典頁面" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/chord-dictionary.html",
+      "path": "chord-dictionary.html"
+    },
+    {
+      "kind": "file",
+      "label": { "en": "Current page interaction module", "zhTW": "目前頁面互動模組" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/chord-dictionary.js",
+      "path": "scripts/chord-dictionary.js"
+    },
+    {
+      "kind": "file",
+      "label": { "en": "Shared chord-shape module", "zhTW": "共用和弦指型模組" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/chord-shapes.js",
+      "path": "scripts/chord-shapes.js"
+    },
+    {
+      "kind": "file",
+      "label": { "en": "Chord Dictionary presentation", "zhTW": "和弦字典呈現樣式" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/styles/chord-dictionary.css",
+      "path": "styles/chord-dictionary.css"
+    }
+  ]
+}

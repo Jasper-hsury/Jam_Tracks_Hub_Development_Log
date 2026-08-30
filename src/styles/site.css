@@ -179,6 +179,16 @@ summary { color: var(--brown); font-weight: 700; cursor: pointer; }
 .product-dates { grid-template-columns: 1fr; }
 .card-actions { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
 .text-button { min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--brown); font-weight: 750; text-align: left; text-decoration: underline; text-underline-offset: .2em; }
+.text-link { color: var(--brown); font-weight: 750; }
+.live-link { margin-left: auto; font-size: .8rem; white-space: nowrap; }
+.product-card .card-actions { flex-wrap: wrap; justify-content: flex-start; margin-top: 1rem; }
+.dossier-search-results { margin: 1rem 0 0; padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); box-shadow: var(--shadow); }
+.dossier-search-results .eyebrow { margin-bottom: .55rem; }
+.dossier-search-results ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; margin: 0; padding: 0; list-style: none; }
+.dossier-search-results li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .2rem .55rem; padding: .65rem; border: 1px solid var(--line); border-radius: 10px; }
+.search-result-type { align-self: center; color: var(--teal-ink); font-size: .65rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.dossier-search-results a { font-weight: 800; }
+.search-result-summary { grid-column: 1 / -1; color: var(--muted); font-size: .78rem; }
 .release-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .release-card > div:first-child { display: flex; justify-content: space-between; align-items: center; gap: .75rem; }
 .release-card code { color: var(--brown); font-size: 2rem; }
@@ -221,6 +231,7 @@ footer { display: flex; justify-content: space-between; gap: 2rem; padding: 2.5r
   .event-card, .event-card.level-primary { padding: 1rem; }
   .date-pair { grid-template-columns: 1fr; }
   .product-grid, .release-grid { grid-template-columns: 1fr; }
+  .dossier-search-results ul { grid-template-columns: 1fr; }
   .methodology { grid-template-columns: 1fr; gap: 1rem; }
   footer { flex-direction: column; gap: .5rem; }
 }

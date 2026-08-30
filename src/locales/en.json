@@ -52,6 +52,8 @@
   "hiddenTarget": "This item is hidden by current filters.",
   "showItem": "Show this item",
   "language": "Language",
+  "darkMode": "Dark mode",
+  "lightMode": "Light mode",
   "historyNav": "History years",
   "footerText": "A public historical record of Jam Tracks Hub. This is not the production application repository."
 }

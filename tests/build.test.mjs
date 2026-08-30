@@ -11,6 +11,9 @@ test("build creates complete progressive-enhancement and print output", async ()
   assert.match(index, /Jam Tracks Hub 正式起步/);
   assert.match(index, /Traditional Chinese support arrives/);
   assert.match(index, /data-lang-copy="zh-TW"/);
+  assert.match(index, /id="theme-toggle"/);
+  assert.match(index, /jam-tracks-hub-log-theme/);
+  assert.match(index, /Dark mode/);
   assert.match(index, /\.\/assets\/site\.css/);
   assert.match(index, /\.\/assets\/app\.js/);
   assert.doesNotMatch(index, /\/Users\//);

@@ -85,3 +85,13 @@ test("dossier responsive and print contracts cover the acceptance matrix", async
   const modes = widths.map((width) => width <= 620 ? "mobile" : width <= 900 ? "tablet" : "desktop");
   assert.deepEqual(modes, ["mobile", "mobile", "mobile", "tablet", "tablet", "tablet", "desktop", "desktop", "desktop", "desktop", "desktop"]);
 });
+
+test("dossier print hides the screen-only skip link while preserving its accessible target", async () => {
+  await buildSite();
+  const dossier = await readFile(new URL("../dist/products/chord-dictionary/index.html", import.meta.url), "utf8");
+  const css = await readFile(new URL("../dist/assets/dossier.css", import.meta.url), "utf8");
+
+  assert.match(dossier, /<a class="skip-link" href="#dossier-content">/);
+  assert.match(dossier, /<article class="dossier-content" id="dossier-content">/);
+  assert.match(css, /@media print\s*{[^}]*\.dossier-page \.skip-link[^}]*display:\s*none\s*!important;/s);
+});

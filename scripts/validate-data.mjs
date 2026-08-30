@@ -92,7 +92,7 @@ export function validateData(data) {
     assert(Number.isInteger(release.sequence), `${release.id}: integer sequence required`, errors);
     assert(releaseStatuses.has(release.status), `${release.id}: invalid release status`, errors);
     assert(isLocalized(release.title) && isLocalized(release.summary), `${release.id}: localized release copy required`, errors);
-    assert(/^https:\/\/github\.com\/Jasper-hsury\/Jam_Tracks_Hub\/.+/.test(release.tagUrl || ""), `${release.id}: public tag URL required`, errors);
+    assert(release.tagUrl === `https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/${release.tag}`, `${release.id}: exact public tag URL required`, errors);
     if (release.status === "published") {
       assert(/^https:\/\/github\.com\/Jasper-hsury\/Jam_Tracks_Hub\/releases\/tag\/.+/.test(release.releaseUrl || ""), `${release.id}: published release URL required`, errors);
     } else {

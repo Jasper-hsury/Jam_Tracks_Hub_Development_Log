@@ -8,7 +8,7 @@
     "tagCommit": "71ad93923339286688816b3985607d7df3b4b9fc",
     "status": "published",
     "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.0.0",
-    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.0.0",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.0.0",
     "title": { "en": "Song Workspace 1.0", "zhTW": "歌曲工作區 1.0" },
     "summary": { "en": "The first stable Song Workspace release.", "zhTW": "歌曲工作區的第一個穩定版本。" },
     "featured": true
@@ -22,7 +22,7 @@
     "tagCommit": "0dd642c6a8e01553b82715a5a096ee7c8bee072f",
     "status": "published",
     "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.1.0",
-    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.1.0",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.1.0",
     "title": { "en": "Global Add and mobile alignment", "zhTW": "全域新增與行動版對齊" },
     "summary": { "en": "A faster add flow and responsive control refinements.", "zhTW": "更快速的新增流程與響應式控制改善。" },
     "featured": true
@@ -36,7 +36,7 @@
     "tagCommit": "8838b543118a8525428e3452f93010eff4eb057d",
     "status": "published",
     "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.2.0",
-    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.2.0",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.2.0",
     "title": { "en": "Workspace UI revision", "zhTW": "工作區介面改版" },
     "summary": { "en": "A focused interface revision across workspace controls and layouts.", "zhTW": "針對工作區控制項與版面進行介面改版。" },
     "featured": true
@@ -50,7 +50,7 @@
     "tagCommit": "45f99f2927325493e4b654912950eca27a3dafe0",
     "status": "published",
     "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.3.0",
-    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.3.0",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.3.0",
     "title": { "en": "My Songs and smart navigation", "zhTW": "我的歌曲與智慧導覽" },
     "summary": { "en": "Saved-song workflows and navigation became more direct.", "zhTW": "改善已儲存歌曲流程與導覽效率。" },
     "featured": true
@@ -63,7 +63,7 @@
     "tag": "v1.4.0",
     "tagCommit": "bf051029a52fe3a1fac9d5969100d3ba0a889368",
     "status": "tag_only",
-    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.4.0",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0",
     "title": { "en": "Production verification checkpoint", "zhTW": "正式環境驗證檢查點" },
     "summary": { "en": "A Git tag exists, but no GitHub Release was published.", "zhTW": "已有 Git 標籤，但未發布 GitHub Release。" },
     "featured": false
@@ -77,7 +77,7 @@
     "tagCommit": "bf051029a52fe3a1fac9d5969100d3ba0a889368",
     "status": "published",
     "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.0",
-    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.0",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v2.0.0",
     "title": { "en": "Security and infrastructure checkpoint", "zhTW": "安全與基礎設施檢查點" },
     "summary": { "en": "A high-level public checkpoint for application hardening and production protection.", "zhTW": "應用程式強化與正式環境保護的高層次公開檢查點。" },
     "featured": true
@@ -91,7 +91,7 @@
     "tagCommit": "3b8c86bcb4dc95af0667819c6c910697173e1437",
     "status": "published",
     "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.1",
-    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.1",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v2.0.1",
     "title": { "en": "Policy-page stabilization", "zhTW": "政策頁面穩定化" },
     "summary": { "en": "Legal and Privacy presentation was stabilized across languages.", "zhTW": "穩定英文與繁體中文的法律與隱私權頁面呈現。" },
     "featured": true

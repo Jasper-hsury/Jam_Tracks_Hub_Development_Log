@@ -54,6 +54,7 @@ test("release rules preserve tag-only v1.4.0 and latest published v2.0.1", async
   const tagOnly = data.releases.find((release) => release.version === "v1.4.0");
   assert.equal(tagOnly.status, "tag_only");
   assert.equal(tagOnly.releaseUrl, undefined);
+  assert.equal(tagOnly.tagUrl, "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0");
   assert.equal(deriveData(data).latestPublishedRelease.version, "v2.0.1");
   const brokenPublished = clone(data);
   delete brokenPublished.releases.find((release) => release.status === "published").releaseUrl;

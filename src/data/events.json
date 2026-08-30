@@ -402,7 +402,7 @@
     "status": "released",
     "releaseId": "release-v1.4.0",
     "sourceRefs": [
-      { "kind": "tag", "label": "Tag v1.4.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.4.0" },
+      { "kind": "tag", "label": "Tag v1.4.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0" },
       { "kind": "commit", "label": "Commit bf05102", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/bf05102" }
     ]
   },
@@ -421,7 +421,7 @@
     "securityDisclosure": "high_level",
     "sourceRefs": [
       { "kind": "release", "label": "Release v2.0.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.0" },
-      { "kind": "tag", "label": "Tag v2.0.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.0" }
+      { "kind": "tag", "label": "Tag v2.0.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v2.0.0" }
     ]
   },
   {

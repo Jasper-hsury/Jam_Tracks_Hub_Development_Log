@@ -71,7 +71,7 @@
 }
 
 @media print {
-  .dossier-page .site-header, .dossier-breadcrumb, .dossier-toc, .dossier-hero .hero-actions, .dossier-actions-bottom, .theme-toggle, .language-switch { display: none !important; }
+  .dossier-page .skip-link, .dossier-page .site-header, .dossier-breadcrumb, .dossier-toc, .dossier-hero .hero-actions, .dossier-actions-bottom, .theme-toggle, .language-switch { display: none !important; }
   .dossier-page main { width: 100%; }
   .dossier-hero { padding: 0 0 8mm; }
   .dossier-hero-grid, .dossier-layout { display: block; }

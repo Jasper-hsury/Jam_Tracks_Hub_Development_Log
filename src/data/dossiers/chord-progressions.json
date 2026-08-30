@@ -1,0 +1,54 @@
+{
+  "id": "dossier-chord-progressions",
+  "productId": "product-chord-progressions",
+  "slug": "chord-progressions",
+  "status": "published",
+  "latestSignificantUpdate": "2026-08-04",
+  "hero": { "classification": "verified", "text": { "en": "An interactive reference for exploring practical chord progressions by tonic and key context.", "zhTW": "依主音與調性脈絡探索實用和弦進行的互動參考工具。" } },
+  "overview": { "classification": "verified", "text": { "en": "Chord Progressions builds diatonic harmony for selected major or minor contexts, renders practical progressions and chord shapes, offers listening and practice guidance, and connects chords to the dictionary.", "zhTW": "和弦進行會為所選大調或小調脈絡建立順階和聲、渲染實用進行與和弦指型、提供聆聽及練習提示，並將和弦連到字典。" } },
+  "purpose": [
+    { "label": { "en": "Problem", "zhTW": "問題" }, "body": { "classification": "reconstructed", "text": { "en": "The implementation turns abstract key harmony into playable and audible progression examples.", "zhTW": "從實作回溯可見，它將抽象調性和聲轉為可彈奏、可聆聽的進行範例。" } } },
+    { "label": { "en": "Target use case", "zhTW": "目標使用情境" }, "body": { "classification": "verified", "text": { "en": "Choose a tonic and mode, inspect generated progressions and shapes, hear accompaniment, save or export a useful progression, and open detailed chord references.", "zhTW": "選擇主音與調式、查看產生的進行與指型、聆聽伴奏、儲存或匯出實用進行，並開啟詳細和弦參考。" } } }
+  ],
+  "originalVersion": {
+    "date": "2026-06-06",
+    "summary": { "classification": "verified", "text": { "en": "Chord Progressions was part of the first site foundation under chords.html; the later chord-progressions.html route did not represent a new product launch.", "zhTW": "和弦進行以 chords.html 路徑存在於最初網站基礎；後來改為 chord-progressions.html 並不代表新產品推出。" } },
+    "features": [
+      { "classification": "verified", "text": { "en": "A public progression reference available from the initial site history.", "zhTW": "自最初網站歷史即提供的公開和弦進行參考。" } },
+      { "classification": "reconstructed", "text": { "en": "Its early role was to make progression examples discoverable alongside backing tracks.", "zhTW": "從初始網站結構回溯，其早期角色是讓和弦進行範例可與伴奏音軌一同探索。" } }
+    ],
+    "structure": [
+      { "classification": "verified", "text": { "en": "The current successor route retains a page heading, key selector, tonic choices, generated result regions, and related controls.", "zhTW": "目前後繼路徑保留頁面標題、調性選擇器、主音選項、產生結果區與相關控制。" } }
+    ]
+  },
+  "sections": [
+    { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
+      { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "chord-progressions.html defines the explorer controls and render hosts under the shared bilingual site shell.", "zhTW": "chord-progressions.html 在共用雙語網站外殼中定義探索器控制與渲染容器。" } } },
+      { "label": { "en": "Harmony and interaction", "zhTW": "和聲與互動" }, "body": { "classification": "verified", "text": { "en": "scripts/chords.js builds major/minor diatonic chords, renders progressions and shapes, links dictionary symbols, supplies scale/practice advice, schedules audio, and handles saved/exported progressions.", "zhTW": "scripts/chords.js 建立大／小調順階和弦、渲染進行與指型、連結字典符號、提供音階／練習建議、安排音訊並處理儲存／匯出進行。" } } }
+    ] },
+    { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
+      { "label": { "en": "Desktop", "zhTW": "桌面" }, "body": { "classification": "verified", "text": { "en": "Key controls and generated progression cards use wider grids for comparison.", "zhTW": "調性控制與產生的進行卡使用較寬網格以便比較。" } } },
+      { "label": { "en": "Tablet", "zhTW": "平板" }, "body": { "classification": "reconstructed", "text": { "en": "The page's selector-to-results hierarchy preserves task order as grids reduce columns.", "zhTW": "從版面回溯可見，當網格縮減欄數時，選擇器到結果的層級仍維持任務順序。" } } },
+      { "label": { "en": "Mobile", "zhTW": "行動裝置" }, "body": { "classification": "verified", "text": { "en": "The shared July mobile polish stacks controls and progression content while retaining touch-sized actions.", "zhTW": "7 月共用行動版改善會堆疊控制與進行內容，同時保留適合觸控的操作。" } } }
+    ] },
+    { "id": "evolution", "type": "timeline", "title": { "en": "Evolution", "zhTW": "演進" }, "items": [
+      { "date": "2026-06-06", "eventId": "event-20260606-jam-tracks-hub-begins", "impact": "direct", "title": { "en": "Initial progression reference", "zhTW": "初始和弦進行參考" }, "body": { "classification": "verified", "text": { "en": "Chord Progressions entered history with the first site foundation.", "zhTW": "和弦進行隨最初網站基礎進入歷史。" } } },
+      { "date": "2026-07-25", "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/1", "impact": "direct", "title": { "en": "Route and structure reorganization", "zhTW": "路徑與結構重整" }, "body": { "classification": "verified", "text": { "en": "The repository reorganization established the current chord-progressions.html path without treating it as a new product.", "zhTW": "儲存庫重整建立目前 chord-progressions.html 路徑，且未將它視為新產品。" } } },
+      { "date": "2026-08-04", "eventId": "event-20260804-traditional-chinese-support", "impact": "shared", "title": { "en": "Bilingual public experience", "zhTW": "雙語公開體驗" }, "body": { "classification": "verified", "text": { "en": "Shared localization added Traditional Chinese to page chrome and dynamic content.", "zhTW": "共用在地化為頁面介面與動態內容加入繁體中文。" } } }
+    ] }
+  ],
+  "currentState": { "classification": "verified", "text": { "en": "Chord Progressions is a bilingual static-browser tool at /chord-progressions.html with key selection, generated harmony, shapes, playback, practical guidance, saving/export, and cross-links to Chord Dictionary.", "zhTW": "和弦進行目前是 /chord-progressions.html 的雙語靜態瀏覽器工具，包含調性選擇、產生式和聲、指型、播放、實用提示、儲存／匯出及和弦字典交叉連結。" } },
+  "lessons": [
+    { "classification": "reconstructed", "text": { "en": "Stable product identity should survive route renames; history is clearer when a URL change is not misreported as a second launch.", "zhTW": "穩定產品身分應跨越路徑更名；不把網址變更誤報成第二次推出，歷史會更清楚。" } }
+  ],
+  "unknowns": [
+    { "classification": "unknown", "text": { "en": "No original progression curriculum, user study, or design brief was found in the reviewed history.", "zhTW": "在已檢視歷史中，未找到原始和弦進行課程、使用者研究或設計簡報。" } }
+  ],
+  "relatedEventIds": ["event-20260606-jam-tracks-hub-begins"],
+  "sourceRefs": [
+    { "kind": "commit", "label": { "en": "Initial foundation 1ad1d86", "zhTW": "最初基礎 1ad1d86" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1ad1d86" },
+    { "kind": "pr", "label": { "en": "Repository reorganization PR #1", "zhTW": "儲存庫重整 PR #1" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/1" },
+    { "kind": "file", "label": { "en": "Current Chord Progressions page", "zhTW": "目前和弦進行頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/chord-progressions.html", "path": "chord-progressions.html" },
+    { "kind": "file", "label": { "en": "Progression interaction module", "zhTW": "和弦進行互動模組" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/chords.js", "path": "scripts/chords.js" }
+  ]
+}

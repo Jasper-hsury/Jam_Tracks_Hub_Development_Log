@@ -1,6 +1,6 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import { CATEGORY_LABELS, buildSearchDocument, deriveData } from "./site-core.mjs";
+import { CATEGORY_LABELS, buildDossierSearchDocument, buildSearchDocument, deriveData } from "./site-core.mjs";
 import { runValidation } from "./validate-data.mjs";
 
 const root = new URL("../", import.meta.url);
@@ -68,6 +68,7 @@ function renderTimeline(context, locales) {
 
 function renderProduct(product, context, locales) {
   const stats = context.productStats.get(product.id);
+  const dossier = context.dossierByProductId.get(product.id);
   return `<article class="product-card" id="${product.id}">
     <p class="eyebrow">${esc(product.classification.replaceAll("_", " "))}</p>
     <h3>${copy(product.name)}</h3><p>${copy(product.description)}</p>
@@ -76,8 +77,74 @@ function renderProduct(product, context, locales) {
       <div><dt>${label("firstPublished", locales)}</dt><dd>${stats.publishedDate ? dateCopy(stats.publishedDate) : "—"}</dd></div>
       <div><dt>${label("latestPublicUpdate", locales)}</dt><dd>${stats.latestDate ? dateCopy(stats.latestDate) : "—"}</dd></div>
     </dl>
-    <p class="card-actions"><button type="button" class="text-button" data-product-history="${product.id}">${label("viewHistory", locales)} · ${stats.eventCount} ${label("events", locales)}</button>${product.href ? `<a href="${esc(product.href)}">↗</a>` : ""}</p>
+    <div class="card-actions">${dossier ? `<a class="text-link" data-dossier-link data-dossier-path="./products/${esc(dossier.slug)}/" href="./products/${esc(dossier.slug)}/">${label("viewProject", locales)}</a>` : ""}<button type="button" class="text-button" data-product-history="${product.id}">${label("viewTimeline", locales)} · ${stats.eventCount}</button>${product.href ? `<a class="live-link" href="${esc(product.href)}">${label("viewLive", locales)} ↗</a>` : ""}</div>
   </article>`;
+}
+
+function renderClassification(classification, locales) {
+  const key = classification === "verified" ? "verified" : classification === "reconstructed" ? "reconstructed" : "unknown";
+  return `<span class="evidence-class classification-${classification}">${label(key, locales)}</span>`;
+}
+
+function renderFact(fact, locales, className = "") {
+  return `<div class="fact ${className}">${renderClassification(fact.classification, locales)}<p>${copy(fact.text)}</p></div>`;
+}
+
+function renderDossierSection(section, locales) {
+  const intro = section.intro ? renderFact(section.intro, locales, "section-intro") : "";
+  let content = "";
+  if (section.type === "text") content = section.items.map((item) => renderFact(item, locales)).join("");
+  if (["featureList", "decision"].includes(section.type)) {
+    const gridClass = section.type === "decision" ? "decision-grid" : "feature-grid";
+    const cardClass = section.type === "decision" ? "decision-card" : "feature-card";
+    content = `<div class="${gridClass}">${section.items.map((item) => `<article class="${cardClass}"><h3>${copy(item.title)}</h3>${renderFact(item.body, locales)}</article>`).join("")}</div>`;
+  }
+  if (["architecture", "responsive"].includes(section.type)) {
+    const list = section.items.map((item) => `<div><dt>${copy(item.label)}</dt><dd>${renderFact(item.body, locales)}</dd></div>`).join("");
+    content = section.type === "responsive" ? `<div class="responsive-grid">${section.items.map((item) => `<article class="responsive-card"><h3>${copy(item.label)}</h3>${renderFact(item.body, locales)}</article>`).join("")}</div>` : `<dl class="architecture-list">${list}</dl>`;
+  }
+  if (section.type === "timeline") {
+    content = `<ol class="evolution-list">${section.items.map((item) => {
+      const title = item.eventId
+        ? `<a data-lang-href="../../index.html#${esc(item.eventId)}" href="../../index.html#${esc(item.eventId)}">${copy(item.title)}</a>`
+        : `<a href="${esc(item.sourceUrl)}">${copy(item.title)} ↗</a>`;
+      return `<li class="evolution-item"><div><time datetime="${item.date}">${dateCopy(item.date)}</time><span class="impact-label">${label(item.impact === "direct" ? "directChange" : "sharedImpact", locales)}</span></div><div><h3>${title}</h3>${renderFact(item.body, locales)}</div></li>`;
+    }).join("")}</ol>`;
+  }
+  return `<section class="dossier-section" id="${esc(section.id)}"><h2>${copy(section.title)}</h2>${intro}${content}</section>`;
+}
+
+function renderDossierBody(dossier, product, context, data, locales) {
+  const stats = context.productStats.get(product.id);
+  const relatedEvents = dossier.relatedEventIds.map((id) => context.sortedEvents.find((event) => event.id === id)).filter(Boolean);
+  const relatedReleaseIds = [...new Set(relatedEvents.map((event) => event.releaseId).filter(Boolean))];
+  const relatedReleases = relatedReleaseIds.map((id) => context.releaseById.get(id)).filter(Boolean);
+  const fixedToc = [
+    ["overview", "projectOverview"], ["purpose", "whyItExists"], ["original-version", "originalVersion"],
+    ...dossier.sections.map((section) => [section.id, section.title]),
+    ["current-state", "currentState"], ["lessons", "lessons"], ["related-history", "relatedHistory"],
+    ["evidence", "evidence"], ["unknowns", "unknowns"]
+  ];
+  const tocLabel = (value) => typeof value === "string" ? label(value, locales) : copy(value);
+  const purpose = `<div class="purpose-grid">${dossier.purpose.map((item) => `<article class="purpose-card"><h3>${copy(item.label)}</h3>${renderFact(item.body, locales)}</article>`).join("")}</div>`;
+  const original = `<div class="original-version"><time datetime="${dossier.originalVersion.date}">${dateCopy(dossier.originalVersion.date)}</time>${renderFact(dossier.originalVersion.summary, locales)}<div><h3>${label("initialFeatures", locales)}</h3><ul class="fact-list">${dossier.originalVersion.features.map((fact) => `<li>${renderFact(fact, locales)}</li>`).join("")}</ul></div><div><h3>${label("initialStructure", locales)}</h3><ul class="fact-list">${dossier.originalVersion.structure.map((fact) => `<li>${renderFact(fact, locales)}</li>`).join("")}</ul></div></div>`;
+  const unknowns = dossier.unknowns.length ? dossier.unknowns.map((fact) => renderFact(fact, locales)).join("") : renderFact({ classification: "unknown", text: { en: "No additional unknowns are recorded.", zhTW: "目前沒有其他未知項目。" } }, locales);
+  const sourceList = dossier.sourceRefs.map((ref) => `<li><a href="${esc(ref.url)}">${copy(ref.label)} ↗</a>${ref.path ? `<code class="source-path">${esc(ref.path)}</code>` : ""}</li>`).join("");
+  return `<a class="skip-link" href="#dossier-content">${label("skipDossier", locales)}</a>
+  <header class="site-header"><a class="brand" data-lang-href="../../index.html" href="../../index.html">Jam Tracks Hub <span>${label("siteTitle", locales)}</span></a><nav aria-label="${esc(locales.en.primaryNavigation)}" data-i18n-aria-label="primaryNavigation"><a data-lang-href="../../index.html#products" href="../../index.html#products">${label("productEvolution", locales)}</a><a data-lang-href="../../index.html?product=${esc(product.id)}#history" href="../../index.html?product=${esc(product.id)}#history">${label("viewTimeline", locales)}</a><button type="button" id="print-dossier" class="text-button">${label("printDossier", locales)}</button></nav><div class="header-actions"><button type="button" id="theme-toggle" class="theme-toggle" hidden><span class="theme-icon" aria-hidden="true">◐</span><span id="theme-label">${esc(locales.en.darkMode)}</span></button><div class="language-switch" role="group" aria-label="${esc(locales.en.language)}" data-i18n-aria-label="language"><button type="button" data-set-lang="en" aria-pressed="true">EN</button><button type="button" data-set-lang="zh-TW" aria-pressed="false">繁中</button></div></div></header>
+  <main><section class="dossier-hero"><p class="dossier-breadcrumb"><a data-lang-href="../../index.html" href="../../index.html">${label("siteTitle", locales)}</a> / ${label("productDossier", locales)}</p><div class="dossier-hero-grid"><div><p class="eyebrow">${label("productDossier", locales)}</p><h1>${copy(product.name)}</h1><div class="lede">${copy(dossier.hero.text)}</div><p class="dossier-classification-note">${label("classificationNote", locales)}</p><div class="hero-actions"><a class="button primary" href="${esc(product.href)}">${label("viewLive", locales)} ↗</a><a class="button secondary" data-lang-href="../../index.html?product=${esc(product.id)}#history" href="../../index.html?product=${esc(product.id)}#history">${label("viewTimeline", locales)}</a></div></div><dl class="dossier-facts"><div><dt>${label("publicStatus", locales)}</dt><dd>${label("publishedStatus", locales)}</dd></div><div><dt>${label("currentRoute", locales)}</dt><dd><a href="${esc(product.href)}">${esc(new URL(product.href).pathname)}</a></dd></div><div><dt>${label("createdInGit", locales)}</dt><dd>${dateCopy(stats.createdDate)}</dd></div><div><dt>${label("firstPublished", locales)}</dt><dd>${dateCopy(stats.publishedDate)}</dd></div><div><dt>${label("latestSignificantUpdate", locales)}</dt><dd>${dateCopy(dossier.latestSignificantUpdate)}</dd></div></dl></div></section>
+  <div class="dossier-layout"><aside class="dossier-toc" aria-label="${esc(locales.en.sectionNavigation)}" data-i18n-aria-label="sectionNavigation"><p>${label("onThisPage", locales)}</p><ol>${fixedToc.map(([id, value]) => `<li><a href="#${esc(id)}">${tocLabel(value)}</a></li>`).join("")}</ol></aside><article class="dossier-content" id="dossier-content">
+    <section class="dossier-section" id="overview"><h2>${label("projectOverview", locales)}</h2>${renderFact(dossier.overview, locales)}</section>
+    <section class="dossier-section" id="purpose"><h2>${label("whyItExists", locales)}</h2>${purpose}</section>
+    <section class="dossier-section" id="original-version"><h2>${label("originalVersion", locales)}</h2>${original}</section>
+    ${dossier.sections.map((section) => renderDossierSection(section, locales)).join("")}
+    <section class="dossier-section" id="current-state"><h2>${label("currentState", locales)}</h2>${renderFact(dossier.currentState, locales)}</section>
+    <section class="dossier-section" id="lessons"><h2>${label("lessons", locales)}</h2><ul class="fact-list">${dossier.lessons.map((fact) => `<li>${renderFact(fact, locales)}</li>`).join("")}</ul></section>
+    <section class="dossier-section" id="related-history"><h2>${label("relatedHistory", locales)}</h2><h3>${label("historyEvents", locales)}</h3><ul class="related-list">${relatedEvents.map((event) => `<li><time datetime="${event.date}">${esc(event.date)}</time> — <a data-lang-href="../../index.html#${esc(event.id)}" href="../../index.html#${esc(event.id)}">${copy(event.title)}</a></li>`).join("")}</ul>${relatedReleases.length ? `<h3>${label("relatedReleases", locales)}</h3><ul class="related-list">${relatedReleases.map((release) => `<li><a data-lang-href="../../index.html#${esc(release.id)}" href="../../index.html#${esc(release.id)}"><code>${esc(release.version)}</code> — ${copy(release.title)}</a></li>`).join("")}</ul>` : ""}</section>
+    <section class="dossier-section" id="evidence"><h2>${label("evidence", locales)}</h2><ul class="evidence-list">${sourceList}</ul></section>
+    <section class="dossier-section" id="unknowns"><h2>${label("unknowns", locales)}</h2>${unknowns}</section>
+    <div class="dossier-actions-bottom"><a class="button secondary" data-lang-href="../../index.html#products" href="../../index.html#products">${label("backToProductEvolution", locales)}</a><a class="button secondary" data-lang-href="../../index.html?product=${esc(product.id)}#history" href="../../index.html?product=${esc(product.id)}#history">${label("viewTimeline", locales)}</a></div>
+  </article></div></main><footer><p>${label("footerText", locales)}</p><p><a data-lang-href="../../index.html" href="../../index.html">${label("siteTitle", locales)}</a> · <a href="${esc(product.href)}">${copy(product.name)}</a></p></footer>`;
 }
 
 function renderRelease(release, context, locales) {
@@ -112,6 +179,7 @@ function renderIndexBody(data, context, locales) {
     <section class="snapshot" aria-label="Current snapshot"><div><span>${label("latestStable", locales)}</span><strong>${esc(context.latestPublishedRelease.version)}</strong></div><div><span>${label("latestUpdate", locales)}</span><strong>${copy(newestMajor.title)}</strong></div></section>
     <section class="metrics" aria-label="Derived metrics"><article><strong>${context.metrics.publishedReleases}</strong><span>${label("publishedReleases", locales)}</span></article><article><strong>${context.metrics.productAreas}</strong><span>${label("productAreas", locales)}</span></article><article><strong>${context.metrics.developmentSince.slice(0, 4)}</strong><span>${label("developmentSince", locales)}</span></article></section>
     <section class="explore" aria-labelledby="explore-title"><div class="section-heading compact"><p class="eyebrow">${label("explore", locales)}</p><h2 id="explore-title">${label("timeline", locales)}</h2></div><details class="filters-shell" open><summary>${label("filtersYears", locales)}</summary><div class="filter-controls"><label class="search-control"><span>${label("searchLabel", locales)}</span><input id="history-search" type="search" autocomplete="off" placeholder="${esc(locales.en.searchPlaceholder)}"></label>${selectControl("year", years.map((year) => option(year, year)).join(""), locales)}${selectControl("product", productOptions, locales)}${selectControl("category", categoryOptions, locales)}${selectControl("release", releaseOptions, locales)}${selectControl("status", statusOptions, locales)}<button type="button" id="reset-filters" class="reset-button">${label("reset", locales)}</button></div></details><div class="result-row"><p id="result-count" role="status" aria-live="polite">${data.events.length} ${label("results", locales)}</p><div id="active-filters" class="active-filters" aria-label="Active filters"></div></div></section>
+    <aside id="dossier-search-results" class="dossier-search-results" aria-labelledby="dossier-search-title" aria-live="polite" hidden><p class="eyebrow" id="dossier-search-title">${label("dossierMatches", locales)}</p><ul id="dossier-search-list"></ul></aside>
     <div id="hidden-target" class="hidden-target" hidden><p>${label("hiddenTarget", locales)}</p><button type="button" id="show-target">${label("showItem", locales)}</button></div>
     <section class="history-layout" id="history" tabindex="-1"><aside class="year-rail"><p>${label("historyNav", locales)}</p><nav>${years.map((year) => `<button type="button" data-year-jump="${year}">${year}</button>`).join("")}</nav></aside><div class="timeline"><div class="section-heading"><h2>${label("timeline", locales)}</h2><p>${label("timelineIntro", locales)}</p></div>${timeline}<p id="no-results" class="no-results" hidden>No matching history items.</p></div></section>
     <section class="page-section" id="products"><div class="section-heading"><p class="eyebrow">Index</p><h2>${label("productEvolution", locales)}</h2><p>${label("productEvolutionIntro", locales)}</p></div><div class="product-grid">${context.visibleProducts.map((product) => renderProduct(product, context, locales)).join("")}</div></section>
@@ -132,8 +200,8 @@ function renderPrintBody(data, context) {
 
 export async function buildSite() {
   const data = await runValidation();
-  const [indexTemplate, printTemplate, en, zhTW] = await Promise.all([
-    read("src/templates/index.html"), read("src/templates/print.html"),
+  const [indexTemplate, printTemplate, dossierTemplate, en, zhTW] = await Promise.all([
+    read("src/templates/index.html"), read("src/templates/print.html"), read("src/templates/dossier.html"),
     read("src/locales/en.json").then(JSON.parse), read("src/locales/zh-TW.json").then(JSON.parse)
   ]);
   const locales = { en, zhTW };
@@ -156,7 +224,12 @@ export async function buildSite() {
     searchDocuments,
     locales: { en, "zh-TW": zhTW }
   }).replaceAll("<", "\\u003c");
-  const index = indexTemplate.replace("{{BODY}}", renderIndexBody(data, context, locales)).replace("{{SITE_DATA}}", siteData);
+  const dossierSearch = context.visibleDossiers.map((dossier) => {
+    const product = context.productById.get(dossier.productId);
+    return { id: dossier.id, productId: dossier.productId, slug: dossier.slug, name: { en: product.name.en, "zh-TW": product.name.zhTW }, summary: { en: dossier.hero.text.en, "zh-TW": dossier.hero.text.zhTW }, search: buildDossierSearchDocument(dossier, product) };
+  });
+  const indexSiteData = JSON.stringify({ ...JSON.parse(siteData), dossiers: dossierSearch }).replaceAll("<", "\\u003c");
+  const index = indexTemplate.replace("{{BODY}}", renderIndexBody(data, context, locales)).replace("{{SITE_DATA}}", indexSiteData);
   const print = printTemplate.replace("{{BODY}}", renderPrintBody(data, context));
   await rm(dist, { recursive: true, force: true });
   await mkdir(new URL("assets/", dist), { recursive: true });
@@ -164,14 +237,30 @@ export async function buildSite() {
   await writeFile(new URL("print.html", dist), print);
   await cp(new URL("src/styles/site.css", root), new URL("assets/site.css", dist));
   await cp(new URL("src/styles/print.css", root), new URL("assets/print.css", dist));
+  await cp(new URL("src/styles/dossier.css", root), new URL("assets/dossier.css", dist));
   await cp(new URL("src/scripts/app.js", root), new URL("assets/app.js", dist));
-  return { data, context, output: { index, print } };
+  await cp(new URL("src/scripts/dossier.js", root), new URL("assets/dossier.js", dist));
+  const dossierOutputs = {};
+  for (const dossier of context.visibleDossiers) {
+    const product = context.productById.get(dossier.productId);
+    const dossierData = JSON.stringify({ locales: { en, "zh-TW": zhTW }, productName: { en: product.name.en, "zh-TW": product.name.zhTW } }).replaceAll("<", "\\u003c");
+    const html = dossierTemplate
+      .replace("{{TITLE}}", esc(product.name.en))
+      .replace("{{DESCRIPTION}}", esc(dossier.hero.text.en))
+      .replace("{{BODY}}", renderDossierBody(dossier, product, context, data, locales))
+      .replace("{{DOSSIER_DATA}}", dossierData);
+    const outputDirectory = new URL(`products/${dossier.slug}/`, dist);
+    await mkdir(outputDirectory, { recursive: true });
+    await writeFile(new URL("index.html", outputDirectory), html);
+    dossierOutputs[dossier.slug] = html;
+  }
+  return { data, context, output: { index, print, dossiers: dossierOutputs } };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   try {
     const result = await buildSite();
-    console.log(`Built dist/index.html and dist/print.html from ${result.data.events.length} canonical events.`);
+    console.log(`Built index, print, and ${result.data.dossiers.length} product dossiers from ${result.data.events.length} canonical events.`);
   } catch (error) {
     console.error(error.stack || error.message);
     process.exitCode = 1;

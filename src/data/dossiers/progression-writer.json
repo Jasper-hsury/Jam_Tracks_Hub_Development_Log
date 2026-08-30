@@ -1,0 +1,56 @@
+{
+  "id": "dossier-progression-writer",
+  "productId": "product-progression-writer",
+  "slug": "progression-writer",
+  "status": "published",
+  "latestSignificantUpdate": "2026-08-28",
+  "hero": { "classification": "verified", "text": { "en": "A browser workspace for drafting, saving, hearing, illustrating, and exporting custom chord progressions.", "zhTW": "在瀏覽器中編寫、儲存、聆聽、圖像化與匯出自訂和弦進行的工作區。" } },
+  "overview": { "classification": "verified", "text": { "en": "Progression Writer supports single or verse/chorus structures, chord entry and shape selection, saved progression records, duplication, playback, JSON export, and generated visual downloads.", "zhTW": "和弦進行編寫器支援單一或主歌／副歌結構、和弦輸入與指型選擇、已儲存進行紀錄、複製、播放、JSON 匯出與產生式視覺下載。" } },
+  "purpose": [
+    { "label": { "en": "Problem", "zhTW": "問題" }, "body": { "classification": "reconstructed", "text": { "en": "The product extends progression browsing into authorship: a visitor can compose and keep a custom sequence instead of only choosing a generated example.", "zhTW": "從實作回溯可見，此產品把和弦進行瀏覽延伸到創作：訪客可編寫並保留自訂序列，而非只能選擇產生範例。" } } },
+    { "label": { "en": "Target use case", "zhTW": "目標使用情境" }, "body": { "classification": "verified", "text": { "en": "Enter song metadata and chords, choose voicings, audition the progression, save or duplicate it locally, and export a shareable data or image artifact.", "zhTW": "輸入歌曲資料與和弦、選擇配置、試聽進行、在本機儲存或複製，並匯出可分享資料或圖片。" } } }
+  ],
+  "originalVersion": {
+    "date": "2026-07-24",
+    "summary": { "classification": "verified", "text": { "en": "The page was created in feature history by commit 35b8aa4 on July 24 and first published to canonical main through PR #1 on July 25.", "zhTW": "此頁於 7 月 24 日由 commit 35b8aa4 在功能歷史中建立，並於 7 月 25 日透過 PR #1 首次發布到正式 main。" } },
+    "features": [
+      { "classification": "verified", "text": { "en": "Custom chord entry, multiple progression modes, local saved records, playback, and generated downloads.", "zhTW": "自訂和弦輸入、多種進行模式、本機已儲存紀錄、播放與產生式下載。" } },
+      { "classification": "verified", "text": { "en": "The creation-versus-publication distinction is preserved because the feature existed in Git one day before canonical integration.", "zhTW": "由於功能在正式整合前一天已存在於 Git，紀錄保留「建立」與「首次發布」的區別。" } }
+    ],
+    "structure": [
+      { "classification": "verified", "text": { "en": "Heading and mode controls → song metadata → single or verse/chorus entry → shape picker → saved progression library.", "zhTW": "標題與模式控制 → 歌曲資料 → 單一或主歌／副歌輸入 → 指型選擇器 → 已儲存進行資料庫。" } }
+    ]
+  },
+  "sections": [
+    { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
+      { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "progression-writer.html defines modes, metadata, chord fields, shape-picker dialog, saved records, and download actions.", "zhTW": "progression-writer.html 定義模式、中繼資料、和弦欄位、指型選擇對話框、已儲存紀錄與下載操作。" } } },
+      { "label": { "en": "Interaction and exports", "zhTW": "互動與匯出" }, "body": { "classification": "verified", "text": { "en": "scripts/progression-writer.js normalizes saved data, coordinates fields and modes, renders shape choices, produces SVG/PNG layouts, and handles JSON export.", "zhTW": "scripts/progression-writer.js 正規化已儲存資料、協調欄位與模式、渲染指型選擇、產生 SVG／PNG 版面並處理 JSON 匯出。" } } },
+      { "label": { "en": "Shared shapes", "zhTW": "共用指型" }, "body": { "classification": "verified", "text": { "en": "The current page consumes scripts/chord-shapes.js, the shared parser, voicing, and diagram model introduced with Song Workspace.", "zhTW": "目前頁面使用 scripts/chord-shapes.js，也就是隨歌曲工作區引入的共用解析、配置與圖表模型。" } } }
+    ] },
+    { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
+      { "label": { "en": "Desktop", "zhTW": "桌面" }, "body": { "classification": "verified", "text": { "en": "Metadata, section editors, shape picker, and saved records use wider grids and dialogs.", "zhTW": "中繼資料、段落編輯器、指型選擇器與已儲存紀錄使用較寬網格與對話框。" } } },
+      { "label": { "en": "Tablet", "zhTW": "平板" }, "body": { "classification": "reconstructed", "text": { "en": "Progressive stacking keeps mode and chord-entry decisions ahead of the saved library.", "zhTW": "從版面回溯可見，漸進堆疊讓模式與和弦輸入決策維持在已儲存資料庫之前。" } } },
+      { "label": { "en": "Mobile", "zhTW": "行動裝置" }, "body": { "classification": "verified", "text": { "en": "Shared mobile chord-tool styles keep shape filters, dialogs, and chord controls usable at narrow widths.", "zhTW": "共用行動版和弦工具樣式讓指型篩選、對話框與和弦控制在窄寬度仍可使用。" } } }
+    ] },
+    { "id": "evolution", "type": "timeline", "title": { "en": "Evolution", "zhTW": "演進" }, "items": [
+      { "date": "2026-07-25", "eventId": "event-20260725-progression-writer-published", "impact": "direct", "title": { "en": "First canonical publication", "zhTW": "首次正式發布" }, "body": { "classification": "verified", "text": { "en": "The July 24 feature-history creation reached main through PR #1 on July 25.", "zhTW": "7 月 24 日的功能歷史建立於 7 月 25 日透過 PR #1 進入 main。" } } },
+      { "date": "2026-08-04", "eventId": "event-20260804-traditional-chinese-support", "impact": "shared", "title": { "en": "Bilingual authoring", "zhTW": "雙語編寫" }, "body": { "classification": "verified", "text": { "en": "Shared localization added Traditional Chinese to the writing workflow.", "zhTW": "共用在地化為編寫流程加入繁體中文。" } } },
+      { "date": "2026-08-28", "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5", "impact": "shared", "title": { "en": "Shared chord-shape model", "zhTW": "共用和弦指型模型" }, "body": { "classification": "verified", "text": { "en": "The reusable shape renderer introduced with Song Workspace became part of the current writer architecture.", "zhTW": "隨歌曲工作區引入的可重用指型渲染器成為目前編寫器架構的一部分。" } } }
+    ] }
+  ],
+  "currentState": { "classification": "verified", "text": { "en": "Progression Writer is a bilingual browser authoring tool at /progression-writer.html with local saved records, shape selection, playback, duplication, JSON export, and generated visual downloads.", "zhTW": "和弦進行編寫器目前是 /progression-writer.html 的雙語瀏覽器創作工具，包含本機已儲存紀錄、指型選擇、播放、複製、JSON 匯出與產生式視覺下載。" } },
+  "lessons": [
+    { "classification": "reconstructed", "text": { "en": "Preserving creation and publication as separate dates makes feature-branch history legible without misrepresenting public availability.", "zhTW": "分開保留建立與發布日期，可讓功能分支歷史清楚，同時不誤述公開可用時間。" } },
+    { "classification": "reconstructed", "text": { "en": "A composition tool becomes more useful when the same data can be edited, auditioned, saved, and exported in both machine-readable and visual forms.", "zhTW": "當相同資料可編輯、試聽、儲存，並以機器可讀與視覺形式匯出時，創作工具會更實用。" } }
+  ],
+  "unknowns": [
+    { "classification": "unknown", "text": { "en": "No original design brief or documented rejected editor layouts were found.", "zhTW": "未找到原始設計簡報或被否決編輯器版面的書面紀錄。" } }
+  ],
+  "relatedEventIds": ["event-20260725-progression-writer-published"],
+  "sourceRefs": [
+    { "kind": "commit", "label": { "en": "Feature creation 35b8aa4", "zhTW": "功能建立 35b8aa4" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/35b8aa4" },
+    { "kind": "pr", "label": { "en": "Canonical publication PR #1", "zhTW": "正式發布 PR #1" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/1" },
+    { "kind": "file", "label": { "en": "Current Progression Writer page", "zhTW": "目前和弦進行編寫器頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/progression-writer.html", "path": "progression-writer.html" },
+    { "kind": "file", "label": { "en": "Writer interaction module", "zhTW": "編寫器互動模組" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/progression-writer.js", "path": "scripts/progression-writer.js" }
+  ]
+}

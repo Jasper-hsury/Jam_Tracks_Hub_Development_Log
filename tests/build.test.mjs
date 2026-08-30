@@ -34,3 +34,54 @@ test("generated index contains meaningful history before JavaScript runs", async
   assert.match(index, /First published/);
   assert.match(index, /event-20260830-typography-rollback/);
 });
+
+test("build generates stable bilingual product dossier routes with correct base paths", async () => {
+  const { data } = await buildSite();
+  for (const dossier of data.dossiers) {
+    const html = await readFile(new URL(`../dist/products/${dossier.slug}/index.html`, import.meta.url), "utf8");
+    assert.match(html, /\.\.\/\.\.\/assets\/site\.css/);
+    assert.match(html, /\.\.\/\.\.\/assets\/dossier\.css/);
+    assert.match(html, /data-lang-copy="zh-TW"/);
+    assert.match(html, /id="print-dossier"/);
+    assert.match(html, new RegExp(`product=${dossier.productId}`));
+    assert.equal((html.match(/<h1/g) || []).length, 1);
+    assert.doesNotMatch(html, /\/Users\//);
+  }
+});
+
+test("Chord Dictionary dossier is a substantive evidence-labeled retrospective", async () => {
+  await buildSite();
+  const index = await readFile(new URL("../dist/index.html", import.meta.url), "utf8");
+  const dossier = await readFile(new URL("../dist/products/chord-dictionary/index.html", import.meta.url), "utf8");
+  assert.match(index, /\.\/products\/chord-dictionary\//);
+  assert.match(index, /data-product-history="product-chord-dictionary"/);
+  assert.match(dossier, /Page design &amp; information architecture/);
+  assert.match(dossier, /Technical structure/);
+  assert.match(dossier, /Responsive strategy/);
+  assert.match(dossier, /Decisions &amp; trade-offs/);
+  assert.match(dossier, /Regressions &amp; corrections/);
+  assert.match(dossier, /classification-verified/);
+  assert.match(dossier, /classification-reconstructed/);
+  assert.match(dossier, /classification-unknown/);
+  assert.match(dossier, /commit\/a901651/);
+});
+
+test("related dossier history and releases resolve from canonical records", async () => {
+  await buildSite();
+  const workspace = await readFile(new URL("../dist/products/song-workspace/index.html", import.meta.url), "utf8");
+  assert.match(workspace, /event-20260828-song-workspace-v1/);
+  assert.match(workspace, /release-v1\.3\.0/);
+  assert.match(workspace, /Performance Mode/);
+  assert.doesNotMatch(workspace, /\/Users\//);
+});
+
+test("dossier responsive and print contracts cover the acceptance matrix", async () => {
+  const css = await readFile(new URL("../src/styles/dossier.css", import.meta.url), "utf8");
+  assert.match(css, /@media \(max-width: 900px\)/);
+  assert.match(css, /@media \(max-width: 620px\)/);
+  assert.match(css, /@media print/);
+  assert.match(css, /minmax\(0, 1fr\)/);
+  const widths = [375, 390, 430, 768, 820, 834, 1024, 1180, 1194, 1280, 1440];
+  const modes = widths.map((width) => width <= 620 ? "mobile" : width <= 900 ? "tablet" : "desktop");
+  assert.deepEqual(modes, ["mobile", "mobile", "mobile", "tablet", "tablet", "tablet", "desktop", "desktop", "desktop", "desktop", "desktop"]);
+});

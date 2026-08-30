@@ -1,0 +1,61 @@
+{
+  "id": "dossier-tracks",
+  "productId": "product-tracks",
+  "slug": "tracks",
+  "status": "published",
+  "latestSignificantUpdate": "2026-08-30",
+  "hero": { "classification": "verified", "text": { "en": "The recurring backing-track library and downloadable slide collection at the center of Jam Tracks Hub.", "zhTW": "Jam Tracks Hub 核心的持續更新伴奏音軌資料庫與可下載投影片集合。" } },
+  "overview": { "classification": "verified", "text": { "en": "Tracks presents backing tracks as filterable, sortable cards with playable or linked media, musical metadata, and slide downloads. Canonical track records live in data/tracks.json.", "zhTW": "音軌頁以可篩選、排序的卡片呈現伴奏音軌，包含可播放或連結媒體、音樂中繼資料與投影片下載。正式音軌紀錄位於 data/tracks.json。" } },
+  "purpose": [
+    { "label": { "en": "Problem", "zhTW": "問題" }, "body": { "classification": "verified", "text": { "en": "The page is the public library for discovering Jam Tracks Hub backing tracks and their supporting materials.", "zhTW": "此頁是探索 Jam Tracks Hub 伴奏音軌與配套資料的公開資料庫。" } } },
+    { "label": { "en": "Target use case", "zhTW": "目標使用情境" }, "body": { "classification": "verified", "text": { "en": "Browse weekly releases, narrow by musical attributes, open the track, and download related slide material.", "zhTW": "瀏覽每週發布、依音樂屬性縮小範圍、開啟音軌並下載相關投影片。" } } }
+  ],
+  "originalVersion": {
+    "date": "2026-06-06",
+    "summary": { "classification": "verified", "text": { "en": "The initial Render deployment included the Tracks area, and W1–W8 established the recurring library and slide series.", "zhTW": "最初 Render 部署已包含音軌區，W1–W8 建立持續更新的資料庫與投影片系列。" } },
+    "features": [
+      { "classification": "verified", "text": { "en": "A public collection of eight confirmed backing-track entries and supporting slides.", "zhTW": "包含八筆已確認伴奏音軌與配套投影片的公開集合。" } },
+      { "classification": "verified", "text": { "en": "A dedicated tracks.html route separate from the Homepage presentation.", "zhTW": "與首頁呈現分離的 tracks.html 獨立路徑。" } }
+    ],
+    "structure": [
+      { "classification": "reconstructed", "text": { "en": "The earliest public role combined catalog browsing with access to track and slide materials; later structured data made the same role easier to scale.", "zhTW": "從歷史回溯可見，最早公開角色結合目錄瀏覽與音軌／投影片存取；後來結構化資料讓相同角色更易擴充。" } }
+    ]
+  },
+  "sections": [
+    { "id": "current-design", "type": "featureList", "title": { "en": "Current page design", "zhTW": "目前頁面設計" }, "items": [
+      { "title": { "en": "Discovery controls", "zhTW": "探索控制" }, "body": { "classification": "verified", "text": { "en": "A track toolbar supplies sorting and filters, including grouped key selection.", "zhTW": "音軌工具列提供排序與篩選，包括分組調性選擇。" } } },
+      { "title": { "en": "Track cards", "zhTW": "音軌卡片" }, "body": { "classification": "verified", "text": { "en": "scripts/tracks.js normalizes records, renders cards, builds slide-download actions, and links media while preserving localized titles.", "zhTW": "scripts/tracks.js 正規化紀錄、渲染卡片、建立投影片下載操作與媒體連結，並保留在地化標題。" } } },
+      { "title": { "en": "Responsive motion", "zhTW": "響應式動態" }, "body": { "classification": "verified", "text": { "en": "The current script bounds FLIP-style rearrangement by viewport capability and falls back to direct rendering.", "zhTW": "目前腳本依視窗能力限制 FLIP 重新排列動態，並可回退到直接渲染。" } } }
+    ] },
+    { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
+      { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "tracks.html defines the library heading, controls, result host, shared navigation, and footer.", "zhTW": "tracks.html 定義資料庫標題、控制、結果容器、共用導覽與頁尾。" } } },
+      { "label": { "en": "Canonical content", "zhTW": "正式內容" }, "body": { "classification": "verified", "text": { "en": "data/tracks.json stores public track records; scripts/tracks.js owns normalization, filtering, sorting, card rendering, and downloads.", "zhTW": "data/tracks.json 儲存公開音軌紀錄；scripts/tracks.js 管理正規化、篩選、排序、卡片渲染與下載。" } } }
+    ] },
+    { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
+      { "label": { "en": "Desktop", "zhTW": "桌面" }, "body": { "classification": "verified", "text": { "en": "Toolbar controls and a multi-card library prioritize scanning and comparison.", "zhTW": "工具列控制與多卡片資料庫優先支援掃讀與比較。" } } },
+      { "label": { "en": "Tablet", "zhTW": "平板" }, "body": { "classification": "verified", "text": { "en": "Navigation and covers were specifically refined for tablet widths in late July.", "zhTW": "7 月下旬曾針對平板寬度改善導覽與封面。" } } },
+      { "label": { "en": "Mobile", "zhTW": "行動裝置" }, "body": { "classification": "verified", "text": { "en": "Filters and cards stack; August 30 fixes focused on responsive footer, video, and track detail behavior.", "zhTW": "篩選與卡片堆疊；8 月 30 日修正聚焦響應式頁尾、影片與音軌細節行為。" } } }
+    ] },
+    { "id": "evolution", "type": "timeline", "title": { "en": "Evolution", "zhTW": "演進" }, "items": [
+      { "date": "2026-06-06", "eventId": "event-20260606-first-backing-track-library", "impact": "direct", "title": { "en": "W1–W8 establish the library", "zhTW": "W1–W8 建立資料庫" }, "body": { "classification": "verified", "text": { "en": "The first eight entries established the recurring content model.", "zhTW": "首八筆項目建立持續更新內容模型。" } } },
+      { "date": "2026-07-18", "eventId": "event-20260718-homepage-and-track-evolution", "impact": "direct", "title": { "en": "W10–W13 and motion", "zhTW": "W10–W13 與動態" }, "body": { "classification": "verified", "text": { "en": "The catalog expanded while track and Homepage motion evolved.", "zhTW": "目錄擴充，同時音軌與首頁動態演進。" } } },
+      { "date": "2026-07-27", "eventId": "event-20260727-responsive-refinement-and-w16", "impact": "direct", "title": { "en": "W16 and responsive refinement", "zhTW": "W16 與響應式改善" }, "body": { "classification": "verified", "text": { "en": "Light-interface and responsive work accompanied W16.", "zhTW": "W16 同時帶來淺色介面與響應式改善。" } } },
+      { "date": "2026-08-16", "eventId": "event-20260816-w19-backing-track", "impact": "direct", "title": { "en": "W19 joins", "zhTW": "W19 加入" }, "body": { "classification": "verified", "text": { "en": "The confirmed recurring collection reached W19 without inventing a W9 record.", "zhTW": "已確認的持續集合擴充至 W19，且未虛構 W9 紀錄。" } } },
+      { "date": "2026-08-30", "eventId": "event-20260830-responsive-content-polish", "impact": "direct", "title": { "en": "Responsive content polish", "zhTW": "響應式內容改善" }, "body": { "classification": "verified", "text": { "en": "Tracks, footer, and video details received focused corrections.", "zhTW": "音軌、頁尾與影片細節獲得重點修正。" } } }
+    ] }
+  ],
+  "currentState": { "classification": "verified", "text": { "en": "Tracks remains a bilingual public library backed by structured records, filter/sort controls, track links, and downloadable supporting slides through the confirmed W19 entry.", "zhTW": "音軌目前仍是雙語公開資料庫，由結構化紀錄、篩選／排序控制、音軌連結與可下載配套投影片支援，已確認至 W19。" } },
+  "lessons": [
+    { "classification": "reconstructed", "text": { "en": "Recurring content benefits from structured records and grouping; the public history can preserve meaningful collection growth without turning every item into a separate product launch.", "zhTW": "持續內容受益於結構化紀錄與分組；公開歷史可保留有意義的集合成長，而不把每項都當成獨立產品推出。" } }
+  ],
+  "unknowns": [
+    { "classification": "unknown", "text": { "en": "No public record establishes why no W9 entry exists, so this dossier does not speculate.", "zhTW": "沒有公開紀錄說明為何不存在 W9，因此本檔案不做推測。" } }
+  ],
+  "relatedEventIds": ["event-20260606-jam-tracks-hub-begins", "event-20260606-first-backing-track-library", "event-20260718-homepage-and-track-evolution", "event-20260727-responsive-refinement-and-w16", "event-20260816-w19-backing-track", "event-20260830-responsive-content-polish"],
+  "sourceRefs": [
+    { "kind": "commit", "label": { "en": "Initial site deployment 1ad1d86", "zhTW": "最初網站部署 1ad1d86" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1ad1d86" },
+    { "kind": "file", "label": { "en": "Current Tracks page", "zhTW": "目前音軌頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/tracks.html", "path": "tracks.html" },
+    { "kind": "file", "label": { "en": "Track interaction module", "zhTW": "音軌互動模組" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/tracks.js", "path": "scripts/tracks.js" },
+    { "kind": "file", "label": { "en": "Canonical track records", "zhTW": "正式音軌紀錄" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/data/tracks.json", "path": "data/tracks.json" }
+  ]
+}

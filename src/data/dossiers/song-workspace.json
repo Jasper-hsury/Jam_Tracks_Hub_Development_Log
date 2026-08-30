@@ -1,0 +1,121 @@
+{
+  "id": "dossier-song-workspace",
+  "productId": "product-song-workspace",
+  "slug": "song-workspace",
+  "status": "published",
+  "latestSignificantUpdate": "2026-08-30",
+  "hero": {
+    "classification": "verified",
+    "text": { "en": "A local-first workspace for building, editing, saving, importing, exporting, transposing, and performing guitar charts.", "zhTW": "以本機優先方式建立、編輯、儲存、匯入、匯出、移調與演出吉他譜的工作區。" }
+  },
+  "overview": {
+    "classification": "verified",
+    "text": { "en": "Song Workspace combines a saved-song library, structured chart editor, chord-shape tools, reading controls, and Performance Mode. Song content remains in browser storage unless the user explicitly imports or exports a file.", "zhTW": "歌曲工作區整合已儲存歌曲資料庫、結構化譜面編輯器、和弦指型工具、閱讀控制與演出模式。歌曲內容保留在瀏覽器儲存空間，除非使用者明確匯入或匯出檔案。" }
+  },
+  "purpose": [
+    {
+      "label": { "en": "Problem", "zhTW": "問題" },
+      "body": { "classification": "reconstructed", "text": { "en": "The implementation addresses the gap between a static chord reference and the longer workflow of preparing, revising, reading, and performing a complete guitar chart.", "zhTW": "從實作回溯可見，它處理靜態和弦參考與完整吉他譜準備、修改、閱讀及演出流程之間的落差。" } }
+    },
+    {
+      "label": { "en": "Target use case", "zhTW": "目標使用情境" },
+      "body": { "classification": "verified", "text": { "en": "Create a chart from scratch or imports, organize sections and lines, attach chord shapes, adjust key/capo/reading settings, save locally, and open a focused performance view.", "zhTW": "從空白或匯入內容建立譜面、整理段落與行、附加和弦指型、調整調性／移調夾／閱讀設定、儲存於本機並開啟專注演出檢視。" } }
+    },
+    {
+      "label": { "en": "Privacy boundary", "zhTW": "隱私邊界" },
+      "body": { "classification": "verified", "text": { "en": "The product and its repository tests explicitly maintain a local-first, no-lyrics-egress boundary.", "zhTW": "產品與儲存庫測試明確維持本機優先及歌詞不外傳的邊界。" } }
+    }
+  ],
+  "originalVersion": {
+    "date": "2026-08-26",
+    "summary": { "classification": "verified", "text": { "en": "The feature first existed in Git on August 26 and reached canonical main through PR #5 on August 28 as Song Workspace v1.0.0.", "zhTW": "此功能於 8 月 26 日首次出現在 Git，並於 8 月 28 日透過 PR #5 進入正式 main，成為歌曲工作區 v1.0.0。" } },
+    "features": [
+      { "classification": "verified", "text": { "en": "Local saved-song library, new-song flow, ChordPro and Jam Tracks Hub JSON imports, and explicit exports.", "zhTW": "本機已儲存歌曲資料庫、新增歌曲流程、ChordPro 與 Jam Tracks Hub JSON 匯入，以及明確匯出。" } },
+      { "classification": "verified", "text": { "en": "Structured sections and lyric/chord lines, transposition and capo tools, chord diagrams, and Performance Mode.", "zhTW": "結構化段落與歌詞／和弦行、移調與移調夾工具、和弦圖及演出模式。" } },
+      { "classification": "verified", "text": { "en": "IndexedDB song storage with preferences kept separately and validated before use.", "zhTW": "使用 IndexedDB 儲存歌曲，偏好設定分開保存並在使用前驗證。" } }
+    ],
+    "structure": [
+      { "classification": "verified", "text": { "en": "Home view → Create Song and imports → My Songs library → editor with settings, chart, and chord-shape panel → Performance Mode.", "zhTW": "首頁檢視 → 建立歌曲與匯入 → 我的歌曲資料庫 → 含設定、譜面與和弦指型面板的編輯器 → 演出模式。" } },
+      { "classification": "verified", "text": { "en": "My Songs was a view inside song-workspace.html, not a separate public HTML page.", "zhTW": "「我的歌曲」是 song-workspace.html 內的檢視，而不是獨立公開 HTML 頁面。" } }
+    ]
+  },
+  "sections": [
+    {
+      "id": "product-architecture",
+      "type": "architecture",
+      "title": { "en": "Product & technical architecture", "zhTW": "產品與技術架構" },
+      "items": [
+        { "label": { "en": "Page shell", "zhTW": "頁面外殼" }, "body": { "classification": "verified", "text": { "en": "song-workspace.html defines the library, editor, dialogs, shape picker, global-add flow, and performance view.", "zhTW": "song-workspace.html 定義資料庫、編輯器、對話框、指型選擇器、全域新增流程與演出檢視。" } } },
+        { "label": { "en": "Domain model", "zhTW": "領域模型" }, "body": { "classification": "verified", "text": { "en": "scripts/song-workspace-core.js owns song/section/line models, validation, chord parsing, transposition, lyric alignment, imports, exports, and reading calculations.", "zhTW": "scripts/song-workspace-core.js 管理歌曲／段落／行模型、驗證、和弦解析、移調、歌詞對齊、匯入、匯出與閱讀計算。" } } },
+        { "label": { "en": "Storage", "zhTW": "儲存" }, "body": { "classification": "verified", "text": { "en": "scripts/song-workspace-storage.js isolates IndexedDB operations and bounded preference normalization.", "zhTW": "scripts/song-workspace-storage.js 隔離 IndexedDB 操作與有界偏好正規化。" } } },
+        { "label": { "en": "Interaction", "zhTW": "互動" }, "body": { "classification": "verified", "text": { "en": "scripts/song-workspace.js coordinates library rendering, editing, dialogs, responsive reading controls, chord-shape selection, autosave state, and Performance Mode.", "zhTW": "scripts/song-workspace.js 協調資料庫渲染、編輯、對話框、響應式閱讀控制、和弦指型選擇、自動儲存狀態與演出模式。" } } },
+        { "label": { "en": "Shared shapes", "zhTW": "共用指型" }, "body": { "classification": "verified", "text": { "en": "scripts/chord-shapes.js supplies reusable public chord parsing, voicing, and diagram models without reading private saved songs.", "zhTW": "scripts/chord-shapes.js 提供可重用的公開和弦解析、配置與圖表模型，不讀取私人已儲存歌曲。" } } }
+      ]
+    },
+    {
+      "id": "responsive-strategy",
+      "type": "responsive",
+      "title": { "en": "Responsive strategy", "zhTW": "響應式策略" },
+      "items": [
+        { "label": { "en": "Desktop", "zhTW": "桌面" }, "body": { "classification": "verified", "text": { "en": "Editor controls, score, and chord-shape references use the available width as a multi-region workspace.", "zhTW": "編輯器控制、譜面與和弦指型參考會利用可用寬度形成多區域工作區。" } } },
+        { "label": { "en": "Tablet", "zhTW": "平板" }, "body": { "classification": "verified", "text": { "en": "The editor and settings reflow, while disclosure panels and reading controls preserve a coherent order.", "zhTW": "編輯器與設定會重新排列，揭露面板與閱讀控制仍保有一致順序。" } } },
+        { "label": { "en": "Mobile", "zhTW": "行動裝置" }, "body": { "classification": "verified", "text": { "en": "Several August 28–30 fixes targeted mobile add flows, compact reading, dialog positioning, lyric/chord alignment, and entrance behavior rather than simply shrinking the desktop layout.", "zhTW": "8 月 28 至 30 日多項修正針對行動版新增流程、精簡閱讀、對話框定位、歌詞／和弦對齊與進場行為，而非只縮小桌面版。" } } }
+      ]
+    },
+    {
+      "id": "evolution",
+      "type": "timeline",
+      "title": { "en": "Release evolution", "zhTW": "版本演進" },
+      "items": [
+        { "date": "2026-08-28", "eventId": "event-20260828-song-workspace-v1", "impact": "direct", "title": { "en": "v1.0.0 reaches canonical main", "zhTW": "v1.0.0 進入正式 main" }, "body": { "classification": "verified", "text": { "en": "The first public release established the local-first library, editor, shared shapes, imports/exports, and performance workflow.", "zhTW": "首個公開版本建立本機優先資料庫、編輯器、共用指型、匯入／匯出與演出流程。" } } },
+        { "date": "2026-08-28", "eventId": "event-20260828-workspace-responsive-fixes", "impact": "direct", "title": { "en": "Responsive corrections", "zhTW": "響應式修正" }, "body": { "classification": "verified", "text": { "en": "PR #6 refined workspace responsiveness while also restoring a Homepage regression.", "zhTW": "PR #6 改善工作區響應式，同時修復首頁回歸。" } } },
+        { "date": "2026-08-29", "eventId": "event-20260829-release-v1-1-0", "impact": "direct", "title": { "en": "v1.1.0: Global Add", "zhTW": "v1.1.0：全域新增" }, "body": { "classification": "verified", "text": { "en": "Common add actions and mobile alignment became more direct.", "zhTW": "常用新增操作與行動版對齊變得更直接。" } } },
+        { "date": "2026-08-29", "eventId": "event-20260829-release-v1-2-0", "impact": "direct", "title": { "en": "v1.2.0: interface revision", "zhTW": "v1.2.0：介面改版" }, "body": { "classification": "verified", "text": { "en": "Settings, editing controls, and responsive layouts received a focused revision.", "zhTW": "設定、編輯控制與響應式版面獲得重點改版。" } } },
+        { "date": "2026-08-29", "eventId": "event-20260829-release-v1-3-0", "impact": "direct", "title": { "en": "v1.3.0: My Songs and navigation", "zhTW": "v1.3.0：我的歌曲與導覽" }, "body": { "classification": "verified", "text": { "en": "Saved-song management and smart navigation became more cohesive.", "zhTW": "已儲存歌曲管理與智慧導覽變得更一致。" } } },
+        { "date": "2026-08-30", "eventId": "event-20260830-release-v2-0-0", "impact": "shared", "title": { "en": "v2.0.0 security checkpoint", "zhTW": "v2.0.0 安全檢查點" }, "body": { "classification": "verified", "text": { "en": "The release recorded public-safe hardening and protection milestones without disclosing defensive internals.", "zhTW": "此版本以公開安全方式記錄強化與保護里程碑，不揭露防禦內部細節。" } } }
+      ]
+    },
+    {
+      "id": "decisions",
+      "type": "decision",
+      "title": { "en": "Decisions & trade-offs", "zhTW": "決策與取捨" },
+      "items": [
+        { "title": { "en": "Local-first storage", "zhTW": "本機優先儲存" }, "body": { "classification": "reconstructed", "text": { "en": "Browser storage reduces account and server requirements and supports the privacy boundary, while making explicit import/export and recovery paths more important.", "zhTW": "瀏覽器儲存減少帳號與伺服器需求並支援隱私邊界，但也讓明確匯入／匯出與復原路徑更重要。" } } },
+        { "title": { "en": "Structured chart model", "zhTW": "結構化譜面模型" }, "body": { "classification": "reconstructed", "text": { "en": "Sections, lines, chords, and anchors enable transposition and performance behavior, but demand strong validation at every import and storage boundary.", "zhTW": "段落、行、和弦與錨點支援移調與演出行為，但也要求每個匯入與儲存邊界都有嚴謹驗證。" } } },
+        { "title": { "en": "One route, multiple views", "zhTW": "單一路徑、多種檢視" }, "body": { "classification": "reconstructed", "text": { "en": "Keeping My Songs, editor, dialogs, and Performance Mode inside one page preserves state continuity, while increasing interaction and responsive complexity.", "zhTW": "將我的歌曲、編輯器、對話框與演出模式放在同一頁可維持狀態連續性，但也增加互動與響應式複雜度。" } } }
+      ]
+    }
+  ],
+  "currentState": {
+    "classification": "verified",
+    "text": { "en": "The public product is an English/Traditional Chinese, local-first browser workspace with a saved-song library, structured editor, reusable chord diagrams, import/export, reading controls, and Performance Mode. Its public history intentionally excludes user song titles, lyrics, metadata, and local database contents.", "zhTW": "目前公開產品是支援英文／繁體中文、以本機優先的瀏覽器工作區，含已儲存歌曲資料庫、結構化編輯器、可重用和弦圖、匯入／匯出、閱讀控制與演出模式。其公開歷史刻意排除使用者歌曲標題、歌詞、中繼資料與本機資料庫內容。" }
+  },
+  "lessons": [
+    { "classification": "reconstructed", "text": { "en": "Local-first is a product architecture, not only a storage choice: disclosures, imports, exports, validation, and recovery all have to reinforce the same boundary.", "zhTW": "本機優先是產品架構，不只是儲存選擇：揭露、匯入、匯出、驗證與復原都必須強化同一邊界。" } },
+    { "classification": "reconstructed", "text": { "en": "A dense editor needs viewport-specific workflows; the sequence of mobile fixes shows that reflow alone is not enough for add, dialog, and reading tasks.", "zhTW": "高密度編輯器需要針對視窗設計流程；一連串行動版修正顯示，僅重新排列不足以處理新增、對話框與閱讀任務。" } }
+  ],
+  "unknowns": [
+    { "classification": "unknown", "text": { "en": "No original user-research study or wireframe was found; documented implementation and release evidence supports the behavior, but not claims about user preference or adoption.", "zhTW": "未找到原始使用者研究或線框圖；實作與版本證據可支持行為描述，但不能支持使用者偏好或採用情況的主張。" } }
+  ],
+  "relatedEventIds": [
+    "event-20260828-song-workspace-v1",
+    "event-20260828-workspace-responsive-fixes",
+    "event-20260829-release-v1-1-0",
+    "event-20260829-release-v1-2-0",
+    "event-20260829-release-v1-3-0",
+    "event-20260829-application-security-hardening",
+    "event-20260830-release-v2-0-0",
+    "event-20260830-responsive-content-polish"
+  ],
+  "sourceRefs": [
+    { "kind": "pr", "label": { "en": "Song Workspace v1.0.0 PR #5", "zhTW": "歌曲工作區 v1.0.0 PR #5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5" },
+    { "kind": "release", "label": { "en": "Published release v1.0.0", "zhTW": "已發布版本 v1.0.0" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v1.0.0" },
+    { "kind": "pr", "label": { "en": "Responsive fixes PR #6", "zhTW": "響應式修正 PR #6" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/6" },
+    { "kind": "pr", "label": { "en": "Mobile add flow PR #7", "zhTW": "行動版新增流程 PR #7" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/7" },
+    { "kind": "pr", "label": { "en": "Interface revision PR #8", "zhTW": "介面改版 PR #8" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/8" },
+    { "kind": "pr", "label": { "en": "My Songs and navigation PR #9", "zhTW": "我的歌曲與導覽 PR #9" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/9" },
+    { "kind": "file", "label": { "en": "Current Song Workspace page", "zhTW": "目前歌曲工作區頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/song-workspace.html", "path": "song-workspace.html" },
+    { "kind": "file", "label": { "en": "Song model and transforms", "zhTW": "歌曲模型與轉換" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/song-workspace-core.js", "path": "scripts/song-workspace-core.js" },
+    { "kind": "file", "label": { "en": "Local storage adapter", "zhTW": "本機儲存介面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/song-workspace-storage.js", "path": "scripts/song-workspace-storage.js" }
+  ]
+}

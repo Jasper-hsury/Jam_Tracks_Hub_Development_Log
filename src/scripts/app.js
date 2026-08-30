@@ -7,6 +7,8 @@
   const activeFilters = document.querySelector("#active-filters");
   const noResults = document.querySelector("#no-results");
   const hiddenTarget = document.querySelector("#hidden-target");
+  const dossierSearchResults = document.querySelector("#dossier-search-results");
+  const dossierSearchList = document.querySelector("#dossier-search-list");
   const filtersShell = document.querySelector(".filters-shell");
   const themeToggle = document.querySelector("#theme-toggle");
   const themeLabel = document.querySelector("#theme-label");
@@ -77,6 +79,9 @@
     for (const [value, names] of Object.entries(payload.optionLabels.products)) controls.product.querySelector(`option[value="${CSS.escape(value)}"]`).textContent = names[state.lang];
     for (const [value, names] of Object.entries(payload.optionLabels.categories)) controls.category.querySelector(`option[value="${CSS.escape(value)}"]`).textContent = names[state.lang];
     for (const [value, names] of Object.entries(payload.optionLabels.statuses)) controls.status.querySelector(`option[value="${CSS.escape(value)}"]`).textContent = names[state.lang];
+    document.querySelectorAll("[data-dossier-link]").forEach((link) => {
+      link.href = `${link.dataset.dossierPath}?lang=${encodeURIComponent(state.lang)}`;
+    });
     updateThemeControl();
   };
   const writeUrl = () => {
@@ -128,6 +133,26 @@
       hiddenTarget.hidden = false;
     }
   };
+  const renderDossierMatches = () => {
+    const tokens = normalize(state.search).split(" ").filter(Boolean);
+    const matches = tokens.length ? (payload.dossiers || []).filter((dossier) => tokens.every((token) => dossier.search.includes(token))) : [];
+    dossierSearchResults.hidden = matches.length === 0;
+    dossierSearchList.replaceChildren();
+    for (const dossier of matches) {
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      const badge = document.createElement("span");
+      const summary = document.createElement("span");
+      link.href = `./products/${encodeURIComponent(dossier.slug)}/?lang=${encodeURIComponent(state.lang)}`;
+      link.textContent = dossier.name[state.lang];
+      badge.className = "search-result-type";
+      badge.textContent = t("productDossier");
+      summary.className = "search-result-summary";
+      summary.textContent = dossier.summary[state.lang];
+      item.append(badge, link, summary);
+      dossierSearchList.append(item);
+    }
+  };
   const apply = ({ updateUrl = true } = {}) => {
     let visible = 0;
     cards.forEach((card) => {
@@ -140,6 +165,7 @@
     resultCount.firstChild.textContent = `${visible} `;
     renderActiveFilters();
     updateLanguage();
+    renderDossierMatches();
     if (updateUrl) writeUrl();
     inspectHashTarget();
   };

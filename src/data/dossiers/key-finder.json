@@ -1,0 +1,100 @@
+{
+  "id": "dossier-key-finder",
+  "productId": "product-key-finder",
+  "slug": "key-finder",
+  "status": "published",
+  "latestSignificantUpdate": "2026-08-30",
+  "hero": {
+    "classification": "verified",
+    "text": { "en": "An audio-analysis tool that estimates a song's likely musical key and explains ranked evidence.", "zhTW": "分析音訊、估計歌曲可能調性並解釋排序證據的工具。" }
+  },
+  "overview": {
+    "classification": "verified",
+    "text": { "en": "Key Finder accepts supported audio input paths, submits analysis work to the public compute service, presents progress and possible keys, explains the result, and keeps a bounded recent-analysis history in the browser.", "zhTW": "調性偵測器接受支援的音訊輸入方式，將分析工作送到公開運算服務，呈現進度與可能調性、解釋結果，並在瀏覽器保存有限的近期分析歷史。" }
+  },
+  "purpose": [
+    { "label": { "en": "Problem", "zhTW": "問題" }, "body": { "classification": "verified", "text": { "en": "The dedicated page is explicitly presented as a Song Key Finder and an Analyze a Song workflow.", "zhTW": "獨立頁面明確定位為歌曲調性偵測器與「分析歌曲」流程。" } } },
+    { "label": { "en": "Target use case", "zhTW": "目標使用情境" }, "body": { "classification": "verified", "text": { "en": "Provide an audio source, wait through a visible analysis job, inspect the likely key and supporting candidates, then move to related music tools.", "zhTW": "提供音訊來源、等待可見分析工作、查看可能調性與支援候選，再前往相關音樂工具。" } } },
+    { "label": { "en": "Architecture boundary", "zhTW": "架構邊界" }, "body": { "classification": "verified", "text": { "en": "Current public responsibility is Browser → Cloudflare-protected route → Render compute → analysis pipeline. Public records omit protection expressions, thresholds, and private provider details.", "zhTW": "目前公開職責分工為瀏覽器 → Cloudflare 保護路徑 → Render 運算 → 分析管線。公開紀錄省略保護運算式、門檻與供應商私人細節。" } } }
+  ],
+  "originalVersion": {
+    "date": "2026-06-23",
+    "summary": { "classification": "verified", "text": { "en": "Commit 3b7d52d moved the song key finder into its own public page.", "zhTW": "Commit 3b7d52d 將歌曲調性偵測器移到獨立公開頁面。" } },
+    "features": [
+      { "classification": "verified", "text": { "en": "Dedicated audio-analysis page and result presentation separate from the Homepage.", "zhTW": "與首頁分離的獨立音訊分析頁面與結果呈現。" } },
+      { "classification": "verified", "text": { "en": "A browser client coordinating input, service state, progress, results, and error reporting.", "zhTW": "瀏覽器用戶端協調輸入、服務狀態、進度、結果與錯誤回報。" } }
+    ],
+    "structure": [
+      { "classification": "verified", "text": { "en": "Page heading → Analyze a Song panel → input and service state → progress/result regions → recent analyses.", "zhTW": "頁面標題 → 分析歌曲面板 → 輸入與服務狀態 → 進度／結果區 → 近期分析。" } },
+      { "classification": "reconstructed", "text": { "en": "The separation from the Homepage reduced competition between a compute-heavy workflow and general site discovery.", "zhTW": "從實作回溯可見，與首頁分離可減少運算密集流程與一般網站探索之間的競爭。" } }
+    ]
+  },
+  "sections": [
+    {
+      "id": "technical-structure",
+      "type": "architecture",
+      "title": { "en": "Technical structure", "zhTW": "技術結構" },
+      "items": [
+        { "label": { "en": "Browser page", "zhTW": "瀏覽器頁面" }, "body": { "classification": "verified", "text": { "en": "key-finder.html supplies the analysis form, progress and result regions, recent-analysis list, shared navigation, localization, and public metadata.", "zhTW": "key-finder.html 提供分析表單、進度與結果區、近期分析清單、共用導覽、在地化與公開中繼資料。" } } },
+        { "label": { "en": "Client logic", "zhTW": "用戶端邏輯" }, "body": { "classification": "verified", "text": { "en": "scripts/key-finder.js coordinates source handling, service availability, job progress, ranked candidates, explanations, browser history, and bounded error reports.", "zhTW": "scripts/key-finder.js 協調來源處理、服務可用性、工作進度、候選排序、解釋、瀏覽器歷史與有界錯誤報告。" } } },
+        { "label": { "en": "Public request path", "zhTW": "公開請求路徑" }, "body": { "classification": "verified", "text": { "en": "Cloudflare now protects the public route while the existing Render service remains responsible for compute and the analysis pipeline.", "zhTW": "Cloudflare 目前保護公開路徑，既有 Render 服務仍負責運算與分析管線。" } } },
+        { "label": { "en": "Historical exploration", "zhTW": "歷史探索" }, "body": { "classification": "verified", "text": { "en": "Repository documentation records an earlier container-oriented exploration as deferred history, not the current production architecture.", "zhTW": "儲存庫文件將先前容器導向探索記錄為延後的歷史，而非目前正式架構。" } } }
+      ]
+    },
+    {
+      "id": "responsive-strategy",
+      "type": "responsive",
+      "title": { "en": "Responsive strategy", "zhTW": "響應式策略" },
+      "items": [
+        { "label": { "en": "Desktop", "zhTW": "桌面" }, "body": { "classification": "verified", "text": { "en": "A centered analysis panel exposes input, status, evidence, actions, and recent results with the shared site shell.", "zhTW": "置中的分析面板配合共用網站外殼，呈現輸入、狀態、證據、操作與近期結果。" } } },
+        { "label": { "en": "Tablet", "zhTW": "平板" }, "body": { "classification": "reconstructed", "text": { "en": "The mostly linear task flow is suited to narrowing widths because job state follows input before evidence and history.", "zhTW": "從版面回溯可見，主要線性任務流程適合較窄寬度，因為工作狀態依序接在輸入、證據與歷史之前。" } } },
+        { "label": { "en": "Mobile", "zhTW": "行動裝置" }, "body": { "classification": "verified", "text": { "en": "Shared responsive styles stack controls and result cards, while earlier helper-launch fixes kept errors nonblocking in constrained environments.", "zhTW": "共用響應式樣式堆疊控制與結果卡；較早的輔助程式啟動修正則讓受限環境中的錯誤不阻塞流程。" } } }
+      ]
+    },
+    {
+      "id": "evolution",
+      "type": "timeline",
+      "title": { "en": "Evolution", "zhTW": "演進" },
+      "items": [
+        { "date": "2026-06-23", "eventId": "event-20260623-key-finder-page-launch", "impact": "direct", "title": { "en": "Dedicated page", "zhTW": "獨立頁面" }, "body": { "classification": "verified", "text": { "en": "Key Finder became a standalone public tool.", "zhTW": "調性偵測器成為獨立公開工具。" } } },
+        { "date": "2026-07-05", "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/19c5554", "impact": "direct", "title": { "en": "Input helper flow matures", "zhTW": "輸入輔助流程成熟" }, "body": { "classification": "verified", "text": { "en": "A sequence of July commits refined public API preference, local-helper fallbacks, timeouts, Safari behavior, and nonblocking errors.", "zhTW": "7 月一系列 commit 改善公開 API 優先順序、本機輔助回退、逾時、Safari 行為與非阻塞錯誤。" } } },
+        { "date": "2026-08-30", "eventId": "event-20260830-key-finder-production-routing", "impact": "direct", "title": { "en": "Protected production route", "zhTW": "受保護的正式路徑" }, "body": { "classification": "verified", "text": { "en": "Public requests moved behind edge protection while compute responsibilities stayed with Render.", "zhTW": "公開請求移到邊緣保護之後，運算職責仍由 Render 負責。" } } },
+        { "date": "2026-08-30", "eventId": "event-20260830-release-v1-4-tag", "impact": "shared", "title": { "en": "v1.4.0 tag checkpoint", "zhTW": "v1.4.0 標籤檢查點" }, "body": { "classification": "verified", "text": { "en": "The v1.4.0 Git tag exists, but no published GitHub Release was found.", "zhTW": "v1.4.0 Git 標籤存在，但找不到已發布的 GitHub Release。" } } },
+        { "date": "2026-08-30", "eventId": "event-20260830-release-v2-0-0", "impact": "shared", "title": { "en": "v2.0.0 published checkpoint", "zhTW": "v2.0.0 已發布檢查點" }, "body": { "classification": "verified", "text": { "en": "The published release summarized production protection at a public-safe level.", "zhTW": "已發布版本以公開安全層次概述正式環境保護。" } } }
+      ]
+    },
+    {
+      "id": "tradeoffs",
+      "type": "decision",
+      "title": { "en": "Decisions & trade-offs", "zhTW": "決策與取捨" },
+      "items": [
+        { "title": { "en": "Visible asynchronous state", "zhTW": "可見的非同步狀態" }, "body": { "classification": "reconstructed", "text": { "en": "Remote analysis enables a richer pipeline than a static page alone, but makes service status, progress, cancellation, and bounded errors part of the product experience.", "zhTW": "遠端分析可提供比純靜態頁更完整的管線，但也使服務狀態、進度、取消與有界錯誤成為產品體驗的一部分。" } } },
+        { "title": { "en": "Protected route, separate compute", "zhTW": "受保護路徑與分離運算" }, "body": { "classification": "reconstructed", "text": { "en": "Separating edge protection from analysis compute preserves the existing pipeline while adding a public boundary; it also requires careful responsibility documentation.", "zhTW": "將邊緣保護與分析運算分離，可在增加公開邊界時保留既有管線，也需要清楚記錄職責分工。" } } }
+      ]
+    }
+  ],
+  "currentState": {
+    "classification": "verified",
+    "text": { "en": "Key Finder is a public bilingual browser page whose protected request path reaches the existing Render compute and analysis pipeline. This dossier intentionally does not disclose secrets, protection expressions, thresholds, bypass logic, or private provider mechanics.", "zhTW": "調性偵測器目前是公開雙語瀏覽器頁面，其受保護請求路徑會到達既有 Render 運算與分析管線。本檔案刻意不揭露秘密、保護運算式、門檻、繞過邏輯或供應商私人機制。" }
+  },
+  "lessons": [
+    { "classification": "reconstructed", "text": { "en": "For remote musical analysis, status and failure behavior are core interface states, not implementation footnotes.", "zhTW": "對遠端音樂分析而言，狀態與失敗行為是核心介面狀態，而非實作附註。" } },
+    { "classification": "reconstructed", "text": { "en": "Public architecture documentation is most useful when it explains responsibility boundaries without publishing the controls that enforce them.", "zhTW": "公開架構文件在說明職責邊界、但不公開強制控制細節時最有價值。" } }
+  ],
+  "unknowns": [
+    { "classification": "unknown", "text": { "en": "No original product-requirements document, accuracy benchmark target, or user-research record was found in the reviewed public history.", "zhTW": "在已檢視的公開歷史中，未找到原始產品需求文件、準確度基準目標或使用者研究紀錄。" } }
+  ],
+  "relatedEventIds": [
+    "event-20260623-key-finder-page-launch",
+    "event-20260830-key-finder-production-routing",
+    "event-20260830-release-v1-4-tag",
+    "event-20260830-release-v2-0-0"
+  ],
+  "sourceRefs": [
+    { "kind": "commit", "label": { "en": "Dedicated page commit 3b7d52d", "zhTW": "獨立頁面 commit 3b7d52d" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/3b7d52d" },
+    { "kind": "pr", "label": { "en": "Cloudflare production routing PR #12", "zhTW": "Cloudflare 正式路徑 PR #12" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/12" },
+    { "kind": "file", "label": { "en": "Current Key Finder page", "zhTW": "目前調性偵測器頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/key-finder.html", "path": "key-finder.html" },
+    { "kind": "file", "label": { "en": "Current browser interaction module", "zhTW": "目前瀏覽器互動模組" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/key-finder.js", "path": "scripts/key-finder.js" },
+    { "kind": "docs", "label": { "en": "Public production architecture note", "zhTW": "公開正式架構說明" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/docs/key-finder-render-behind-cloudflare.md", "path": "docs/key-finder-render-behind-cloudflare.md" }
+  ]
+}

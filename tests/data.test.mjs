@@ -12,8 +12,33 @@ test("canonical datasets pass every validation rule", async () => {
 
 test("IDs are unique across canonical entity types", async () => {
   const data = await loadData();
-  const ids = [...data.products, ...data.events, ...data.releases, ...data.series, ...data.roadmap].map((record) => record.id);
+  const ids = [...data.products, ...data.events, ...data.releases, ...data.series, ...data.roadmap, ...data.dossiers].map((record) => record.id);
   assert.equal(new Set(ids).size, ids.length);
+});
+
+test("product dossiers have unique routes and resolve products and history", async () => {
+  const data = await loadData();
+  assert.equal(data.dossiers.length, 9);
+  assert.equal(new Set(data.dossiers.map((dossier) => dossier.slug)).size, data.dossiers.length);
+  const productIds = new Set(data.products.map((product) => product.id));
+  const eventIds = new Set(data.events.map((event) => event.id));
+  for (const dossier of data.dossiers) {
+    assert.ok(productIds.has(dossier.productId));
+    assert.ok(dossier.relatedEventIds.every((id) => eventIds.has(id)));
+  }
+});
+
+test("dossier validation rejects broken schema, product references, and local paths", async () => {
+  const data = await loadData();
+  const brokenSection = clone(data);
+  brokenSection.dossiers[0].sections[0].type = "rawHtml";
+  assert.match(validateData(brokenSection).join("\n"), /unsupported section type/);
+  const brokenProduct = clone(data);
+  brokenProduct.dossiers[0].productId = "product-missing";
+  assert.match(validateData(brokenProduct).join("\n"), /unknown product/);
+  const localPath = clone(data);
+  localPath.dossiers[0].sourceRefs[0].path = "/Users/example/private.txt";
+  assert.match(validateData(localPath).join("\n"), /source path must be repository-relative|local absolute path/);
 });
 
 test("foreign references and dates reject invalid data", async () => {

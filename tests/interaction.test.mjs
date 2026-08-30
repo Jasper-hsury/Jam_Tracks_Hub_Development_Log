@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildSearchDocument, deriveData, eventMatches, normalizeText, sanitizeState } from "../scripts/site-core.mjs";
+import { buildDossierSearchDocument, buildSearchDocument, deriveData, eventMatches, normalizeText, sanitizeState } from "../scripts/site-core.mjs";
 import { loadData } from "../scripts/validate-data.mjs";
 
 async function contextFixture() {
@@ -45,4 +45,15 @@ test("invalid URL parameters fall back safely", () => {
   };
   const state = sanitizeState({ year: "1999", product: "private", category: "bad", release: "bad", status: "bad", lang: "invalid" }, options);
   assert.deepEqual({ year: state.year, product: state.product, category: state.category, release: state.release, status: state.status, lang: state.lang }, { year: "all", product: "all", category: "all", release: "all", status: "all", lang: "en" });
+});
+
+test("dossier search documents expose product, design, and architecture terms", async () => {
+  const data = await loadData();
+  const products = new Map(data.products.map((product) => [product.id, product]));
+  const documents = new Map(data.dossiers.map((dossier) => [dossier.slug, buildDossierSearchDocument(dossier, products.get(dossier.productId))]));
+  assert.match(documents.get("chord-dictionary"), /chord diagrams|guitar-chord reference/);
+  assert.match(documents.get("chord-dictionary"), /responsive/);
+  assert.match(documents.get("song-workspace"), /performance mode/);
+  assert.match(documents.get("key-finder"), /cloudflare/);
+  assert.match(documents.get("key-finder"), /render compute/);
 });

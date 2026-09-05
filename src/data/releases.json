@@ -95,5 +95,61 @@
     "title": { "en": "Policy-page stabilization", "zhTW": "政策頁面穩定化" },
     "summary": { "en": "Legal and Privacy presentation was stabilized across languages.", "zhTW": "穩定英文與繁體中文的法律與隱私權頁面呈現。" },
     "featured": true
+  },
+  {
+    "id": "release-v2.0.2",
+    "version": "v2.0.2",
+    "date": "2026-08-31",
+    "sequence": 10,
+    "tag": "v2.0.2",
+    "tagCommit": "5c6403e20ede2c691e2d2a73888bdc1fab3eeace",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.2",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v2.0.2",
+    "title": { "en": "Privacy-bounded Workspace analytics", "zhTW": "具隱私邊界的工作區分析" },
+    "summary": { "en": "Song Workspace joined the site's analytics coverage without sending song content or changing its local-first storage model.", "zhTW": "歌曲工作區納入網站分析，同時不傳送歌曲內容，也不改變本機優先的儲存模式。" },
+    "featured": true
+  },
+  {
+    "id": "release-v2.0.3",
+    "version": "v2.0.3",
+    "date": "2026-09-03",
+    "sequence": 10,
+    "tag": "v2.0.3",
+    "tagCommit": "bdf5b694cd4bb7ea153ddfc258378b97144f50ee",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.3",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v2.0.3",
+    "title": { "en": "Reliable unknown-route handling", "zhTW": "可靠的未知路徑處理" },
+    "summary": { "en": "Unknown paths once again reached the intended Vue 404 experience while retaining correct HTTP 404 semantics.", "zhTW": "未知路徑再次顯示預期的 Vue 404 體驗，同時維持正確的 HTTP 404 語意。" },
+    "featured": true
+  },
+  {
+    "id": "release-v2.0.4",
+    "version": "v2.0.4",
+    "date": "2026-09-03",
+    "sequence": 20,
+    "tag": "v2.0.4",
+    "tagCommit": "9f524d86138b583bd5126a8a9b39c6a3237033e5",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.4",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v2.0.4",
+    "title": { "en": "Track download restoration", "zhTW": "音軌下載修復" },
+    "summary": { "en": "Deployable W2–W8 ZIP packages restored the complete supported set of track downloads.", "zhTW": "可部署的 W2–W8 ZIP 套件恢復完整的支援音軌下載集合。" },
+    "featured": true
+  },
+  {
+    "id": "release-v2.0.5",
+    "version": "v2.0.5",
+    "date": "2026-09-05",
+    "sequence": 10,
+    "tag": "v2.0.5",
+    "tagCommit": "045efd59878e8fe2b8097117cb8ba4809d3573cf",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v2.0.5",
+    "title": { "en": "Vue frontend migration complete", "zhTW": "Vue 前端遷移完成" },
+    "summary": { "en": "All 14 primary frontend pages became Vue-owned within the Vite multi-page architecture, followed by evidence-driven legacy cleanup.", "zhTW": "14 個主要前端頁面在 Vite 多頁式架構下改由 Vue 管理，並完成以證據為基礎的舊版程式清理。" },
+    "featured": true
   }
 ]

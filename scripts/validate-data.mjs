@@ -265,8 +265,12 @@ export function validateData(data) {
   assert(v140?.status === "tag_only" && !v140?.releaseUrl, "v1.4.0 must remain tag-only", errors);
   assert(releases.find((release) => release.version === "v2.0.0")?.status === "published", "v2.0.0 must be published", errors);
   assert(releases.find((release) => release.version === "v2.0.1")?.status === "published", "v2.0.1 must be published", errors);
+  assert(releases.find((release) => release.version === "v2.0.2")?.status === "published", "v2.0.2 must be published", errors);
+  assert(releases.find((release) => release.version === "v2.0.3")?.status === "published", "v2.0.3 must be published", errors);
+  assert(releases.find((release) => release.version === "v2.0.4")?.status === "published", "v2.0.4 must be published", errors);
+  assert(releases.find((release) => release.version === "v2.0.5")?.status === "published", "v2.0.5 must be published", errors);
   const derived = deriveData(data);
-  assert(derived.latestPublishedRelease?.version === "v2.0.1", "latest published release must be v2.0.1", errors);
+  assert(derived.latestPublishedRelease?.version === "v2.0.5", "latest published release must be v2.0.5", errors);
   const findings = scanPublicContent(data);
   for (const finding of findings) errors.push(`public-content disclosure scan: ${finding}`);
   return errors;

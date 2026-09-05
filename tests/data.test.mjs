@@ -74,16 +74,44 @@ test("security events require high-level disclosure markers", async () => {
   assert.deepEqual(scanPublicContent(data), []);
 });
 
-test("release rules preserve tag-only v1.4.0 and latest published v2.0.1", async () => {
+test("release rules preserve tag-only v1.4.0 and latest published v2.0.5", async () => {
   const data = await loadData();
   const tagOnly = data.releases.find((release) => release.version === "v1.4.0");
   assert.equal(tagOnly.status, "tag_only");
   assert.equal(tagOnly.releaseUrl, undefined);
   assert.equal(tagOnly.tagUrl, "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0");
-  assert.equal(deriveData(data).latestPublishedRelease.version, "v2.0.1");
+  assert.equal(deriveData(data).latestPublishedRelease.version, "v2.0.5");
   const brokenPublished = clone(data);
   delete brokenPublished.releases.find((release) => release.status === "published").releaseUrl;
   assert.match(validateData(brokenPublished).join("\n"), /published release URL required/);
+});
+
+test("v2.0.2 through v2.0.5 preserve stable release and event relationships", async () => {
+  const data = await loadData();
+  const expectedReleases = new Map([
+    ["release-v2.0.2", "5c6403e20ede2c691e2d2a73888bdc1fab3eeace"],
+    ["release-v2.0.3", "bdf5b694cd4bb7ea153ddfc258378b97144f50ee"],
+    ["release-v2.0.4", "9f524d86138b583bd5126a8a9b39c6a3237033e5"],
+    ["release-v2.0.5", "045efd59878e8fe2b8097117cb8ba4809d3573cf"]
+  ]);
+  for (const [id, tagCommit] of expectedReleases) {
+    const release = data.releases.find((item) => item.id === id);
+    assert.equal(release?.status, "published");
+    assert.equal(release?.tagCommit, tagCommit);
+  }
+
+  const expectedEvents = new Map([
+    ["event-20260831-release-v2-0-2", "release-v2.0.2"],
+    ["event-20260903-release-v2-0-3", "release-v2.0.3"],
+    ["event-20260903-release-v2-0-4", "release-v2.0.4"],
+    ["event-20260904-key-finder-vue-migration", "release-v2.0.5"],
+    ["event-20260904-song-workspace-vue-migration", "release-v2.0.5"],
+    ["event-20260905-release-v2-0-5", "release-v2.0.5"]
+  ]);
+  for (const [id, releaseId] of expectedEvents) assert.equal(data.events.find((event) => event.id === id)?.releaseId, releaseId);
+  const septemberThird = deriveData(data).sortedEvents.filter((event) => event.date === "2026-09-03");
+  assert.deepEqual(septemberThird.map((event) => event.id), ["event-20260903-release-v2-0-4", "event-20260903-release-v2-0-3"]);
+  assert.deepEqual(validateData(data), []);
 });
 
 test("event ordering is deterministic", async () => {

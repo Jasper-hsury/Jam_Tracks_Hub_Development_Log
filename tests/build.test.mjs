@@ -86,6 +86,11 @@ test("dossier responsive and print contracts cover the acceptance matrix", async
   assert.deepEqual(modes, ["mobile", "mobile", "mobile", "tablet", "tablet", "tablet", "desktop", "desktop", "desktop", "desktop", "desktop"]);
 });
 
+test("standalone print output wraps long evidence URLs at narrow preview widths", async () => {
+  const css = await readFile(new URL("../src/styles/print.css", import.meta.url), "utf8");
+  assert.match(css, /body\s*{[^}]*overflow-wrap:\s*anywhere;/s);
+});
+
 test("dossier print hides the screen-only skip link while preserving its accessible target", async () => {
   await buildSite();
   const dossier = await readFile(new URL("../dist/products/chord-dictionary/index.html", import.meta.url), "utf8");

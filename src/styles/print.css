@@ -1,6 +1,6 @@
 @page { margin: 16mm; }
 * { box-sizing: border-box; }
-body { margin: 0; color: #211f1c; font: 10.5pt/1.45 Georgia, "Times New Roman", serif; }
+body { margin: 0; color: #211f1c; font: 10.5pt/1.45 Georgia, "Times New Roman", serif; overflow-wrap: anywhere; }
 a { color: inherit; }
 header { padding-bottom: 12mm; border-bottom: 2px solid #6f4732; }
 header p:first-child { margin: 0; color: #1d756f; font: bold 9pt/1.2 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; }

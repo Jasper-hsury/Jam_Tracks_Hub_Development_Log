@@ -3,7 +3,7 @@
   "productId": "product-scale-explorer",
   "slug": "scale-explorer",
   "status": "published",
-  "latestSignificantUpdate": "2026-08-04",
+  "latestSignificantUpdate": "2026-09-05",
   "hero": { "classification": "verified", "text": { "en": "An interactive scale reference that maps musical intervals and notes across a configurable guitar fretboard.", "zhTW": "把音樂音程與音名映射到可設定吉他指板的互動音階參考。" } },
   "overview": { "classification": "verified", "text": { "en": "Scale Explorer lets visitors choose a root and scale, inspect the resulting notes and intervals, view them on the fretboard, hear the scale, and download a generated diagram.", "zhTW": "音階探索器讓訪客選擇根音與音階、查看結果音名與音程、在指板上檢視、聆聽音階並下載產生的圖表。" } },
   "purpose": [
@@ -24,7 +24,7 @@
   "sections": [
     { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
       { "label": { "en": "Page and styles", "zhTW": "頁面與樣式" }, "body": { "classification": "verified", "text": { "en": "scale.html and styles/scale.css define the controls, summary, fretboard regions, and responsive presentation.", "zhTW": "scale.html 與 styles/scale.css 定義控制、摘要、指板區域與響應式呈現。" } } },
-      { "label": { "en": "Interaction", "zhTW": "互動" }, "body": { "classification": "verified", "text": { "en": "scripts/scale.js owns scale selection, note spelling, range controls, fretboard rendering, canvas image generation, downloads, playback, and URL parameters.", "zhTW": "scripts/scale.js 管理音階選擇、音名拼寫、範圍控制、指板渲染、canvas 圖片產生、下載、播放與網址參數。" } } }
+      { "label": { "en": "Interaction", "zhTW": "互動" }, "body": { "classification": "verified", "text": { "en": "The Vue frontend owns scale selection, note spelling, range controls, fretboard rendering, canvas image generation, downloads, playback, and URL parameters.", "zhTW": "Vue 前端管理音階選擇、音名拼寫、範圍控制、指板渲染、canvas 圖片產生、下載、播放與網址參數。" } } }
     ] },
     { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
       { "label": { "en": "Desktop", "zhTW": "桌面" }, "body": { "classification": "verified", "text": { "en": "Controls and a broad fretboard visualization use the available horizontal range.", "zhTW": "控制與寬廣指板視覺會利用可用水平範圍。" } } },
@@ -35,21 +35,22 @@
       { "date": "2026-06-25", "eventId": "event-20260625-scale-explorer-launch", "impact": "direct", "title": { "en": "Interactive explorer launches", "zhTW": "互動探索器推出" }, "body": { "classification": "verified", "text": { "en": "The tool joined the public site with interactive scale and fretboard exploration.", "zhTW": "工具以互動音階與指板探索加入公開網站。" } } },
       { "date": "2026-06-25", "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/e39e05e", "impact": "direct", "title": { "en": "Selectable neck lengths", "zhTW": "可選琴頸長度" }, "body": { "classification": "verified", "text": { "en": "A launch-day refinement made the displayed guitar range configurable.", "zhTW": "推出日改善讓顯示的吉他範圍可設定。" } } },
       { "date": "2026-06-25", "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/9b5ff9e", "impact": "direct", "title": { "en": "Downloadable diagrams", "zhTW": "可下載圖表" }, "body": { "classification": "verified", "text": { "en": "Generated scale visuals became portable downloads.", "zhTW": "產生的音階視覺成為可攜下載。" } } },
-      { "date": "2026-08-04", "eventId": "event-20260804-traditional-chinese-support", "impact": "shared", "title": { "en": "Traditional Chinese", "zhTW": "繁體中文" }, "body": { "classification": "verified", "text": { "en": "Shared localization extended the public tool to Traditional Chinese.", "zhTW": "共用在地化讓公開工具支援繁體中文。" } } }
+      { "date": "2026-08-04", "eventId": "event-20260804-traditional-chinese-support", "impact": "shared", "title": { "en": "Traditional Chinese", "zhTW": "繁體中文" }, "body": { "classification": "verified", "text": { "en": "Shared localization extended the public tool to Traditional Chinese.", "zhTW": "共用在地化讓公開工具支援繁體中文。" } } },
+      { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue-owned frontend", "zhTW": "Vue 管理的前端" }, "body": { "classification": "verified", "text": { "en": "The explorer joined the completed v2.0.5 Vue migration while retaining its scale, playback, URL-state, and download behavior.", "zhTW": "探索器納入 v2.0.5 完成的 Vue 遷移，同時保留音階、播放、網址狀態與下載行為。" } } }
     ] }
   ],
-  "currentState": { "classification": "verified", "text": { "en": "Scale Explorer is a bilingual static-browser tool at /scale.html with configurable roots, scale types, fretboard ranges, note and interval rendering, playback, downloads, and URL-driven initial state.", "zhTW": "音階探索器目前是 /scale.html 的雙語靜態瀏覽器工具，包含可設定根音、音階種類、指板範圍、音名與音程渲染、播放、下載及網址驅動初始狀態。" } },
+  "currentState": { "classification": "verified", "text": { "en": "Scale Explorer is a Vue-owned bilingual browser tool at /scale.html with configurable roots, scale types, fretboard ranges, note and interval rendering, playback, downloads, and URL-driven initial state.", "zhTW": "音階探索器目前是由 Vue 管理、位於 /scale.html 的雙語瀏覽器工具，包含可設定根音、音階種類、指板範圍、音名與音程渲染、播放、下載及網址驅動初始狀態。" } },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "A reference becomes more reusable when the same musical model can be seen, heard, constrained to a useful range, and exported.", "zhTW": "當相同音樂模型可被觀看、聆聽、限制於實用範圍並匯出時，參考工具會更可重用。" } }
   ],
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No original wireframe or documented rationale for the initial default scale was found.", "zhTW": "未找到原始線框圖或初始預設音階的書面理由。" } }
   ],
-  "relatedEventIds": ["event-20260625-scale-explorer-launch"],
+  "relatedEventIds": ["event-20260625-scale-explorer-launch", "event-20260905-release-v2-0-5"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Scale Explorer launch 0053346", "zhTW": "音階探索器推出 0053346" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/0053346" },
     { "kind": "commit", "label": { "en": "Selectable neck lengths e39e05e", "zhTW": "可選琴頸長度 e39e05e" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/e39e05e" },
     { "kind": "file", "label": { "en": "Current Scale Explorer page", "zhTW": "目前音階探索器頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scale.html", "path": "scale.html" },
-    { "kind": "file", "label": { "en": "Scale interaction module", "zhTW": "音階互動模組" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/scale.js", "path": "scripts/scale.js" }
+    { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
   ]
 }

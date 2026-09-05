@@ -3,7 +3,7 @@
   "productId": "product-song-workspace",
   "slug": "song-workspace",
   "status": "published",
-  "latestSignificantUpdate": "2026-08-30",
+  "latestSignificantUpdate": "2026-09-05",
   "hero": {
     "classification": "verified",
     "text": { "en": "A local-first workspace for building, editing, saving, importing, exporting, transposing, and performing guitar charts.", "zhTW": "以本機優先方式建立、編輯、儲存、匯入、匯出、移調與演出吉他譜的工作區。" }
@@ -48,7 +48,7 @@
         { "label": { "en": "Page shell", "zhTW": "頁面外殼" }, "body": { "classification": "verified", "text": { "en": "song-workspace.html defines the library, editor, dialogs, shape picker, global-add flow, and performance view.", "zhTW": "song-workspace.html 定義資料庫、編輯器、對話框、指型選擇器、全域新增流程與演出檢視。" } } },
         { "label": { "en": "Domain model", "zhTW": "領域模型" }, "body": { "classification": "verified", "text": { "en": "scripts/song-workspace-core.js owns song/section/line models, validation, chord parsing, transposition, lyric alignment, imports, exports, and reading calculations.", "zhTW": "scripts/song-workspace-core.js 管理歌曲／段落／行模型、驗證、和弦解析、移調、歌詞對齊、匯入、匯出與閱讀計算。" } } },
         { "label": { "en": "Storage", "zhTW": "儲存" }, "body": { "classification": "verified", "text": { "en": "scripts/song-workspace-storage.js isolates IndexedDB operations and bounded preference normalization.", "zhTW": "scripts/song-workspace-storage.js 隔離 IndexedDB 操作與有界偏好正規化。" } } },
-        { "label": { "en": "Interaction", "zhTW": "互動" }, "body": { "classification": "verified", "text": { "en": "scripts/song-workspace.js coordinates library rendering, editing, dialogs, responsive reading controls, chord-shape selection, autosave state, and Performance Mode.", "zhTW": "scripts/song-workspace.js 協調資料庫渲染、編輯、對話框、響應式閱讀控制、和弦指型選擇、自動儲存狀態與演出模式。" } } },
+        { "label": { "en": "Interaction", "zhTW": "互動" }, "body": { "classification": "verified", "text": { "en": "The Vue frontend coordinates library rendering, editing, dialogs, responsive reading controls, chord-shape selection, autosave state, and Performance Mode.", "zhTW": "Vue 前端協調資料庫渲染、編輯、對話框、響應式閱讀控制、和弦指型選擇、自動儲存狀態與演出模式。" } } },
         { "label": { "en": "Shared shapes", "zhTW": "共用指型" }, "body": { "classification": "verified", "text": { "en": "scripts/chord-shapes.js supplies reusable public chord parsing, voicing, and diagram models without reading private saved songs.", "zhTW": "scripts/chord-shapes.js 提供可重用的公開和弦解析、配置與圖表模型，不讀取私人已儲存歌曲。" } } }
       ]
     },
@@ -72,7 +72,10 @@
         { "date": "2026-08-29", "eventId": "event-20260829-release-v1-1-0", "impact": "direct", "title": { "en": "v1.1.0: Global Add", "zhTW": "v1.1.0：全域新增" }, "body": { "classification": "verified", "text": { "en": "Common add actions and mobile alignment became more direct.", "zhTW": "常用新增操作與行動版對齊變得更直接。" } } },
         { "date": "2026-08-29", "eventId": "event-20260829-release-v1-2-0", "impact": "direct", "title": { "en": "v1.2.0: interface revision", "zhTW": "v1.2.0：介面改版" }, "body": { "classification": "verified", "text": { "en": "Settings, editing controls, and responsive layouts received a focused revision.", "zhTW": "設定、編輯控制與響應式版面獲得重點改版。" } } },
         { "date": "2026-08-29", "eventId": "event-20260829-release-v1-3-0", "impact": "direct", "title": { "en": "v1.3.0: My Songs and navigation", "zhTW": "v1.3.0：我的歌曲與導覽" }, "body": { "classification": "verified", "text": { "en": "Saved-song management and smart navigation became more cohesive.", "zhTW": "已儲存歌曲管理與智慧導覽變得更一致。" } } },
-        { "date": "2026-08-30", "eventId": "event-20260830-release-v2-0-0", "impact": "shared", "title": { "en": "v2.0.0 security checkpoint", "zhTW": "v2.0.0 安全檢查點" }, "body": { "classification": "verified", "text": { "en": "The release recorded public-safe hardening and protection milestones without disclosing defensive internals.", "zhTW": "此版本以公開安全方式記錄強化與保護里程碑，不揭露防禦內部細節。" } } }
+        { "date": "2026-08-30", "eventId": "event-20260830-release-v2-0-0", "impact": "shared", "title": { "en": "v2.0.0 security checkpoint", "zhTW": "v2.0.0 安全檢查點" }, "body": { "classification": "verified", "text": { "en": "The release recorded public-safe hardening and protection milestones without disclosing defensive internals.", "zhTW": "此版本以公開安全方式記錄強化與保護里程碑，不揭露防禦內部細節。" } } },
+        { "date": "2026-08-31", "eventId": "event-20260831-release-v2-0-2", "impact": "direct", "title": { "en": "Privacy-bounded analytics", "zhTW": "具隱私邊界的分析" }, "body": { "classification": "verified", "text": { "en": "v2.0.2 added pageview analytics without sending song content or changing the local-first storage model.", "zhTW": "v2.0.2 加入頁面瀏覽分析，不傳送歌曲內容，也不改變本機優先儲存模式。" } } },
+        { "date": "2026-09-04", "eventId": "event-20260904-song-workspace-vue-migration", "impact": "direct", "title": { "en": "Frontend moves to Vue", "zhTW": "前端遷移至 Vue" }, "body": { "classification": "verified", "text": { "en": "Song Workspace became Vue-owned while preserving saved-song compatibility, IndexedDB and local preferences, import/export, and its privacy boundary.", "zhTW": "歌曲工作區改由 Vue 管理，同時保留已儲存歌曲相容性、IndexedDB 與本機偏好、匯入／匯出及隱私邊界。" } } },
+        { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue migration completion", "zhTW": "Vue 遷移完成" }, "body": { "classification": "verified", "text": { "en": "v2.0.5 published the completed Vue multi-page frontend migration.", "zhTW": "v2.0.5 發布完成的 Vue 多頁式前端遷移。" } } }
       ]
     },
     {
@@ -88,7 +91,7 @@
   ],
   "currentState": {
     "classification": "verified",
-    "text": { "en": "The public product is an English/Traditional Chinese, local-first browser workspace with a saved-song library, structured editor, reusable chord diagrams, import/export, reading controls, and Performance Mode. Its public history intentionally excludes user song titles, lyrics, metadata, and local database contents.", "zhTW": "目前公開產品是支援英文／繁體中文、以本機優先的瀏覽器工作區，含已儲存歌曲資料庫、結構化編輯器、可重用和弦圖、匯入／匯出、閱讀控制與演出模式。其公開歷史刻意排除使用者歌曲標題、歌詞、中繼資料與本機資料庫內容。" }
+    "text": { "en": "The public product is a Vue-owned English/Traditional Chinese, local-first browser workspace with a saved-song library, structured editor, reusable chord diagrams, IndexedDB song storage, separate local preferences, import/export, reading controls, and Performance Mode. Existing saved songs remain compatible. Its public history intentionally excludes user song titles, lyrics, metadata, and local database contents.", "zhTW": "目前公開產品是由 Vue 管理、支援英文／繁體中文且以本機優先的瀏覽器工作區，含已儲存歌曲資料庫、結構化編輯器、可重用和弦圖、IndexedDB 歌曲儲存、分開的本機偏好、匯入／匯出、閱讀控制與演出模式。既有已儲存歌曲維持相容。其公開歷史刻意排除使用者歌曲標題、歌詞、中繼資料與本機資料庫內容。" }
   },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "Local-first is a product architecture, not only a storage choice: disclosures, imports, exports, validation, and recovery all have to reinforce the same boundary.", "zhTW": "本機優先是產品架構，不只是儲存選擇：揭露、匯入、匯出、驗證與復原都必須強化同一邊界。" } },
@@ -105,7 +108,10 @@
     "event-20260829-release-v1-3-0",
     "event-20260829-application-security-hardening",
     "event-20260830-release-v2-0-0",
-    "event-20260830-responsive-content-polish"
+    "event-20260830-responsive-content-polish",
+    "event-20260831-release-v2-0-2",
+    "event-20260904-song-workspace-vue-migration",
+    "event-20260905-release-v2-0-5"
   ],
   "sourceRefs": [
     { "kind": "pr", "label": { "en": "Song Workspace v1.0.0 PR #5", "zhTW": "歌曲工作區 v1.0.0 PR #5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5" },
@@ -116,6 +122,9 @@
     { "kind": "pr", "label": { "en": "My Songs and navigation PR #9", "zhTW": "我的歌曲與導覽 PR #9" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/9" },
     { "kind": "file", "label": { "en": "Current Song Workspace page", "zhTW": "目前歌曲工作區頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/song-workspace.html", "path": "song-workspace.html" },
     { "kind": "file", "label": { "en": "Song model and transforms", "zhTW": "歌曲模型與轉換" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/song-workspace-core.js", "path": "scripts/song-workspace-core.js" },
-    { "kind": "file", "label": { "en": "Local storage adapter", "zhTW": "本機儲存介面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/song-workspace-storage.js", "path": "scripts/song-workspace-storage.js" }
+    { "kind": "file", "label": { "en": "Local storage adapter", "zhTW": "本機儲存介面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/song-workspace-storage.js", "path": "scripts/song-workspace-storage.js" },
+    { "kind": "release", "label": { "en": "Privacy-bounded analytics release v2.0.2", "zhTW": "具隱私邊界的分析版本 v2.0.2" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.2" },
+    { "kind": "pr", "label": { "en": "Song Workspace Vue migration PR #36", "zhTW": "歌曲工作區 Vue 遷移 PR #36" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/36" },
+    { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
   ]
 }

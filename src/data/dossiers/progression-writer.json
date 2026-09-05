@@ -3,7 +3,7 @@
   "productId": "product-progression-writer",
   "slug": "progression-writer",
   "status": "published",
-  "latestSignificantUpdate": "2026-08-28",
+  "latestSignificantUpdate": "2026-09-05",
   "hero": { "classification": "verified", "text": { "en": "A browser workspace for drafting, saving, hearing, illustrating, and exporting custom chord progressions.", "zhTW": "在瀏覽器中編寫、儲存、聆聽、圖像化與匯出自訂和弦進行的工作區。" } },
   "overview": { "classification": "verified", "text": { "en": "Progression Writer supports single or verse/chorus structures, chord entry and shape selection, saved progression records, duplication, playback, JSON export, and generated visual downloads.", "zhTW": "和弦進行編寫器支援單一或主歌／副歌結構、和弦輸入與指型選擇、已儲存進行紀錄、複製、播放、JSON 匯出與產生式視覺下載。" } },
   "purpose": [
@@ -24,7 +24,7 @@
   "sections": [
     { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
       { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "progression-writer.html defines modes, metadata, chord fields, shape-picker dialog, saved records, and download actions.", "zhTW": "progression-writer.html 定義模式、中繼資料、和弦欄位、指型選擇對話框、已儲存紀錄與下載操作。" } } },
-      { "label": { "en": "Interaction and exports", "zhTW": "互動與匯出" }, "body": { "classification": "verified", "text": { "en": "scripts/progression-writer.js normalizes saved data, coordinates fields and modes, renders shape choices, produces SVG/PNG layouts, and handles JSON export.", "zhTW": "scripts/progression-writer.js 正規化已儲存資料、協調欄位與模式、渲染指型選擇、產生 SVG／PNG 版面並處理 JSON 匯出。" } } },
+      { "label": { "en": "Interaction and exports", "zhTW": "互動與匯出" }, "body": { "classification": "verified", "text": { "en": "The Vue frontend normalizes saved data, coordinates fields and modes, renders shape choices, produces SVG/PNG layouts, and handles JSON export.", "zhTW": "Vue 前端正規化已儲存資料、協調欄位與模式、渲染指型選擇、產生 SVG／PNG 版面並處理 JSON 匯出。" } } },
       { "label": { "en": "Shared shapes", "zhTW": "共用指型" }, "body": { "classification": "verified", "text": { "en": "The current page consumes scripts/chord-shapes.js, the shared parser, voicing, and diagram model introduced with Song Workspace.", "zhTW": "目前頁面使用 scripts/chord-shapes.js，也就是隨歌曲工作區引入的共用解析、配置與圖表模型。" } } }
     ] },
     { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
@@ -35,10 +35,11 @@
     { "id": "evolution", "type": "timeline", "title": { "en": "Evolution", "zhTW": "演進" }, "items": [
       { "date": "2026-07-25", "eventId": "event-20260725-progression-writer-published", "impact": "direct", "title": { "en": "First canonical publication", "zhTW": "首次正式發布" }, "body": { "classification": "verified", "text": { "en": "The July 24 feature-history creation reached main through PR #1 on July 25.", "zhTW": "7 月 24 日的功能歷史建立於 7 月 25 日透過 PR #1 進入 main。" } } },
       { "date": "2026-08-04", "eventId": "event-20260804-traditional-chinese-support", "impact": "shared", "title": { "en": "Bilingual authoring", "zhTW": "雙語編寫" }, "body": { "classification": "verified", "text": { "en": "Shared localization added Traditional Chinese to the writing workflow.", "zhTW": "共用在地化為編寫流程加入繁體中文。" } } },
-      { "date": "2026-08-28", "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5", "impact": "shared", "title": { "en": "Shared chord-shape model", "zhTW": "共用和弦指型模型" }, "body": { "classification": "verified", "text": { "en": "The reusable shape renderer introduced with Song Workspace became part of the current writer architecture.", "zhTW": "隨歌曲工作區引入的可重用指型渲染器成為目前編寫器架構的一部分。" } } }
+      { "date": "2026-08-28", "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5", "impact": "shared", "title": { "en": "Shared chord-shape model", "zhTW": "共用和弦指型模型" }, "body": { "classification": "verified", "text": { "en": "The reusable shape renderer introduced with Song Workspace became part of the current writer architecture.", "zhTW": "隨歌曲工作區引入的可重用指型渲染器成為目前編寫器架構的一部分。" } } },
+      { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue-owned frontend", "zhTW": "Vue 管理的前端" }, "body": { "classification": "verified", "text": { "en": "The writer joined the completed v2.0.5 Vue migration while retaining local records, playback, and export behavior.", "zhTW": "編寫器納入 v2.0.5 完成的 Vue 遷移，同時保留本機紀錄、播放與匯出行為。" } } }
     ] }
   ],
-  "currentState": { "classification": "verified", "text": { "en": "Progression Writer is a bilingual browser authoring tool at /progression-writer.html with local saved records, shape selection, playback, duplication, JSON export, and generated visual downloads.", "zhTW": "和弦進行編寫器目前是 /progression-writer.html 的雙語瀏覽器創作工具，包含本機已儲存紀錄、指型選擇、播放、複製、JSON 匯出與產生式視覺下載。" } },
+  "currentState": { "classification": "verified", "text": { "en": "Progression Writer is a Vue-owned bilingual browser authoring tool at /progression-writer.html with local saved records, shape selection, playback, duplication, JSON export, and generated visual downloads.", "zhTW": "和弦進行編寫器目前是由 Vue 管理、位於 /progression-writer.html 的雙語瀏覽器創作工具，包含本機已儲存紀錄、指型選擇、播放、複製、JSON 匯出與產生式視覺下載。" } },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "Preserving creation and publication as separate dates makes feature-branch history legible without misrepresenting public availability.", "zhTW": "分開保留建立與發布日期，可讓功能分支歷史清楚，同時不誤述公開可用時間。" } },
     { "classification": "reconstructed", "text": { "en": "A composition tool becomes more useful when the same data can be edited, auditioned, saved, and exported in both machine-readable and visual forms.", "zhTW": "當相同資料可編輯、試聽、儲存，並以機器可讀與視覺形式匯出時，創作工具會更實用。" } }
@@ -46,11 +47,11 @@
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No original design brief or documented rejected editor layouts were found.", "zhTW": "未找到原始設計簡報或被否決編輯器版面的書面紀錄。" } }
   ],
-  "relatedEventIds": ["event-20260725-progression-writer-published"],
+  "relatedEventIds": ["event-20260725-progression-writer-published", "event-20260905-release-v2-0-5"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Feature creation 35b8aa4", "zhTW": "功能建立 35b8aa4" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/35b8aa4" },
     { "kind": "pr", "label": { "en": "Canonical publication PR #1", "zhTW": "正式發布 PR #1" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/1" },
     { "kind": "file", "label": { "en": "Current Progression Writer page", "zhTW": "目前和弦進行編寫器頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/progression-writer.html", "path": "progression-writer.html" },
-    { "kind": "file", "label": { "en": "Writer interaction module", "zhTW": "編寫器互動模組" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/progression-writer.js", "path": "scripts/progression-writer.js" }
+    { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
   ]
 }

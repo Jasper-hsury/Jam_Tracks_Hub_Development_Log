@@ -114,6 +114,41 @@ test("v2.0.2 through v2.0.5 preserve stable release and event relationships", as
   assert.deepEqual(validateData(data), []);
 });
 
+test("affected dossiers align with the release and Vue migration history", async () => {
+  const data = await loadData();
+  const dossiers = new Map(data.dossiers.map((dossier) => [dossier.slug, dossier]));
+  const commonVueEvent = "event-20260905-release-v2-0-5";
+
+  for (const slug of [
+    "homepage",
+    "tracks",
+    "fretboard-trainer",
+    "chord-progressions",
+    "scale-explorer",
+    "chord-dictionary",
+    "progression-writer",
+    "key-finder",
+    "song-workspace"
+  ]) {
+    const dossier = dossiers.get(slug);
+    assert.equal(dossier?.latestSignificantUpdate, "2026-09-05");
+    assert.ok(dossier?.relatedEventIds.includes(commonVueEvent));
+    assert.match(`${dossier?.currentState.text.en} ${dossier?.currentState.text.zhTW}`, /Vue/);
+  }
+
+  assert.ok(dossiers.get("tracks").relatedEventIds.includes("event-20260903-release-v2-0-4"));
+  assert.match(dossiers.get("tracks").currentState.text.en, /18 supported entries/);
+  assert.match(dossiers.get("tracks").currentState.text.en, /no W9 record/);
+
+  assert.ok(dossiers.get("key-finder").relatedEventIds.includes("event-20260904-key-finder-vue-migration"));
+  assert.match(dossiers.get("key-finder").currentState.text.en, /Render compute and analysis pipeline/);
+
+  assert.ok(dossiers.get("song-workspace").relatedEventIds.includes("event-20260831-release-v2-0-2"));
+  assert.ok(dossiers.get("song-workspace").relatedEventIds.includes("event-20260904-song-workspace-vue-migration"));
+  assert.match(dossiers.get("song-workspace").currentState.text.en, /IndexedDB/);
+  assert.match(dossiers.get("song-workspace").currentState.text.en, /Existing saved songs remain compatible/);
+});
+
 test("event ordering is deterministic", async () => {
   const data = await loadData();
   const first = deriveData(data).sortedEvents.map((event) => event.id);

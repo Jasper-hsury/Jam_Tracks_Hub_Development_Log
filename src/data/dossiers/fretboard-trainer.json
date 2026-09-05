@@ -3,7 +3,7 @@
   "productId": "product-fretboard-trainer",
   "slug": "fretboard-trainer",
   "status": "published",
-  "latestSignificantUpdate": "2026-08-04",
+  "latestSignificantUpdate": "2026-09-05",
   "hero": { "classification": "verified", "text": { "en": "A focused practice tool for learning note locations across the guitar fretboard.", "zhTW": "專注練習吉他指板音名位置的工具。" } },
   "overview": { "classification": "verified", "text": { "en": "Fretboard Trainer presents a random string-and-fret question, lets the learner choose a note, marks the answer, tracks a session score, and provides a standard-tuning reference.", "zhTW": "指板訓練器呈現隨機弦與琴格題目，讓學習者選擇音名、標示答案、追蹤本次分數，並提供標準調弦參考。" } },
   "purpose": [
@@ -23,7 +23,7 @@
   "sections": [
     { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
       { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "fretboard-trainer.html supplies semantic question, answer, score, and reference regions with shared navigation and localization.", "zhTW": "fretboard-trainer.html 提供語意題目、答案、分數與參考區，搭配共用導覽與在地化。" } } },
-      { "label": { "en": "Interaction", "zhTW": "互動" }, "body": { "classification": "verified", "text": { "en": "scripts/fretboard-trainer.js generates questions, derives exact note names, renders answer controls, marks results, updates score, and reveals answers.", "zhTW": "scripts/fretboard-trainer.js 產生題目、推導精確音名、渲染答案控制、標示結果、更新分數並顯示答案。" } } },
+      { "label": { "en": "Interaction", "zhTW": "互動" }, "body": { "classification": "verified", "text": { "en": "The Vue frontend generates questions, derives exact note names, renders answer controls, marks results, updates score, and reveals answers.", "zhTW": "Vue 前端產生題目、推導精確音名、渲染答案控制、標示結果、更新分數並顯示答案。" } } },
       { "label": { "en": "Presentation", "zhTW": "呈現" }, "body": { "classification": "verified", "text": { "en": "styles/fretboard-trainer.css owns the focused practice workspace and responsive reference layout.", "zhTW": "styles/fretboard-trainer.css 管理專注練習工作區與響應式參考版面。" } } }
     ] },
     { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
@@ -33,20 +33,21 @@
     ] },
     { "id": "evolution", "type": "timeline", "title": { "en": "Evolution", "zhTW": "演進" }, "items": [
       { "date": "2026-06-26", "eventId": "event-20260626-fretboard-trainer-launch", "impact": "direct", "title": { "en": "Focused trainer launches", "zhTW": "專注訓練器推出" }, "body": { "classification": "verified", "text": { "en": "The note-location practice tool joined the public navigation.", "zhTW": "音名位置練習工具加入公開導覽。" } } },
-      { "date": "2026-08-04", "eventId": "event-20260804-traditional-chinese-support", "impact": "shared", "title": { "en": "Bilingual practice", "zhTW": "雙語練習" }, "body": { "classification": "verified", "text": { "en": "Shared localization brought Traditional Chinese to the practice interface.", "zhTW": "共用在地化為練習介面加入繁體中文。" } } }
+      { "date": "2026-08-04", "eventId": "event-20260804-traditional-chinese-support", "impact": "shared", "title": { "en": "Bilingual practice", "zhTW": "雙語練習" }, "body": { "classification": "verified", "text": { "en": "Shared localization brought Traditional Chinese to the practice interface.", "zhTW": "共用在地化為練習介面加入繁體中文。" } } },
+      { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue-owned frontend", "zhTW": "Vue 管理的前端" }, "body": { "classification": "verified", "text": { "en": "The trainer joined the completed v2.0.5 Vue migration while retaining its focused practice loop.", "zhTW": "訓練器納入 v2.0.5 完成的 Vue 遷移，同時保留專注的練習循環。" } } }
     ] }
   ],
-  "currentState": { "classification": "verified", "text": { "en": "Fretboard Trainer remains a small bilingual, client-side practice page at /fretboard-trainer.html with randomized prompts, immediate feedback, scoring, and a tuning reference.", "zhTW": "指板訓練器目前仍是 /fretboard-trainer.html 的小型雙語用戶端練習頁，包含隨機題目、立即回饋、計分與調弦參考。" } },
+  "currentState": { "classification": "verified", "text": { "en": "Fretboard Trainer is a small Vue-owned bilingual practice page at /fretboard-trainer.html with randomized prompts, immediate feedback, scoring, and a tuning reference.", "zhTW": "指板訓練器目前是由 Vue 管理、位於 /fretboard-trainer.html 的小型雙語練習頁，包含隨機題目、立即回饋、計分與調弦參考。" } },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "A narrow learning tool benefits from a short loop—prompt, answer, correction, next question—without the navigation and data density of a larger reference.", "zhTW": "專注學習工具受益於簡短循環：題目、回答、修正、下一題，不需要大型參考工具的導覽與資料密度。" } }
   ],
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No original learning study, difficulty progression, or spaced-repetition plan was found.", "zhTW": "未找到原始學習研究、難度進程或間隔重複計畫。" } }
   ],
-  "relatedEventIds": ["event-20260626-fretboard-trainer-launch"],
+  "relatedEventIds": ["event-20260626-fretboard-trainer-launch", "event-20260905-release-v2-0-5"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Fretboard tools launch 7acf53c", "zhTW": "指板工具推出 7acf53c" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/7acf53c" },
     { "kind": "file", "label": { "en": "Current trainer page", "zhTW": "目前訓練器頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/fretboard-trainer.html", "path": "fretboard-trainer.html" },
-    { "kind": "file", "label": { "en": "Trainer interaction module", "zhTW": "訓練器互動模組" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/fretboard-trainer.js", "path": "scripts/fretboard-trainer.js" }
+    { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
   ]
 }

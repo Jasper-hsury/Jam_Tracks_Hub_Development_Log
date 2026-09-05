@@ -3,7 +3,7 @@
   "productId": "product-key-finder",
   "slug": "key-finder",
   "status": "published",
-  "latestSignificantUpdate": "2026-08-30",
+  "latestSignificantUpdate": "2026-09-05",
   "hero": {
     "classification": "verified",
     "text": { "en": "An audio-analysis tool that estimates a song's likely musical key and explains ranked evidence.", "zhTW": "分析音訊、估計歌曲可能調性並解釋排序證據的工具。" }
@@ -36,7 +36,7 @@
       "title": { "en": "Technical structure", "zhTW": "技術結構" },
       "items": [
         { "label": { "en": "Browser page", "zhTW": "瀏覽器頁面" }, "body": { "classification": "verified", "text": { "en": "key-finder.html supplies the analysis form, progress and result regions, recent-analysis list, shared navigation, localization, and public metadata.", "zhTW": "key-finder.html 提供分析表單、進度與結果區、近期分析清單、共用導覽、在地化與公開中繼資料。" } } },
-        { "label": { "en": "Client logic", "zhTW": "用戶端邏輯" }, "body": { "classification": "verified", "text": { "en": "scripts/key-finder.js coordinates source handling, service availability, job progress, ranked candidates, explanations, browser history, and bounded error reports.", "zhTW": "scripts/key-finder.js 協調來源處理、服務可用性、工作進度、候選排序、解釋、瀏覽器歷史與有界錯誤報告。" } } },
+        { "label": { "en": "Client logic", "zhTW": "用戶端邏輯" }, "body": { "classification": "verified", "text": { "en": "The Vue frontend coordinates source handling, service availability, job progress, ranked candidates, explanations, browser history, and bounded error reports.", "zhTW": "Vue 前端協調來源處理、服務可用性、工作進度、候選排序、解釋、瀏覽器歷史與有界錯誤報告。" } } },
         { "label": { "en": "Public request path", "zhTW": "公開請求路徑" }, "body": { "classification": "verified", "text": { "en": "Cloudflare now protects the public route while the existing Render service remains responsible for compute and the analysis pipeline.", "zhTW": "Cloudflare 目前保護公開路徑，既有 Render 服務仍負責運算與分析管線。" } } },
         { "label": { "en": "Historical exploration", "zhTW": "歷史探索" }, "body": { "classification": "verified", "text": { "en": "Repository documentation records an earlier container-oriented exploration as deferred history, not the current production architecture.", "zhTW": "儲存庫文件將先前容器導向探索記錄為延後的歷史，而非目前正式架構。" } } }
       ]
@@ -60,7 +60,8 @@
         { "date": "2026-07-05", "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/19c5554", "impact": "direct", "title": { "en": "Input helper flow matures", "zhTW": "輸入輔助流程成熟" }, "body": { "classification": "verified", "text": { "en": "A sequence of July commits refined public API preference, local-helper fallbacks, timeouts, Safari behavior, and nonblocking errors.", "zhTW": "7 月一系列 commit 改善公開 API 優先順序、本機輔助回退、逾時、Safari 行為與非阻塞錯誤。" } } },
         { "date": "2026-08-30", "eventId": "event-20260830-key-finder-production-routing", "impact": "direct", "title": { "en": "Protected production route", "zhTW": "受保護的正式路徑" }, "body": { "classification": "verified", "text": { "en": "Public requests moved behind edge protection while compute responsibilities stayed with Render.", "zhTW": "公開請求移到邊緣保護之後，運算職責仍由 Render 負責。" } } },
         { "date": "2026-08-30", "eventId": "event-20260830-release-v1-4-tag", "impact": "shared", "title": { "en": "v1.4.0 tag checkpoint", "zhTW": "v1.4.0 標籤檢查點" }, "body": { "classification": "verified", "text": { "en": "The v1.4.0 Git tag exists, but no published GitHub Release was found.", "zhTW": "v1.4.0 Git 標籤存在，但找不到已發布的 GitHub Release。" } } },
-        { "date": "2026-08-30", "eventId": "event-20260830-release-v2-0-0", "impact": "shared", "title": { "en": "v2.0.0 published checkpoint", "zhTW": "v2.0.0 已發布檢查點" }, "body": { "classification": "verified", "text": { "en": "The published release summarized production protection at a public-safe level.", "zhTW": "已發布版本以公開安全層次概述正式環境保護。" } } }
+        { "date": "2026-08-30", "eventId": "event-20260830-release-v2-0-0", "impact": "shared", "title": { "en": "v2.0.0 published checkpoint", "zhTW": "v2.0.0 已發布檢查點" }, "body": { "classification": "verified", "text": { "en": "The published release summarized production protection at a public-safe level.", "zhTW": "已發布版本以公開安全層次概述正式環境保護。" } } },
+        { "date": "2026-09-04", "eventId": "event-20260904-key-finder-vue-migration", "impact": "direct", "title": { "en": "Frontend moves to Vue", "zhTW": "前端遷移至 Vue" }, "body": { "classification": "verified", "text": { "en": "Key Finder became Vue-owned while its protected request path, Render compute, and analysis responsibilities remained unchanged.", "zhTW": "調性偵測器改由 Vue 管理，同時受保護請求路徑、Render 運算與分析職責維持不變。" } } }
       ]
     },
     {
@@ -75,7 +76,7 @@
   ],
   "currentState": {
     "classification": "verified",
-    "text": { "en": "Key Finder is a public bilingual browser page whose protected request path reaches the existing Render compute and analysis pipeline. This dossier intentionally does not disclose secrets, protection expressions, thresholds, bypass logic, or private provider mechanics.", "zhTW": "調性偵測器目前是公開雙語瀏覽器頁面，其受保護請求路徑會到達既有 Render 運算與分析管線。本檔案刻意不揭露秘密、保護運算式、門檻、繞過邏輯或供應商私人機制。" }
+    "text": { "en": "Key Finder is a Vue-owned public bilingual frontend whose protected request path reaches the existing Render compute and analysis pipeline. The frontend migration did not move analysis responsibilities. This dossier intentionally does not disclose secrets, protection expressions, thresholds, bypass logic, or private provider mechanics.", "zhTW": "調性偵測器目前是由 Vue 管理的公開雙語前端，其受保護請求路徑會到達既有 Render 運算與分析管線。此次前端遷移未移動分析職責。本檔案刻意不揭露秘密、保護運算式、門檻、繞過邏輯或供應商私人機制。" }
   },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "For remote musical analysis, status and failure behavior are core interface states, not implementation footnotes.", "zhTW": "對遠端音樂分析而言，狀態與失敗行為是核心介面狀態，而非實作附註。" } },
@@ -88,13 +89,16 @@
     "event-20260623-key-finder-page-launch",
     "event-20260830-key-finder-production-routing",
     "event-20260830-release-v1-4-tag",
-    "event-20260830-release-v2-0-0"
+    "event-20260830-release-v2-0-0",
+    "event-20260904-key-finder-vue-migration",
+    "event-20260905-release-v2-0-5"
   ],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Dedicated page commit 3b7d52d", "zhTW": "獨立頁面 commit 3b7d52d" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/3b7d52d" },
     { "kind": "pr", "label": { "en": "Cloudflare production routing PR #12", "zhTW": "Cloudflare 正式路徑 PR #12" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/12" },
     { "kind": "file", "label": { "en": "Current Key Finder page", "zhTW": "目前調性偵測器頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/key-finder.html", "path": "key-finder.html" },
-    { "kind": "file", "label": { "en": "Current browser interaction module", "zhTW": "目前瀏覽器互動模組" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/key-finder.js", "path": "scripts/key-finder.js" },
-    { "kind": "docs", "label": { "en": "Public production architecture note", "zhTW": "公開正式架構說明" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/docs/key-finder-render-behind-cloudflare.md", "path": "docs/key-finder-render-behind-cloudflare.md" }
+    { "kind": "docs", "label": { "en": "Public production architecture note", "zhTW": "公開正式架構說明" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/docs/key-finder-render-behind-cloudflare.md", "path": "docs/key-finder-render-behind-cloudflare.md" },
+    { "kind": "pr", "label": { "en": "Key Finder Vue migration PR #34", "zhTW": "調性偵測器 Vue 遷移 PR #34" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/34" },
+    { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
   ]
 }

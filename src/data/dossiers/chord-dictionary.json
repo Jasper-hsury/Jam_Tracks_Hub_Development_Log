@@ -3,7 +3,7 @@
   "productId": "product-chord-dictionary",
   "slug": "chord-dictionary",
   "status": "published",
-  "latestSignificantUpdate": "2026-08-28",
+  "latestSignificantUpdate": "2026-09-05",
   "hero": {
     "classification": "verified",
     "text": {
@@ -126,7 +126,7 @@
         },
         {
           "label": { "en": "Page logic", "zhTW": "頁面邏輯" },
-          "body": { "classification": "verified", "text": { "en": "scripts/chord-dictionary.js contains chord taxonomy, symbol parsing, note spelling, voicing generation and scoring, filters, diagram rendering, pagination, and playback.", "zhTW": "scripts/chord-dictionary.js 包含和弦分類、符號解析、音名拼寫、配置產生與評分、篩選、圖表渲染、分頁與播放。" } }
+          "body": { "classification": "verified", "text": { "en": "The Vue frontend owns chord taxonomy, symbol parsing, note spelling, voicing generation and scoring, filters, diagram rendering, pagination, and playback.", "zhTW": "Vue 前端管理和弦分類、符號解析、音名拼寫、配置產生與評分、篩選、圖表渲染、分頁與播放。" } }
         },
         {
           "label": { "en": "Shared renderer", "zhTW": "共用渲染器" },
@@ -203,6 +203,13 @@
           "impact": "shared",
           "title": { "en": "Chord shapes become a shared product system", "zhTW": "和弦指型成為共用產品系統" },
           "body": { "classification": "verified", "text": { "en": "Song Workspace introduced scripts/chord-shapes.js so chord parsing and diagram models could be reused across products.", "zhTW": "歌曲工作區引入 scripts/chord-shapes.js，使和弦解析與圖表模型能跨產品重用。" } }
+        },
+        {
+          "date": "2026-09-05",
+          "eventId": "event-20260905-release-v2-0-5",
+          "impact": "shared",
+          "title": { "en": "Vue-owned frontend", "zhTW": "Vue 管理的前端" },
+          "body": { "classification": "verified", "text": { "en": "Chord Dictionary joined the completed v2.0.5 Vue migration while retaining its reference, filtering, diagram, and playback behavior.", "zhTW": "和弦字典納入 v2.0.5 完成的 Vue 遷移，同時保留參考、篩選、圖表與播放行為。" } }
         }
       ]
     },
@@ -244,8 +251,8 @@
   "currentState": {
     "classification": "verified",
     "text": {
-      "en": "Chord Dictionary remains a public static page at /chord-dictionary.html with English and Traditional Chinese, light/dark themes, symbol lookup, generated voicings, multiple shape filters, audio playback, responsive layouts, shared navigation, and links into related tools.",
-      "zhTW": "和弦字典目前仍是 /chord-dictionary.html 的公開靜態頁面，支援英文與繁體中文、明暗主題、符號查詢、產生式配置、多重指型篩選、音訊播放、響應式版面、共用導覽與相關工具連結。"
+      "en": "Chord Dictionary is a Vue-owned public page at /chord-dictionary.html with English and Traditional Chinese, light/dark themes, symbol lookup, generated voicings, multiple shape filters, audio playback, responsive layouts, shared navigation, and links into related tools.",
+      "zhTW": "和弦字典目前是由 Vue 管理、位於 /chord-dictionary.html 的公開頁面，支援英文與繁體中文、明暗主題、符號查詢、產生式配置、多重指型篩選、音訊播放、響應式版面、共用導覽與相關工具連結。"
     }
   },
   "lessons": [
@@ -265,7 +272,8 @@
     }
   ],
   "relatedEventIds": [
-    "event-20260625-chord-dictionary-launch"
+    "event-20260625-chord-dictionary-launch",
+    "event-20260905-release-v2-0-5"
   ],
   "sourceRefs": [
     {
@@ -296,12 +304,6 @@
     },
     {
       "kind": "file",
-      "label": { "en": "Current page interaction module", "zhTW": "目前頁面互動模組" },
-      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/chord-dictionary.js",
-      "path": "scripts/chord-dictionary.js"
-    },
-    {
-      "kind": "file",
       "label": { "en": "Shared chord-shape module", "zhTW": "共用和弦指型模組" },
       "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scripts/chord-shapes.js",
       "path": "scripts/chord-shapes.js"
@@ -311,6 +313,11 @@
       "label": { "en": "Chord Dictionary presentation", "zhTW": "和弦字典呈現樣式" },
       "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/styles/chord-dictionary.css",
       "path": "styles/chord-dictionary.css"
+    },
+    {
+      "kind": "release",
+      "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5"
     }
   ]
 }

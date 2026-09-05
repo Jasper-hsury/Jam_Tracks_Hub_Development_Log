@@ -3,7 +3,7 @@
   "productId": "product-homepage",
   "slug": "homepage",
   "status": "published",
-  "latestSignificantUpdate": "2026-08-28",
+  "latestSignificantUpdate": "2026-09-05",
   "hero": { "classification": "verified", "text": { "en": "The public starting point for discovering Jam Tracks Hub tools, featured tracks, releases, and the site's purpose.", "zhTW": "探索 Jam Tracks Hub 工具、精選音軌、最新發布與網站目的的公開起點。" } },
   "overview": { "classification": "verified", "text": { "en": "The Homepage combines the brand hero, tool discovery, featured audio, latest releases, and About content. About remains a section of index.html rather than a separate product page.", "zhTW": "首頁整合品牌主視覺、工具探索、精選音訊、最新發布與關於內容。「關於」仍是 index.html 的區段，而非獨立產品頁。" } },
   "purpose": [
@@ -27,8 +27,8 @@
       { "title": { "en": "Current content", "zhTW": "目前內容" }, "body": { "classification": "verified", "text": { "en": "Featured audio and Latest Releases surface current track material before the About section.", "zhTW": "精選音訊與最新發布在關於區之前呈現目前音軌內容。" } } }
     ] },
     { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
-      { "label": { "en": "Primary page", "zhTW": "主要頁面" }, "body": { "classification": "verified", "text": { "en": "index.html owns the hero, tool index, featured track, latest releases, About, shared navigation, metadata, and footer.", "zhTW": "index.html 管理主視覺、工具索引、精選音軌、最新發布、關於、共用導覽、中繼資料與頁尾。" } } },
-      { "label": { "en": "Shared systems", "zhTW": "共用系統" }, "body": { "classification": "verified", "text": { "en": "Shared site, theme, i18n, and animation modules provide behavior; current Homepage markup supplies content and animation hooks.", "zhTW": "共用網站、主題、i18n 與動畫模組提供行為；目前首頁標記提供內容與動畫掛鉤。" } } }
+      { "label": { "en": "Primary page", "zhTW": "主要頁面" }, "body": { "classification": "verified", "text": { "en": "The Vue-owned index.html entry presents the hero, tool index, featured track, latest releases, About, shared navigation, metadata, and footer.", "zhTW": "由 Vue 管理的 index.html 入口呈現主視覺、工具索引、精選音軌、最新發布、關於、共用導覽、中繼資料與頁尾。" } } },
+      { "label": { "en": "Shared systems", "zhTW": "共用系統" }, "body": { "classification": "verified", "text": { "en": "The Homepage runs within the Vue and Vite multi-page frontend while retaining shared theme, localization, navigation, and animation behavior.", "zhTW": "首頁在 Vue 與 Vite 多頁式前端中運作，同時保留共用主題、在地化、導覽與動畫行為。" } } }
     ] },
     { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
       { "label": { "en": "Desktop", "zhTW": "桌面" }, "body": { "classification": "verified", "text": { "en": "Large editorial sections and multi-card tool/track layouts support scanning across the product range.", "zhTW": "大型編輯式區段與多卡片工具／音軌版面支援掃讀整體產品。" } } },
@@ -38,21 +38,23 @@
     { "id": "evolution", "type": "timeline", "title": { "en": "Evolution", "zhTW": "演進" }, "items": [
       { "date": "2026-06-06", "eventId": "event-20260606-jam-tracks-hub-begins", "impact": "direct", "title": { "en": "Homepage foundation", "zhTW": "首頁基礎" }, "body": { "classification": "verified", "text": { "en": "The public Homepage and About section entered history with the site foundation.", "zhTW": "公開首頁與關於區隨網站基礎進入歷史。" } } },
       { "date": "2026-07-18", "eventId": "event-20260718-homepage-and-track-evolution", "impact": "direct", "title": { "en": "Entrance and track evolution", "zhTW": "進場與音軌演進" }, "body": { "classification": "verified", "text": { "en": "Premium motion and W10–W13 changed the discovery surface.", "zhTW": "進階動態與 W10–W13 改變探索介面。" } } },
-      { "date": "2026-08-28", "eventId": "event-20260828-workspace-responsive-fixes", "impact": "direct", "title": { "en": "Regression restored", "zhTW": "回歸修復" }, "body": { "classification": "verified", "text": { "en": "A responsive Song Workspace fix also restored affected Homepage behavior.", "zhTW": "歌曲工作區響應式修正同時恢復受影響的首頁行為。" } } }
+      { "date": "2026-08-28", "eventId": "event-20260828-workspace-responsive-fixes", "impact": "direct", "title": { "en": "Regression restored", "zhTW": "回歸修復" }, "body": { "classification": "verified", "text": { "en": "A responsive Song Workspace fix also restored affected Homepage behavior.", "zhTW": "歌曲工作區響應式修正同時恢復受影響的首頁行為。" } } },
+      { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue migration completion", "zhTW": "Vue 遷移完成" }, "body": { "classification": "verified", "text": { "en": "v2.0.5 completed Vue ownership of the Homepage within the Vite multi-page architecture.", "zhTW": "v2.0.5 完成首頁在 Vite 多頁式架構下的 Vue 管理遷移。" } } }
     ] }
   ],
-  "currentState": { "classification": "verified", "text": { "en": "The Homepage remains the bilingual public entry at /, combining brand orientation, direct product discovery, W19 featured/recent track content, About, and shared site navigation.", "zhTW": "首頁目前仍是 / 的雙語公開入口，整合品牌方向、直接產品探索、W19 精選／近期音軌內容、關於與共用網站導覽。" } },
+  "currentState": { "classification": "verified", "text": { "en": "The Homepage is the Vue-owned bilingual public entry at /, combining brand orientation, direct product discovery, W19 featured/recent track content, About, and shared site navigation.", "zhTW": "首頁目前是由 Vue 管理、位於 / 的雙語公開入口，整合品牌方向、直接產品探索、W19 精選／近期音軌內容、關於與共用網站導覽。" } },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "A discovery page must evolve with both the product catalog and current content, so shared changes require explicit Homepage regression checks.", "zhTW": "探索頁必須同時隨產品目錄與目前內容演進，因此共用變更需要明確首頁回歸檢查。" } }
   ],
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No original wireframe, traffic goal, or documented ordering experiment was found.", "zhTW": "未找到原始線框圖、流量目標或排序實驗紀錄。" } }
   ],
-  "relatedEventIds": ["event-20260606-jam-tracks-hub-begins", "event-20260718-homepage-and-track-evolution", "event-20260828-workspace-responsive-fixes"],
+  "relatedEventIds": ["event-20260606-jam-tracks-hub-begins", "event-20260718-homepage-and-track-evolution", "event-20260828-workspace-responsive-fixes", "event-20260905-release-v2-0-5"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Initial deployment 1ad1d86", "zhTW": "最初部署 1ad1d86" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1ad1d86" },
     { "kind": "commit", "label": { "en": "Motion and W10–W13 8b3c69e", "zhTW": "動態與 W10–W13 8b3c69e" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/8b3c69e" },
     { "kind": "pr", "label": { "en": "Responsive regression fix PR #6", "zhTW": "響應式回歸修正 PR #6" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/6" },
-    { "kind": "file", "label": { "en": "Current Homepage", "zhTW": "目前首頁" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/index.html", "path": "index.html" }
+    { "kind": "file", "label": { "en": "Current Homepage", "zhTW": "目前首頁" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/index.html", "path": "index.html" },
+    { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
   ]
 }

@@ -86,6 +86,11 @@ test("dossier responsive and print contracts cover the acceptance matrix", async
   assert.deepEqual(modes, ["mobile", "mobile", "mobile", "tablet", "tablet", "tablet", "desktop", "desktop", "desktop", "desktop", "desktop"]);
 });
 
+test("standalone print output wraps long evidence URLs at narrow preview widths", async () => {
+  const css = await readFile(new URL("../src/styles/print.css", import.meta.url), "utf8");
+  assert.match(css, /body\s*{[^}]*overflow-wrap:\s*anywhere;/s);
+});
+
 test("dossier print hides the screen-only skip link while preserving its accessible target", async () => {
   await buildSite();
   const dossier = await readFile(new URL("../dist/products/chord-dictionary/index.html", import.meta.url), "utf8");
@@ -94,4 +99,24 @@ test("dossier print hides the screen-only skip link while preserving its accessi
   assert.match(dossier, /<a class="skip-link" href="#dossier-content">/);
   assert.match(dossier, /<article class="dossier-content" id="dossier-content">/);
   assert.match(css, /@media print\s*{[^}]*\.dossier-page \.skip-link[^}]*display:\s*none\s*!important;/s);
+});
+
+test("build exposes the v2.0.5 boundary through timeline, deep links, releases, and print", async () => {
+  await buildSite();
+  const index = await readFile(new URL("../dist/index.html", import.meta.url), "utf8");
+  const print = await readFile(new URL("../dist/print.html", import.meta.url), "utf8");
+  for (const id of [
+    "event-20260831-release-v2-0-2",
+    "event-20260903-release-v2-0-3",
+    "event-20260903-release-v2-0-4",
+    "event-20260904-key-finder-vue-migration",
+    "event-20260904-song-workspace-vue-migration",
+    "event-20260905-release-v2-0-5"
+  ]) {
+    assert.match(index, new RegExp(`id="${id}"`));
+    assert.match(print, new RegExp(`id="${id}"`));
+  }
+  assert.match(index, /id="release-v2\.0\.5"/);
+  assert.match(index, /href="#event-20260905-release-v2-0-5"/);
+  assert.match(print, /v2\.0\.5 — Vue frontend migration complete/);
 });

@@ -489,5 +489,121 @@
       { "kind": "pr", "label": "PR #18", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/18" },
       { "kind": "release", "label": "Release v2.0.1", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.1" }
     ]
+  },
+  {
+    "id": "event-20260831-release-v2-0-2",
+    "date": "2026-08-31",
+    "sequence": 10,
+    "title": { "en": "v2.0.2 adds privacy-bounded Song Workspace analytics", "zhTW": "v2.0.2 為歌曲工作區加入具隱私邊界的分析" },
+    "summary": { "en": "Song Workspace joined the site's pageview analytics while song content and the local-first storage model remained private to the browser.", "zhTW": "歌曲工作區納入網站頁面瀏覽分析，同時歌曲內容與本機優先儲存模式仍保留在瀏覽器中。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-song-workspace"],
+    "status": "released",
+    "releaseId": "release-v2.0.2",
+    "keywords": ["analytics", "local-first", "privacy"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #19", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/19" },
+      { "kind": "commit", "label": "Commit 5c6403e", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/5c6403e20ede2c691e2d2a73888bdc1fab3eeace" },
+      { "kind": "release", "label": "Release v2.0.2", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.2" }
+    ]
+  },
+  {
+    "id": "event-20260903-release-v2-0-3",
+    "date": "2026-09-03",
+    "sequence": 10,
+    "title": { "en": "v2.0.3 restores reliable unknown-route handling", "zhTW": "v2.0.3 恢復可靠的未知路徑處理" },
+    "summary": { "en": "Unknown paths again reached the intended Vue 404 experience while retaining correct HTTP 404 semantics.", "zhTW": "未知路徑再次顯示預期的 Vue 404 體驗，同時維持正確的 HTTP 404 語意。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-jam-tracks-hub", "product-service-support"],
+    "status": "released",
+    "releaseId": "release-v2.0.3",
+    "keywords": ["404", "routing", "Vue"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #23", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/23" },
+      { "kind": "commit", "label": "Commit bdf5b69", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/bdf5b694cd4bb7ea153ddfc258378b97144f50ee" },
+      { "kind": "release", "label": "Release v2.0.3", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.3" }
+    ]
+  },
+  {
+    "id": "event-20260903-release-v2-0-4",
+    "date": "2026-09-03",
+    "sequence": 20,
+    "title": { "en": "v2.0.4 restores the supported track download set", "zhTW": "v2.0.4 恢復支援的完整音軌下載集合" },
+    "summary": { "en": "Deployable W2–W8 ZIP packages restored download availability across all 18 supported track entries.", "zhTW": "可部署的 W2–W8 ZIP 套件恢復全部 18 個支援音軌項目的下載功能。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-tracks"],
+    "status": "released",
+    "releaseId": "release-v2.0.4",
+    "keywords": ["W2", "W3", "W4", "W5", "W6", "W7", "W8", "ZIP", "downloads"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #28", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/28" },
+      { "kind": "commit", "label": "Commit 9f524d8", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/9f524d86138b583bd5126a8a9b39c6a3237033e5" },
+      { "kind": "release", "label": "Release v2.0.4", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.4" }
+    ]
+  },
+  {
+    "id": "event-20260904-key-finder-vue-migration",
+    "date": "2026-09-04",
+    "sequence": 10,
+    "title": { "en": "Key Finder frontend moves to Vue", "zhTW": "調性偵測器前端遷移至 Vue" },
+    "summary": { "en": "Key Finder became Vue-owned while its existing protected API path and analysis responsibilities remained unchanged.", "zhTW": "調性偵測器改由 Vue 管理，同時既有受保護 API 路徑與分析職責維持不變。" },
+    "kind": "infrastructure",
+    "level": "normal",
+    "categoryId": "platform",
+    "productIds": ["product-key-finder"],
+    "status": "released",
+    "releaseId": "release-v2.0.5",
+    "keywords": ["Vue", "Vite", "frontend migration"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #34", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/34" },
+      { "kind": "commit", "label": "Commit b86b6f2", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/b86b6f2c5d07da750d2cfb648e4dd07b2137514a" },
+      { "kind": "release", "label": "Release v2.0.5", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
+    ]
+  },
+  {
+    "id": "event-20260904-song-workspace-vue-migration",
+    "date": "2026-09-04",
+    "sequence": 20,
+    "title": { "en": "Song Workspace completes its Vue migration", "zhTW": "歌曲工作區完成 Vue 遷移" },
+    "summary": { "en": "The local-first workspace became Vue-owned while existing saved songs, browser storage, and import and export behavior remained compatible.", "zhTW": "本機優先的工作區改由 Vue 管理，同時維持既有已儲存歌曲、瀏覽器儲存與匯入匯出行為的相容性。" },
+    "details": { "en": "The migration preserved the established privacy boundary and did not introduce remote song storage.", "zhTW": "此次遷移保留既有隱私邊界，且未引入遠端歌曲儲存。" },
+    "kind": "product_update",
+    "level": "normal",
+    "categoryId": "platform",
+    "productIds": ["product-song-workspace", "product-my-songs"],
+    "status": "released",
+    "releaseId": "release-v2.0.5",
+    "keywords": ["Vue", "Vite", "local-first", "IndexedDB", "import", "export"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #36", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/36" },
+      { "kind": "commit", "label": "Commit 10cbaf3", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/10cbaf3423075fdafef245bca75e4ac1a9ca1c69" },
+      { "kind": "release", "label": "Release v2.0.5", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
+    ]
+  },
+  {
+    "id": "event-20260905-release-v2-0-5",
+    "date": "2026-09-05",
+    "sequence": 10,
+    "title": { "en": "v2.0.5 completes the Vue frontend migration", "zhTW": "v2.0.5 完成 Vue 前端遷移" },
+    "summary": { "en": "All 14 primary user-facing frontend pages became Vue-owned within the Vite multi-page architecture.", "zhTW": "14 個主要使用者前端頁面在 Vite 多頁式架構下全面改由 Vue 管理。" },
+    "details": { "en": "After migration verification, frontend code with no remaining runtime consumers was removed without changing public URLs or established product boundaries.", "zhTW": "遷移驗證完成後，移除已無執行期使用者的前端程式碼，且未改變公開網址或既有產品邊界。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-jam-tracks-hub", "product-homepage", "product-tracks", "product-key-finder", "product-scale-explorer", "product-chord-dictionary", "product-chord-progressions", "product-fretboard-trainer", "product-progression-writer", "product-song-workspace"],
+    "status": "released",
+    "releaseId": "release-v2.0.5",
+    "keywords": ["Vue 3", "Vite", "multi-page architecture", "legacy cleanup"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #37", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/37" },
+      { "kind": "commit", "label": "Commit 045efd5", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/045efd59878e8fe2b8097117cb8ba4809d3573cf" },
+      { "kind": "release", "label": "Release v2.0.5", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
+    ]
   }
 ]

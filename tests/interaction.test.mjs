@@ -57,3 +57,12 @@ test("dossier search documents expose product, design, and architecture terms", 
   assert.match(documents.get("key-finder"), /cloudflare/);
   assert.match(documents.get("key-finder"), /render compute/);
 });
+
+test("new releases and Vue migration events are searchable and filterable", async () => {
+  const { data, context } = await contextFixture();
+  const matches = (state) => data.events.filter((event) => eventMatches(event, state, context));
+  const base = { year: "all", product: "all", category: "all", release: "all", status: "all", search: "" };
+  assert.deepEqual(matches({ ...base, release: "release-v2.0.4" }).map((event) => event.id), ["event-20260903-release-v2-0-4"]);
+  assert.ok(matches({ ...base, search: "Vue local-first" }).some((event) => event.id === "event-20260904-song-workspace-vue-migration"));
+  assert.ok(matches({ ...base, search: "v2.0.5 Key Finder" }).some((event) => event.id === "event-20260904-key-finder-vue-migration"));
+});

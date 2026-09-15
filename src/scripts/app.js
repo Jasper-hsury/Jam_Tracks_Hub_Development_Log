@@ -73,6 +73,7 @@
     document.documentElement.lang = state.lang;
     document.body.dataset.lang = state.lang;
     document.querySelectorAll("[data-i18n]").forEach((element) => { element.textContent = t(element.dataset.i18n); });
+    document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => { element.setAttribute("aria-label", t(element.dataset.i18nAriaLabel)); });
     document.querySelectorAll("[data-set-lang]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.setLang === state.lang)));
     search.placeholder = t("searchPlaceholder");
     for (const control of Object.values(controls)) control.querySelector("option[value='all']").textContent = t("all");
@@ -106,12 +107,17 @@
   };
   const renderActiveFilters = () => {
     activeFilters.replaceChildren();
+    const labelGroups = { product: "products", category: "categories", status: "statuses" };
     for (const key of ["year", "product", "category", "release", "status"]) {
       if (state[key] === "all") continue;
       const chip = document.createElement("button");
       chip.type = "button";
       chip.className = "filter-chip";
-      chip.textContent = `${controls[key].selectedOptions[0].textContent} ×`;
+      // Translatable labels come from canonical IDs, never the previous DOM locale.
+      const label = payload.optionLabels[labelGroups[key]]?.[state[key]]?.[state.lang]
+        ?? controls[key].selectedOptions[0].textContent;
+      chip.textContent = `${label} ×`;
+      chip.setAttribute("aria-label", `${t("removeFilter")}: ${label}`);
       chip.addEventListener("click", () => { state[key] = "all"; controls[key].value = "all"; apply(); });
       activeFilters.append(chip);
     }
@@ -120,6 +126,7 @@
       chip.type = "button";
       chip.className = "filter-chip";
       chip.textContent = `“${state.search}” ×`;
+      chip.setAttribute("aria-label", `${t("removeFilter")}: ${state.search}`);
       chip.addEventListener("click", () => { state.search = ""; search.value = ""; apply(); });
       activeFilters.append(chip);
     }
@@ -163,8 +170,8 @@
     updateGroups();
     noResults.hidden = visible !== 0;
     resultCount.firstChild.textContent = `${visible} `;
-    renderActiveFilters();
     updateLanguage();
+    renderActiveFilters();
     renderDossierMatches();
     if (updateUrl) writeUrl();
     inspectHashTarget();

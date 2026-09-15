@@ -87,5 +87,22 @@
   "darkMode": "Dark mode",
   "lightMode": "Light mode",
   "historyNav": "History years",
-  "footerText": "A public historical record of Jam Tracks Hub. This is not the production application repository."
+  "footerText": "A public historical record of Jam Tracks Hub. This is not the production application repository.",
+  "navHistory": "History",
+  "navProducts": "Products",
+  "navReleases": "Releases",
+  "activeFilters": "Active filters",
+  "removeFilter": "Remove filter",
+  "noResults": "No matching history items.",
+  "index": "Index",
+  "versions": "Versions",
+  "lookingAhead": "Looking ahead",
+  "sources": "Sources",
+  "sourceRepository": "Jam Tracks Hub source repository",
+  "items": "items",
+  "primaryProduct": "Primary public product",
+  "secondaryPage": "Secondary public page",
+  "supportPage": "System support page",
+  "currentSnapshot": "Current snapshot",
+  "derivedMetrics": "Derived metrics"
 }

@@ -35,6 +35,19 @@ test("generated index contains meaningful history before JavaScript runs", async
   assert.match(index, /event-20260830-typography-rollback/);
 });
 
+test("filter utilities remain outside the collapsible fields and UI labels are localizable", async () => {
+  await buildSite();
+  const index = await readFile(new URL("../dist/index.html", import.meta.url), "utf8");
+  const filters = index.slice(index.indexOf('<section class="explore"'), index.indexOf('<aside id="dossier-search-results"'));
+  assert.ok(filters.indexOf('id="history-search"') < filters.indexOf('<details class="filters-shell"'));
+  assert.ok(filters.indexOf('id="reset-filters"') > filters.indexOf('</details>'));
+  assert.match(filters, /class="filter-fields"/);
+  assert.match(filters, /data-i18n-aria-label="activeFilters"/);
+  for (const key of ["navHistory", "navProducts", "navReleases", "noResults", "primaryProduct", "sources"]) {
+    assert.ok(index.includes(`data-i18n="${key}"`), key);
+  }
+});
+
 test("build generates stable bilingual product dossier routes with correct base paths", async () => {
   const { data } = await buildSite();
   for (const dossier of data.dossiers) {

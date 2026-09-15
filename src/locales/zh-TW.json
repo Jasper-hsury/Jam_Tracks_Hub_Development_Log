@@ -87,5 +87,22 @@
   "darkMode": "深色模式",
   "lightMode": "淺色模式",
   "historyNav": "歷史年份",
-  "footerText": "Jam Tracks Hub 的公開歷史紀錄。本儲存庫不是正式產品應用程式儲存庫。"
+  "footerText": "Jam Tracks Hub 的公開歷史紀錄。本儲存庫不是正式產品應用程式儲存庫。",
+  "navHistory": "歷史",
+  "navProducts": "產品",
+  "navReleases": "版本",
+  "activeFilters": "目前篩選",
+  "removeFilter": "移除篩選",
+  "noResults": "沒有符合的歷史項目。",
+  "index": "索引",
+  "versions": "版本",
+  "lookingAhead": "展望",
+  "sources": "來源",
+  "sourceRepository": "Jam Tracks Hub 原始碼儲存庫",
+  "items": "項目",
+  "primaryProduct": "主要公開產品",
+  "secondaryPage": "次要公開頁面",
+  "supportPage": "系統支援頁面",
+  "currentSnapshot": "目前概況",
+  "derivedMetrics": "統計摘要"
 }

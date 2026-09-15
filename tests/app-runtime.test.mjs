@@ -2,10 +2,12 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import vm from "node:vm";
+import { CATEGORY_LABELS, deriveData } from "../scripts/site-core.mjs";
+import { loadData } from "../scripts/validate-data.mjs";
 
 // A small DOM adapter executes the shipped runtime, including event ordering.
 // Layout and native controls are checked separately in the browser matrix.
-async function fixture(query = "") {
+async function fixture(query = "", inventory = null) {
   const locales = Object.fromEntries(await Promise.all(["en", "zh-TW"].map(async (lang) => [lang, JSON.parse(await readFile(new URL(`../src/locales/${lang}.json`, import.meta.url)))])));
   const element = (dataset = {}) => ({
     dataset, value: "all", textContent: "", children: [], attributes: {}, listeners: {}, hidden: false,
@@ -16,8 +18,8 @@ async function fixture(query = "") {
     replaceChildren() { this.children = []; },
     focus() { this.focused = true; }
   });
-  const options = { years: ["2026"], products: ["product-song-workspace"], categories: ["release"], releases: ["release-v2.0.5"], statuses: ["released"] };
-  const optionLabels = {
+  const options = inventory?.options || { years: ["2026"], products: ["product-song-workspace"], categories: ["release"], releases: ["release-v2.0.5"], statuses: ["released"] };
+  const optionLabels = inventory?.optionLabels || {
     products: { "product-song-workspace": { en: "Song Workspace", "zh-TW": "歌曲工作區" } },
     categories: { release: { en: "Release", "zh-TW": "版本發布" } },
     statuses: { released: { en: "Released", "zh-TW": "已發布" } }
@@ -76,6 +78,33 @@ test("runtime preserves canonical product and results across EN → zh-TW → EN
   assert.deepEqual(app.chips(), ["Song Workspace ×"]);
   assert.deepEqual(app.visible(), results);
   assert.equal(app.nodes["#result-count"].firstChild.textContent, "1 ");
+});
+
+test("every canonical product, category and status option follows the active locale", async () => {
+  const context = deriveData(await loadData());
+  const en = JSON.parse(await readFile(new URL("../src/locales/en.json", import.meta.url)));
+  const zh = JSON.parse(await readFile(new URL("../src/locales/zh-TW.json", import.meta.url)));
+  const bilingual = (value) => ({ en: value.en, "zh-TW": value.zhTW });
+  const optionLabels = {
+    products: Object.fromEntries(context.visibleProducts.map((product) => [product.id, bilingual(product.name)])),
+    categories: Object.fromEntries(Object.entries(CATEGORY_LABELS).map(([id, names]) => [id, bilingual(names)])),
+    statuses: Object.fromEntries(["released", "reverted", "superseded", "deprecated"].map((id) => [id, { en: en[id], "zh-TW": zh[id] }]))
+  };
+  const options = { years: ["2026"], releases: ["release-v2.0.5"], ...Object.fromEntries(Object.entries(optionLabels).map(([group, names]) => [group, Object.keys(names)])) };
+  for (const [key, group] of Object.entries({ product: "products", category: "categories", status: "statuses" })) {
+    for (const [value, labels] of Object.entries(optionLabels[group])) {
+      const app = await fixture("", { options, optionLabels });
+      app.select(key, value);
+      const results = app.visible();
+      for (const lang of ["en", "zh-TW", "en"]) {
+        app.language(lang);
+        assert.deepEqual(app.chips(), [`${labels[lang]} ×`], `${key}/${value}/${lang}`);
+        assert.equal(app.controls[key].value, value);
+        assert.deepEqual(app.visible(), results);
+        assert.equal(app.location.searchParams.get(key), value);
+      }
+    }
+  }
 });
 
 test("runtime localizes all chip types on initial deep link and locale switch", async () => {

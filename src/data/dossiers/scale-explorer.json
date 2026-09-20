@@ -23,7 +23,7 @@
   },
   "sections": [
     { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
-      { "label": { "en": "Page and styles", "zhTW": "頁面與樣式" }, "body": { "classification": "verified", "text": { "en": "scale.html and styles/scale.css define the controls, summary, fretboard regions, and responsive presentation.", "zhTW": "scale.html 與 styles/scale.css 定義控制、摘要、指板區域與響應式呈現。" } } },
+      { "label": { "en": "Page and styles", "zhTW": "頁面與樣式" }, "body": { "classification": "verified", "text": { "en": "scale.html is the document and Vue mount shell, retaining metadata and bootstrap resources. src/views/ScaleExplorerView.vue and its Vue components own the current controls, summary, and fretboard UI; styles/scale.css supplies the responsive presentation.", "zhTW": "scale.html 是文件與 Vue 掛載外殼，保留中繼資料與啟動資源。src/views/ScaleExplorerView.vue 及其 Vue 元件負責目前的控制、摘要與指板介面；styles/scale.css 提供響應式呈現樣式。" } } },
       { "label": { "en": "Interaction", "zhTW": "互動" }, "body": { "classification": "verified", "text": { "en": "The Vue frontend owns scale selection, note spelling, range controls, fretboard rendering, canvas image generation, downloads, playback, and URL parameters.", "zhTW": "Vue 前端管理音階選擇、音名拼寫、範圍控制、指板渲染、canvas 圖片產生、下載、播放與網址參數。" } } }
     ] },
     { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
@@ -50,7 +50,8 @@
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Scale Explorer launch 0053346", "zhTW": "音階探索器推出 0053346" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/0053346" },
     { "kind": "commit", "label": { "en": "Selectable neck lengths e39e05e", "zhTW": "可選琴頸長度 e39e05e" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/e39e05e" },
-    { "kind": "file", "label": { "en": "Current Scale Explorer page", "zhTW": "目前音階探索器頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/scale.html", "path": "scale.html" },
+    { "kind": "file", "label": { "en": "Current Scale Explorer HTML mount shell", "zhTW": "目前音階探索器 HTML 掛載外殼" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/scale.html", "path": "scale.html" },
+    { "kind": "file", "label": { "en": "Current Scale Explorer Vue interface", "zhTW": "目前音階探索器 Vue 介面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/src/views/ScaleExplorerView.vue", "path": "src/views/ScaleExplorerView.vue" },
     { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
   ]
 }

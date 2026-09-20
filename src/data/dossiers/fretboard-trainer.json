@@ -22,7 +22,7 @@
   },
   "sections": [
     { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
-      { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "fretboard-trainer.html supplies semantic question, answer, score, and reference regions with shared navigation and localization.", "zhTW": "fretboard-trainer.html 提供語意題目、答案、分數與參考區，搭配共用導覽與在地化。" } } },
+      { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "fretboard-trainer.html is the document and Vue mount shell, retaining metadata and bootstrap resources. src/views/FretboardTrainerView.vue owns the current question, answer controls, score, and reference regions within the shared bilingual Vue site shell.", "zhTW": "fretboard-trainer.html 是文件與 Vue 掛載外殼，保留中繼資料與啟動資源。src/views/FretboardTrainerView.vue 在共用雙語 Vue 網站外殼內，負責目前的題目、答案控制、分數與參考區域。" } } },
       { "label": { "en": "Interaction", "zhTW": "互動" }, "body": { "classification": "verified", "text": { "en": "The Vue frontend generates questions, derives exact note names, renders answer controls, marks results, updates score, and reveals answers.", "zhTW": "Vue 前端產生題目、推導精確音名、渲染答案控制、標示結果、更新分數並顯示答案。" } } },
       { "label": { "en": "Presentation", "zhTW": "呈現" }, "body": { "classification": "verified", "text": { "en": "styles/fretboard-trainer.css owns the focused practice workspace and responsive reference layout.", "zhTW": "styles/fretboard-trainer.css 管理專注練習工作區與響應式參考版面。" } } }
     ] },
@@ -47,7 +47,8 @@
   "relatedEventIds": ["event-20260626-fretboard-trainer-launch", "event-20260905-release-v2-0-5"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Fretboard tools launch 7acf53c", "zhTW": "指板工具推出 7acf53c" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/7acf53c" },
-    { "kind": "file", "label": { "en": "Current trainer page", "zhTW": "目前訓練器頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/fretboard-trainer.html", "path": "fretboard-trainer.html" },
+    { "kind": "file", "label": { "en": "Current trainer HTML mount shell", "zhTW": "目前訓練器 HTML 掛載外殼" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/fretboard-trainer.html", "path": "fretboard-trainer.html" },
+    { "kind": "file", "label": { "en": "Current trainer Vue interface", "zhTW": "目前訓練器 Vue 介面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/src/views/FretboardTrainerView.vue", "path": "src/views/FretboardTrainerView.vue" },
     { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
   ]
 }

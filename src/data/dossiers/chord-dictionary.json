@@ -122,7 +122,7 @@
       "items": [
         {
           "label": { "en": "Primary page", "zhTW": "主要頁面" },
-          "body": { "classification": "verified", "text": { "en": "chord-dictionary.html provides semantic regions, controls, empty render hosts, navigation, localization hooks, and public metadata.", "zhTW": "chord-dictionary.html 提供語意區域、控制項、空白渲染容器、導覽、在地化掛鉤與公開中繼資料。" } }
+          "body": { "classification": "verified", "text": { "en": "chord-dictionary.html is the document and Vue mount shell, retaining public metadata and bootstrap resources. src/views/ChordDictionaryView.vue and its Vue components own the current semantic page regions, chord controls, filters, and diagram presentation within the shared Vue site shell.", "zhTW": "chord-dictionary.html 是文件與 Vue 掛載外殼，保留公開中繼資料與啟動資源。src/views/ChordDictionaryView.vue 及其 Vue 元件在共用 Vue 網站外殼內，負責目前的語意頁面區域、和弦控制、篩選與和弦圖呈現。" } }
         },
         {
           "label": { "en": "Page logic", "zhTW": "頁面邏輯" },
@@ -298,9 +298,15 @@
     },
     {
       "kind": "file",
-      "label": { "en": "Current Chord Dictionary page", "zhTW": "目前和弦字典頁面" },
-      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/chord-dictionary.html",
+      "label": { "en": "Current Chord Dictionary HTML mount shell", "zhTW": "目前和弦字典 HTML 掛載外殼" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/chord-dictionary.html",
       "path": "chord-dictionary.html"
+    },
+    {
+      "kind": "file",
+      "label": { "en": "Current Chord Dictionary Vue interface", "zhTW": "目前和弦字典 Vue 介面" },
+      "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/src/views/ChordDictionaryView.vue",
+      "path": "src/views/ChordDictionaryView.vue"
     },
     {
       "kind": "file",

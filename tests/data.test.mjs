@@ -74,13 +74,13 @@ test("security events require high-level disclosure markers", async () => {
   assert.deepEqual(scanPublicContent(data), []);
 });
 
-test("release rules preserve tag-only v1.4.0 and latest published v2.0.5", async () => {
+test("release rules preserve tag-only v1.4.0 and latest published v2.0.6", async () => {
   const data = await loadData();
   const tagOnly = data.releases.find((release) => release.version === "v1.4.0");
   assert.equal(tagOnly.status, "tag_only");
   assert.equal(tagOnly.releaseUrl, undefined);
   assert.equal(tagOnly.tagUrl, "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0");
-  assert.equal(deriveData(data).latestPublishedRelease.version, "v2.0.5");
+  assert.equal(deriveData(data).latestPublishedRelease.version, "v2.0.6");
   const brokenPublished = clone(data);
   delete brokenPublished.releases.find((release) => release.status === "published").releaseUrl;
   assert.match(validateData(brokenPublished).join("\n"), /published release URL required/);
@@ -114,6 +114,39 @@ test("v2.0.2 through v2.0.5 preserve stable release and event relationships", as
   assert.deepEqual(validateData(data), []);
 });
 
+test("v2.0.6 links one analytics milestone while keeping merge and release dates distinct", async () => {
+  const data = await loadData();
+  const context = deriveData(data);
+  const release = context.latestPublishedRelease;
+  assert.equal(release.id, "release-v2.0.6");
+  assert.equal(release.status, "published");
+  assert.equal(release.tag, "v2.0.6");
+  assert.equal(release.tagCommit, "54fd0c867fd064bbfa2f0f074e09da170c89e729");
+  assert.equal(release.title.en, "Reliable All-Time Analytics Snapshots");
+  assert.equal(release.releaseUrl, "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.6");
+  const localDate = (utc) => new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit"
+  }).format(new Date(utc));
+  assert.equal(release.date, localDate("2026-09-16T23:37:47Z"));
+  const children = context.releaseChildren.get(release.id);
+  assert.equal(children.length, 1);
+  const [event] = children;
+  assert.equal(event.id, "event-20260916-all-time-analytics-reliability");
+  assert.equal(event.date, localDate("2026-09-16T14:13:37Z"));
+  assert.ok(event.date < release.date);
+  assert.equal(event.kind, "infrastructure");
+  assert.equal(event.categoryId, "platform");
+  assert.deepEqual(event.productIds, ["product-jam-tracks-hub"]);
+  assert.ok(context.sortedEvents.indexOf(event) < context.sortedEvents.findIndex((item) => item.id === "event-20260905-release-v2-0-5"));
+  for (const lang of ["en", "zhTW"]) {
+    assert.match(event.summary[lang], /Umami/);
+    assert.match(event.summary[lang], /All Time/);
+  }
+  assert.ok(event.sourceRefs.some((ref) => ref.kind === "pr" && ref.url === "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/56"));
+  assert.ok(event.sourceRefs.some((ref) => ref.kind === "commit" && ref.url.endsWith("/1a2a72a93b6fced3124e8f2a6bacc7fe158df313")));
+  assert.ok(event.sourceRefs.some((ref) => ref.kind === "release" && ref.url === release.releaseUrl));
+});
+
 test("affected dossiers align with the release and Vue migration history", async () => {
   const data = await loadData();
   const dossiers = new Map(data.dossiers.map((dossier) => [dossier.slug, dossier]));
@@ -131,7 +164,7 @@ test("affected dossiers align with the release and Vue migration history", async
     "song-workspace"
   ]) {
     const dossier = dossiers.get(slug);
-    assert.equal(dossier?.latestSignificantUpdate, "2026-09-05");
+    assert.equal(dossier?.latestSignificantUpdate, slug === "homepage" ? "2026-09-20" : "2026-09-05");
     assert.ok(dossier?.relatedEventIds.includes(commonVueEvent));
     assert.match(`${dossier?.currentState.text.en} ${dossier?.currentState.text.zhTW}`, /Vue/);
   }
@@ -147,6 +180,61 @@ test("affected dossiers align with the release and Vue migration history", async
   assert.ok(dossiers.get("song-workspace").relatedEventIds.includes("event-20260904-song-workspace-vue-migration"));
   assert.match(dossiers.get("song-workspace").currentState.text.en, /IndexedDB/);
   assert.match(dossiers.get("song-workspace").currentState.text.en, /Existing saved songs remain compatible/);
+
+  const homepage = dossiers.get("homepage");
+  const evolution = homepage.sections.find((section) => section.id === "evolution").items;
+  const updates = [
+    ["event-20260907-homepage-workflow-refinement", "2026-09-07", "46", "8ebc43560119e35bff33069f2d0da5f1fcc76507"],
+    ["event-20260920-homepage-bilingual-about-copy", "2026-09-20", "62", "866946f4d51231bb2d25ce656e5050956d475b83"]
+  ];
+  assert.deepEqual(evolution.slice(-2).map((item) => item.eventId), updates.map(([id]) => id));
+  for (const [id, date, pr, sha] of updates) {
+    const event = data.events.find((item) => item.id === id);
+    assert.equal(event?.date, date);
+    assert.deepEqual(event.productIds, ["product-homepage"]);
+    assert.equal(event.releaseId, undefined);
+    assert.ok(homepage.relatedEventIds.includes(id));
+    assert.equal(evolution.find((item) => item.eventId === id)?.date, date);
+    for (const refs of [event.sourceRefs, homepage.sourceRefs]) {
+      assert.ok(refs.some((ref) => ref.url === `https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/${pr}`));
+      assert.ok(refs.some((ref) => ref.url === `https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/${sha}`));
+    }
+  }
+  assert.match(homepage.currentState.text.en, /four purpose-led workflow groups/);
+  assert.match(homepage.currentState.text.en, /three-paragraph About/);
+  assert.match(homepage.currentState.text.zhTW, /四組目的導向使用流程/);
+  assert.match(homepage.currentState.text.zhTW, /三段式關於/);
+});
+
+test("current dossier architecture distinguishes HTML mount shells from cited Vue interfaces", async () => {
+  const context = deriveData(await loadData());
+  const pages = [
+    ["song-workspace", "song-workspace.html", "SongWorkspaceView.vue"],
+    ["tracks", "tracks.html", "TracksView.vue"],
+    ["progression-writer", "progression-writer.html", "ProgressionWriterView.vue"],
+    ["chord-progressions", "chord-progressions.html", "ChordProgressionsView.vue"],
+    ["chord-dictionary", "chord-dictionary.html", "ChordDictionaryView.vue"],
+    ["scale-explorer", "scale.html", "ScaleExplorerView.vue"],
+    ["fretboard-trainer", "fretboard-trainer.html", "FretboardTrainerView.vue"]
+  ];
+  for (const [slug, html, view] of pages) {
+    const dossier = context.visibleDossiers.find((item) => item.slug === slug);
+    assert.ok(dossier, `${slug}: published dossier remains visible`);
+    assert.ok(context.visibleProducts.some((product) => product.id === dossier.productId));
+    const page = dossier.sections.find((section) => section.type === "architecture").items[0].body;
+    assert.equal(page.classification, "verified");
+    for (const lang of ["en", "zhTW"]) {
+      assert.ok(page.text[lang].includes(html), `${slug}/${lang}: identify the HTML shell`);
+      assert.ok(page.text[lang].includes(`src/views/${view}`), `${slug}/${lang}: identify the Vue interface`);
+    }
+    assert.match(page.text.en, /Vue mount shell/);
+    assert.match(page.text.zhTW, /Vue 掛載外殼/);
+    for (const path of [html, `src/views/${view}`]) {
+      assert.ok(dossier.sourceRefs.some((ref) => ref.kind === "file" && ref.path === path
+        && /^https:\/\/github\.com\/Jasper-hsury\/Jam_Tracks_Hub\/blob\/[a-f0-9]{40}\//.test(ref.url)
+        && ref.url.endsWith(`/${path}`)), `${slug}: immutable source for ${path}`);
+    }
+  }
 });
 
 test("event ordering is deterministic", async () => {

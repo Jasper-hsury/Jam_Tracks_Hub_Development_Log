@@ -23,7 +23,7 @@
   },
   "sections": [
     { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
-      { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "chord-progressions.html defines the explorer controls and render hosts under the shared bilingual site shell.", "zhTW": "chord-progressions.html 在共用雙語網站外殼中定義探索器控制與渲染容器。" } } },
+      { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "chord-progressions.html is the document and Vue mount shell, retaining metadata and bootstrap resources. src/views/ChordProgressionsView.vue and its Vue components own the current explorer controls and progression presentation within the shared bilingual Vue site shell.", "zhTW": "chord-progressions.html 是文件與 Vue 掛載外殼，保留中繼資料與啟動資源。src/views/ChordProgressionsView.vue 及其 Vue 元件在共用雙語 Vue 網站外殼內，負責目前的探索器控制與和弦進行呈現。" } } },
       { "label": { "en": "Harmony and interaction", "zhTW": "和聲與互動" }, "body": { "classification": "verified", "text": { "en": "The Vue frontend builds major/minor diatonic chords, renders progressions and shapes, links dictionary symbols, supplies scale/practice advice, schedules audio, and handles saved/exported progressions.", "zhTW": "Vue 前端建立大／小調順階和弦、渲染進行與指型、連結字典符號、提供音階／練習建議、安排音訊並處理儲存／匯出進行。" } } }
     ] },
     { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
@@ -49,7 +49,8 @@
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Initial foundation 1ad1d86", "zhTW": "最初基礎 1ad1d86" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1ad1d86" },
     { "kind": "pr", "label": { "en": "Repository reorganization PR #1", "zhTW": "儲存庫重整 PR #1" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/1" },
-    { "kind": "file", "label": { "en": "Current Chord Progressions page", "zhTW": "目前和弦進行頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/chord-progressions.html", "path": "chord-progressions.html" },
+    { "kind": "file", "label": { "en": "Current Chord Progressions HTML mount shell", "zhTW": "目前和弦進行 HTML 掛載外殼" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/chord-progressions.html", "path": "chord-progressions.html" },
+    { "kind": "file", "label": { "en": "Current Chord Progressions Vue interface", "zhTW": "目前和弦進行 Vue 介面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/src/views/ChordProgressionsView.vue", "path": "src/views/ChordProgressionsView.vue" },
     { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
   ]
 }

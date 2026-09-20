@@ -28,7 +28,7 @@
       { "title": { "en": "Responsive motion", "zhTW": "響應式動態" }, "body": { "classification": "verified", "text": { "en": "The current script bounds FLIP-style rearrangement by viewport capability and falls back to direct rendering.", "zhTW": "目前腳本依視窗能力限制 FLIP 重新排列動態，並可回退到直接渲染。" } } }
     ] },
     { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
-      { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "tracks.html defines the library heading, controls, result host, shared navigation, and footer.", "zhTW": "tracks.html 定義資料庫標題、控制、結果容器、共用導覽與頁尾。" } } },
+      { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "tracks.html is the document and Vue mount shell, retaining metadata and bootstrap resources. src/views/TracksView.vue owns the current library heading, filter/sort controls, and results; TrackCard.vue renders track cards, while the shared Vue SiteShell.vue renders navigation and the footer.", "zhTW": "tracks.html 是文件與 Vue 掛載外殼，保留中繼資料與啟動資源。src/views/TracksView.vue 負責目前的資料庫標題、篩選／排序控制與結果；TrackCard.vue 渲染音軌卡片，共用 Vue SiteShell.vue 則渲染導覽與頁尾。" } } },
       { "label": { "en": "Canonical content", "zhTW": "正式內容" }, "body": { "classification": "verified", "text": { "en": "data/tracks.json stores public track records; the Vue frontend owns normalization, filtering, sorting, card rendering, and downloads.", "zhTW": "data/tracks.json 儲存公開音軌紀錄；Vue 前端管理正規化、篩選、排序、卡片渲染與下載。" } } }
     ] },
     { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
@@ -56,7 +56,10 @@
   "relatedEventIds": ["event-20260606-jam-tracks-hub-begins", "event-20260606-first-backing-track-library", "event-20260718-homepage-and-track-evolution", "event-20260727-responsive-refinement-and-w16", "event-20260816-w19-backing-track", "event-20260830-responsive-content-polish", "event-20260903-release-v2-0-4", "event-20260905-release-v2-0-5"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Initial site deployment 1ad1d86", "zhTW": "最初網站部署 1ad1d86" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1ad1d86" },
-    { "kind": "file", "label": { "en": "Current Tracks page", "zhTW": "目前音軌頁面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/tracks.html", "path": "tracks.html" },
+    { "kind": "file", "label": { "en": "Current Tracks HTML mount shell", "zhTW": "目前音軌 HTML 掛載外殼" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/tracks.html", "path": "tracks.html" },
+    { "kind": "file", "label": { "en": "Current Tracks Vue interface", "zhTW": "目前音軌 Vue 介面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/src/views/TracksView.vue", "path": "src/views/TracksView.vue" },
+    { "kind": "file", "label": { "en": "Vue track-card presentation", "zhTW": "Vue 音軌卡片呈現" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/src/components/tracks/TrackCard.vue", "path": "src/components/tracks/TrackCard.vue" },
+    { "kind": "file", "label": { "en": "Shared Vue navigation and footer shell", "zhTW": "共用 Vue 導覽與頁尾外殼" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/src/components/site/SiteShell.vue", "path": "src/components/site/SiteShell.vue" },
     { "kind": "file", "label": { "en": "Canonical track records", "zhTW": "正式音軌紀錄" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/main/data/tracks.json", "path": "data/tracks.json" },
     { "kind": "release", "label": { "en": "Download restoration v2.0.4", "zhTW": "下載修復版本 v2.0.4" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.4" },
     { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }

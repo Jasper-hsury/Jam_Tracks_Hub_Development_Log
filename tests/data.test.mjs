@@ -149,6 +149,37 @@ test("affected dossiers align with the release and Vue migration history", async
   assert.match(dossiers.get("song-workspace").currentState.text.en, /Existing saved songs remain compatible/);
 });
 
+test("current dossier architecture distinguishes HTML mount shells from cited Vue interfaces", async () => {
+  const context = deriveData(await loadData());
+  const pages = [
+    ["song-workspace", "song-workspace.html", "SongWorkspaceView.vue"],
+    ["tracks", "tracks.html", "TracksView.vue"],
+    ["progression-writer", "progression-writer.html", "ProgressionWriterView.vue"],
+    ["chord-progressions", "chord-progressions.html", "ChordProgressionsView.vue"],
+    ["chord-dictionary", "chord-dictionary.html", "ChordDictionaryView.vue"],
+    ["scale-explorer", "scale.html", "ScaleExplorerView.vue"],
+    ["fretboard-trainer", "fretboard-trainer.html", "FretboardTrainerView.vue"]
+  ];
+  for (const [slug, html, view] of pages) {
+    const dossier = context.visibleDossiers.find((item) => item.slug === slug);
+    assert.ok(dossier, `${slug}: published dossier remains visible`);
+    assert.ok(context.visibleProducts.some((product) => product.id === dossier.productId));
+    const page = dossier.sections.find((section) => section.type === "architecture").items[0].body;
+    assert.equal(page.classification, "verified");
+    for (const lang of ["en", "zhTW"]) {
+      assert.ok(page.text[lang].includes(html), `${slug}/${lang}: identify the HTML shell`);
+      assert.ok(page.text[lang].includes(`src/views/${view}`), `${slug}/${lang}: identify the Vue interface`);
+    }
+    assert.match(page.text.en, /Vue mount shell/);
+    assert.match(page.text.zhTW, /Vue 掛載外殼/);
+    for (const path of [html, `src/views/${view}`]) {
+      assert.ok(dossier.sourceRefs.some((ref) => ref.kind === "file" && ref.path === path
+        && /^https:\/\/github\.com\/Jasper-hsury\/Jam_Tracks_Hub\/blob\/[a-f0-9]{40}\//.test(ref.url)
+        && ref.url.endsWith(`/${path}`)), `${slug}: immutable source for ${path}`);
+    }
+  }
+});
+
 test("event ordering is deterministic", async () => {
   const data = await loadData();
   const first = deriveData(data).sortedEvents.map((event) => event.id);

@@ -269,8 +269,9 @@ export function validateData(data) {
   assert(releases.find((release) => release.version === "v2.0.3")?.status === "published", "v2.0.3 must be published", errors);
   assert(releases.find((release) => release.version === "v2.0.4")?.status === "published", "v2.0.4 must be published", errors);
   assert(releases.find((release) => release.version === "v2.0.5")?.status === "published", "v2.0.5 must be published", errors);
+  assert(releases.find((release) => release.version === "v2.0.6")?.status === "published", "v2.0.6 must be published", errors);
   const derived = deriveData(data);
-  assert(derived.latestPublishedRelease?.version === "v2.0.5", "latest published release must be v2.0.5", errors);
+  assert(derived.latestPublishedRelease?.version === "v2.0.6", "latest published release must be v2.0.6", errors);
   const findings = scanPublicContent(data);
   for (const finding of findings) errors.push(`public-content disclosure scan: ${finding}`);
   return errors;

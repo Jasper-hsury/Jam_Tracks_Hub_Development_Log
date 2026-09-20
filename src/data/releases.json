@@ -151,5 +151,19 @@
     "title": { "en": "Vue frontend migration complete", "zhTW": "Vue 前端遷移完成" },
     "summary": { "en": "All 14 primary frontend pages became Vue-owned within the Vite multi-page architecture, followed by evidence-driven legacy cleanup.", "zhTW": "14 個主要前端頁面在 Vite 多頁式架構下改由 Vue 管理，並完成以證據為基礎的舊版程式清理。" },
     "featured": true
+  },
+  {
+    "id": "release-v2.0.6",
+    "version": "v2.0.6",
+    "date": "2026-09-17",
+    "sequence": 10,
+    "tag": "v2.0.6",
+    "tagCommit": "54fd0c867fd064bbfa2f0f074e09da170c89e729",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.6",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v2.0.6",
+    "title": { "en": "Reliable All-Time Analytics Snapshots", "zhTW": "可靠的 All Time 分析快照" },
+    "summary": { "en": "A maintenance release for explicit All Time selection and more robust validation of automated Umami analytics screenshots.", "zhTW": "此維護版本明確選取 All Time，並強化 Umami 自動分析截圖的驗證可靠性。" },
+    "featured": true
   }
 ]

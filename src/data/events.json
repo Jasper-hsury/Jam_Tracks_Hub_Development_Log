@@ -605,5 +605,25 @@
       { "kind": "commit", "label": "Commit 045efd5", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/045efd59878e8fe2b8097117cb8ba4809d3573cf" },
       { "kind": "release", "label": "Release v2.0.5", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
     ]
+  },
+  {
+    "id": "event-20260916-all-time-analytics-reliability",
+    "date": "2026-09-16",
+    "sequence": 10,
+    "title": { "en": "All Time analytics snapshots become more reliable", "zhTW": "提升 All Time 分析快照的可靠性" },
+    "summary": { "en": "Daily Umami snapshots now explicitly select and verify All Time before capture. Screenshot validation accepts supported rendering variations while rejecting invalid images.", "zhTW": "每日 Umami 快照現在會在擷取前明確選取並確認 All Time。截圖驗證接受支援範圍內的渲染差異，同時拒絕無效影像。" },
+    "details": { "en": "PR #56 merged on September 16, 2026; the maintenance was included in v2.0.6, published on September 17 in Taipei time. If All Time cannot be confirmed, capture stops without publishing an incorrect snapshot. Existing dated snapshots were not rewritten.", "zhTW": "PR #56 於 2026 年 9 月 16 日合併；此維護納入台北時間 9 月 17 日發布的 v2.0.6。若無法確認 All Time，擷取便會停止，不發布錯誤快照。既有按日期保存的快照未被改寫。" },
+    "kind": "infrastructure",
+    "level": "primary",
+    "categoryId": "platform",
+    "productIds": ["product-jam-tracks-hub"],
+    "status": "released",
+    "releaseId": "release-v2.0.6",
+    "keywords": ["All Time", "Umami", "analytics", "snapshot", "screenshot validation", "reliability"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #56", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/56" },
+      { "kind": "commit", "label": "Commit 1a2a72a", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1a2a72a93b6fced3124e8f2a6bacc7fe158df313" },
+      { "kind": "release", "label": "Release v2.0.6", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.6" }
+    ]
   }
 ]

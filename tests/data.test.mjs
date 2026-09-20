@@ -74,13 +74,13 @@ test("security events require high-level disclosure markers", async () => {
   assert.deepEqual(scanPublicContent(data), []);
 });
 
-test("release rules preserve tag-only v1.4.0 and latest published v2.0.5", async () => {
+test("release rules preserve tag-only v1.4.0 and latest published v2.0.6", async () => {
   const data = await loadData();
   const tagOnly = data.releases.find((release) => release.version === "v1.4.0");
   assert.equal(tagOnly.status, "tag_only");
   assert.equal(tagOnly.releaseUrl, undefined);
   assert.equal(tagOnly.tagUrl, "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0");
-  assert.equal(deriveData(data).latestPublishedRelease.version, "v2.0.5");
+  assert.equal(deriveData(data).latestPublishedRelease.version, "v2.0.6");
   const brokenPublished = clone(data);
   delete brokenPublished.releases.find((release) => release.status === "published").releaseUrl;
   assert.match(validateData(brokenPublished).join("\n"), /published release URL required/);
@@ -112,6 +112,39 @@ test("v2.0.2 through v2.0.5 preserve stable release and event relationships", as
   const septemberThird = deriveData(data).sortedEvents.filter((event) => event.date === "2026-09-03");
   assert.deepEqual(septemberThird.map((event) => event.id), ["event-20260903-release-v2-0-4", "event-20260903-release-v2-0-3"]);
   assert.deepEqual(validateData(data), []);
+});
+
+test("v2.0.6 links one analytics milestone while keeping merge and release dates distinct", async () => {
+  const data = await loadData();
+  const context = deriveData(data);
+  const release = context.latestPublishedRelease;
+  assert.equal(release.id, "release-v2.0.6");
+  assert.equal(release.status, "published");
+  assert.equal(release.tag, "v2.0.6");
+  assert.equal(release.tagCommit, "54fd0c867fd064bbfa2f0f074e09da170c89e729");
+  assert.equal(release.title.en, "Reliable All-Time Analytics Snapshots");
+  assert.equal(release.releaseUrl, "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.6");
+  const localDate = (utc) => new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit"
+  }).format(new Date(utc));
+  assert.equal(release.date, localDate("2026-09-16T23:37:47Z"));
+  const children = context.releaseChildren.get(release.id);
+  assert.equal(children.length, 1);
+  const [event] = children;
+  assert.equal(event.id, "event-20260916-all-time-analytics-reliability");
+  assert.equal(event.date, localDate("2026-09-16T14:13:37Z"));
+  assert.ok(event.date < release.date);
+  assert.equal(event.kind, "infrastructure");
+  assert.equal(event.categoryId, "platform");
+  assert.deepEqual(event.productIds, ["product-jam-tracks-hub"]);
+  assert.equal(context.sortedEvents[0].id, event.id);
+  for (const lang of ["en", "zhTW"]) {
+    assert.match(event.summary[lang], /Umami/);
+    assert.match(event.summary[lang], /All Time/);
+  }
+  assert.ok(event.sourceRefs.some((ref) => ref.kind === "pr" && ref.url === "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/56"));
+  assert.ok(event.sourceRefs.some((ref) => ref.kind === "commit" && ref.url.endsWith("/1a2a72a93b6fced3124e8f2a6bacc7fe158df313")));
+  assert.ok(event.sourceRefs.some((ref) => ref.kind === "release" && ref.url === release.releaseUrl));
 });
 
 test("affected dossiers align with the release and Vue migration history", async () => {

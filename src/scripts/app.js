@@ -133,8 +133,16 @@
   };
   const inspectHashTarget = () => {
     hiddenTarget.hidden = true;
+    delete hiddenTarget.dataset.targetId;
     if (!location.hash) return;
-    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    let targetId;
+    try {
+      targetId = decodeURIComponent(location.hash.slice(1));
+    } catch (error) {
+      if (error instanceof URIError) return; // An invalid fragment has no resolvable target.
+      throw error;
+    }
+    const target = document.getElementById(targetId);
     if (target?.matches("[data-event-id]") && target.hidden) {
       hiddenTarget.dataset.targetId = target.id;
       hiddenTarget.hidden = false;

@@ -607,6 +607,24 @@
     ]
   },
   {
+    "id": "event-20260907-homepage-workflow-refinement",
+    "date": "2026-09-07",
+    "sequence": 10,
+    "title": { "en": "Homepage discovery adopts four purpose-led workflows", "zhTW": "首頁探索改採四組目的導向流程" },
+    "summary": { "en": "PR #46 merged Practice, Understand, Create, and Play your songs groups into main, with Song Workspace entry points, localization improvements, and a compact About/contact/subscription layout.", "zhTW": "PR #46 將「練習」、「理解」、「創作」與「彈奏自己的歌曲」分組合併至 main，並加入歌曲工作區入口、在地化改善，以及精簡的關於／聯絡／訂閱版面。" },
+    "details": { "en": "Song Workspace gained a Homepage hero action and a standard workflow tool-row link; its route, storage, and product behavior were unchanged. The workflow scroll pin and horizontal-travel behavior were removed. This record identifies a merge to main, not a verified production deployment.", "zhTW": "歌曲工作區新增首頁主視覺操作與標準流程工具列連結；其路徑、儲存與產品行為維持不變。流程區的捲動固定與水平位移行為被移除。本紀錄確認的是合併至 main，而非已驗證的正式環境部署。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "experience",
+    "productIds": ["product-homepage"],
+    "status": "released",
+    "keywords": ["homepage", "workflow", "Song Workspace", "localization", "About"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #46", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/46" },
+      { "kind": "commit", "label": "Commit 8ebc435", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/8ebc43560119e35bff33069f2d0da5f1fcc76507" }
+    ]
+  },
+  {
     "id": "event-20260916-all-time-analytics-reliability",
     "date": "2026-09-16",
     "sequence": 10,
@@ -624,6 +642,24 @@
       { "kind": "pr", "label": "PR #56", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/56" },
       { "kind": "commit", "label": "Commit 1a2a72a", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1a2a72a93b6fced3124e8f2a6bacc7fe158df313" },
       { "kind": "release", "label": "Release v2.0.6", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.6" }
+    ]
+  },
+  {
+    "id": "event-20260920-homepage-bilingual-about-copy",
+    "date": "2026-09-20",
+    "sequence": 10,
+    "title": { "en": "Homepage About copy aligns across both languages", "zhTW": "首頁關於文案完成雙語對齊" },
+    "summary": { "en": "PR #62 merged refreshed English and Traditional Chinese About headings and copy into main, with three paragraphs in each locale.", "zhTW": "PR #62 將更新的英文與繁體中文關於標題及文案合併至 main，兩種語系皆採三段式內容。" },
+    "details": { "en": "The change was limited to copy, minimal About rendering, and tests. CSS, animations, routing, and other product pages were unchanged. This record does not assert production deployment or live-site validation.", "zhTW": "變更限於文案、最小範圍的關於內容渲染與測試。CSS、動畫、路由及其他產品頁面均未更動。本紀錄不宣稱正式環境已部署或已完成線上網站驗證。" },
+    "kind": "site_update",
+    "level": "normal",
+    "categoryId": "experience",
+    "productIds": ["product-homepage"],
+    "status": "released",
+    "keywords": ["homepage", "About", "English", "Traditional Chinese", "three paragraphs"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #62", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/62" },
+      { "kind": "commit", "label": "Commit 866946f", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/866946f4d51231bb2d25ce656e5050956d475b83" }
     ]
   }
 ]

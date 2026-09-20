@@ -137,7 +137,7 @@ test("v2.0.6 links one analytics milestone while keeping merge and release dates
   assert.equal(event.kind, "infrastructure");
   assert.equal(event.categoryId, "platform");
   assert.deepEqual(event.productIds, ["product-jam-tracks-hub"]);
-  assert.equal(context.sortedEvents[0].id, event.id);
+  assert.ok(context.sortedEvents.indexOf(event) < context.sortedEvents.findIndex((item) => item.id === "event-20260905-release-v2-0-5"));
   for (const lang of ["en", "zhTW"]) {
     assert.match(event.summary[lang], /Umami/);
     assert.match(event.summary[lang], /All Time/);
@@ -164,7 +164,7 @@ test("affected dossiers align with the release and Vue migration history", async
     "song-workspace"
   ]) {
     const dossier = dossiers.get(slug);
-    assert.equal(dossier?.latestSignificantUpdate, "2026-09-05");
+    assert.equal(dossier?.latestSignificantUpdate, slug === "homepage" ? "2026-09-20" : "2026-09-05");
     assert.ok(dossier?.relatedEventIds.includes(commonVueEvent));
     assert.match(`${dossier?.currentState.text.en} ${dossier?.currentState.text.zhTW}`, /Vue/);
   }
@@ -180,6 +180,30 @@ test("affected dossiers align with the release and Vue migration history", async
   assert.ok(dossiers.get("song-workspace").relatedEventIds.includes("event-20260904-song-workspace-vue-migration"));
   assert.match(dossiers.get("song-workspace").currentState.text.en, /IndexedDB/);
   assert.match(dossiers.get("song-workspace").currentState.text.en, /Existing saved songs remain compatible/);
+
+  const homepage = dossiers.get("homepage");
+  const evolution = homepage.sections.find((section) => section.id === "evolution").items;
+  const updates = [
+    ["event-20260907-homepage-workflow-refinement", "2026-09-07", "46", "8ebc43560119e35bff33069f2d0da5f1fcc76507"],
+    ["event-20260920-homepage-bilingual-about-copy", "2026-09-20", "62", "866946f4d51231bb2d25ce656e5050956d475b83"]
+  ];
+  assert.deepEqual(evolution.slice(-2).map((item) => item.eventId), updates.map(([id]) => id));
+  for (const [id, date, pr, sha] of updates) {
+    const event = data.events.find((item) => item.id === id);
+    assert.equal(event?.date, date);
+    assert.deepEqual(event.productIds, ["product-homepage"]);
+    assert.equal(event.releaseId, undefined);
+    assert.ok(homepage.relatedEventIds.includes(id));
+    assert.equal(evolution.find((item) => item.eventId === id)?.date, date);
+    for (const refs of [event.sourceRefs, homepage.sourceRefs]) {
+      assert.ok(refs.some((ref) => ref.url === `https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/${pr}`));
+      assert.ok(refs.some((ref) => ref.url === `https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/${sha}`));
+    }
+  }
+  assert.match(homepage.currentState.text.en, /four purpose-led workflow groups/);
+  assert.match(homepage.currentState.text.en, /three-paragraph About/);
+  assert.match(homepage.currentState.text.zhTW, /四組目的導向使用流程/);
+  assert.match(homepage.currentState.text.zhTW, /三段式關於/);
 });
 
 test("current dossier architecture distinguishes HTML mount shells from cited Vue interfaces", async () => {

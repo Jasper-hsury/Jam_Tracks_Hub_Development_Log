@@ -285,6 +285,12 @@ summary { color: var(--ink); font-weight: 600; cursor: pointer; }
 footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 2rem; padding: 1.8rem 0 2.5rem; border-top: 1px solid var(--ink); color: var(--muted); font-size: .85rem; }
 footer p { margin: 0; }
 
+/* Back to top, matching jamtrackshub.com ---------------------------------------- */
+.back-to-top { position: fixed; z-index: 40; right: 40px; bottom: 40px; display: grid; place-items: center; width: 50px; height: 50px; min-height: 0; padding: 0; border: 0; border-radius: 50%; background: var(--ink); color: var(--bg); box-shadow: 0 4px 15px rgb(15 13 11 / 28%); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s, background-color .2s ease; }
+.back-to-top.is-visible { opacity: 1; visibility: visible; transform: none; transition: opacity .2s ease, transform .2s ease, background-color .2s ease; }
+.back-to-top:hover { background: var(--accent); color: var(--on-accent); transform: translateY(-3px); }
+.back-to-top .icon { width: 22px; height: 22px; stroke-width: 2; }
+
 @media (max-width: 1100px) {
   .hero { grid-template-columns: minmax(0, 1fr) 340px; }
   .hero-sleeve { width: 240px; height: 240px; }
@@ -358,7 +364,8 @@ footer p { margin: 0; }
   .release-card time { display: none; }
   .dossier-search-results ul, .roadmap-grid { grid-template-columns: minmax(0, 1fr); }
   .methodology { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
-  footer { flex-direction: column; }
+  footer { flex-direction: column; padding-bottom: 5.5rem; }
+  .back-to-top { right: 16px; bottom: 20px; }
 }
 
 @media (max-width: 430px) {
@@ -372,7 +379,7 @@ footer p { margin: 0; }
 
 @media print {
   :root, :root[data-theme="dark"] { --bg: #fff; --surface: #fff; --sunken: #eee; --ink: #000; --body: #222; --muted: #444; --line: #bbb; --selected: #333; --on-band: #fff; color-scheme: light; }
-  .site-header, .explore, .month-rail, .hero-actions, .hero-record, .language-switch, footer { display: none !important; }
+  .site-header, .explore, .month-rail, .hero-actions, .hero-record, .language-switch, .back-to-top, footer { display: none !important; }
   body { background: white; }
   main { width: 100%; }
   .hero { display: block; padding-top: 0; }

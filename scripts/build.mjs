@@ -40,8 +40,10 @@ const ICONS = {
   search: "M10.5 17a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13ZM15.5 15.5 20 20",
   filters: "M4 6h16M7 12h10M10 18h4",
   close: "M6 6l12 12M18 6 6 18",
-  theme: "M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"
+  theme: "M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z",
+  up: "M12 19V5M6 11l6-6 6 6"
 };
+const backToTopButton = (locales) => `<button type="button" id="back-to-top" class="back-to-top" aria-label="${esc(locales.en.backToTop)}" data-i18n-aria-label="backToTop" hidden>${icon(ICONS.up)}</button>`;
 const recordSvg = `<svg class="record" viewBox="0 0 300 300" aria-hidden="true" focusable="false"><circle class="record-vinyl" cx="150" cy="150" r="148"></circle><circle class="record-groove" cx="150" cy="150" r="128"></circle><circle class="record-groove" cx="150" cy="150" r="110"></circle><circle class="record-groove" cx="150" cy="150" r="92"></circle><circle class="record-groove" cx="150" cy="150" r="74"></circle><circle class="record-label" cx="150" cy="150" r="50"></circle><circle class="record-hole" cx="150" cy="150" r="5"></circle></svg>`;
 const option = (value, text) => `<option value="${esc(value)}">${esc(text)}</option>`;
 
@@ -190,7 +192,7 @@ function renderDossierBody(dossier, product, context, data, locales) {
     <section class="dossier-section" id="evidence"><h2>${label("evidence", locales)}</h2><ul class="evidence-list">${sourceList}</ul></section>
     <section class="dossier-section" id="unknowns"><h2>${label("unknowns", locales)}</h2>${unknowns}</section>
     <div class="dossier-actions-bottom"><a class="button secondary" data-lang-href="../../index.html#products" href="../../index.html#products">${label("backToProductEvolution", locales)}</a><a class="button secondary" data-lang-href="../../index.html?product=${esc(product.id)}#history" href="../../index.html?product=${esc(product.id)}#history">${label("viewTimeline", locales)}</a></div>
-  </article></div></main><footer><p>${label("footerText", locales)}</p><p><a data-lang-href="../../index.html" href="../../index.html">${label("siteTitle", locales)}</a> · <a href="${esc(product.href)}">${copy(product.name)}</a></p></footer>`;
+  </article></div></main><footer><p>${label("footerText", locales)}</p><p><a data-lang-href="../../index.html" href="../../index.html">${label("siteTitle", locales)}</a> · <a href="${esc(product.href)}">${copy(product.name)}</a></p></footer>${backToTopButton(locales)}`;
 }
 
 function renderRelease(release, context, locales, number) {
@@ -264,7 +266,7 @@ function renderIndexBody(data, context, locales) {
     <section class="page-section release-section" id="releases"><div class="section-heading"><p class="eyebrow">${label("versions", locales)}</p><h2>${label("releaseIndex", locales)}</h2><p>${label("releaseIndexIntro", locales)}</p></div>${renderReleaseEras(data.releases, context, locales)}</section>
     <section class="page-section roadmap-section" id="roadmap"><div class="section-heading"><p class="eyebrow">${label("lookingAhead", locales)}</p><h2>${label("roadmap", locales)}</h2></div>${data.roadmap.length ? `<div class="roadmap-grid">${data.roadmap.map((item) => `<article><h3>${copy(item.title)}</h3><p>${copy(item.summary)}</p></article>`).join("")}</div>` : `<p class="empty-state">${label("roadmapEmpty", locales)}</p>`}</section>
     <section class="page-section methodology" id="methodology"><div><p class="eyebrow">${label("sources", locales)}</p><h2>${label("methodology", locales)}</h2></div><div><p>${label("methodologyText", locales)}</p><p><a href="https://github.com/Jasper-hsury/Jam_Tracks_Hub">${label("sourceRepository", locales)} ↗</a></p></div></section>
-  </main><footer><p>${label("footerText", locales)}</p><p><a href="./print.html">${label("printView", locales)}</a> · <a href="https://jamtrackshub.com/">jamtrackshub.com</a></p></footer>`;
+  </main><footer><p>${label("footerText", locales)}</p><p><a href="./print.html">${label("printView", locales)}</a> · <a href="https://jamtrackshub.com/">jamtrackshub.com</a></p></footer>${backToTopButton(locales)}`;
 }
 
 function renderPrintBody(data, context) {

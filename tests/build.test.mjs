@@ -133,3 +133,18 @@ test("build exposes the v2.0.5 boundary through timeline, deep links, releases, 
   assert.match(index, /href="#event-20260905-release-v2-0-5"/);
   assert.match(print, /v2\.0\.5 — Vue frontend migration complete/);
 });
+
+test("history and dossier pages share a localized back-to-top button", async () => {
+  const { data } = await buildSite();
+  const pages = [await readFile(new URL("../dist/index.html", import.meta.url), "utf8")];
+  for (const dossier of data.dossiers) pages.push(await readFile(new URL(`../dist/products/${dossier.slug}/index.html`, import.meta.url), "utf8"));
+  for (const html of pages) {
+    assert.match(html, /<button type="button" id="back-to-top" class="back-to-top" aria-label="Back to top" data-i18n-aria-label="backToTop" hidden>/);
+  }
+  const css = await readFile(new URL("../src/styles/site.css", import.meta.url), "utf8");
+  assert.match(css, /\.back-to-top\.is-visible \{/);
+  for (const script of ["app.js", "dossier.js"]) {
+    const source = await readFile(new URL(`../src/scripts/${script}`, import.meta.url), "utf8");
+    assert.match(source, /prefers-reduced-motion: reduce\)"\)\.matches\) \{ scrollTo\(0, 0\); return; \}/, script);
+  }
+});

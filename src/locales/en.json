@@ -120,5 +120,6 @@
   "eraV2Summary": "A security checkpoint, reliability fixes and the move of every main page to Vue.",
   "eraV1Title": "Song Workspace",
   "eraV1Summary": "The local-first songbook arrived and was refined over three days.",
-  "credits": "Credits"
+  "credits": "Credits",
+  "backToTop": "Back to top"
 }

@@ -189,7 +189,7 @@ test("v3.0.0 through v3.4.0 record the Liner Notes redesign in Taipei time", asy
   assert.deepEqual(validateData(data), []);
 });
 
-test("affected dossiers align with the release and Vue migration history", async () => {
+test("affected dossiers align with the release, Vue migration, and Liner Notes history", async () => {
   const data = await loadData();
   const dossiers = new Map(data.dossiers.map((dossier) => [dossier.slug, dossier]));
   const commonVueEvent = "event-20260905-release-v2-0-5";
@@ -206,7 +206,9 @@ test("affected dossiers align with the release and Vue migration history", async
     "song-workspace"
   ]) {
     const dossier = dossiers.get(slug);
-    assert.equal(dossier?.latestSignificantUpdate, slug === "homepage" ? "2026-09-20" : "2026-09-05");
+    assert.equal(dossier?.latestSignificantUpdate, slug === "homepage" ? "2026-10-14" : "2026-10-15");
+    assert.ok(dossier?.relatedEventIds.some((id) => /^event-2026101[45]-release-v3-/.test(id)), `${slug} links its v3 release`);
+    assert.match(`${dossier?.currentState.text.en} ${dossier?.currentState.text.zhTW}`, /Liner Notes/);
     assert.ok(dossier?.relatedEventIds.includes(commonVueEvent));
     assert.match(`${dossier?.currentState.text.en} ${dossier?.currentState.text.zhTW}`, /Vue/);
   }
@@ -229,7 +231,8 @@ test("affected dossiers align with the release and Vue migration history", async
     ["event-20260907-homepage-workflow-refinement", "2026-09-07", "46", "8ebc43560119e35bff33069f2d0da5f1fcc76507"],
     ["event-20260920-homepage-bilingual-about-copy", "2026-09-20", "62", "866946f4d51231bb2d25ce656e5050956d475b83"]
   ];
-  assert.deepEqual(evolution.slice(-2).map((item) => item.eventId), updates.map(([id]) => id));
+  assert.deepEqual(evolution.slice(-3, -1).map((item) => item.eventId), updates.map(([id]) => id));
+  assert.equal(evolution.at(-1).eventId, "event-20261014-release-v3-0-0");
   for (const [id, date, pr, sha] of updates) {
     const event = data.events.find((item) => item.id === id);
     assert.equal(event?.date, date);

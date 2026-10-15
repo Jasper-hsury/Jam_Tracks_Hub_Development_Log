@@ -3,7 +3,7 @@
   "productId": "product-tracks",
   "slug": "tracks",
   "status": "published",
-  "latestSignificantUpdate": "2026-09-05",
+  "latestSignificantUpdate": "2026-10-15",
   "hero": { "classification": "verified", "text": { "en": "The recurring backing-track library and downloadable slide collection at the center of Jam Tracks Hub.", "zhTW": "Jam Tracks Hub 核心的持續更新伴奏音軌資料庫與可下載投影片集合。" } },
   "overview": { "classification": "verified", "text": { "en": "Tracks presents backing tracks as filterable, sortable cards with playable or linked media, musical metadata, and slide downloads. Canonical track records live in data/tracks.json.", "zhTW": "音軌頁以可篩選、排序的卡片呈現伴奏音軌，包含可播放或連結媒體、音樂中繼資料與投影片下載。正式音軌紀錄位於 data/tracks.json。" } },
   "purpose": [
@@ -32,9 +32,9 @@
       { "label": { "en": "Canonical content", "zhTW": "正式內容" }, "body": { "classification": "verified", "text": { "en": "data/tracks.json stores public track records; the Vue frontend owns normalization, filtering, sorting, card rendering, and downloads.", "zhTW": "data/tracks.json 儲存公開音軌紀錄；Vue 前端管理正規化、篩選、排序、卡片渲染與下載。" } } }
     ] },
     { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
-      { "label": { "en": "Desktop", "zhTW": "桌面" }, "body": { "classification": "verified", "text": { "en": "Toolbar controls and a multi-card library prioritize scanning and comparison.", "zhTW": "工具列控制與多卡片資料庫優先支援掃讀與比較。" } } },
+      { "label": { "en": "Desktop", "zhTW": "桌面" }, "body": { "classification": "verified", "text": { "en": "Toolbar controls and a compact catalog list, with each cover as a record sleeve, prioritize scanning and comparison.", "zhTW": "工具列控制與精簡的目錄清單（每張封面化為唱片封套）優先支援掃讀與比較。" } } },
       { "label": { "en": "Tablet", "zhTW": "平板" }, "body": { "classification": "verified", "text": { "en": "Navigation and covers were specifically refined for tablet widths in late July.", "zhTW": "7 月下旬曾針對平板寬度改善導覽與封面。" } } },
-      { "label": { "en": "Mobile", "zhTW": "行動裝置" }, "body": { "classification": "verified", "text": { "en": "Filters and cards stack; August 30 fixes focused on responsive footer, video, and track detail behavior.", "zhTW": "篩選與卡片堆疊；8 月 30 日修正聚焦響應式頁尾、影片與音軌細節行為。" } } }
+      { "label": { "en": "Mobile", "zhTW": "行動裝置" }, "body": { "classification": "verified", "text": { "en": "Filters and track rows stack, and on touch screens each record rests half out of its sleeve; August 30 fixes focused on responsive footer, video, and track detail behavior.", "zhTW": "篩選與音軌列堆疊，觸控螢幕上每張黑膠會半露於封套外；8 月 30 日修正聚焦響應式頁尾、影片與音軌細節行為。" } } }
     ] },
     { "id": "evolution", "type": "timeline", "title": { "en": "Evolution", "zhTW": "演進" }, "items": [
       { "date": "2026-06-06", "eventId": "event-20260606-first-backing-track-library", "impact": "direct", "title": { "en": "W1–W8 establish the library", "zhTW": "W1–W8 建立資料庫" }, "body": { "classification": "verified", "text": { "en": "The first eight entries established the recurring content model.", "zhTW": "首八筆項目建立持續更新內容模型。" } } },
@@ -43,17 +43,19 @@
       { "date": "2026-08-16", "eventId": "event-20260816-w19-backing-track", "impact": "direct", "title": { "en": "W19 joins", "zhTW": "W19 加入" }, "body": { "classification": "verified", "text": { "en": "The confirmed recurring collection reached W19 without inventing a W9 record.", "zhTW": "已確認的持續集合擴充至 W19，且未虛構 W9 紀錄。" } } },
       { "date": "2026-08-30", "eventId": "event-20260830-responsive-content-polish", "impact": "direct", "title": { "en": "Responsive content polish", "zhTW": "響應式內容改善" }, "body": { "classification": "verified", "text": { "en": "Tracks, footer, and video details received focused corrections.", "zhTW": "音軌、頁尾與影片細節獲得重點修正。" } } },
       { "date": "2026-09-03", "eventId": "event-20260903-release-v2-0-4", "impact": "direct", "title": { "en": "Supported downloads restored", "zhTW": "支援的下載項目恢復" }, "body": { "classification": "verified", "text": { "en": "v2.0.4 restored deployable W2–W8 ZIP packages, completing download availability across all 18 supported entries.", "zhTW": "v2.0.4 恢復可部署的 W2–W8 ZIP 套件，讓全部 18 個支援項目都可下載。" } } },
-      { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue migration completion", "zhTW": "Vue 遷移完成" }, "body": { "classification": "verified", "text": { "en": "v2.0.5 completed Vue ownership of Tracks within the Vite multi-page architecture.", "zhTW": "v2.0.5 完成音軌頁在 Vite 多頁式架構下的 Vue 管理遷移。" } } }
+      { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue migration completion", "zhTW": "Vue 遷移完成" }, "body": { "classification": "verified", "text": { "en": "v2.0.5 completed Vue ownership of Tracks within the Vite multi-page architecture.", "zhTW": "v2.0.5 完成音軌頁在 Vite 多頁式架構下的 Vue 管理遷移。" } } },
+      { "date": "2026-10-14", "eventId": "event-20261014-release-v3-1-0", "impact": "direct", "title": { "en": "Record-sleeve catalog", "zhTW": "唱片封套目錄" }, "body": { "classification": "verified", "text": { "en": "v3.1.0 (PR #85) turned the library into compact catalog rows. Each cover acts as a record sleeve whose record slides out on hover or focus, rests half out on touch screens, and stays still under reduced motion; the decorative scrolling windmill was removed.", "zhTW": "v3.1.0（PR #85）將資料庫改為精簡的目錄列表。每張封面化為唱片封套，滑過或聚焦時黑膠滑出，在觸控螢幕上半露於外，要求減少動態效果時則保持靜止；裝飾用的捲動風車已移除。" } } },
+      { "date": "2026-10-15", "eventId": "event-20261015-release-v3-2-0", "impact": "shared", "title": { "en": "Toolbar entrance and shared style", "zhTW": "工具列進場與共用風格" }, "body": { "classification": "verified", "text": { "en": "v3.2.0 (PR #86) made the Tracks toolbar entrance play once and applied the site-wide cocoa band and rounded controls.", "zhTW": "v3.2.0（PR #86）讓音軌頁面工具列的進場動畫只播放一次，並套用全站的可可色色帶與圓角控制項。" } } }
     ] }
   ],
-  "currentState": { "classification": "verified", "text": { "en": "Tracks is a Vue-owned bilingual public library backed by structured records, filter/sort controls, track links, and downloadable supporting slides across all 18 supported entries through confirmed W19; no W9 record is asserted.", "zhTW": "音軌目前是由 Vue 管理的雙語公開資料庫，由結構化紀錄、篩選／排序控制、音軌連結與可下載配套投影片支援，涵蓋已確認至 W19 的全部 18 個支援項目；不主張存在 W9 紀錄。" } },
+  "currentState": { "classification": "verified", "text": { "en": "Tracks is a Vue-owned bilingual public library backed by structured records, filter/sort controls, track links, and downloadable supporting slides across all 18 supported entries through confirmed W19; no W9 record is asserted. Since v3.1.0 (PR #85), the library is a compact Liner Notes catalog list in which each cover acts as a record sleeve.", "zhTW": "音軌目前是由 Vue 管理的雙語公開資料庫，由結構化紀錄、篩選／排序控制、音軌連結與可下載配套投影片支援，涵蓋已確認至 W19 的全部 18 個支援項目；不主張存在 W9 紀錄。自 v3.1.0（PR #85）起，資料庫改為精簡的 Liner Notes 目錄清單，每張封面化為一張唱片封套。" } },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "Recurring content benefits from structured records and grouping; the public history can preserve meaningful collection growth without turning every item into a separate product launch.", "zhTW": "持續內容受益於結構化紀錄與分組；公開歷史可保留有意義的集合成長，而不把每項都當成獨立產品推出。" } }
   ],
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No public record establishes why no W9 entry exists, so this dossier does not speculate.", "zhTW": "沒有公開紀錄說明為何不存在 W9，因此本檔案不做推測。" } }
   ],
-  "relatedEventIds": ["event-20260606-jam-tracks-hub-begins", "event-20260606-first-backing-track-library", "event-20260718-homepage-and-track-evolution", "event-20260727-responsive-refinement-and-w16", "event-20260816-w19-backing-track", "event-20260830-responsive-content-polish", "event-20260903-release-v2-0-4", "event-20260905-release-v2-0-5"],
+  "relatedEventIds": ["event-20260606-jam-tracks-hub-begins", "event-20260606-first-backing-track-library", "event-20260718-homepage-and-track-evolution", "event-20260727-responsive-refinement-and-w16", "event-20260816-w19-backing-track", "event-20260830-responsive-content-polish", "event-20260903-release-v2-0-4", "event-20260905-release-v2-0-5", "event-20261014-release-v3-1-0", "event-20261015-release-v3-2-0"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Initial site deployment 1ad1d86", "zhTW": "最初網站部署 1ad1d86" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1ad1d86" },
     { "kind": "file", "label": { "en": "Current Tracks HTML mount shell", "zhTW": "目前音軌 HTML 掛載外殼" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/tracks.html", "path": "tracks.html" },

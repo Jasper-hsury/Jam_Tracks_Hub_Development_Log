@@ -3,7 +3,7 @@
   "productId": "product-song-workspace",
   "slug": "song-workspace",
   "status": "published",
-  "latestSignificantUpdate": "2026-09-05",
+  "latestSignificantUpdate": "2026-10-15",
   "hero": {
     "classification": "verified",
     "text": { "en": "A local-first workspace for building, editing, saving, importing, exporting, transposing, and performing guitar charts.", "zhTW": "以本機優先方式建立、編輯、儲存、匯入、匯出、移調與演出吉他譜的工作區。" }
@@ -75,7 +75,8 @@
         { "date": "2026-08-30", "eventId": "event-20260830-release-v2-0-0", "impact": "shared", "title": { "en": "v2.0.0 security checkpoint", "zhTW": "v2.0.0 安全檢查點" }, "body": { "classification": "verified", "text": { "en": "The release recorded public-safe hardening and protection milestones without disclosing defensive internals.", "zhTW": "此版本以公開安全方式記錄強化與保護里程碑，不揭露防禦內部細節。" } } },
         { "date": "2026-08-31", "eventId": "event-20260831-release-v2-0-2", "impact": "direct", "title": { "en": "Privacy-bounded analytics", "zhTW": "具隱私邊界的分析" }, "body": { "classification": "verified", "text": { "en": "v2.0.2 added pageview analytics without sending song content or changing the local-first storage model.", "zhTW": "v2.0.2 加入頁面瀏覽分析，不傳送歌曲內容，也不改變本機優先儲存模式。" } } },
         { "date": "2026-09-04", "eventId": "event-20260904-song-workspace-vue-migration", "impact": "direct", "title": { "en": "Frontend moves to Vue", "zhTW": "前端遷移至 Vue" }, "body": { "classification": "verified", "text": { "en": "Song Workspace became Vue-owned while preserving saved-song compatibility, IndexedDB and local preferences, import/export, and its privacy boundary.", "zhTW": "歌曲工作區改由 Vue 管理，同時保留已儲存歌曲相容性、IndexedDB 與本機偏好、匯入／匯出及隱私邊界。" } } },
-        { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue migration completion", "zhTW": "Vue 遷移完成" }, "body": { "classification": "verified", "text": { "en": "v2.0.5 published the completed Vue multi-page frontend migration.", "zhTW": "v2.0.5 發布完成的 Vue 多頁式前端遷移。" } } }
+        { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue migration completion", "zhTW": "Vue 遷移完成" }, "body": { "classification": "verified", "text": { "en": "v2.0.5 published the completed Vue multi-page frontend migration.", "zhTW": "v2.0.5 發布完成的 Vue 多頁式前端遷移。" } } },
+        { "date": "2026-10-15", "eventId": "event-20261015-release-v3-3-0", "impact": "direct", "title": { "en": "Liner Notes songbook", "zhTW": "唱片內頁風格歌本" }, "body": { "classification": "verified", "text": { "en": "v3.3.0 (PR #87) restyled Song Workspace as a liner-notes songbook with numbered create options, catalog-style song rows, numbered chart sections, a clearer line editor, and a Performance Mode that follows the theme. Local-first storage and lyric handling did not change.", "zhTW": "v3.3.0（PR #87）將歌曲工作區改為唱片內頁風格的歌本：編號的建立選項、目錄式歌曲列表、編號段落、更清楚的單行編輯器，以及跟隨主題的演出模式。本機優先儲存與歌詞處理方式均未改變。" } } }
       ]
     },
     {
@@ -91,7 +92,7 @@
   ],
   "currentState": {
     "classification": "verified",
-    "text": { "en": "The public product is a Vue-owned English/Traditional Chinese, local-first browser workspace with a saved-song library, structured editor, reusable chord diagrams, IndexedDB song storage, separate local preferences, import/export, reading controls, and Performance Mode. Existing saved songs remain compatible. Its public history intentionally excludes user song titles, lyrics, metadata, and local database contents.", "zhTW": "目前公開產品是由 Vue 管理、支援英文／繁體中文且以本機優先的瀏覽器工作區，含已儲存歌曲資料庫、結構化編輯器、可重用和弦圖、IndexedDB 歌曲儲存、分開的本機偏好、匯入／匯出、閱讀控制與演出模式。既有已儲存歌曲維持相容。其公開歷史刻意排除使用者歌曲標題、歌詞、中繼資料與本機資料庫內容。" }
+    "text": { "en": "The public product is a Vue-owned English/Traditional Chinese, local-first browser workspace with a saved-song library, structured editor, reusable chord diagrams, IndexedDB song storage, separate local preferences, import/export, reading controls, and Performance Mode. Existing saved songs remain compatible. Its public history intentionally excludes user song titles, lyrics, metadata, and local database contents. Since v3.3.0 (PR #87), Song Workspace uses the Liner Notes design while keeping songs and lyrics in the browser.", "zhTW": "目前公開產品是由 Vue 管理、支援英文／繁體中文且以本機優先的瀏覽器工作區，含已儲存歌曲資料庫、結構化編輯器、可重用和弦圖、IndexedDB 歌曲儲存、分開的本機偏好、匯入／匯出、閱讀控制與演出模式。既有已儲存歌曲維持相容。其公開歷史刻意排除使用者歌曲標題、歌詞、中繼資料與本機資料庫內容。自 v3.3.0（PR #87）起，歌曲工作區採用 Liner Notes 設計，歌曲與歌詞仍只保存在瀏覽器中。" }
   },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "Local-first is a product architecture, not only a storage choice: disclosures, imports, exports, validation, and recovery all have to reinforce the same boundary.", "zhTW": "本機優先是產品架構，不只是儲存選擇：揭露、匯入、匯出、驗證與復原都必須強化同一邊界。" } },
@@ -111,7 +112,8 @@
     "event-20260830-responsive-content-polish",
     "event-20260831-release-v2-0-2",
     "event-20260904-song-workspace-vue-migration",
-    "event-20260905-release-v2-0-5"
+    "event-20260905-release-v2-0-5",
+    "event-20261015-release-v3-3-0"
   ],
   "sourceRefs": [
     { "kind": "pr", "label": { "en": "Song Workspace v1.0.0 PR #5", "zhTW": "歌曲工作區 v1.0.0 PR #5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5" },

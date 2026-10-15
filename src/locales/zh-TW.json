@@ -119,5 +119,6 @@
   "eraV2Title": "平台、安全與 Vue",
   "eraV2Summary": "安全檢查點、可靠性修正，以及所有主要頁面遷移至 Vue。",
   "eraV1Title": "歌曲工作區",
-  "eraV1Summary": "本機優先的歌本在三天內推出並持續改善。"
+  "eraV1Summary": "本機優先的歌本在三天內推出並持續改善。",
+  "credits": "基本資訊"
 }

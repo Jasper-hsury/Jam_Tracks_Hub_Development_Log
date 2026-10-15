@@ -11,7 +11,7 @@ The project uses structured canonical JSON, a minimal Node.js build generator, p
 - `src/data/` — canonical public products, events, releases, content series, roadmap records, and one localized JSON record per Product Dossier
 - `src/locales/` — English and Traditional Chinese interface strings
 - `src/templates/` — static HTML shells for the history, print view, and generated dossier pages
-- `src/styles/` — screen and print styles
+- `src/styles/` — screen and print styles in the same Liner Notes design system as jamtrackshub.com (paper and ink themes). Screen pages load DM Serif Display, Public Sans, Noto Serif TC and Noto Sans TC from Google Fonts, with system serif and sans fallbacks; the print view uses system fonts only
 - `src/scripts/app.js` — search, filters, URL state, language interaction, and mixed dossier discovery
 - `src/scripts/dossier.js` — dossier language, theme, print, and navigation enhancement
 - `scripts/` — validation, derivation, and build logic

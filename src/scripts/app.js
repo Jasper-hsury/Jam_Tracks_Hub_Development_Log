@@ -232,7 +232,11 @@
     const editable = event.target.matches("input, select, textarea, [contenteditable='true']");
     if (event.key === "/" && !editable) { event.preventDefault(); search.focus(); }
     if (event.key === "Escape" && event.target === search && search.value) { search.value = ""; state.search = ""; apply(); }
-    else if (event.key === "Escape" && filtersShell.open && mobileFilters.matches) closeFilters();
+    else if (event.key === "Escape" && filtersShell.open) closeFilters();
+  });
+  // The wide-screen filter panel is a dropdown, so a click elsewhere folds it.
+  document.addEventListener("click", (event) => {
+    if (filtersShell.open && !mobileFilters.matches && !filtersShell.contains?.(event.target)) filtersShell.open = false;
   });
   // The month rail marks the month whose heading has passed the upper third of the viewport.
   const monthLinks = [...document.querySelectorAll("[data-month-link]")];

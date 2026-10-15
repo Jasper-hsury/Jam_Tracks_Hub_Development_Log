@@ -661,5 +661,105 @@
       { "kind": "pr", "label": "PR #62", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/62" },
       { "kind": "commit", "label": "Commit 866946f", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/866946f4d51231bb2d25ce656e5050956d475b83" }
     ]
+  },
+  {
+    "id": "event-20261014-release-v3-0-0",
+    "date": "2026-10-14",
+    "sequence": 10,
+    "title": { "en": "v3.0.0 begins the Liner Notes redesign", "zhTW": "v3.0.0 開啟 Liner Notes 改版" },
+    "summary": { "en": "A record-sleeve inspired design system replaced the previous look in the shared header, footer, typography and colors, and the homepage was rebuilt around it.", "zhTW": "以唱片封套為靈感的設計系統取代先前的外觀，套用於全站共用的頁首、頁尾、字體與配色，首頁也依此重新打造。" },
+    "details": { "en": "The light paper theme became the default, with a dark ink theme as the alternative. Headings use a serif display face with a Traditional Chinese serif fallback. The homepage moved to a flat, two-dimensional layout. Public URLs and product boundaries did not change.", "zhTW": "淺色紙張主題成為預設，深色墨色主題作為替代選項。標題改用襯線展示字體，並搭配繁體中文襯線字體。首頁改為平面的二維版面。公開網址與產品邊界均未改變。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-jam-tracks-hub", "product-homepage"],
+    "status": "released",
+    "releaseId": "release-v3.0.0",
+    "keywords": ["Liner Notes", "redesign", "paper theme", "ink theme", "serif headings", "homepage"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #84", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/84" },
+      { "kind": "commit", "label": "Commit 7805eb9", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/7805eb90bcb09dda00b0ffeafcbe0712dd94645a" },
+      { "kind": "release", "label": "Release v3.0.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.0.0" }
+    ]
+  },
+  {
+    "id": "event-20261014-release-v3-1-0",
+    "date": "2026-10-14",
+    "sequence": 20,
+    "title": { "en": "v3.1.0 turns Tracks into a record catalog", "zhTW": "v3.1.0 將音軌頁面改為唱片目錄" },
+    "summary": { "en": "The Tracks library became a compact catalog list. Each cover acts as a sleeve, and its record slides out on hover or keyboard focus.", "zhTW": "音軌資料庫改為精簡的目錄清單。每張封面化為唱片封套，滑鼠滑過或鍵盤聚焦時，黑膠會從封套中滑出。" },
+    "details": { "en": "On touch screens the record rests half out of its sleeve, and it stays still when reduced motion is requested. The decorative scrolling windmill was removed. Track data, filters and downloads did not change.", "zhTW": "在觸控螢幕上，黑膠會半露於封套外；當裝置要求減少動態效果時則保持靜止。裝飾用的捲動風車已移除。音軌資料、篩選與下載功能均未改變。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-tracks"],
+    "status": "released",
+    "releaseId": "release-v3.1.0",
+    "keywords": ["Liner Notes", "Tracks", "record sleeve", "catalog", "reduced motion"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #85", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/85" },
+      { "kind": "commit", "label": "Commit 354e63b", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/354e63bae5a3ce294db440fe85474a650c2c3f48" },
+      { "kind": "release", "label": "Release v3.1.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.1.0" }
+    ]
+  },
+  {
+    "id": "event-20261015-release-v3-2-0",
+    "date": "2026-10-15",
+    "sequence": 10,
+    "title": { "en": "v3.2.0 brings the tool pages into the redesign", "zhTW": "v3.2.0 將工具頁面納入改版" },
+    "summary": { "en": "Chord Dictionary, Scale Explorer, Chord Progressions, Progression Writer, Fretboard Trainer and Key Finder now share one heading style, flat panels and clear two-option toggles.", "zhTW": "和弦字典、音階探索器、和弦進行、和弦進行編寫器、指板訓練器與調性偵測器現在共用同一種標題樣式、平面面板與清楚的二選一切換按鈕。" },
+    "details": { "en": "Selections are filled in a soft cocoa tone, which also replaced the near-black accent band across the site, and buttons, fields and menus gained one gentle corner radius. Chord Progressions shape cards lift like a record on hover, Fretboard Trainer marks wrong answers with more than color, and the Tracks toolbar entrance now plays once. Tool behavior did not change.", "zhTW": "選取狀態改以柔和的可可色填滿，全站接近黑色的強調色帶也一併改為可可色；按鈕、輸入欄位與選單統一採用柔和圓角。和弦進行的指型卡片在滑過時會像唱片般浮起，指板訓練器不再只靠顏色標示錯誤答案，音軌頁面工具列的進場動畫也只播放一次。各工具的功能均未改變。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-jam-tracks-hub", "product-chord-dictionary", "product-scale-explorer", "product-chord-progressions", "product-progression-writer", "product-fretboard-trainer", "product-key-finder", "product-tracks"],
+    "status": "released",
+    "releaseId": "release-v3.2.0",
+    "keywords": ["Liner Notes", "tool pages", "cocoa", "rounded controls", "segmented toggles", "accessibility"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #86", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/86" },
+      { "kind": "commit", "label": "Commit d31a41f", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/d31a41f1075ce74920c189d3c8fc2e0c8e3d09c0" },
+      { "kind": "release", "label": "Release v3.2.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.2.0" }
+    ]
+  },
+  {
+    "id": "event-20261015-release-v3-3-0",
+    "date": "2026-10-15",
+    "sequence": 20,
+    "title": { "en": "v3.3.0 restyles Song Workspace as a liner-notes songbook", "zhTW": "v3.3.0 將歌曲工作區改為唱片內頁風格的歌本" },
+    "summary": { "en": "Song Workspace gained numbered create options, catalog-style song rows, numbered chart sections and a clearer line editor, while songs and lyrics still stay in the browser.", "zhTW": "歌曲工作區加入編號的建立選項、目錄式的歌曲列表、編號的段落與更清楚的單行編輯器，歌曲與歌詞仍然只保存在瀏覽器中。" },
+    "details": { "en": "Performance Mode follows the paper or ink theme, and phones get a single-column layout with a swipeable chord-shape strip. Chord Progressions mini shapes now use the same chord-tone colors as Chord Dictionary, while Scale Explorer keeps its scale-degree colors. The change was limited to presentation.", "zhTW": "演出模式會跟隨紙張或墨色主題；手機版改為單欄版面，並可左右滑動和弦指型。和弦進行的小型指型改用與和弦字典相同的和弦音配色，音階探索器則保留音級配色。此次變更僅限於呈現方式。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-song-workspace", "product-my-songs", "product-chord-progressions"],
+    "status": "released",
+    "releaseId": "release-v3.3.0",
+    "keywords": ["Liner Notes", "Song Workspace", "local-first", "Performance Mode", "chord-tone colors"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #87", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/87" },
+      { "kind": "commit", "label": "Commit 984f1cb", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/984f1cb13e12fa76359dffc5a9b44a3153930768" },
+      { "kind": "release", "label": "Release v3.3.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.3.0" }
+    ]
+  },
+  {
+    "id": "event-20261015-release-v3-4-0",
+    "date": "2026-10-15",
+    "sequence": 30,
+    "title": { "en": "v3.4.0 completes the Liner Notes redesign", "zhTW": "v3.4.0 完成 Liner Notes 改版" },
+    "summary": { "en": "Feedback, Legal, Privacy, the not-found page and the Key Finder wake-up screen moved to the Liner Notes style, completing the redesign across the site.", "zhTW": "意見回饋、法律資訊、隱私權政策、找不到頁面與調性偵測器喚醒畫面改為 Liner Notes 風格，全站改版至此完成。" },
+    "details": { "en": "Legal and Privacy number their sections beside an On this page list that collapses on phones, and every Privacy section gained its own link. The not-found page shows a record sleeve, and the wake-up screen spins a record that stops when the check ends or when reduced motion is requested. Policy text, feedback sending and the wake-up checks did not change.", "zhTW": "法律資訊與隱私權政策的段落加上編號，旁邊附有「本頁內容」目錄，在手機上可收合；隱私權政策的每個段落也都有了專屬連結。找不到頁面顯示一張唱片封套，喚醒畫面則以轉動的黑膠呈現，檢查結束或裝置要求減少動態效果時會停止轉動。政策內容、意見回饋的送出方式與喚醒檢查均未改變。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-feedback", "product-legal", "product-privacy", "product-service-support"],
+    "status": "released",
+    "releaseId": "release-v3.4.0",
+    "keywords": ["Liner Notes", "Feedback", "Legal", "Privacy", "404", "service waking"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #89", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/89" },
+      { "kind": "commit", "label": "Commit ddb04b1", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/ddb04b142bf2d2c3fd332cb2c044748d67d15779" },
+      { "kind": "release", "label": "Release v3.4.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.4.0" }
+    ]
   }
 ]

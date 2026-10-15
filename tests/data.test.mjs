@@ -74,13 +74,13 @@ test("security events require high-level disclosure markers", async () => {
   assert.deepEqual(scanPublicContent(data), []);
 });
 
-test("release rules preserve tag-only v1.4.0 and latest published v2.0.6", async () => {
+test("release rules preserve tag-only v1.4.0 and latest published v3.4.0", async () => {
   const data = await loadData();
   const tagOnly = data.releases.find((release) => release.version === "v1.4.0");
   assert.equal(tagOnly.status, "tag_only");
   assert.equal(tagOnly.releaseUrl, undefined);
   assert.equal(tagOnly.tagUrl, "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0");
-  assert.equal(deriveData(data).latestPublishedRelease.version, "v2.0.6");
+  assert.equal(deriveData(data).latestPublishedRelease.version, "v3.4.0");
   const brokenPublished = clone(data);
   delete brokenPublished.releases.find((release) => release.status === "published").releaseUrl;
   assert.match(validateData(brokenPublished).join("\n"), /published release URL required/);
@@ -117,7 +117,7 @@ test("v2.0.2 through v2.0.5 preserve stable release and event relationships", as
 test("v2.0.6 links one analytics milestone while keeping merge and release dates distinct", async () => {
   const data = await loadData();
   const context = deriveData(data);
-  const release = context.latestPublishedRelease;
+  const release = data.releases.find((item) => item.id === "release-v2.0.6");
   assert.equal(release.id, "release-v2.0.6");
   assert.equal(release.status, "published");
   assert.equal(release.tag, "v2.0.6");
@@ -145,6 +145,48 @@ test("v2.0.6 links one analytics milestone while keeping merge and release dates
   assert.ok(event.sourceRefs.some((ref) => ref.kind === "pr" && ref.url === "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/56"));
   assert.ok(event.sourceRefs.some((ref) => ref.kind === "commit" && ref.url.endsWith("/1a2a72a93b6fced3124e8f2a6bacc7fe158df313")));
   assert.ok(event.sourceRefs.some((ref) => ref.kind === "release" && ref.url === release.releaseUrl));
+});
+
+test("v3.0.0 through v3.4.0 record the Liner Notes redesign in Taipei time", async () => {
+  const data = await loadData();
+  const context = deriveData(data);
+  const localDate = (utc) => new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit"
+  }).format(new Date(utc));
+  const expected = [
+    ["3.0.0", 84, "7805eb90bcb09dda00b0ffeafcbe0712dd94645a", "2026-10-14T07:05:15Z", "2026-10-14T07:07:08Z"],
+    ["3.1.0", 85, "354e63bae5a3ce294db440fe85474a650c2c3f48", "2026-10-14T07:58:49Z", "2026-10-14T08:00:16Z"],
+    ["3.2.0", 86, "d31a41f1075ce74920c189d3c8fc2e0c8e3d09c0", "2026-10-14T22:52:34Z", "2026-10-14T22:56:15Z"],
+    ["3.3.0", 87, "984f1cb13e12fa76359dffc5a9b44a3153930768", "2026-10-15T00:21:12Z", "2026-10-15T00:23:48Z"],
+    ["3.4.0", 89, "ddb04b142bf2d2c3fd332cb2c044748d67d15779", "2026-10-15T06:28:10Z", "2026-10-15T06:33:37Z"]
+  ];
+  for (const [version, pr, tagCommit, mergedAt, publishedAt] of expected) {
+    const release = data.releases.find((item) => item.id === `release-v${version}`);
+    assert.equal(release?.status, "published");
+    assert.equal(release.tagCommit, tagCommit);
+    assert.equal(release.date, localDate(publishedAt));
+    assert.equal(release.releaseUrl, `https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v${version}`);
+    const children = context.releaseChildren.get(release.id);
+    assert.equal(children.length, 1);
+    const [event] = children;
+    assert.equal(event.id, `event-${localDate(mergedAt).replaceAll("-", "")}-release-v${version.replaceAll(".", "-")}`);
+    assert.equal(event.date, localDate(mergedAt));
+    assert.equal(event.categoryId, "release");
+    assert.ok(event.sourceRefs.some((ref) => ref.kind === "pr" && ref.url.endsWith(`/pull/${pr}`)));
+    assert.ok(event.sourceRefs.some((ref) => ref.kind === "commit" && ref.url.endsWith(`/${tagCommit}`)));
+    assert.ok(event.keywords.includes("Liner Notes"));
+    for (const lang of ["en", "zhTW"]) assert.ok(event.details[lang].trim());
+  }
+  assert.equal(data.releases.find((item) => item.version === "v3.2.0").date, "2026-10-15");
+  const newest = context.sortedEvents.slice(0, 5).map((event) => event.id);
+  assert.deepEqual(newest, [
+    "event-20261015-release-v3-4-0",
+    "event-20261015-release-v3-3-0",
+    "event-20261015-release-v3-2-0",
+    "event-20261014-release-v3-1-0",
+    "event-20261014-release-v3-0-0"
+  ]);
+  assert.deepEqual(validateData(data), []);
 });
 
 test("affected dossiers align with the release and Vue migration history", async () => {

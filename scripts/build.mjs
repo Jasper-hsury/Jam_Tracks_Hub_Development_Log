@@ -18,12 +18,37 @@ const dateCopy = (date) => {
     zhTW: new Intl.DateTimeFormat("zh-TW", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }).format(parsed)
   });
 };
+const shortDateCopy = (date) => {
+  const parsed = new Date(`${date}T00:00:00Z`);
+  return copy({
+    en: new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", timeZone: "UTC" }).format(parsed),
+    zhTW: new Intl.DateTimeFormat("zh-TW", { month: "long", day: "numeric", timeZone: "UTC" }).format(parsed)
+  });
+};
+const monthCopy = (month) => {
+  const parsed = new Date(`${month}-01T00:00:00Z`);
+  return copy({
+    en: new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", timeZone: "UTC" }).format(parsed),
+    zhTW: new Intl.DateTimeFormat("zh-TW", { year: "numeric", month: "long", timeZone: "UTC" }).format(parsed)
+  });
+};
+const shortVersion = (version) => version.replace(/\.0$/, "");
+const icon = (path) => `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${path}"></path></svg>`;
+const ICONS = {
+  chevron: "m7 10 5 5 5-5",
+  external: "M7 17 17 7M9 7h8v8",
+  search: "M10.5 17a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13ZM15.5 15.5 20 20",
+  filters: "M4 6h16M7 12h10M10 18h4",
+  close: "M6 6l12 12M18 6 6 18",
+  theme: "M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"
+};
+const recordSvg = `<svg class="record" viewBox="0 0 300 300" aria-hidden="true" focusable="false"><circle class="record-vinyl" cx="150" cy="150" r="148"></circle><circle class="record-groove" cx="150" cy="150" r="128"></circle><circle class="record-groove" cx="150" cy="150" r="110"></circle><circle class="record-groove" cx="150" cy="150" r="92"></circle><circle class="record-groove" cx="150" cy="150" r="74"></circle><circle class="record-label" cx="150" cy="150" r="50"></circle><circle class="record-hole" cx="150" cy="150" r="5"></circle></svg>`;
 const option = (value, text) => `<option value="${esc(value)}">${esc(text)}</option>`;
 
 function renderSourceRefs(event, locales) {
   if (!event.sourceRefs?.length && !event.details) return "";
   const refs = (event.sourceRefs || []).map((ref) => `<li><a href="${esc(ref.url)}">${esc(ref.label)}</a></li>`).join("");
-  return `<details class="evidence"><summary>${label("evidence", locales)}</summary>${event.details ? `<p>${copy(event.details)}</p>` : ""}${refs ? `<ul>${refs}</ul>` : ""}</details>`;
+  return `<details class="evidence"><summary><span>${label("evidence", locales)}</span>${icon(ICONS.chevron)}</summary>${event.details ? `<p>${copy(event.details)}</p>` : ""}${refs ? `<ul>${refs}</ul>` : ""}</details>`;
 }
 
 function renderEvent(event, context, locales) {
@@ -32,20 +57,32 @@ function renderEvent(event, context, locales) {
   const rollback = context.rollbackByTarget.get(event.id);
   const status = context.statusFor(event);
   const products = event.productIds.map((id) => context.productById.get(id)).filter(Boolean);
-  const productNames = products.map((product) => copy(product.name)).join(" · ");
+  const productChips = products.map((product) => `<li>${copy(product.name)}</li>`).join("");
   const seriesItems = series?.itemLinks?.map((item) => `<li><a href="${esc(item.url)}">${esc(`${series.prefix}${item.number}`)}</a></li>`).join("") || "";
   const rollbackLink = event.reverts ? `<p class="relation">${label("restores", locales)}: <a href="#${esc(event.reverts)}">${copy(context.sortedEvents.find((item) => item.id === event.reverts).title)}</a></p>` : "";
   const revertedBy = rollback ? `<p class="relation">${label("reverted", locales)}: <a href="#${esc(rollback.id)}">${copy(rollback.title)}</a></p>` : "";
   const searchDocument = buildSearchDocument(event, context);
-  return `<article class="event-card level-${esc(event.level)} ${release ? "is-release" : ""} ${event.kind === "rollback" ? "is-rollback" : ""}" id="${esc(event.id)}" data-event-id="${esc(event.id)}" data-year="${event.date.slice(0, 4)}" data-products="${esc(event.productIds.join(" "))}" data-category="${esc(event.categoryId)}" data-release="${esc(event.releaseId || "")}" data-status="${esc(status)}" data-search="${esc(searchDocument)}">
-    <div class="event-meta"><time datetime="${event.date}">${dateCopy(event.date)}</time><span class="category category-${event.categoryId}">${copy(CATEGORY_LABELS[event.categoryId])}</span><span class="status status-${status}">${label(status, locales)}</span></div>
+  const isReleaseEntry = Boolean(release) && event.categoryId === "release";
+  const marker = isReleaseEntry
+    ? `<span class="event-sleeve" aria-hidden="true">${esc(shortVersion(release.version))}</span>`
+    : `<span class="event-dot ${event.kind === "rollback" ? "is-rollback" : ""}" aria-hidden="true"></span>`;
+  const meta = [
+    event.categoryId !== "release" ? `<span class="category category-${event.categoryId}">${copy(CATEGORY_LABELS[event.categoryId])}</span>` : "",
+    status !== "released" ? `<span class="status status-${status}">${label(status, locales)}</span>` : ""
+  ].join("");
+  return `<article class="event-card level-${esc(event.level)} ${release ? "is-release" : ""} ${isReleaseEntry ? "is-release-entry" : ""} ${event.kind === "rollback" ? "is-rollback" : ""}" id="${esc(event.id)}" data-event-id="${esc(event.id)}" data-year="${event.date.slice(0, 4)}" data-products="${esc(event.productIds.join(" "))}" data-category="${esc(event.categoryId)}" data-release="${esc(event.releaseId || "")}" data-status="${esc(status)}" data-search="${esc(searchDocument)}">
+    <p class="event-date"><time datetime="${event.date}">${shortDateCopy(event.date)}</time></p>
+    <div class="event-marker">${marker}</div>
+    <div class="event-body">
+    ${meta ? `<div class="event-meta">${meta}</div>` : ""}
     <h3>${copy(event.title)}</h3>
     <p class="event-summary">${copy(event.summary)}</p>
-    <p class="product-links">${productNames}</p>
+    <ul class="product-links">${productChips}</ul>
     ${event.createdInGitDate && event.createdInGitDate !== event.date ? `<dl class="date-pair"><div><dt>${label("createdInGit", locales)}</dt><dd>${dateCopy(event.createdInGitDate)}</dd></div><div><dt>${label("firstPublished", locales)}</dt><dd>${dateCopy(event.date)}</dd></div></dl>` : ""}
-    ${release ? `<p class="release-link"><a href="#${esc(release.id)}"><code>${esc(release.version)}</code> · ${copy(release.title)}</a></p>` : ""}
     ${series ? `<details class="series"><summary>${copy(series.title)} · ${series.itemLinks.length} ${label("items", locales)}</summary><p>${copy(series.summary)}</p><ul>${seriesItems}</ul></details>` : ""}
     ${rollbackLink}${revertedBy}${renderSourceRefs(event, locales)}
+    </div>
+    <div class="event-side">${release ? `<a class="release-link" href="#${esc(release.id)}"><code>${esc(release.version)}</code><span class="visually-hidden"> · ${copy(release.title)}</span></a>` : ""}</div>
   </article>`;
 }
 
@@ -55,15 +92,20 @@ function renderTimeline(context, locales) {
     const yearEvents = context.sortedEvents.filter((event) => event.date.startsWith(year));
     const months = [...new Set(yearEvents.map((event) => event.date.slice(0, 7)))];
     const monthHtml = months.map((month) => {
-      const monthDate = new Date(`${month}-01T00:00:00Z`);
-      const monthName = copy({
-        en: new Intl.DateTimeFormat("en-US", { month: "long", timeZone: "UTC" }).format(monthDate),
-        zhTW: new Intl.DateTimeFormat("zh-TW", { month: "long", timeZone: "UTC" }).format(monthDate)
-      });
-      return `<section class="month-group" data-month="${month}"><h3 class="month-title">${monthName}</h3><div class="event-list">${yearEvents.filter((event) => event.date.startsWith(month)).map((event) => renderEvent(event, context, locales)).join("")}</div></section>`;
+      const monthEvents = yearEvents.filter((event) => event.date.startsWith(month));
+      return `<section class="month-group" id="month-${month}" data-month="${month}" aria-labelledby="month-title-${month}"><div class="month-head"><h3 class="month-title" id="month-title-${month}">${monthCopy(month)}</h3><p class="month-count"><span class="month-count-value">${monthEvents.length}</span> ${label("entries", locales)}</p></div><div class="event-list">${monthEvents.map((event) => renderEvent(event, context, locales)).join("")}</div></section>`;
     }).join("");
-    return `<section class="year-group" id="year-${year}" data-year-group="${year}"><h2>${year}</h2>${monthHtml}</section>`;
+    return `<section class="year-group" id="year-${year}" data-year-group="${year}"><h2 class="visually-hidden">${year}</h2>${monthHtml}</section>`;
   }).join("");
+}
+
+function renderMonthRail(context, locales) {
+  const months = [...new Set(context.sortedEvents.map((event) => event.date.slice(0, 7)))];
+  const links = months.map((month) => {
+    const count = context.sortedEvents.filter((event) => event.date.startsWith(month)).length;
+    return `<li><a href="#month-${month}" data-month-link="${month}">${monthCopy(month)}<span class="month-rail-count">${count}</span></a></li>`;
+  }).join("");
+  return `<aside class="month-rail" aria-labelledby="month-rail-title"><p id="month-rail-title">${label("monthsNav", locales)}</p><ol>${links}</ol></aside>`;
 }
 
 function renderProduct(product, context, locales) {
@@ -130,8 +172,12 @@ function renderDossierBody(dossier, product, context, data, locales) {
   const original = `<div class="original-version"><time datetime="${dossier.originalVersion.date}">${dateCopy(dossier.originalVersion.date)}</time>${renderFact(dossier.originalVersion.summary, locales)}<div><h3>${label("initialFeatures", locales)}</h3><ul class="fact-list">${dossier.originalVersion.features.map((fact) => `<li>${renderFact(fact, locales)}</li>`).join("")}</ul></div><div><h3>${label("initialStructure", locales)}</h3><ul class="fact-list">${dossier.originalVersion.structure.map((fact) => `<li>${renderFact(fact, locales)}</li>`).join("")}</ul></div></div>`;
   const unknowns = dossier.unknowns.length ? dossier.unknowns.map((fact) => renderFact(fact, locales)).join("") : renderFact({ classification: "unknown", text: { en: "No additional unknowns are recorded.", zhTW: "目前沒有其他未知項目。" } }, locales);
   const sourceList = dossier.sourceRefs.map((ref) => `<li><a href="${esc(ref.url)}">${copy(ref.label)} ↗</a>${ref.path ? `<code class="source-path">${esc(ref.path)}</code>` : ""}</li>`).join("");
+  const header = renderSiteHeader(locales, {
+    brandHref: 'data-lang-href="../../index.html" href="../../index.html"',
+    navLinks: `<a data-lang-href="../../index.html#products" href="../../index.html#products">${label("productEvolution", locales)}</a><a data-lang-href="../../index.html?product=${esc(product.id)}#history" href="../../index.html?product=${esc(product.id)}#history">${label("viewTimeline", locales)}</a><button type="button" id="print-dossier" class="text-button">${label("printDossier", locales)}</button>`
+  });
   return `<a class="skip-link" href="#dossier-content">${label("skipDossier", locales)}</a>
-  <header class="site-header"><a class="brand" data-lang-href="../../index.html" href="../../index.html">Jam Tracks Hub <span>${label("siteTitle", locales)}</span></a><nav aria-label="${esc(locales.en.primaryNavigation)}" data-i18n-aria-label="primaryNavigation"><a data-lang-href="../../index.html#products" href="../../index.html#products">${label("productEvolution", locales)}</a><a data-lang-href="../../index.html?product=${esc(product.id)}#history" href="../../index.html?product=${esc(product.id)}#history">${label("viewTimeline", locales)}</a><button type="button" id="print-dossier" class="text-button">${label("printDossier", locales)}</button></nav><div class="header-actions"><button type="button" id="theme-toggle" class="theme-toggle" hidden><span class="theme-icon" aria-hidden="true">◐</span><span id="theme-label">${esc(locales.en.darkMode)}</span></button><div class="language-switch" role="group" aria-label="${esc(locales.en.language)}" data-i18n-aria-label="language"><button type="button" data-set-lang="en" aria-pressed="true">EN</button><button type="button" data-set-lang="zh-TW" aria-pressed="false">繁中</button></div></div></header>
+  ${header}
   <main><section class="dossier-hero"><p class="dossier-breadcrumb"><a data-lang-href="../../index.html" href="../../index.html">${label("siteTitle", locales)}</a> / ${label("productDossier", locales)}</p><div class="dossier-hero-grid"><div><p class="eyebrow">${label("productDossier", locales)}</p><h1>${copy(product.name)}</h1><div class="lede">${copy(dossier.hero.text)}</div><p class="dossier-classification-note">${label("classificationNote", locales)}</p><div class="hero-actions"><a class="button primary" href="${esc(product.href)}">${label("viewLive", locales)} ↗</a><a class="button secondary" data-lang-href="../../index.html?product=${esc(product.id)}#history" href="../../index.html?product=${esc(product.id)}#history">${label("viewTimeline", locales)}</a></div></div><dl class="dossier-facts"><div><dt>${label("publicStatus", locales)}</dt><dd>${label("publishedStatus", locales)}</dd></div><div><dt>${label("currentRoute", locales)}</dt><dd><a href="${esc(product.href)}">${esc(new URL(product.href).pathname)}</a></dd></div><div><dt>${label("createdInGit", locales)}</dt><dd>${dateCopy(stats.createdDate)}</dd></div><div><dt>${label("firstPublished", locales)}</dt><dd>${dateCopy(stats.publishedDate)}</dd></div><div><dt>${label("latestSignificantUpdate", locales)}</dt><dd>${dateCopy(dossier.latestSignificantUpdate)}</dd></div></dl></div></section>
   <div class="dossier-layout"><aside class="dossier-toc" aria-label="${esc(locales.en.sectionNavigation)}" data-i18n-aria-label="sectionNavigation"><p>${label("onThisPage", locales)}</p><ol>${fixedToc.map(([id, value]) => `<li><a href="#${esc(id)}">${tocLabel(value)}</a></li>`).join("")}</ol></aside><article class="dossier-content" id="dossier-content">
     <section class="dossier-section" id="overview"><h2>${label("projectOverview", locales)}</h2>${renderFact(dossier.overview, locales)}</section>
@@ -147,45 +193,77 @@ function renderDossierBody(dossier, product, context, data, locales) {
   </article></div></main><footer><p>${label("footerText", locales)}</p><p><a data-lang-href="../../index.html" href="../../index.html">${label("siteTitle", locales)}</a> · <a href="${esc(product.href)}">${copy(product.name)}</a></p></footer>`;
 }
 
-function renderRelease(release, context, locales) {
+function renderRelease(release, context, locales, number) {
   const children = context.releaseChildren.get(release.id) || [];
   const published = release.status === "published";
   const link = published ? release.releaseUrl : release.tagUrl;
-  return `<article class="release-card ${published ? "" : "tag-only"}" id="${release.id}">
-    <div><code>${esc(release.version)}</code><span class="status ${published ? "status-released" : "status-tag"}">${label(published ? "published" : "tagOnly", locales)}</span></div>
-    <h3>${copy(release.title)}</h3><p>${copy(release.summary)}</p><time datetime="${release.date}">${dateCopy(release.date)}</time>
-    ${!published ? `<p class="tag-note">${label("noPublishedRelease", locales)}</p>` : ""}
-    <p><a href="${esc(link)}">${published ? label("published", locales) : label("tagOnly", locales)} ↗</a></p>
-    ${children.length ? `<details><summary>${children.length} ${label("events", locales)}</summary><ul>${children.map((event) => `<li><a href="#${event.id}">${copy(event.title)}</a></li>`).join("")}</ul></details>` : ""}
-  </article>`;
+  return `<li class="release-card ${published ? "" : "tag-only"}" id="${release.id}">
+    <span class="release-number" aria-hidden="true">${String(number).padStart(2, "0")}</span>
+    <code>${esc(release.version)}</code>
+    <div class="release-body">
+      <h4>${copy(release.title)}${published ? "" : ` <span class="status status-tag">${label("tagOnly", locales)}</span>`}</h4>
+      <p>${copy(release.summary)}</p>
+      ${!published ? `<p class="tag-note">${label("noPublishedRelease", locales)}</p>` : ""}
+      ${children.length ? `<details><summary>${children.length} ${label("events", locales)}</summary><ul>${children.map((event) => `<li><a href="#${event.id}">${copy(event.title)}</a></li>`).join("")}</ul></details>` : ""}
+    </div>
+    <time datetime="${release.date}">${shortDateCopy(release.date)}</time>
+    <a class="release-external" href="${esc(link)}"><span class="visually-hidden">${published ? label("published", locales) : label("tagOnly", locales)} ${esc(release.version)}</span>${icon(ICONS.external)}</a>
+  </li>`;
+}
+
+function renderReleaseEras(releases, context, locales) {
+  const sorted = [...releases].sort((a, b) => b.date.localeCompare(a.date) || b.sequence - a.sequence);
+  const majors = [...new Set(sorted.map((release) => release.version.match(/^v(\d+)/)[1]))];
+  const fallback = (key, value) => locales.en[key] ? label(key, locales) : esc(value);
+  return majors.map((major, index) => {
+    const eraReleases = sorted.filter((release) => release.version.startsWith(`v${major}.`));
+    const oldest = eraReleases[eraReleases.length - 1];
+    const newest = eraReleases[0];
+    const published = eraReleases.filter((release) => release.status === "published").length;
+    const range = oldest.date === newest.date ? dateCopy(newest.date) : `${dateCopy(oldest.date)} – ${dateCopy(newest.date)}`;
+    const current = index === 0;
+    return `<section class="release-era ${current ? "is-current" : ""}" id="era-v${major}" aria-labelledby="era-title-v${major}">
+      <div class="era-sleeve" aria-hidden="true"><span class="era-kicker">${label("era", locales)} ${major}${current ? ` · ${label("nowPlaying", locales)}` : ""}</span><strong>v${major}</strong><span class="era-caption">${fallback(`eraV${major}Title`, `v${major}`)}<small>${published} ${label("releasesUnit", locales)}</small></span></div>
+      <div class="era-list"><h3 id="era-title-v${major}">${fallback(`eraV${major}Title`, `v${major}`)}</h3><p class="era-range">${range}</p>${locales.en[`eraV${major}Summary`] ? `<p class="era-summary">${label(`eraV${major}Summary`, locales)}</p>` : ""}<ol class="release-list">${eraReleases.map((release, position) => renderRelease(release, context, locales, eraReleases.length - position)).join("")}</ol></div>
+    </section>`;
+  }).join("");
 }
 
 function selectControl(key, options, locales) {
   return `<label><span>${label(key, locales)}</span><select id="filter-${key}" data-filter="${key}">${option("all", locales.en.all)}${options}</select></label>`;
 }
 
+function renderSiteHeader(locales, { brandHref, navLinks }) {
+  return `<header class="site-header"><a class="brand" ${brandHref}><span class="brand-name">Jam Tracks Hub</span><span class="brand-sub">${label("siteTitle", locales)}</span></a><nav aria-label="${esc(locales.en.primaryNavigation)}" data-i18n-aria-label="primaryNavigation">${navLinks}</nav><div class="header-actions"><button type="button" id="theme-toggle" class="theme-toggle" hidden>${icon(ICONS.theme)}<span id="theme-label" class="visually-hidden">${esc(locales.en.darkMode)}</span></button><div class="language-switch" role="group" aria-label="${esc(locales.en.language)}" data-i18n-aria-label="language"><button type="button" data-set-lang="en" aria-pressed="true">EN</button><button type="button" data-set-lang="zh-TW" aria-pressed="false">繁中</button></div></div></header>`;
+}
+
 function renderIndexBody(data, context, locales) {
   const years = [...new Set(context.sortedEvents.map((event) => event.date.slice(0, 4)))];
   const newestMajor = context.sortedEvents.find((event) => event.level === "primary");
+  const latest = context.latestPublishedRelease;
   const productOptions = context.visibleProducts.map((product) => option(product.id, product.name.en)).join("");
   const categoryOptions = Object.entries(CATEGORY_LABELS).map(([id, value]) => option(id, value.en)).join("");
   const releaseOptions = [...data.releases].sort((a, b) => b.date.localeCompare(a.date) || b.sequence - a.sequence).map((release) => option(release.id, release.version)).join("");
   const statusOptions = ["released", "reverted", "superseded", "deprecated"].map((status) => option(status, locales.en[status])).join("");
   const timeline = renderTimeline(context, locales);
+  const header = renderSiteHeader(locales, {
+    brandHref: 'href="#top"',
+    navLinks: `<a href="#history">${label("navHistory", locales)}</a><a href="#products">${label("navProducts", locales)}</a><a href="#releases">${label("navReleases", locales)}</a><a href="./print.html">${label("printView", locales)}</a>`
+  });
   return `<a class="skip-link" href="#history">${label("skipHistory", locales)}</a>
-  <header class="site-header"><a class="brand" href="#top">Jam Tracks Hub <span>${label("siteTitle", locales)}</span></a><nav aria-label="${esc(locales.en.primaryNavigation)}" data-i18n-aria-label="primaryNavigation"><a href="#history">${label("navHistory", locales)}</a><a href="#products">${label("navProducts", locales)}</a><a href="#releases">${label("navReleases", locales)}</a><a href="./print.html">${label("printView", locales)}</a></nav><div class="header-actions"><button type="button" id="theme-toggle" class="theme-toggle" hidden><span class="theme-icon" aria-hidden="true">◐</span><span id="theme-label">${esc(locales.en.darkMode)}</span></button><div class="language-switch" role="group" aria-label="${esc(locales.en.language)}" data-i18n-aria-label="language"><button type="button" data-set-lang="en" aria-pressed="true">EN</button><button type="button" data-set-lang="zh-TW" aria-pressed="false">繁中</button></div></div></header>
+  ${header}
   <main id="top">
-    <section class="hero"><div class="hero-copy"><p class="eyebrow">Jam Tracks Hub</p><h1>${label("siteTitle", locales)}</h1><p class="lede">${label("subtitle", locales)}</p><div class="hero-actions"><a class="button primary" href="#history">${label("exploreHistory", locales)}</a><a class="button secondary" href="https://jamtrackshub.com/">${label("visitSite", locales)}</a></div><a class="source-link" href="https://github.com/Jasper-hsury/Jam_Tracks_Hub_Development_Log">${label("viewSource", locales)} ↗</a></div><aside class="hero-record"><p>${label("latestStable", locales)}</p><strong>${esc(context.latestPublishedRelease.version)}</strong><span>${copy(context.latestPublishedRelease.title)}</span><hr><p>${label("historyCoverage", locales)}</p><strong class="record-date">${label("since", locales)}</strong></aside></section>
-    <section class="snapshot" aria-label="${esc(locales.en.currentSnapshot)}" data-i18n-aria-label="currentSnapshot"><div><span>${label("latestStable", locales)}</span><strong>${esc(context.latestPublishedRelease.version)}</strong></div><div><span>${label("latestUpdate", locales)}</span><strong>${copy(newestMajor.title)}</strong></div></section>
-    <section class="metrics" aria-label="${esc(locales.en.derivedMetrics)}" data-i18n-aria-label="derivedMetrics"><article><strong>${context.metrics.publishedReleases}</strong><span>${label("publishedReleases", locales)}</span></article><article><strong>${context.metrics.productAreas}</strong><span>${label("productAreas", locales)}</span></article><article><strong>${context.metrics.developmentSince.slice(0, 4)}</strong><span>${label("developmentSince", locales)}</span></article></section>
-    <section class="explore" aria-labelledby="explore-title"><div class="section-heading compact"><p class="eyebrow">${label("explore", locales)}</p><h2 id="explore-title">${label("timeline", locales)}</h2></div><div class="filter-controls"><label class="search-control"><span>${label("searchLabel", locales)}</span><input id="history-search" type="search" autocomplete="off" placeholder="${esc(locales.en.searchPlaceholder)}"></label><details class="filters-shell" open><summary>${label("filtersYears", locales)}</summary><div class="filter-fields">${selectControl("year", years.map((year) => option(year, year)).join(""), locales)}${selectControl("product", productOptions, locales)}${selectControl("category", categoryOptions, locales)}${selectControl("release", releaseOptions, locales)}${selectControl("status", statusOptions, locales)}</div></details></div><div class="result-row"><p id="result-count" role="status" aria-live="polite">${data.events.length} ${label("results", locales)}</p><div id="active-filters" class="active-filters" aria-label="${esc(locales.en.activeFilters)}" data-i18n-aria-label="activeFilters"></div><button type="button" id="reset-filters" class="reset-button">${label("reset", locales)}</button></div></section>
+    <section class="hero"><div class="hero-copy"><p class="eyebrow">Jam Tracks Hub</p><h1>${label("siteTitle", locales)}</h1><p class="lede">${label("subtitle", locales)}</p><div class="hero-actions"><a class="button primary" href="#history">${label("exploreHistory", locales)}</a><a class="button secondary" href="https://jamtrackshub.com/">${label("visitSite", locales)}${icon(ICONS.external)}</a><a class="source-link" href="https://github.com/Jasper-hsury/Jam_Tracks_Hub_Development_Log">${label("viewSource", locales)}</a></div></div>
+      <a class="hero-record" href="#${esc(latest.id)}"><span class="hero-sleeve"><span class="sleeve-kicker">${label("latestStable", locales)}</span><strong>${esc(latest.version)}</strong><span class="sleeve-title">${copy(latest.title)}<small><time datetime="${latest.date}">${dateCopy(latest.date)}</time></small></span></span>${recordSvg}</a></section>
+    <section class="hero-meta" aria-label="${esc(locales.en.currentSnapshot)}" data-i18n-aria-label="currentSnapshot"><p class="metrics"><span><strong>${context.metrics.publishedReleases}</strong> ${label("publishedReleases", locales)}</span><span><strong>${context.metrics.productAreas}</strong> ${label("productAreas", locales)}</span><span>${label("since", locales)}</span></p><p class="snapshot"><span>${label("latestUpdate", locales)}:</span> ${copy(newestMajor.title)}</p></section>
+    <section class="explore" aria-labelledby="explore-title"><h2 class="visually-hidden" id="explore-title">${label("explore", locales)}</h2><div class="filter-controls"><label class="search-control"><span class="visually-hidden">${label("searchLabel", locales)}</span>${icon(ICONS.search)}<input id="history-search" type="search" autocomplete="off" placeholder="${esc(locales.en.searchPlaceholder)}"></label><details class="filters-shell"><summary>${icon(ICONS.filters)}<span>${label("filters", locales)}</span><span class="filter-count" id="filter-count" hidden></span></summary><div class="filter-fields" role="group" aria-labelledby="filter-sheet-title"><div class="filter-sheet-head"><p id="filter-sheet-title">${label("filtersYears", locales)}</p><button type="button" class="icon-button" id="close-filters" aria-label="${esc(locales.en.closeFilters)}" data-i18n-aria-label="closeFilters">${icon(ICONS.close)}</button></div>${selectControl("category", categoryOptions, locales)}${selectControl("product", productOptions, locales)}${selectControl("release", releaseOptions, locales)}${selectControl("status", statusOptions, locales)}${selectControl("year", years.map((year) => option(year, year)).join(""), locales)}<div class="filter-sheet-foot"><button type="button" class="button primary" id="apply-filters">${label("showResults", locales)}</button></div></div></details></div><div class="result-row"><p id="result-count" role="status" aria-live="polite">${data.events.length} ${label("results", locales)}</p><div id="active-filters" class="active-filters" aria-label="${esc(locales.en.activeFilters)}" data-i18n-aria-label="activeFilters"></div><button type="button" id="reset-filters" class="reset-button">${label("reset", locales)}</button></div></section>
     <aside id="dossier-search-results" class="dossier-search-results" aria-labelledby="dossier-search-title" aria-live="polite" hidden><p class="eyebrow" id="dossier-search-title">${label("dossierMatches", locales)}</p><ul id="dossier-search-list"></ul></aside>
     <div id="hidden-target" class="hidden-target" hidden><p>${label("hiddenTarget", locales)}</p><button type="button" id="show-target">${label("showItem", locales)}</button></div>
-    <section class="history-layout" id="history" tabindex="-1"><aside class="year-rail"><p>${label("historyNav", locales)}</p><nav>${years.map((year) => `<button type="button" data-year-jump="${year}">${year}</button>`).join("")}</nav></aside><div class="timeline"><div class="section-heading"><h2>${label("timeline", locales)}</h2><p>${label("timelineIntro", locales)}</p></div>${timeline}<p id="no-results" class="no-results" hidden>${label("noResults", locales)}</p></div></section>
+    <section class="history-layout" id="history" tabindex="-1" aria-labelledby="timeline-title">${renderMonthRail(context, locales)}<div class="timeline"><div class="section-heading"><p class="eyebrow">${label("index", locales)}</p><h2 id="timeline-title">${label("timeline", locales)}</h2><p>${label("timelineIntro", locales)}</p></div>${timeline}<p id="no-results" class="no-results" hidden>${label("noResults", locales)}</p></div></section>
     <section class="page-section" id="products"><div class="section-heading"><p class="eyebrow">${label("index", locales)}</p><h2>${label("productEvolution", locales)}</h2><p>${label("productEvolutionIntro", locales)}</p></div><div class="product-grid">${context.visibleProducts.map((product) => renderProduct(product, context, locales)).join("")}</div></section>
-    <section class="page-section release-section" id="releases"><div class="section-heading"><p class="eyebrow">${label("versions", locales)}</p><h2>${label("releaseIndex", locales)}</h2></div><div class="release-grid">${[...data.releases].sort((a, b) => b.date.localeCompare(a.date) || b.sequence - a.sequence).map((release) => renderRelease(release, context, locales)).join("")}</div></section>
+    <section class="page-section release-section" id="releases"><div class="section-heading"><p class="eyebrow">${label("versions", locales)}</p><h2>${label("releaseIndex", locales)}</h2><p>${label("releaseIndexIntro", locales)}</p></div>${renderReleaseEras(data.releases, context, locales)}</section>
     <section class="page-section roadmap-section" id="roadmap"><div class="section-heading"><p class="eyebrow">${label("lookingAhead", locales)}</p><h2>${label("roadmap", locales)}</h2></div>${data.roadmap.length ? `<div class="roadmap-grid">${data.roadmap.map((item) => `<article><h3>${copy(item.title)}</h3><p>${copy(item.summary)}</p></article>`).join("")}</div>` : `<p class="empty-state">${label("roadmapEmpty", locales)}</p>`}</section>
-    <section class="page-section methodology" id="methodology"><div><p class="eyebrow">${label("sources", locales)}</p><h2>${label("methodology", locales)}</h2></div><p>${label("methodologyText", locales)}</p><p><a href="https://github.com/Jasper-hsury/Jam_Tracks_Hub">${label("sourceRepository", locales)} ↗</a></p></section>
+    <section class="page-section methodology" id="methodology"><div><p class="eyebrow">${label("sources", locales)}</p><h2>${label("methodology", locales)}</h2></div><div><p>${label("methodologyText", locales)}</p><p><a href="https://github.com/Jasper-hsury/Jam_Tracks_Hub">${label("sourceRepository", locales)} ↗</a></p></div></section>
   </main><footer><p>${label("footerText", locales)}</p><p><a href="./print.html">${label("printView", locales)}</a> · <a href="https://jamtrackshub.com/">jamtrackshub.com</a></p></footer>`;
 }
 

@@ -64,9 +64,16 @@
     updateThemeControl();
   };
 
-  const syncFilterPanelMode = (query) => { filtersShell.open = !query.matches; };
-  syncFilterPanelMode(mobileFilters);
-  mobileFilters.addEventListener("change", syncFilterPanelMode);
+  const filterKeys = ["year", "product", "category", "release", "status"];
+  const activeFilterCount = () => filterKeys.filter((key) => state[key] !== "all").length;
+  // Filters stay folded behind one button; a deep link with filters opens them on wide screens.
+  filtersShell.open = !mobileFilters.matches && activeFilterCount() > 0;
+  const closeFilters = () => {
+    filtersShell.open = false;
+    filtersShell.querySelector?.("summary")?.focus?.();
+  };
+  document.querySelector("#close-filters")?.addEventListener("click", closeFilters);
+  document.querySelector("#apply-filters")?.addEventListener("click", closeFilters);
 
   const t = (key) => payload.locales[state.lang][key] || payload.locales.en[key] || key;
   const updateLanguage = () => {
@@ -102,7 +109,14 @@
     return tokens.every((token) => payload.searchDocuments[card.dataset.eventId].includes(token));
   };
   const updateGroups = () => {
-    document.querySelectorAll(".month-group").forEach((group) => { group.hidden = !group.querySelector(".event-card:not([hidden])"); });
+    document.querySelectorAll(".month-group").forEach((group) => {
+      const visibleCards = group.querySelectorAll(".event-card:not([hidden])").length;
+      group.hidden = visibleCards === 0;
+      const count = group.querySelector(".month-count-value");
+      if (count) count.textContent = String(visibleCards);
+      const railLink = document.querySelector(`[data-month-link="${group.dataset.month}"]`);
+      if (railLink) railLink.parentElement.hidden = visibleCards === 0;
+    });
     document.querySelectorAll(".year-group").forEach((group) => { group.hidden = !group.querySelector(".event-card:not([hidden])"); });
   };
   const renderActiveFilters = () => {
@@ -176,6 +190,11 @@
       if (matches) visible += 1;
     });
     updateGroups();
+    const filterCount = document.querySelector("#filter-count");
+    if (filterCount) {
+      filterCount.textContent = String(activeFilterCount());
+      filterCount.hidden = activeFilterCount() === 0;
+    }
     noResults.hidden = visible !== 0;
     resultCount.firstChild.textContent = `${visible} `;
     updateLanguage();
@@ -200,10 +219,6 @@
     if (!storedTheme()) setTheme(event.matches ? "dark" : "light", { persist: false });
   });
   document.querySelectorAll("[data-set-lang]").forEach((button) => button.addEventListener("click", () => { state.lang = button.dataset.setLang; apply(); }));
-  document.querySelectorAll("[data-year-jump]").forEach((button) => button.addEventListener("click", () => {
-    state.year = button.dataset.yearJump; controls.year.value = state.year; apply();
-    document.querySelector(`#year-${CSS.escape(state.year)}`)?.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-  }));
   document.querySelectorAll("[data-product-history]").forEach((button) => button.addEventListener("click", () => {
     state.product = button.dataset.productHistory; controls.product.value = state.product; apply();
     document.querySelector("#history").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
@@ -217,7 +232,26 @@
     const editable = event.target.matches("input, select, textarea, [contenteditable='true']");
     if (event.key === "/" && !editable) { event.preventDefault(); search.focus(); }
     if (event.key === "Escape" && event.target === search && search.value) { search.value = ""; state.search = ""; apply(); }
+    else if (event.key === "Escape" && filtersShell.open && mobileFilters.matches) closeFilters();
   });
+  // The month rail marks the month whose heading has passed the upper third of the viewport.
+  const monthLinks = [...document.querySelectorAll("[data-month-link]")];
+  let monthFrame = 0;
+  const markCurrentMonth = () => {
+    monthFrame = 0;
+    let current = monthLinks[0]?.dataset.monthLink;
+    for (const group of document.querySelectorAll(".month-group:not([hidden])")) {
+      if (group.getBoundingClientRect().top <= innerHeight * 0.35) current = group.dataset.month;
+    }
+    monthLinks.forEach((link) => {
+      if (link.dataset.monthLink === current) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    });
+  };
+  if (monthLinks.length) {
+    addEventListener("scroll", () => { if (!monthFrame) monthFrame = requestAnimationFrame(markCurrentMonth); }, { passive: true });
+    markCurrentMonth();
+  }
   addEventListener("hashchange", inspectHashTarget);
   addEventListener("popstate", () => { state = fromUrl(); syncControls(); apply({ updateUrl: false }); });
   syncControls();

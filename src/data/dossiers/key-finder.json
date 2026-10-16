@@ -93,7 +93,8 @@
     "event-20260830-release-v2-0-0",
     "event-20260904-key-finder-vue-migration",
     "event-20260905-release-v2-0-5",
-    "event-20261015-release-v3-2-0"
+    "event-20261015-release-v3-2-0",
+    "event-20261016-release-v3-5-2"
   ],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Dedicated page commit 3b7d52d", "zhTW": "獨立頁面 commit 3b7d52d" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/3b7d52d" },

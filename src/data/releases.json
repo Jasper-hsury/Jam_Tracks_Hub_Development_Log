@@ -235,5 +235,47 @@
     "title": { "en": "Liner Notes Redesign: Secondary Pages", "zhTW": "Liner Notes 改版：次要頁面" },
     "summary": { "en": "Feedback, Legal, Privacy, the not-found page and the Key Finder wake-up screen completed the v3 Liner Notes redesign.", "zhTW": "意見回饋、法律資訊、隱私權政策、找不到頁面與調性偵測器喚醒畫面完成 v3 Liner Notes 改版。" },
     "featured": true
+  },
+  {
+    "id": "release-v3.5.0",
+    "version": "v3.5.0",
+    "date": "2026-10-16",
+    "sequence": 10,
+    "tag": "v3.5.0",
+    "tagCommit": "293ce9b09e157db7ae9a49a5b2044a5cf83d4384",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.5.0",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v3.5.0",
+    "title": { "en": "Handwritten Homepage Title", "zhTW": "手寫首頁標題" },
+    "summary": { "en": "The homepage title became \"Jam Tracks Hub\", written stroke by stroke in a brush script.", "zhTW": "首頁標題改為以毛筆手寫體逐筆寫出的「Jam Tracks Hub」。" },
+    "featured": true
+  },
+  {
+    "id": "release-v3.5.1",
+    "version": "v3.5.1",
+    "date": "2026-10-16",
+    "sequence": 20,
+    "tag": "v3.5.1",
+    "tagCommit": "bb6cad332eed02de5087f8155450a4ddcb1fc90e",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.5.1",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v3.5.1",
+    "title": { "en": "Phone Tagline and Chord Progressions on Tablets", "zhTW": "手機標語與平板上的和弦進行" },
+    "summary": { "en": "The homepage tagline splits onto two staggered lines on phones, and Chord Progressions stopped overflowing on tablets.", "zhTW": "首頁標語在手機上改為錯開的兩行，和弦進行在平板上也不再溢出。" },
+    "featured": true
+  },
+  {
+    "id": "release-v3.5.2",
+    "version": "v3.5.2",
+    "date": "2026-10-16",
+    "sequence": 30,
+    "tag": "v3.5.2",
+    "tagCommit": "b2d13f4a17577c85797148198eea117524b7a22d",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.5.2",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v3.5.2",
+    "title": { "en": "Consistent Inner Pages", "zhTW": "內頁一致化" },
+    "summary": { "en": "Inner pages now share one column width, title size and spacing, with compact centred headings on phones.", "zhTW": "內頁統一欄寬、標題大小與間距，手機上改為精簡置中的開頭。" },
+    "featured": true
   }
 ]

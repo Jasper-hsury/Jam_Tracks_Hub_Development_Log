@@ -74,13 +74,13 @@ test("security events require high-level disclosure markers", async () => {
   assert.deepEqual(scanPublicContent(data), []);
 });
 
-test("release rules preserve tag-only v1.4.0 and latest published v3.4.0", async () => {
+test("release rules preserve tag-only v1.4.0 and latest published v3.5.2", async () => {
   const data = await loadData();
   const tagOnly = data.releases.find((release) => release.version === "v1.4.0");
   assert.equal(tagOnly.status, "tag_only");
   assert.equal(tagOnly.releaseUrl, undefined);
   assert.equal(tagOnly.tagUrl, "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0");
-  assert.equal(deriveData(data).latestPublishedRelease.version, "v3.4.0");
+  assert.equal(deriveData(data).latestPublishedRelease.version, "v3.5.2");
   const brokenPublished = clone(data);
   delete brokenPublished.releases.find((release) => release.status === "published").releaseUrl;
   assert.match(validateData(brokenPublished).join("\n"), /published release URL required/);
@@ -178,7 +178,7 @@ test("v3.0.0 through v3.4.0 record the Liner Notes redesign in Taipei time", asy
     for (const lang of ["en", "zhTW"]) assert.ok(event.details[lang].trim());
   }
   assert.equal(data.releases.find((item) => item.version === "v3.2.0").date, "2026-10-15");
-  const newest = context.sortedEvents.slice(0, 5).map((event) => event.id);
+  const newest = context.sortedEvents.slice(3, 8).map((event) => event.id);
   assert.deepEqual(newest, [
     "event-20261015-release-v3-4-0",
     "event-20261015-release-v3-3-0",
@@ -186,6 +186,45 @@ test("v3.0.0 through v3.4.0 record the Liner Notes redesign in Taipei time", asy
     "event-20261014-release-v3-1-0",
     "event-20261014-release-v3-0-0"
   ]);
+  assert.deepEqual(validateData(data), []);
+});
+
+test("v3.5.0 through v3.5.2 record the handwritten title and layout fixes in Taipei time", async () => {
+  const data = await loadData();
+  const context = deriveData(data);
+  const localDate = (utc) => new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit"
+  }).format(new Date(utc));
+  const expected = [
+    ["3.5.0", 91, "293ce9b09e157db7ae9a49a5b2044a5cf83d4384", "2026-10-16T02:12:07Z", "2026-10-16T02:14:47Z", ["product-homepage"]],
+    ["3.5.1", 92, "bb6cad332eed02de5087f8155450a4ddcb1fc90e", "2026-10-16T06:41:10Z", "2026-10-16T06:43:05Z", ["product-homepage", "product-chord-progressions"]],
+    ["3.5.2", 93, "b2d13f4a17577c85797148198eea117524b7a22d", "2026-10-16T12:10:57Z", "2026-10-16T12:13:33Z", ["product-tracks", "product-song-workspace", "product-privacy"]]
+  ];
+  for (const [version, pr, tagCommit, mergedAt, publishedAt, products] of expected) {
+    const release = data.releases.find((item) => item.id === `release-v${version}`);
+    assert.equal(release?.status, "published");
+    assert.equal(release.tagCommit, tagCommit);
+    assert.equal(release.date, localDate(publishedAt));
+    const [event] = context.releaseChildren.get(release.id);
+    assert.equal(event.id, `event-${localDate(mergedAt).replaceAll("-", "")}-release-v${version.replaceAll(".", "-")}`);
+    assert.equal(event.categoryId, "release");
+    for (const product of products) assert.ok(event.productIds.includes(product), `${version} lists ${product}`);
+    assert.ok(event.sourceRefs.some((ref) => ref.kind === "pr" && ref.url.endsWith(`/pull/${pr}`)));
+    assert.ok(event.sourceRefs.some((ref) => ref.kind === "commit" && ref.url.endsWith(`/${tagCommit}`)));
+    assert.ok(event.sourceRefs.some((ref) => ref.kind === "release" && ref.url === release.releaseUrl));
+    for (const lang of ["en", "zhTW"]) assert.ok(event.details[lang].trim());
+  }
+  assert.deepEqual(context.sortedEvents.slice(0, 3).map((event) => event.id), [
+    "event-20261016-release-v3-5-2",
+    "event-20261016-release-v3-5-1",
+    "event-20261016-release-v3-5-0"
+  ]);
+  const dossiers = new Map(data.dossiers.map((dossier) => [dossier.slug, dossier]));
+  assert.match(dossiers.get("homepage").currentState.text.en, /handwritten Jam Tracks Hub title/);
+  assert.match(dossiers.get("chord-progressions").currentState.text.en, /chords above full-width shapes/);
+  for (const slug of ["tracks", "chord-dictionary", "scale-explorer", "key-finder", "chord-progressions", "progression-writer", "fretboard-trainer", "song-workspace"]) {
+    assert.ok(dossiers.get(slug).relatedEventIds.includes("event-20261016-release-v3-5-2"), `${slug} links v3.5.2`);
+  }
   assert.deepEqual(validateData(data), []);
 });
 
@@ -206,7 +245,7 @@ test("affected dossiers align with the release, Vue migration, and Liner Notes h
     "song-workspace"
   ]) {
     const dossier = dossiers.get(slug);
-    assert.equal(dossier?.latestSignificantUpdate, slug === "homepage" ? "2026-10-14" : "2026-10-15");
+    assert.equal(dossier?.latestSignificantUpdate, ["homepage", "chord-progressions"].includes(slug) ? "2026-10-16" : "2026-10-15");
     assert.ok(dossier?.relatedEventIds.some((id) => /^event-2026101[45]-release-v3-/.test(id)), `${slug} links its v3 release`);
     assert.match(`${dossier?.currentState.text.en} ${dossier?.currentState.text.zhTW}`, /Liner Notes/);
     assert.ok(dossier?.relatedEventIds.includes(commonVueEvent));
@@ -231,8 +270,12 @@ test("affected dossiers align with the release, Vue migration, and Liner Notes h
     ["event-20260907-homepage-workflow-refinement", "2026-09-07", "46", "8ebc43560119e35bff33069f2d0da5f1fcc76507"],
     ["event-20260920-homepage-bilingual-about-copy", "2026-09-20", "62", "866946f4d51231bb2d25ce656e5050956d475b83"]
   ];
-  assert.deepEqual(evolution.slice(-3, -1).map((item) => item.eventId), updates.map(([id]) => id));
-  assert.equal(evolution.at(-1).eventId, "event-20261014-release-v3-0-0");
+  assert.deepEqual(evolution.slice(-5, -3).map((item) => item.eventId), updates.map(([id]) => id));
+  assert.deepEqual(evolution.slice(-3).map((item) => item.eventId), [
+    "event-20261014-release-v3-0-0",
+    "event-20261016-release-v3-5-0",
+    "event-20261016-release-v3-5-1"
+  ]);
   for (const [id, date, pr, sha] of updates) {
     const event = data.events.find((item) => item.id === id);
     assert.equal(event?.date, date);

@@ -47,7 +47,7 @@
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No original wireframe or documented rationale for the initial default scale was found.", "zhTW": "未找到原始線框圖或初始預設音階的書面理由。" } }
   ],
-  "relatedEventIds": ["event-20260625-scale-explorer-launch", "event-20260905-release-v2-0-5", "event-20261015-release-v3-2-0"],
+  "relatedEventIds": ["event-20260625-scale-explorer-launch", "event-20260905-release-v2-0-5", "event-20261015-release-v3-2-0", "event-20261016-release-v3-5-2"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Scale Explorer launch 0053346", "zhTW": "音階探索器推出 0053346" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/0053346" },
     { "kind": "commit", "label": { "en": "Selectable neck lengths e39e05e", "zhTW": "可選琴頸長度 e39e05e" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/e39e05e" },

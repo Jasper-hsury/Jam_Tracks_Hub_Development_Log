@@ -55,7 +55,7 @@
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No public record establishes why no W9 entry exists, so this dossier does not speculate.", "zhTW": "沒有公開紀錄說明為何不存在 W9，因此本檔案不做推測。" } }
   ],
-  "relatedEventIds": ["event-20260606-jam-tracks-hub-begins", "event-20260606-first-backing-track-library", "event-20260718-homepage-and-track-evolution", "event-20260727-responsive-refinement-and-w16", "event-20260816-w19-backing-track", "event-20260830-responsive-content-polish", "event-20260903-release-v2-0-4", "event-20260905-release-v2-0-5", "event-20261014-release-v3-1-0", "event-20261015-release-v3-2-0"],
+  "relatedEventIds": ["event-20260606-jam-tracks-hub-begins", "event-20260606-first-backing-track-library", "event-20260718-homepage-and-track-evolution", "event-20260727-responsive-refinement-and-w16", "event-20260816-w19-backing-track", "event-20260830-responsive-content-polish", "event-20260903-release-v2-0-4", "event-20260905-release-v2-0-5", "event-20261014-release-v3-1-0", "event-20261015-release-v3-2-0", "event-20261016-release-v3-5-2"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Initial site deployment 1ad1d86", "zhTW": "最初網站部署 1ad1d86" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1ad1d86" },
     { "kind": "file", "label": { "en": "Current Tracks HTML mount shell", "zhTW": "目前音軌 HTML 掛載外殼" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/tracks.html", "path": "tracks.html" },

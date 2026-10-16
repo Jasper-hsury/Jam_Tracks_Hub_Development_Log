@@ -48,7 +48,7 @@
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No original design brief or documented rejected editor layouts were found.", "zhTW": "未找到原始設計簡報或被否決編輯器版面的書面紀錄。" } }
   ],
-  "relatedEventIds": ["event-20260725-progression-writer-published", "event-20260905-release-v2-0-5", "event-20261015-release-v3-2-0"],
+  "relatedEventIds": ["event-20260725-progression-writer-published", "event-20260905-release-v2-0-5", "event-20261015-release-v3-2-0", "event-20261016-release-v3-5-2"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Feature creation 35b8aa4", "zhTW": "功能建立 35b8aa4" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/35b8aa4" },
     { "kind": "pr", "label": { "en": "Canonical publication PR #1", "zhTW": "正式發布 PR #1" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/1" },

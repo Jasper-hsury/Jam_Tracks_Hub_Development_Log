@@ -113,7 +113,8 @@
     "event-20260831-release-v2-0-2",
     "event-20260904-song-workspace-vue-migration",
     "event-20260905-release-v2-0-5",
-    "event-20261015-release-v3-3-0"
+    "event-20261015-release-v3-3-0",
+    "event-20261016-release-v3-5-2"
   ],
   "sourceRefs": [
     { "kind": "pr", "label": { "en": "Song Workspace v1.0.0 PR #5", "zhTW": "歌曲工作區 v1.0.0 PR #5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5" },

@@ -761,5 +761,65 @@
       { "kind": "commit", "label": "Commit ddb04b1", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/ddb04b142bf2d2c3fd332cb2c044748d67d15779" },
       { "kind": "release", "label": "Release v3.4.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.4.0" }
     ]
+  },
+  {
+    "id": "event-20261016-release-v3-5-0",
+    "date": "2026-10-16",
+    "sequence": 10,
+    "title": { "en": "v3.5.0 writes the homepage title by hand", "zhTW": "v3.5.0 以手寫方式寫出首頁標題" },
+    "summary": { "en": "The homepage heading now reads Jam Tracks Hub and is written stroke by stroke in the Yellowtail script, followed by a waveform, a double rule and the tagline.", "zhTW": "首頁標題改為「Jam Tracks Hub」，以 Yellowtail 手寫體依筆順逐筆寫出，接著出現波形、雙線與標語。" },
+    "details": { "en": "Each letter appears only where the pen has written, following the glyph's own centre line, and the title writes once when the page opens. When reduced motion is requested or the font cannot load, the whole title appears at once, and screen readers still read a single heading. The rest of the homepage did not change.", "zhTW": "每個字母只在筆畫寫過的地方出現，並沿著字形中心線書寫；標題在頁面開啟時只寫一次。裝置要求減少動態效果或字型無法載入時，會直接顯示完整標題，螢幕閱讀器仍只讀到一個標題。首頁其餘內容均未改變。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-homepage"],
+    "status": "released",
+    "releaseId": "release-v3.5.0",
+    "keywords": ["Liner Notes", "Homepage", "handwriting", "Yellowtail"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #91", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/91" },
+      { "kind": "commit", "label": "Commit 293ce9b", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/293ce9b09e157db7ae9a49a5b2044a5cf83d4384" },
+      { "kind": "release", "label": "Release v3.5.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.5.0" }
+    ]
+  },
+  {
+    "id": "event-20261016-release-v3-5-1",
+    "date": "2026-10-16",
+    "sequence": 20,
+    "title": { "en": "v3.5.1 fixes the phone tagline and tablet chord shapes", "zhTW": "v3.5.1 修正手機標語與平板指型" },
+    "summary": { "en": "The homepage tagline no longer breaks mid-sentence on phones, and Chord Progressions no longer clips chord names or shapes on tablets.", "zhTW": "首頁標語在手機上不再於句子中間斷行，和弦進行在平板上也不再截斷和弦名稱或指型。" },
+    "details": { "en": "The tagline splits after its first sentence onto a left and a right line, but only when it does not fit on one line. Chord Progressions now stacks the chords above their shapes at every size, with four shapes per row on wide screens, two on tablets and one on phones; the mini diagrams line up their strings with the string names, and longer progressions such as the 12-bar blues place each group of bars directly above its own shapes.", "zhTW": "標語只在一行放不下時，才於第一句後分成靠左與靠右的兩行。和弦進行在各種寬度都改為和弦在上、指型在下，寬螢幕每列四張、平板兩張、手機一張；小型指型圖的琴弦與弦名對齊，12 小節藍調等較長的進行則讓每組小節緊接在自己的指型上方。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-homepage", "product-chord-progressions"],
+    "status": "released",
+    "releaseId": "release-v3.5.1",
+    "keywords": ["Liner Notes", "Homepage", "Chord Progressions", "tablet", "phone"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #92", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/92" },
+      { "kind": "commit", "label": "Commit bb6cad3", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/bb6cad332eed02de5087f8155450a4ddcb1fc90e" },
+      { "kind": "release", "label": "Release v3.5.1", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.5.1" }
+    ]
+  },
+  {
+    "id": "event-20261016-release-v3-5-2",
+    "date": "2026-10-16",
+    "sequence": 30,
+    "title": { "en": "v3.5.2 aligns the inner pages", "zhTW": "v3.5.2 統一內頁版面" },
+    "summary": { "en": "After a site-wide consistency check, the inner pages share one column width, title size and spacing, with compact centred headings on phones.", "zhTW": "經過全站一致性檢查，內頁統一欄寬、標題大小與間距，手機上改為精簡置中的開頭。" },
+    "details": { "en": "Backing Tracks, the tool pages, Song Workspace, Feedback, Legal and Privacy now share a 1200px column and the same title size, and Song Workspace's heading starts as high as the tools'. On phones the heading block is compact and centred while everything below it stays left-aligned, longer intros keep balanced line lengths, and the Privacy title breaks right after the brand. The homepage, the not-found page and the wake-up screen kept their own layouts.", "zhTW": "即興伴奏、各工具頁、歌曲工作區、意見回饋、法律資訊與隱私權政策統一為 1200px 欄寬與相同的標題大小，歌曲工作區的標題也與工具頁對齊高度。手機上開頭改為精簡置中，下方內容維持靠左，較長的導言保持均衡的行長，隱私權政策標題則在品牌名稱後斷行。首頁、找不到頁面與喚醒畫面維持各自的版面。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-tracks", "product-chord-dictionary", "product-scale-explorer", "product-key-finder", "product-chord-progressions", "product-progression-writer", "product-fretboard-trainer", "product-song-workspace", "product-feedback", "product-legal", "product-privacy"],
+    "status": "released",
+    "releaseId": "release-v3.5.2",
+    "keywords": ["Liner Notes", "consistency", "layout", "phone"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #93", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/93" },
+      { "kind": "commit", "label": "Commit b2d13f4", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/b2d13f4a17577c85797148198eea117524b7a22d" },
+      { "kind": "release", "label": "Release v3.5.2", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.5.2" }
+    ]
   }
 ]

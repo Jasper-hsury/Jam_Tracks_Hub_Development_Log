@@ -45,7 +45,7 @@
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No original learning study, difficulty progression, or spaced-repetition plan was found.", "zhTW": "未找到原始學習研究、難度進程或間隔重複計畫。" } }
   ],
-  "relatedEventIds": ["event-20260626-fretboard-trainer-launch", "event-20260905-release-v2-0-5", "event-20261015-release-v3-2-0"],
+  "relatedEventIds": ["event-20260626-fretboard-trainer-launch", "event-20260905-release-v2-0-5", "event-20261015-release-v3-2-0", "event-20261016-release-v3-5-2"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Fretboard tools launch 7acf53c", "zhTW": "指板工具推出 7acf53c" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/7acf53c" },
     { "kind": "file", "label": { "en": "Current trainer HTML mount shell", "zhTW": "目前訓練器 HTML 掛載外殼" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/fretboard-trainer.html", "path": "fretboard-trainer.html" },

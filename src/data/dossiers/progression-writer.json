@@ -3,7 +3,7 @@
   "productId": "product-progression-writer",
   "slug": "progression-writer",
   "status": "published",
-  "latestSignificantUpdate": "2026-10-15",
+  "latestSignificantUpdate": "2026-10-18",
   "hero": { "classification": "verified", "text": { "en": "A browser workspace for drafting, saving, hearing, illustrating, and exporting custom chord progressions.", "zhTW": "在瀏覽器中編寫、儲存、聆聽、圖像化與匯出自訂和弦進行的工作區。" } },
   "overview": { "classification": "verified", "text": { "en": "Progression Writer supports single or verse/chorus structures, chord entry and shape selection, saved progression records, duplication, playback, JSON export, and generated visual downloads.", "zhTW": "和弦進行編寫器支援單一或主歌／副歌結構、和弦輸入與指型選擇、已儲存進行紀錄、複製、播放、JSON 匯出與產生式視覺下載。" } },
   "purpose": [
@@ -37,10 +37,12 @@
       { "date": "2026-08-04", "eventId": "event-20260804-traditional-chinese-support", "impact": "shared", "title": { "en": "Bilingual authoring", "zhTW": "雙語編寫" }, "body": { "classification": "verified", "text": { "en": "Shared localization added Traditional Chinese to the writing workflow.", "zhTW": "共用在地化為編寫流程加入繁體中文。" } } },
       { "date": "2026-08-28", "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5", "impact": "shared", "title": { "en": "Shared chord-shape model", "zhTW": "共用和弦指型模型" }, "body": { "classification": "verified", "text": { "en": "The reusable shape renderer introduced with Song Workspace became part of the current writer architecture.", "zhTW": "隨歌曲工作區引入的可重用指型渲染器成為目前編寫器架構的一部分。" } } },
       { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue-owned frontend", "zhTW": "Vue 管理的前端" }, "body": { "classification": "verified", "text": { "en": "The writer joined the completed v2.0.5 Vue migration while retaining local records, playback, and export behavior.", "zhTW": "編寫器納入 v2.0.5 完成的 Vue 遷移，同時保留本機紀錄、播放與匯出行為。" } } },
-      { "date": "2026-10-15", "eventId": "event-20261015-release-v3-2-0", "impact": "direct", "title": { "en": "Liner Notes restyle", "zhTW": "Liner Notes 改版" }, "body": { "classification": "verified", "text": { "en": "v3.2.0 (PR #86) moved Progression Writer to the Liner Notes style with a shared heading, flat panels, cocoa selections, and rounded controls; the structure, key-quality, and download-layout switches became segmented controls. Features did not change.", "zhTW": "v3.2.0（PR #86）將和弦進行編寫器改為 Liner Notes 風格，採用共用標題、平面面板、可可色選取狀態與圓角控制項；段落結構、大小調與下載版面的開關改為分段按鈕。功能均未改變。" } } }
+      { "date": "2026-10-15", "eventId": "event-20261015-release-v3-2-0", "impact": "direct", "title": { "en": "Liner Notes restyle", "zhTW": "Liner Notes 改版" }, "body": { "classification": "verified", "text": { "en": "v3.2.0 (PR #86) moved Progression Writer to the Liner Notes style with a shared heading, flat panels, cocoa selections, and rounded controls; the structure, key-quality, and download-layout switches became segmented controls. Features did not change.", "zhTW": "v3.2.0（PR #86）將和弦進行編寫器改為 Liner Notes 風格，採用共用標題、平面面板、可可色選取狀態與圓角控制項；段落結構、大小調與下載版面的開關改為分段按鈕。功能均未改變。" } } },
+      { "date": "2026-10-17", "eventId": "event-20261017-release-v3-5-3", "impact": "direct", "title": { "en": "Own tagline", "zhTW": "專屬標語" }, "body": { "classification": "verified", "text": { "en": "v3.5.3 (PR #94) gave Progression Writer its own tagline, \"Your chords, your order, one clean chart.\"", "zhTW": "v3.5.3（PR #94）為和弦進行編寫器加上專屬標語「你的和弦、你的順序，整理成一張乾淨的譜。」" } } },
+      { "date": "2026-10-18", "eventId": "event-20261018-release-v4-0-0", "impact": "direct", "title": { "en": "Jazz Stage restyle", "zhTW": "Jazz Stage 改版" }, "body": { "classification": "verified", "text": { "en": "v4.0.0 (PR #97) moved the page to the Jazz Stage design with rounded trays, a yellow rule, Anton page titles and one selected style in both themes; buttons now use the site font. Features did not change.", "zhTW": "v4.0.0（PR #97）將此頁面改為 Jazz Stage 設計，採用圓角托盤、黃色線條、Anton 頁面標題，兩種主題也使用同一種選取樣式；按鈕改用網站字體。功能均未改變。" } } }
     ] }
   ],
-  "currentState": { "classification": "verified", "text": { "en": "Progression Writer is a Vue-owned bilingual browser authoring tool at /progression-writer.html with local saved records, shape selection, playback, duplication, JSON export, and generated visual downloads. Since v3.2.0 (PR #86), the page uses the Liner Notes design.", "zhTW": "和弦進行編寫器目前是由 Vue 管理、位於 /progression-writer.html 的雙語瀏覽器創作工具，包含本機已儲存紀錄、指型選擇、播放、複製、JSON 匯出與產生式視覺下載。自 v3.2.0（PR #86）起，此頁面採用 Liner Notes 設計。" } },
+  "currentState": { "classification": "verified", "text": { "en": "Progression Writer is a Vue-owned bilingual browser authoring tool at /progression-writer.html with local saved records, shape selection, playback, duplication, JSON export, and generated visual downloads. The page adopted the Liner Notes design in v3.2.0 (PR #86) and, since v4.0.0 (PR #97), uses the Jazz Stage design.", "zhTW": "和弦進行編寫器目前是由 Vue 管理、位於 /progression-writer.html 的雙語瀏覽器創作工具，包含本機已儲存紀錄、指型選擇、播放、複製、JSON 匯出與產生式視覺下載。此頁面於 v3.2.0（PR #86）採用 Liner Notes 設計，自 v4.0.0（PR #97）起改用 Jazz Stage 設計。" } },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "Preserving creation and publication as separate dates makes feature-branch history legible without misrepresenting public availability.", "zhTW": "分開保留建立與發布日期，可讓功能分支歷史清楚，同時不誤述公開可用時間。" } },
     { "classification": "reconstructed", "text": { "en": "A composition tool becomes more useful when the same data can be edited, auditioned, saved, and exported in both machine-readable and visual forms.", "zhTW": "當相同資料可編輯、試聽、儲存，並以機器可讀與視覺形式匯出時，創作工具會更實用。" } }
@@ -48,7 +50,7 @@
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No original design brief or documented rejected editor layouts were found.", "zhTW": "未找到原始設計簡報或被否決編輯器版面的書面紀錄。" } }
   ],
-  "relatedEventIds": ["event-20260725-progression-writer-published", "event-20260905-release-v2-0-5", "event-20261015-release-v3-2-0", "event-20261016-release-v3-5-2"],
+  "relatedEventIds": ["event-20260725-progression-writer-published", "event-20260905-release-v2-0-5", "event-20261015-release-v3-2-0", "event-20261016-release-v3-5-2", "event-20261017-release-v3-5-3", "event-20261018-release-v4-0-0"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Feature creation 35b8aa4", "zhTW": "功能建立 35b8aa4" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/35b8aa4" },
     { "kind": "pr", "label": { "en": "Canonical publication PR #1", "zhTW": "正式發布 PR #1" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/1" },

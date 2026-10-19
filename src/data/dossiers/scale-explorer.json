@@ -3,7 +3,7 @@
   "productId": "product-scale-explorer",
   "slug": "scale-explorer",
   "status": "published",
-  "latestSignificantUpdate": "2026-10-15",
+  "latestSignificantUpdate": "2026-10-19",
   "hero": { "classification": "verified", "text": { "en": "An interactive scale reference that maps musical intervals and notes across a configurable guitar fretboard.", "zhTW": "把音樂音程與音名映射到可設定吉他指板的互動音階參考。" } },
   "overview": { "classification": "verified", "text": { "en": "Scale Explorer lets visitors choose a root and scale, inspect the resulting notes and intervals, view them on the fretboard, hear the scale, and download a generated diagram.", "zhTW": "音階探索器讓訪客選擇根音與音階、查看結果音名與音程、在指板上檢視、聆聽音階並下載產生的圖表。" } },
   "purpose": [
@@ -37,22 +37,26 @@
       { "date": "2026-06-25", "sourceUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/9b5ff9e", "impact": "direct", "title": { "en": "Downloadable diagrams", "zhTW": "可下載圖表" }, "body": { "classification": "verified", "text": { "en": "Generated scale visuals became portable downloads.", "zhTW": "產生的音階視覺成為可攜下載。" } } },
       { "date": "2026-08-04", "eventId": "event-20260804-traditional-chinese-support", "impact": "shared", "title": { "en": "Traditional Chinese", "zhTW": "繁體中文" }, "body": { "classification": "verified", "text": { "en": "Shared localization extended the public tool to Traditional Chinese.", "zhTW": "共用在地化讓公開工具支援繁體中文。" } } },
       { "date": "2026-09-05", "eventId": "event-20260905-release-v2-0-5", "impact": "shared", "title": { "en": "Vue-owned frontend", "zhTW": "Vue 管理的前端" }, "body": { "classification": "verified", "text": { "en": "The explorer joined the completed v2.0.5 Vue migration while retaining its scale, playback, URL-state, and download behavior.", "zhTW": "探索器納入 v2.0.5 完成的 Vue 遷移，同時保留音階、播放、網址狀態與下載行為。" } } },
-      { "date": "2026-10-15", "eventId": "event-20261015-release-v3-2-0", "impact": "direct", "title": { "en": "Liner Notes restyle", "zhTW": "Liner Notes 改版" }, "body": { "classification": "verified", "text": { "en": "v3.2.0 (PR #86) moved Scale Explorer to the Liner Notes style with a shared heading, flat panels, cocoa selections, and rounded controls; the current scale sits in a cocoa band, and interval chips keep each interval color as a dot. Features did not change.", "zhTW": "v3.2.0（PR #86）將音階探索器改為 Liner Notes 風格，採用共用標題、平面面板、可可色選取狀態與圓角控制項；目前音階顯示於可可色色帶中，音程標籤以圓點保留各音程的顏色。功能均未改變。" } } }
+      { "date": "2026-10-15", "eventId": "event-20261015-release-v3-2-0", "impact": "direct", "title": { "en": "Liner Notes restyle", "zhTW": "Liner Notes 改版" }, "body": { "classification": "verified", "text": { "en": "v3.2.0 (PR #86) moved Scale Explorer to the Liner Notes style with a shared heading, flat panels, cocoa selections, and rounded controls; the current scale sits in a cocoa band, and interval chips keep each interval color as a dot. Features did not change.", "zhTW": "v3.2.0（PR #86）將音階探索器改為 Liner Notes 風格，採用共用標題、平面面板、可可色選取狀態與圓角控制項；目前音階顯示於可可色色帶中，音程標籤以圓點保留各音程的顏色。功能均未改變。" } } },
+      { "date": "2026-10-18", "eventId": "event-20261018-release-v4-0-0", "impact": "direct", "title": { "en": "Jazz Stage restyle", "zhTW": "Jazz Stage 改版" }, "body": { "classification": "verified", "text": { "en": "v4.0.0 (PR #97) moved the page to the Jazz Stage design, with the current scale on a navy stage; the PNG download became a v4-style image with a light or dark background chosen beside the button. Features did not change.", "zhTW": "v4.0.0（PR #97）將此頁面改為 Jazz Stage 設計，目前音階顯示在深藍舞台上；PNG 下載改為 v4 風格的圖片，可在按鈕旁選擇淺色或深色背景。功能均未改變。" } } },
+      { "date": "2026-10-19", "eventId": "event-20261019-release-v4-0-1", "impact": "direct", "title": { "en": "Image in your language", "zhTW": "跟隨語言的圖片" }, "body": { "classification": "verified", "text": { "en": "v4.0.1 (PR #98) made the downloaded image follow the page language and turned the background switch yellow on hover.", "zhTW": "v4.0.1（PR #98）讓下載的圖片跟隨頁面語言，背景切換在滑鼠移上時也改為黃色。" } } }
     ] }
   ],
-  "currentState": { "classification": "verified", "text": { "en": "Scale Explorer is a Vue-owned bilingual browser tool at /scale.html with configurable roots, scale types, fretboard ranges, note and interval rendering, playback, downloads, and URL-driven initial state. Since v3.2.0 (PR #86), the page uses the Liner Notes design.", "zhTW": "音階探索器目前是由 Vue 管理、位於 /scale.html 的雙語瀏覽器工具，包含可設定根音、音階種類、指板範圍、音名與音程渲染、播放、下載及網址驅動初始狀態。自 v3.2.0（PR #86）起，此頁面採用 Liner Notes 設計。" } },
+  "currentState": { "classification": "verified", "text": { "en": "Scale Explorer is a Vue-owned bilingual browser tool at /scale.html with configurable roots, scale types, fretboard ranges, note and interval rendering, playback, downloads, and URL-driven initial state. The page adopted the Liner Notes design in v3.2.0 (PR #86) and, since v4.0.0 (PR #97), uses the Jazz Stage design; its PNG download offers a light or dark background and, since v4.0.1 (PR #98), follows the page language.", "zhTW": "音階探索器目前是由 Vue 管理、位於 /scale.html 的雙語瀏覽器工具，包含可設定根音、音階種類、指板範圍、音名與音程渲染、播放、下載及網址驅動初始狀態。此頁面於 v3.2.0（PR #86）採用 Liner Notes 設計，自 v4.0.0（PR #97）起改用 Jazz Stage 設計；PNG 下載可選擇淺色或深色背景，自 v4.0.1（PR #98）起也會跟隨頁面語言。" } },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "A reference becomes more reusable when the same musical model can be seen, heard, constrained to a useful range, and exported.", "zhTW": "當相同音樂模型可被觀看、聆聽、限制於實用範圍並匯出時，參考工具會更可重用。" } }
   ],
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No original wireframe or documented rationale for the initial default scale was found.", "zhTW": "未找到原始線框圖或初始預設音階的書面理由。" } }
   ],
-  "relatedEventIds": ["event-20260625-scale-explorer-launch", "event-20260905-release-v2-0-5", "event-20261015-release-v3-2-0", "event-20261016-release-v3-5-2"],
+  "relatedEventIds": ["event-20260625-scale-explorer-launch", "event-20260905-release-v2-0-5", "event-20261015-release-v3-2-0", "event-20261016-release-v3-5-2", "event-20261017-release-v3-5-3", "event-20261018-release-v4-0-0", "event-20261019-release-v4-0-1"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Scale Explorer launch 0053346", "zhTW": "音階探索器推出 0053346" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/0053346" },
     { "kind": "commit", "label": { "en": "Selectable neck lengths e39e05e", "zhTW": "可選琴頸長度 e39e05e" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/e39e05e" },
     { "kind": "file", "label": { "en": "Current Scale Explorer HTML mount shell", "zhTW": "目前音階探索器 HTML 掛載外殼" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/scale.html", "path": "scale.html" },
     { "kind": "file", "label": { "en": "Current Scale Explorer Vue interface", "zhTW": "目前音階探索器 Vue 介面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/src/views/ScaleExplorerView.vue", "path": "src/views/ScaleExplorerView.vue" },
-    { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" }
+    { "kind": "release", "label": { "en": "Vue migration release v2.0.5", "zhTW": "Vue 遷移版本 v2.0.5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v2.0.5" },
+    { "kind": "pr", "label": { "en": "Jazz Stage redesign PR #97", "zhTW": "Jazz Stage 改版 PR #97" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/97" },
+    { "kind": "pr", "label": { "en": "Scale image polish PR #98", "zhTW": "音階圖片細修 PR #98" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/98" }
   ]
 }

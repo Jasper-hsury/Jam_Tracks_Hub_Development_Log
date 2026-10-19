@@ -277,5 +277,47 @@
     "title": { "en": "Consistent Inner Pages", "zhTW": "內頁一致化" },
     "summary": { "en": "Inner pages now share one column width, title size and spacing, with compact centred headings on phones.", "zhTW": "內頁統一欄寬、標題大小與間距，手機上改為精簡置中的開頭。" },
     "featured": true
+  },
+  {
+    "id": "release-v3.5.3",
+    "version": "v3.5.3",
+    "date": "2026-10-17",
+    "sequence": 10,
+    "tag": "v3.5.3",
+    "tagCommit": "b927bae4d3d6fbb1d76ec3c216fcbbedc5617b6a",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.5.3",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v3.5.3",
+    "title": { "en": "Site Polish and SEO Cleanup", "zhTW": "網站細修與 SEO 整理" },
+    "summary": { "en": "Inner pages share one set of rules for taglines, headings, buttons and links, and every public page has a clean address in a sitemap.", "zhTW": "內頁的標語、標題、按鈕與連結改用同一套規則，每個公開頁面也有乾淨的網址並列入網站地圖。" },
+    "featured": true
+  },
+  {
+    "id": "release-v4.0.0",
+    "version": "v4.0.0",
+    "date": "2026-10-18",
+    "sequence": 10,
+    "tag": "v4.0.0",
+    "tagCommit": "8f8f9798f4fe734a8bd9281ca67b424c399b3314",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.0.0",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v4.0.0",
+    "title": { "en": "Jazz Stage", "zhTW": "Jazz Stage 爵士舞台" },
+    "summary": { "en": "The whole site moved to a navy-and-cream jazz record stage with day and night themes and condensed capital titles.", "zhTW": "全站改為深藍與米白的爵士唱片舞台，提供白天與夜晚主題，並以窄體大寫字作為標題。" },
+    "featured": true
+  },
+  {
+    "id": "release-v4.0.1",
+    "version": "v4.0.1",
+    "date": "2026-10-19",
+    "sequence": 10,
+    "tag": "v4.0.1",
+    "tagCommit": "c8131f859ff8fd96a61bd413fad746fcd9abef9f",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.0.1",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v4.0.1",
+    "title": { "en": "Scale Explorer Image Polish", "zhTW": "音階探索器圖片細修" },
+    "summary": { "en": "The downloaded scale image follows the page language, and its background switch turns yellow on hover.", "zhTW": "下載的音階圖片改為跟隨頁面語言，背景切換在滑鼠移上時改為黃色。" },
+    "featured": true
   }
 ]

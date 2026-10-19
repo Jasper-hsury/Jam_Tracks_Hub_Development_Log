@@ -821,5 +821,65 @@
       { "kind": "commit", "label": "Commit b2d13f4", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/b2d13f4a17577c85797148198eea117524b7a22d" },
       { "kind": "release", "label": "Release v3.5.2", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.5.2" }
     ]
+  },
+  {
+    "id": "event-20261017-release-v3-5-3",
+    "date": "2026-10-17",
+    "sequence": 10,
+    "title": { "en": "v3.5.3 tidies wording and search details", "zhTW": "v3.5.3 整理文字與搜尋設定" },
+    "summary": { "en": "Inner pages now follow one set of rules for taglines, section headings, buttons and links, and search engines get clean page addresses and a sitemap.", "zhTW": "內頁的標語、段落標題、按鈕與連結改用同一套規則，搜尋引擎也取得乾淨的頁面網址與網站地圖。" },
+    "details": { "en": "Every inner page tagline became the accent red, section headings share one size, and buttons share one height and weight. Backing Tracks, Chord Progressions and Progression Writer got their own taglines instead of reusing the homepage line, the privacy page dropped its brand prefix, and back links read \"Back to Home\" without an arrow. Each page now declares its clean address, a sitemap lists the 12 public pages, and Song Workspace gained the sharing preview the other pages already had.", "zhTW": "所有內頁標語改為強調紅色，段落標題統一大小，按鈕也統一高度與字重。即興伴奏、和弦進行與和弦進行編寫器有了各自的標語，不再沿用首頁標語；隱私權頁面拿掉品牌前綴，返回連結改為不帶箭頭的「回到首頁」。每個頁面都宣告乾淨的網址，網站地圖列出 12 個公開頁面，歌曲工作區也補上其他頁面已有的分享預覽。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-jam-tracks-hub", "product-tracks", "product-chord-dictionary", "product-scale-explorer", "product-key-finder", "product-chord-progressions", "product-progression-writer", "product-fretboard-trainer", "product-song-workspace", "product-feedback", "product-legal", "product-privacy"],
+    "status": "released",
+    "releaseId": "release-v3.5.3",
+    "keywords": ["Liner Notes", "consistency", "SEO", "sitemap", "taglines"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #94", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/94" },
+      { "kind": "commit", "label": "Commit b927bae", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/b927bae4d3d6fbb1d76ec3c216fcbbedc5617b6a" },
+      { "kind": "release", "label": "Release v3.5.3", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v3.5.3" }
+    ]
+  },
+  {
+    "id": "event-20261018-release-v4-0-0",
+    "date": "2026-10-18",
+    "sequence": 10,
+    "title": { "en": "v4.0.0 moves the site to the Jazz Stage design", "zhTW": "v4.0.0 全站改為 Jazz Stage 設計" },
+    "summary": { "en": "Every page moved from the Liner Notes paper look to a jazz record stage with navy and cream, a yellow rule, rounded trays and condensed capital titles, in a day theme and a night theme.", "zhTW": "所有頁面從 Liner Notes 的紙張風格改為爵士唱片舞台：深藍與米白、黃色線條、圓角托盤與窄體大寫標題，並分為白天與夜晚兩種主題。" },
+    "details": { "en": "The day theme, still the default, pairs warm paper with navy text and teal accents; the night theme uses deep navy with cream text and yellow accents. Each theme shows its own homepage line: \"House lights up. Let's rehearse.\" by day and \"Lights down. You're on.\" at night. The homepage title became JAM TRACKS HUB in Anton capitals beside the red record sleeve on a navy stage, and the record slides out on hover like the Backing Tracks records; the handwritten title from v3.5.0 was retired. Page titles use Anton, section headings keep DM Serif Display and body text uses Work Sans. Buttons and fields now use the site font everywhere, and the Scale Explorer download became a v4-style image with a light or dark background. Saved theme and language settings carried over, and no tools or content were removed.", "zhTW": "白天主題仍是預設，以溫暖紙色搭配深藍文字與青綠強調色；夜晚主題採用深藍底、米白文字與黃色強調色。兩種主題在首頁各有一句標語：白天是「燈光亮起，來排練吧。」，夜晚是「燈光暗下，換你上場。」。首頁標題改為 Anton 大寫的 JAM TRACKS HUB，旁邊是放在深藍舞台上的紅色唱片封套，滑鼠移上時唱片會像即興伴奏頁的唱片一樣滑出；v3.5.0 的手寫標題因此退役。頁面標題使用 Anton，段落標題維持 DM Serif Display，內文使用 Work Sans。按鈕與輸入欄位全面改用網站字體，音階探索器的下載圖也改為 v4 風格，並可選擇淺色或深色背景。已儲存的主題與語言設定沿用，沒有移除任何工具或內容。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-jam-tracks-hub", "product-homepage", "product-tracks", "product-chord-dictionary", "product-scale-explorer", "product-key-finder", "product-chord-progressions", "product-progression-writer", "product-fretboard-trainer", "product-song-workspace", "product-feedback", "product-legal", "product-privacy", "product-service-support"],
+    "status": "released",
+    "releaseId": "release-v4.0.0",
+    "keywords": ["Jazz Stage", "redesign", "day theme", "night theme", "Anton", "homepage"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #97", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/97" },
+      { "kind": "commit", "label": "Commit 8f8f979", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/8f8f9798f4fe734a8bd9281ca67b424c399b3314" },
+      { "kind": "release", "label": "Release v4.0.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.0.0" }
+    ]
+  },
+  {
+    "id": "event-20261019-release-v4-0-1",
+    "date": "2026-10-19",
+    "sequence": 10,
+    "title": { "en": "v4.0.1 polishes the Scale Explorer image", "zhTW": "v4.0.1 細修音階探索器圖片" },
+    "summary": { "en": "The downloaded scale image now follows the page language, and its light or dark background switch turns yellow on hover.", "zhTW": "下載的音階圖片改為跟隨頁面語言，淺色／深色背景切換在滑鼠移上時改為黃色。" },
+    "details": { "en": "In Traditional Chinese the image now reads 吉他音階圖, 標準調弦, 弦 and 保留所有權利 instead of English, and it waits for the fonts those labels need. The unselected background option no longer fades into the navy panel in the day theme. Homepage styles left over from v3 that no longer applied were removed without changing how the homepage looks.", "zhTW": "繁體中文介面下載的圖片改為顯示「吉他音階圖」、「標準調弦」、「弦」與「保留所有權利」等中文文字，並會等待這些文字所需的字型載入。白天主題中未選取的背景選項不再融入深藍面板。另外移除了 v3 遺留、已不再套用的首頁樣式，首頁外觀不變。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-scale-explorer"],
+    "status": "released",
+    "releaseId": "release-v4.0.1",
+    "keywords": ["Jazz Stage", "Scale Explorer", "image download", "Traditional Chinese"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #98", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/98" },
+      { "kind": "commit", "label": "Commit c8131f8", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/c8131f859ff8fd96a61bd413fad746fcd9abef9f" },
+      { "kind": "release", "label": "Release v4.0.1", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.0.1" }
+    ]
   }
 ]

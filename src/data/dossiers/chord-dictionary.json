@@ -3,7 +3,7 @@
   "productId": "product-chord-dictionary",
   "slug": "chord-dictionary",
   "status": "published",
-  "latestSignificantUpdate": "2026-10-15",
+  "latestSignificantUpdate": "2026-10-18",
   "hero": {
     "classification": "verified",
     "text": {
@@ -211,7 +211,8 @@
           "title": { "en": "Vue-owned frontend", "zhTW": "Vue 管理的前端" },
           "body": { "classification": "verified", "text": { "en": "Chord Dictionary joined the completed v2.0.5 Vue migration while retaining its reference, filtering, diagram, and playback behavior.", "zhTW": "和弦字典納入 v2.0.5 完成的 Vue 遷移，同時保留參考、篩選、圖表與播放行為。" } }
         },
-        { "date": "2026-10-15", "eventId": "event-20261015-release-v3-2-0", "impact": "direct", "title": { "en": "Liner Notes restyle", "zhTW": "Liner Notes 改版" }, "body": { "classification": "verified", "text": { "en": "v3.2.0 (PR #86) moved Chord Dictionary to the Liner Notes style with a shared heading, flat panels, cocoa selections, and rounded controls; the selected chord, its facts, and related links are grouped in a cocoa band, and finger dots on the outer strings stay inside their cards. Features did not change.", "zhTW": "v3.2.0（PR #86）將和弦字典改為 Liner Notes 風格，採用共用標題、平面面板、可可色選取狀態與圓角控制項；所選和弦、和弦資訊與相關連結集中於可可色色帶中，外側弦上的指法圓點也保持在卡片內。功能均未改變。" } } }
+        { "date": "2026-10-15", "eventId": "event-20261015-release-v3-2-0", "impact": "direct", "title": { "en": "Liner Notes restyle", "zhTW": "Liner Notes 改版" }, "body": { "classification": "verified", "text": { "en": "v3.2.0 (PR #86) moved Chord Dictionary to the Liner Notes style with a shared heading, flat panels, cocoa selections, and rounded controls; the selected chord, its facts, and related links are grouped in a cocoa band, and finger dots on the outer strings stay inside their cards. Features did not change.", "zhTW": "v3.2.0（PR #86）將和弦字典改為 Liner Notes 風格，採用共用標題、平面面板、可可色選取狀態與圓角控制項；所選和弦、和弦資訊與相關連結集中於可可色色帶中，外側弦上的指法圓點也保持在卡片內。功能均未改變。" } } },
+        { "date": "2026-10-18", "eventId": "event-20261018-release-v4-0-0", "impact": "direct", "title": { "en": "Jazz Stage restyle", "zhTW": "Jazz Stage 改版" }, "body": { "classification": "verified", "text": { "en": "v4.0.0 (PR #97) moved the page to the Jazz Stage design with rounded trays, a yellow rule, Anton page titles and one selected style in both themes; buttons now use the site font. Features did not change.", "zhTW": "v4.0.0（PR #97）將此頁面改為 Jazz Stage 設計，採用圓角托盤、黃色線條、Anton 頁面標題，兩種主題也使用同一種選取樣式；按鈕改用網站字體。功能均未改變。" } } }
       ]
     },
     {
@@ -252,8 +253,8 @@
   "currentState": {
     "classification": "verified",
     "text": {
-      "en": "Chord Dictionary is a Vue-owned public page at /chord-dictionary.html with English and Traditional Chinese, light/dark themes, symbol lookup, generated voicings, multiple shape filters, audio playback, responsive layouts, shared navigation, and links into related tools. Since v3.2.0 (PR #86), the page uses the Liner Notes design.",
-      "zhTW": "和弦字典目前是由 Vue 管理、位於 /chord-dictionary.html 的公開頁面，支援英文與繁體中文、明暗主題、符號查詢、產生式配置、多重指型篩選、音訊播放、響應式版面、共用導覽與相關工具連結。自 v3.2.0（PR #86）起，此頁面採用 Liner Notes 設計。"
+      "en": "Chord Dictionary is a Vue-owned public page at /chord-dictionary.html with English and Traditional Chinese, light/dark themes, symbol lookup, generated voicings, multiple shape filters, audio playback, responsive layouts, shared navigation, and links into related tools. The page adopted the Liner Notes design in v3.2.0 (PR #86) and, since v4.0.0 (PR #97), uses the Jazz Stage design.",
+      "zhTW": "和弦字典目前是由 Vue 管理、位於 /chord-dictionary.html 的公開頁面，支援英文與繁體中文、明暗主題、符號查詢、產生式配置、多重指型篩選、音訊播放、響應式版面、共用導覽與相關工具連結。此頁面於 v3.2.0（PR #86）採用 Liner Notes 設計，自 v4.0.0（PR #97）起改用 Jazz Stage 設計。"
     }
   },
   "lessons": [
@@ -276,7 +277,9 @@
     "event-20260625-chord-dictionary-launch",
     "event-20260905-release-v2-0-5",
     "event-20261015-release-v3-2-0",
-    "event-20261016-release-v3-5-2"
+    "event-20261016-release-v3-5-2",
+    "event-20261017-release-v3-5-3",
+    "event-20261018-release-v4-0-0"
   ],
   "sourceRefs": [
     {

@@ -3,7 +3,7 @@
   "productId": "product-key-finder",
   "slug": "key-finder",
   "status": "published",
-  "latestSignificantUpdate": "2026-10-15",
+  "latestSignificantUpdate": "2026-10-18",
   "hero": {
     "classification": "verified",
     "text": { "en": "An audio-analysis tool that estimates a song's likely musical key and explains ranked evidence.", "zhTW": "分析音訊、估計歌曲可能調性並解釋排序證據的工具。" }
@@ -62,7 +62,8 @@
         { "date": "2026-08-30", "eventId": "event-20260830-release-v1-4-tag", "impact": "shared", "title": { "en": "v1.4.0 tag checkpoint", "zhTW": "v1.4.0 標籤檢查點" }, "body": { "classification": "verified", "text": { "en": "The v1.4.0 Git tag exists, but no published GitHub Release was found.", "zhTW": "v1.4.0 Git 標籤存在，但找不到已發布的 GitHub Release。" } } },
         { "date": "2026-08-30", "eventId": "event-20260830-release-v2-0-0", "impact": "shared", "title": { "en": "v2.0.0 published checkpoint", "zhTW": "v2.0.0 已發布檢查點" }, "body": { "classification": "verified", "text": { "en": "The published release summarized production protection at a public-safe level.", "zhTW": "已發布版本以公開安全層次概述正式環境保護。" } } },
         { "date": "2026-09-04", "eventId": "event-20260904-key-finder-vue-migration", "impact": "direct", "title": { "en": "Frontend moves to Vue", "zhTW": "前端遷移至 Vue" }, "body": { "classification": "verified", "text": { "en": "Key Finder became Vue-owned while its protected request path, Render compute, and analysis responsibilities remained unchanged.", "zhTW": "調性偵測器改由 Vue 管理，同時受保護請求路徑、Render 運算與分析職責維持不變。" } } },
-        { "date": "2026-10-15", "eventId": "event-20261015-release-v3-2-0", "impact": "direct", "title": { "en": "Liner Notes restyle", "zhTW": "Liner Notes 改版" }, "body": { "classification": "verified", "text": { "en": "v3.2.0 (PR #86) moved Key Finder to the Liner Notes style with a shared heading, flat panels, cocoa selections, and rounded controls; the analyzer uses a flat panel, a dashed upload zone, and square result cards, while the analysis flow and history are unchanged. Features did not change.", "zhTW": "v3.2.0（PR #86）將調性偵測器改為 Liner Notes 風格，採用共用標題、平面面板、可可色選取狀態與圓角控制項；分析器改用平面面板、虛線上傳區與方形結果卡，分析流程與紀錄則維持不變。功能均未改變。" } } }
+        { "date": "2026-10-15", "eventId": "event-20261015-release-v3-2-0", "impact": "direct", "title": { "en": "Liner Notes restyle", "zhTW": "Liner Notes 改版" }, "body": { "classification": "verified", "text": { "en": "v3.2.0 (PR #86) moved Key Finder to the Liner Notes style with a shared heading, flat panels, cocoa selections, and rounded controls; the analyzer uses a flat panel, a dashed upload zone, and square result cards, while the analysis flow and history are unchanged. Features did not change.", "zhTW": "v3.2.0（PR #86）將調性偵測器改為 Liner Notes 風格，採用共用標題、平面面板、可可色選取狀態與圓角控制項；分析器改用平面面板、虛線上傳區與方形結果卡，分析流程與紀錄則維持不變。功能均未改變。" } } },
+        { "date": "2026-10-18", "eventId": "event-20261018-release-v4-0-0", "impact": "direct", "title": { "en": "Jazz Stage restyle", "zhTW": "Jazz Stage 改版" }, "body": { "classification": "verified", "text": { "en": "v4.0.0 (PR #97) moved the page to the Jazz Stage design with rounded trays, a yellow rule, Anton page titles and one selected style in both themes; buttons now use the site font. Features did not change.", "zhTW": "v4.0.0（PR #97）將此頁面改為 Jazz Stage 設計，採用圓角托盤、黃色線條、Anton 頁面標題，兩種主題也使用同一種選取樣式；按鈕改用網站字體。功能均未改變。" } } }
       ]
     },
     {
@@ -77,7 +78,7 @@
   ],
   "currentState": {
     "classification": "verified",
-    "text": { "en": "Key Finder is a Vue-owned public bilingual frontend whose protected request path reaches the existing Render compute and analysis pipeline. The frontend migration did not move analysis responsibilities. This dossier intentionally does not disclose secrets, protection expressions, thresholds, bypass logic, or private provider mechanics. Since v3.2.0 (PR #86), the page uses the Liner Notes design.", "zhTW": "調性偵測器目前是由 Vue 管理的公開雙語前端，其受保護請求路徑會到達既有 Render 運算與分析管線。此次前端遷移未移動分析職責。本檔案刻意不揭露秘密、保護運算式、門檻、繞過邏輯或供應商私人機制。自 v3.2.0（PR #86）起，此頁面採用 Liner Notes 設計。" }
+    "text": { "en": "Key Finder is a Vue-owned public bilingual frontend whose protected request path reaches the existing Render compute and analysis pipeline. The frontend migration did not move analysis responsibilities. This dossier intentionally does not disclose secrets, protection expressions, thresholds, bypass logic, or private provider mechanics. The page adopted the Liner Notes design in v3.2.0 (PR #86) and, since v4.0.0 (PR #97), uses the Jazz Stage design.", "zhTW": "調性偵測器目前是由 Vue 管理的公開雙語前端，其受保護請求路徑會到達既有 Render 運算與分析管線。此次前端遷移未移動分析職責。本檔案刻意不揭露秘密、保護運算式、門檻、繞過邏輯或供應商私人機制。此頁面於 v3.2.0（PR #86）採用 Liner Notes 設計，自 v4.0.0（PR #97）起改用 Jazz Stage 設計。" }
   },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "For remote musical analysis, status and failure behavior are core interface states, not implementation footnotes.", "zhTW": "對遠端音樂分析而言，狀態與失敗行為是核心介面狀態，而非實作附註。" } },
@@ -94,7 +95,9 @@
     "event-20260904-key-finder-vue-migration",
     "event-20260905-release-v2-0-5",
     "event-20261015-release-v3-2-0",
-    "event-20261016-release-v3-5-2"
+    "event-20261016-release-v3-5-2",
+    "event-20261017-release-v3-5-3",
+    "event-20261018-release-v4-0-0"
   ],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Dedicated page commit 3b7d52d", "zhTW": "獨立頁面 commit 3b7d52d" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/3b7d52d" },

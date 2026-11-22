@@ -3,7 +3,7 @@
   "productId": "product-song-workspace",
   "slug": "song-workspace",
   "status": "published",
-  "latestSignificantUpdate": "2026-10-18",
+  "latestSignificantUpdate": "2026-10-21",
   "hero": {
     "classification": "verified",
     "text": { "en": "A local-first workspace for building, editing, saving, importing, exporting, transposing, and performing guitar charts.", "zhTW": "以本機優先方式建立、編輯、儲存、匯入、匯出、移調與演出吉他譜的工作區。" }
@@ -93,7 +93,7 @@
   ],
   "currentState": {
     "classification": "verified",
-    "text": { "en": "The public product is a Vue-owned English/Traditional Chinese, local-first browser workspace with a saved-song library, structured editor, reusable chord diagrams, IndexedDB song storage, separate local preferences, import/export, reading controls, and Performance Mode. Existing saved songs remain compatible. Its public history intentionally excludes user song titles, lyrics, metadata, and local database contents. Song Workspace adopted the Liner Notes design in v3.3.0 (PR #87) and the Jazz Stage design in v4.0.0 (PR #97), while keeping songs and lyrics in the browser.", "zhTW": "目前公開產品是由 Vue 管理、支援英文／繁體中文且以本機優先的瀏覽器工作區，含已儲存歌曲資料庫、結構化編輯器、可重用和弦圖、IndexedDB 歌曲儲存、分開的本機偏好、匯入／匯出、閱讀控制與演出模式。既有已儲存歌曲維持相容。其公開歷史刻意排除使用者歌曲標題、歌詞、中繼資料與本機資料庫內容。歌曲工作區於 v3.3.0（PR #87）採用 Liner Notes 設計，並於 v4.0.0（PR #97）改用 Jazz Stage 設計，歌曲與歌詞仍只保存在瀏覽器中。" }
+    "text": { "en": "The public product is a Vue-owned English/Traditional Chinese, local-first browser workspace with a saved-song library, structured editor, reusable chord diagrams, IndexedDB song storage, separate local preferences, import/export, reading controls, and Performance Mode. Existing saved songs remain compatible. Its public history intentionally excludes user song titles, lyrics, metadata, and local database contents. Song Workspace adopted the Liner Notes design in v3.3.0 (PR #87) and the Jazz Stage design in v4.0.0 (PR #97), while keeping songs and lyrics in the browser. v4.0.3 (PR #101) restored Print / PDF, v4.0.4 (PR #103) corrected extended-chord labels, and v4.0.5 (PR #105) gave its menus the site's rounded fields in Safari.", "zhTW": "目前公開產品是由 Vue 管理、支援英文／繁體中文且以本機優先的瀏覽器工作區，含已儲存歌曲資料庫、結構化編輯器、可重用和弦圖、IndexedDB 歌曲儲存、分開的本機偏好、匯入／匯出、閱讀控制與演出模式。既有已儲存歌曲維持相容。其公開歷史刻意排除使用者歌曲標題、歌詞、中繼資料與本機資料庫內容。歌曲工作區於 v3.3.0（PR #87）採用 Liner Notes 設計，並於 v4.0.0（PR #97）改用 Jazz Stage 設計，歌曲與歌詞仍只保存在瀏覽器中。v4.0.3（PR #101）修好列印／PDF，v4.0.4（PR #103）修正延伸和弦標示，v4.0.5（PR #105）則讓選單在 Safari 中也使用網站的圓角欄位。" }
   },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "Local-first is a product architecture, not only a storage choice: disclosures, imports, exports, validation, and recovery all have to reinforce the same boundary.", "zhTW": "本機優先是產品架構，不只是儲存選擇：揭露、匯入、匯出、驗證與復原都必須強化同一邊界。" } },
@@ -117,7 +117,10 @@
     "event-20261015-release-v3-3-0",
     "event-20261016-release-v3-5-2",
     "event-20261017-release-v3-5-3",
-    "event-20261018-release-v4-0-0"
+    "event-20261018-release-v4-0-0",
+    "event-20261019-release-v4-0-3",
+    "event-20261021-release-v4-0-4",
+    "event-20261021-release-v4-0-5"
   ],
   "sourceRefs": [
     { "kind": "pr", "label": { "en": "Song Workspace v1.0.0 PR #5", "zhTW": "歌曲工作區 v1.0.0 PR #5" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/5" },

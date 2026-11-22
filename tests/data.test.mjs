@@ -74,13 +74,13 @@ test("security events require high-level disclosure markers", async () => {
   assert.deepEqual(scanPublicContent(data), []);
 });
 
-test("release rules preserve tag-only v1.4.0 and latest published v4.0.1", async () => {
+test("release rules preserve tag-only v1.4.0 and latest published v4.1.1", async () => {
   const data = await loadData();
   const tagOnly = data.releases.find((release) => release.version === "v1.4.0");
   assert.equal(tagOnly.status, "tag_only");
   assert.equal(tagOnly.releaseUrl, undefined);
   assert.equal(tagOnly.tagUrl, "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0");
-  assert.equal(deriveData(data).latestPublishedRelease.version, "v4.0.1");
+  assert.equal(deriveData(data).latestPublishedRelease.version, "v4.1.1");
   const brokenPublished = clone(data);
   delete brokenPublished.releases.find((release) => release.status === "published").releaseUrl;
   assert.match(validateData(brokenPublished).join("\n"), /published release URL required/);
@@ -178,7 +178,7 @@ test("v3.0.0 through v3.4.0 record the Liner Notes redesign in Taipei time", asy
     for (const lang of ["en", "zhTW"]) assert.ok(event.details[lang].trim());
   }
   assert.equal(data.releases.find((item) => item.version === "v3.2.0").date, "2026-10-15");
-  const newest = context.sortedEvents.slice(6, 11).map((event) => event.id);
+  const newest = context.sortedEvents.slice(12, 17).map((event) => event.id);
   assert.deepEqual(newest, [
     "event-20261015-release-v3-4-0",
     "event-20261015-release-v3-3-0",
@@ -215,7 +215,7 @@ test("v3.5.3 through v4.0.1 record the polish, the Jazz Stage redesign and the i
     assert.ok(event.sourceRefs.some((ref) => ref.kind === "release" && ref.url === release.releaseUrl));
     for (const lang of ["en", "zhTW"]) assert.ok(event.details[lang].trim());
   }
-  assert.deepEqual(context.sortedEvents.slice(0, 3).map((event) => event.id), [
+  assert.deepEqual(context.sortedEvents.slice(6, 9).map((event) => event.id), [
     "event-20261019-release-v4-0-1",
     "event-20261018-release-v4-0-0",
     "event-20261017-release-v3-5-3"
@@ -227,6 +227,61 @@ test("v3.5.3 through v4.0.1 record the polish, the Jazz Stage redesign and the i
     assert.ok(dossiers.get(slug).relatedEventIds.includes("event-20261017-release-v3-5-3"), `${slug} links v3.5.3`);
   }
   assert.ok(dossiers.get("scale-explorer").relatedEventIds.includes("event-20261019-release-v4-0-1"));
+  assert.deepEqual(validateData(data), []);
+});
+
+test("v4.0.2 through v4.1.1 record the v4 polish, Chord Lab and the Key Finder console fix in Taipei time", async () => {
+  const data = await loadData();
+  const context = deriveData(data);
+  const localDate = (utc) => new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Taipei", year: "numeric", month: "2-digit", day: "2-digit"
+  }).format(new Date(utc));
+  const expected = [
+    ["4.0.2", 100, "ba3f7019b54852484bd6ff32dfd2a4eafa6280d4", "2026-10-19T04:08:51Z", "2026-10-19T04:17:29Z", ["product-homepage"]],
+    ["4.0.3", 101, "8b761be0b4691ddd57a5bf2a8ab9757f56cb0f86", "2026-10-19T13:27:44Z", "2026-10-19T13:44:05Z", ["product-jam-tracks-hub", "product-tracks", "product-progression-writer", "product-song-workspace"]],
+    ["4.0.4", 103, "80c4bec3bd4dd77a70fe83625853479d685d1dba", "2026-10-21T00:00:01Z", "2026-10-21T00:21:28Z", ["product-chord-dictionary", "product-progression-writer", "product-song-workspace"]],
+    ["4.0.5", 105, "a55e38eb143b3c9221c8b204c204d92056bc6822", "2026-10-21T06:24:52Z", "2026-10-21T06:33:14Z", ["product-homepage", "product-progression-writer", "product-song-workspace"]],
+    ["4.1.0", 129, "021c740f0a56d8fbf117b13bbc27c7eed116930a", "2026-11-22T12:58:40Z", "2026-11-22T13:21:42Z", ["product-chord-lab"]],
+    ["4.1.1", 130, "e00292c872d8f38bcbb42a5455cb90e039758207", "2026-11-22T13:11:40Z", "2026-11-22T13:17:19Z", ["product-key-finder"]]
+  ];
+  for (const [version, pr, tagCommit, mergedAt, publishedAt, products] of expected) {
+    const release = data.releases.find((item) => item.id === `release-v${version}`);
+    assert.equal(release?.status, "published");
+    assert.equal(release.tagCommit, tagCommit);
+    assert.equal(release.date, localDate(publishedAt));
+    const [event] = context.releaseChildren.get(release.id);
+    assert.equal(event.id, `event-${localDate(mergedAt).replaceAll("-", "")}-release-v${version.replaceAll(".", "-")}`);
+    assert.equal(event.date, localDate(mergedAt));
+    assert.equal(event.categoryId, "release");
+    for (const product of products) assert.ok(event.productIds.includes(product), `${version} lists ${product}`);
+    assert.ok(event.sourceRefs.some((ref) => ref.kind === "pr" && ref.url.endsWith(`/pull/${pr}`)));
+    assert.ok(event.sourceRefs.some((ref) => ref.kind === "commit" && ref.url.endsWith(`/${tagCommit}`)));
+    assert.ok(event.sourceRefs.some((ref) => ref.kind === "release" && ref.url === release.releaseUrl));
+    for (const lang of ["en", "zhTW"]) assert.ok(event.details[lang].trim());
+  }
+  assert.deepEqual(context.sortedEvents.slice(0, 6).map((event) => event.id), [
+    "event-20261122-release-v4-1-1",
+    "event-20261122-release-v4-1-0",
+    "event-20261021-release-v4-0-5",
+    "event-20261021-release-v4-0-4",
+    "event-20261019-release-v4-0-3",
+    "event-20261019-release-v4-0-2"
+  ]);
+  const chordLab = context.productById.get("product-chord-lab");
+  assert.equal(chordLab?.kind, "tool");
+  assert.ok(context.visibleProducts.findIndex((product) => product.id === "product-chord-lab") === context.visibleProducts.findIndex((product) => product.id === "product-chord-dictionary") + 1);
+  assert.equal(context.productStats.get("product-chord-lab").publishedDate, "2026-11-22");
+  assert.equal(context.releaseChildren.get("release-v4.1.0")[0].kind, "page_launch");
+  const dossiers = new Map(data.dossiers.map((dossier) => [dossier.slug, dossier]));
+  for (const [slug, eventId] of [
+    ["homepage", "event-20261019-release-v4-0-2"],
+    ["tracks", "event-20261019-release-v4-0-3"],
+    ["chord-dictionary", "event-20261021-release-v4-0-4"],
+    ["progression-writer", "event-20261021-release-v4-0-5"],
+    ["song-workspace", "event-20261021-release-v4-0-5"],
+    ["key-finder", "event-20261122-release-v4-1-1"]
+  ]) assert.ok(dossiers.get(slug).relatedEventIds.includes(eventId), `${slug} links ${eventId}`);
+  assert.match(dossiers.get("chord-dictionary").currentState.text.en, /Chord Lab \(v4\.1\.0, PR #129\)/);
   assert.deepEqual(validateData(data), []);
 });
 
@@ -255,7 +310,7 @@ test("v3.5.0 through v3.5.2 record the handwritten title and layout fixes in Tai
     assert.ok(event.sourceRefs.some((ref) => ref.kind === "release" && ref.url === release.releaseUrl));
     for (const lang of ["en", "zhTW"]) assert.ok(event.details[lang].trim());
   }
-  assert.deepEqual(context.sortedEvents.slice(3, 6).map((event) => event.id), [
+  assert.deepEqual(context.sortedEvents.slice(9, 12).map((event) => event.id), [
     "event-20261016-release-v3-5-2",
     "event-20261016-release-v3-5-1",
     "event-20261016-release-v3-5-0"
@@ -273,6 +328,15 @@ test("affected dossiers align with the release, Vue migration, and Liner Notes h
   const data = await loadData();
   const dossiers = new Map(data.dossiers.map((dossier) => [dossier.slug, dossier]));
   const commonVueEvent = "event-20260905-release-v2-0-5";
+  const latestUpdates = {
+    "scale-explorer": "2026-10-19",
+    tracks: "2026-10-19",
+    homepage: "2026-10-21",
+    "chord-dictionary": "2026-10-21",
+    "progression-writer": "2026-10-21",
+    "song-workspace": "2026-10-21",
+    "key-finder": "2026-11-22"
+  };
 
   for (const slug of [
     "homepage",
@@ -286,7 +350,7 @@ test("affected dossiers align with the release, Vue migration, and Liner Notes h
     "song-workspace"
   ]) {
     const dossier = dossiers.get(slug);
-    assert.equal(dossier?.latestSignificantUpdate, slug === "scale-explorer" ? "2026-10-19" : "2026-10-18");
+    assert.equal(dossier?.latestSignificantUpdate, latestUpdates[slug] || "2026-10-18");
     assert.match(`${dossier?.currentState.text.en} ${dossier?.currentState.text.zhTW}`, /Jazz Stage/);
     assert.ok(dossier?.relatedEventIds.includes("event-20261018-release-v4-0-0"), `${slug} links v4.0.0`);
     assert.ok(dossier?.relatedEventIds.some((id) => /^event-2026101[45]-release-v3-/.test(id)), `${slug} links its v3 release`);

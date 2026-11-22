@@ -272,6 +272,8 @@ test("v4.0.2 through v4.1.1 record the v4 polish, Chord Lab and the Key Finder c
   assert.ok(context.visibleProducts.findIndex((product) => product.id === "product-chord-lab") === context.visibleProducts.findIndex((product) => product.id === "product-chord-dictionary") + 1);
   assert.equal(context.productStats.get("product-chord-lab").publishedDate, "2026-11-22");
   assert.equal(context.releaseChildren.get("release-v4.1.0")[0].kind, "page_launch");
+  assert.equal(context.releaseChildren.get("release-v4.1.1")[0].level, "normal");
+  assert.equal(context.sortedEvents.find((event) => event.level === "primary").id, "event-20261122-release-v4-1-0");
   const dossiers = new Map(data.dossiers.map((dossier) => [dossier.slug, dossier]));
   for (const [slug, eventId] of [
     ["homepage", "event-20261019-release-v4-0-2"],

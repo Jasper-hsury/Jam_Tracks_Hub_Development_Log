@@ -990,7 +990,7 @@
     "summary": { "en": "Key Finder no longer checks for the optional local YouTube helper while the page loads, which had logged a console error on every visit.", "zhTW": "調性偵測器不再於頁面載入時檢查選用的本機 YouTube 輔助程式，先前這項檢查在每次造訪都會留下主控台錯誤。" },
     "details": { "en": "The site's security policy blocks those checks, so they never succeeded on the public site. The YouTube status now shows the site analyzer straight away, which is what visitors already saw once the check failed. The helper is still tried when you ask for it, and the security policy stayed unchanged. No tools, content or layouts changed.", "zhTW": "網站的安全政策會擋下這些檢查，所以它們在公開網站上從未成功。YouTube 狀態現在直接顯示網站分析器，這也是檢查失敗後訪客原本就會看到的內容。使用者主動要求時仍會嘗試使用輔助程式，安全政策也維持不變。沒有變更任何工具、內容或版面。" },
     "kind": "product_update",
-    "level": "primary",
+    "level": "normal",
     "categoryId": "release",
     "productIds": ["product-key-finder"],
     "status": "released",

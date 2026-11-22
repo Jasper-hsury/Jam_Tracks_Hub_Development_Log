@@ -3,7 +3,7 @@
   "productId": "product-key-finder",
   "slug": "key-finder",
   "status": "published",
-  "latestSignificantUpdate": "2026-10-18",
+  "latestSignificantUpdate": "2026-11-22",
   "hero": {
     "classification": "verified",
     "text": { "en": "An audio-analysis tool that estimates a song's likely musical key and explains ranked evidence.", "zhTW": "分析音訊、估計歌曲可能調性並解釋排序證據的工具。" }
@@ -78,7 +78,7 @@
   ],
   "currentState": {
     "classification": "verified",
-    "text": { "en": "Key Finder is a Vue-owned public bilingual frontend whose protected request path reaches the existing Render compute and analysis pipeline. The frontend migration did not move analysis responsibilities. This dossier intentionally does not disclose secrets, protection expressions, thresholds, bypass logic, or private provider mechanics. The page adopted the Liner Notes design in v3.2.0 (PR #86) and, since v4.0.0 (PR #97), uses the Jazz Stage design.", "zhTW": "調性偵測器目前是由 Vue 管理的公開雙語前端，其受保護請求路徑會到達既有 Render 運算與分析管線。此次前端遷移未移動分析職責。本檔案刻意不揭露秘密、保護運算式、門檻、繞過邏輯或供應商私人機制。此頁面於 v3.2.0（PR #86）採用 Liner Notes 設計，自 v4.0.0（PR #97）起改用 Jazz Stage 設計。" }
+    "text": { "en": "Key Finder is a Vue-owned public bilingual frontend whose protected request path reaches the existing Render compute and analysis pipeline. The frontend migration did not move analysis responsibilities. This dossier intentionally does not disclose secrets, protection expressions, thresholds, bypass logic, or private provider mechanics. The page adopted the Liner Notes design in v3.2.0 (PR #86) and, since v4.0.0 (PR #97), uses the Jazz Stage design. Since v4.1.1 (PR #130), the public page no longer checks for the optional local YouTube helper as it loads.", "zhTW": "調性偵測器目前是由 Vue 管理的公開雙語前端，其受保護請求路徑會到達既有 Render 運算與分析管線。此次前端遷移未移動分析職責。本檔案刻意不揭露秘密、保護運算式、門檻、繞過邏輯或供應商私人機制。此頁面於 v3.2.0（PR #86）採用 Liner Notes 設計，自 v4.0.0（PR #97）起改用 Jazz Stage 設計。自 v4.1.1（PR #130）起，公開頁面不再於載入時檢查選用的本機 YouTube 輔助程式。" }
   },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "For remote musical analysis, status and failure behavior are core interface states, not implementation footnotes.", "zhTW": "對遠端音樂分析而言，狀態與失敗行為是核心介面狀態，而非實作附註。" } },
@@ -97,7 +97,8 @@
     "event-20261015-release-v3-2-0",
     "event-20261016-release-v3-5-2",
     "event-20261017-release-v3-5-3",
-    "event-20261018-release-v4-0-0"
+    "event-20261018-release-v4-0-0",
+    "event-20261122-release-v4-1-1"
   ],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Dedicated page commit 3b7d52d", "zhTW": "獨立頁面 commit 3b7d52d" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/3b7d52d" },

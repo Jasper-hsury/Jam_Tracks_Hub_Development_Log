@@ -881,5 +881,125 @@
       { "kind": "commit", "label": "Commit c8131f8", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/c8131f859ff8fd96a61bd413fad746fcd9abef9f" },
       { "kind": "release", "label": "Release v4.0.1", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.0.1" }
     ]
+  },
+  {
+    "id": "event-20261019-release-v4-0-2",
+    "date": "2026-10-19",
+    "sequence": 20,
+    "title": { "en": "v4.0.2 fixes the tablet homepage and adds a title entrance", "zhTW": "v4.0.2 修正平板首頁並加入標題進場" },
+    "summary": { "en": "The homepage opening is now left-aligned on tablets like on phones and desktops, and JAM, TRACKS, HUB and the volume line rise into place one after another when the page opens.", "zhTW": "平板上的首頁開場改為與手機、桌機一致的靠左對齊；頁面開啟時，JAM、TRACKS、HUB 與期數文字會依序升起。" },
+    "details": { "en": "Before, the volume line, tagline and intro were centred under a left-aligned title on tablets. On tablets held upright the title now sits beside the record instead of above it, and the writing on the record sleeve resizes with the sleeve so its line is no longer cut off. The entrance takes about a second, plays once without a flash, and is skipped when the device asks for reduced motion. Desktop and phone layouts did not change.", "zhTW": "先前平板上的期數、標語與介紹文字置中，卻排在靠左的標題下方。直立平板上的標題現在放在唱片旁邊而不是上方，唱片封套上的文字也會跟著封套縮放，不再被裁切。進場動畫約一秒、只播放一次且不會先閃現；裝置要求減少動態效果時則直接顯示。桌機與手機版面不變。" },
+    "kind": "product_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-homepage"],
+    "status": "released",
+    "releaseId": "release-v4.0.2",
+    "keywords": ["Jazz Stage", "homepage", "tablet", "animation"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #100", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/100" },
+      { "kind": "commit", "label": "Commit ba3f701", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/ba3f7019b54852484bd6ff32dfd2a4eafa6280d4" },
+      { "kind": "release", "label": "Release v4.0.2", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.0.2" }
+    ]
+  },
+  {
+    "id": "event-20261019-release-v4-0-3",
+    "date": "2026-10-19",
+    "sequence": 30,
+    "title": { "en": "v4.0.3 brings downloads and chord diagrams into v4", "zhTW": "v4.0.3 讓下載與和弦圖跟上 v4" },
+    "summary": { "en": "Progression Writer images, Song Workspace printouts, track slide pages and link previews now use the v4 look, and chord diagrams get clearer interval colors and cleaner dots.", "zhTW": "和弦進行編寫器圖片、歌曲工作區列印、音軌投影片頁與連結預覽都改用 v4 風格，和弦圖也換上更清楚的音程配色與更乾淨的圓點。" },
+    "details": { "en": "Progression Writer images became a navy stage with the song name and rounded chord cards in day or night colors, with labels in the page language. Song Workspace Print / PDF had been printing a blank page; charts now print in navy on white without the editing buttons. Link previews on LINE, Facebook and other apps show the v4 homepage, because the share image had been missing. Chord diagrams use deep dots with light labels by day and light dots with navy labels at night, dots on neighbouring strings no longer touch, and the guitar shape picker uses the site's rounded cards. On tablets, Latest Releases sits on the left and the homepage buttons are no longer cut off as they appear.", "zhTW": "和弦進行編寫器的圖片改為深藍舞台，放上歌曲名稱與圓角和弦卡，並依主題使用白天或夜晚配色，文字跟隨頁面語言。歌曲工作區的列印／PDF 先前會印出空白頁，現在以白底深藍印出譜面，且不含編輯按鈕。LINE、Facebook 等應用程式的連結預覽改為顯示 v4 首頁，因為先前網站缺少分享圖片。和弦圖白天使用深色圓點配淺色文字、夜晚使用淺色圓點配深藍文字，相鄰弦的圓點不再相連，吉他指型選擇器也改用網站的圓角卡片。平板上的「最新發佈」改為靠左，首頁按鈕在出現時也不再被裁切。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-jam-tracks-hub", "product-homepage", "product-tracks", "product-chord-dictionary", "product-progression-writer", "product-song-workspace"],
+    "status": "released",
+    "releaseId": "release-v4.0.3",
+    "keywords": ["Jazz Stage", "downloads", "print", "chord diagrams", "link previews", "tablet"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #101", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/101" },
+      { "kind": "commit", "label": "Commit 8b761be", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/8b761be0b4691ddd57a5bf2a8ab9757f56cb0f86" },
+      { "kind": "release", "label": "Release v4.0.3", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.0.3" }
+    ]
+  },
+  {
+    "id": "event-20261021-release-v4-0-4",
+    "date": "2026-10-21",
+    "sequence": 10,
+    "title": { "en": "v4.0.4 corrects the labels on extended chords", "zhTW": "v4.0.4 修正延伸和弦的音程標示" },
+    "summary": { "en": "On every 9th, 11th and 13th chord, each diagram dot had shown the wrong interval; Chord Dictionary, Progression Writer, Song Workspace and downloaded images now label every tone correctly.", "zhTW": "所有 9、11、13 和弦的和弦圖圓點先前都標錯音程；和弦字典、和弦進行編寫器、歌曲工作區與下載圖片現在都會正確標示每個音。" },
+    "details": { "en": "On A9, for example, the C# had been marked 5 and the B marked 3. The fix covers 9, maj9, m9, 11, m11, 13, maj13 and m13 chords. Chord Dictionary notes now line up with the formula above them and are spelled correctly, so Ab13's b7 reads Gb rather than F#. Shapes, fingerings and sounds were unchanged; only labels and note names had been wrong. On desktop, Open Song Workspace became the same width as Browse Backing Tracks above it.", "zhTW": "例如在 A9 上，C# 原本被標成 5、B 被標成 3。這次修正涵蓋 9、maj9、m9、11、m11、13、maj13 與 m13 和弦。和弦字典的音名也與上方公式對齊並改用正確拼法，例如 Ab13 的 b7 寫作 Gb 而不是 F#。指型、指法與聲音都沒有變，錯的只有標示與音名。桌機上的「開啟歌曲工作區」按鈕也改為與上方的「瀏覽即興伴奏」同寬。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-homepage", "product-chord-dictionary", "product-progression-writer", "product-song-workspace"],
+    "status": "released",
+    "releaseId": "release-v4.0.4",
+    "keywords": ["chord diagrams", "extended chords", "intervals", "Chord Dictionary", "homepage"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #103", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/103" },
+      { "kind": "commit", "label": "Commit 80c4bec", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/80c4bec3bd4dd77a70fe83625853479d685d1dba" },
+      { "kind": "release", "label": "Release v4.0.4", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.0.4" }
+    ]
+  },
+  {
+    "id": "event-20261021-release-v4-0-5",
+    "date": "2026-10-21",
+    "sequence": 20,
+    "title": { "en": "v4.0.5 tidies form fields", "zhTW": "v4.0.5 整理表單欄位" },
+    "summary": { "en": "After an iPhone report, Progression Writer, Song Workspace and homepage fields were made to share one rounded style with their labels always above.", "zhTW": "在收到 iPhone 使用回報後，和弦進行編寫器、歌曲工作區與首頁的欄位改用同一種圓角樣式，標籤固定顯示在上方。" },
+    "details": { "en": "In Progression Writer, Song Name, Key and BPM now match the chord fields: an empty field no longer hides its label, the label no longer overlaps typed text on iPhone, BPM lost the browser's arrows, and Song Name gets its own row on tablets. Song Workspace menus use the site's rounded fields in Safari instead of Safari's own small menus. On phones, the homepage email field and Subscribe button are stacked so the whole address fits. No tools or content changed.", "zhTW": "在和弦進行編寫器中，歌曲名稱、調性與 BPM 欄位改為與和弦欄位一致：空白欄位不再把標籤藏在裡面，iPhone 上的標籤也不再壓住輸入的文字，BPM 拿掉瀏覽器的上下箭頭，平板上的歌曲名稱也有了自己的一列。歌曲工作區的選單在 Safari 中改用網站的圓角欄位，不再顯示 Safari 自帶的小選單。手機上的首頁電子郵件欄位與訂閱按鈕改為上下排列，完整地址放得下。沒有變更任何工具或內容。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-homepage", "product-progression-writer", "product-song-workspace"],
+    "status": "released",
+    "releaseId": "release-v4.0.5",
+    "keywords": ["forms", "iPhone", "Safari", "Progression Writer", "Song Workspace"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #105", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/105" },
+      { "kind": "commit", "label": "Commit a55e38e", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/a55e38eb143b3c9221c8b204c204d92056bc6822" },
+      { "kind": "release", "label": "Release v4.0.5", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.0.5" }
+    ]
+  },
+  {
+    "id": "event-20261122-release-v4-1-0",
+    "date": "2026-11-22",
+    "sequence": 10,
+    "title": { "en": "v4.1.0 opens Chord Lab", "zhTW": "v4.1.0 推出和弦實驗室" },
+    "summary": { "en": "Chord Lab is a new page for chords beyond the Chord Dictionary: type any chord symbol, such as Gmaj7add13 or D/F#, and get the five best guitar shapes across the neck.", "zhTW": "和弦實驗室是處理和弦字典以外和弦的新頁面：輸入任何和弦符號，例如 Gmaj7add13 或 D/F#，就能得到指板上最好按的五個吉他指型。" },
+    "details": { "en": "Chord Lab reads sevenths, add, sus, 9, 11 and 13, #11, b9 and b13, slash chords, omit, alt, 6 and 6/9, with one or two examples of each next to the field. It shows the chord's tones in the site's chord-tone colors and marks the ones you can leave out. Shapes are ranked by stretch, number of fingers and completeness, and can be re-ranked near a fret or filtered by root. Rootless shapes common in funk and jazz are included and marked, since every other shape on the site includes the root. Any shape can be played, the top five download as an image, and a button suggests three levels of simpler chords with each change spelled out. Chord Lab joined the header and the Tools menu, which on mid-size desktop screens also holds Key Finder, Song Workspace and Fretboard Trainer.", "zhTW": "和弦實驗室支援七和弦、add、sus、9／11／13、#11、b9、b13、分割和弦、omit、alt、6 與 6/9，並在輸入框旁為每種寫法附上一到兩個範例。頁面以網站的和弦音配色列出和弦組成音，並標出可省略的音。指型依伸展幅度、手指數與完整度排序，可改為以某個琴格附近排序，也可依根音篩選。頁面也收錄 Funk 與爵士常用的無根音指型並清楚標示，因為網站其他指型都含根音。每個指型都能播放，前五個可下載成圖片，另有按鈕提供三個層級的簡化和弦，並寫出每個變動。和弦實驗室加入頁首與工具選單；在中等寬度的桌機螢幕上，工具選單也收納調性偵測器、歌曲工作區與指板訓練器。" },
+    "kind": "page_launch",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-chord-lab", "product-jam-tracks-hub"],
+    "status": "released",
+    "releaseId": "release-v4.1.0",
+    "keywords": ["Chord Lab", "chord shapes", "rootless voicings", "new page", "Jazz Stage"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #129", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/129" },
+      { "kind": "commit", "label": "Commit 021c740", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/021c740f0a56d8fbf117b13bbc27c7eed116930a" },
+      { "kind": "release", "label": "Release v4.1.0", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.1.0" }
+    ]
+  },
+  {
+    "id": "event-20261122-release-v4-1-1",
+    "date": "2026-11-22",
+    "sequence": 20,
+    "title": { "en": "v4.1.1 quiets the Key Finder console", "zhTW": "v4.1.1 讓調性偵測器的主控台不再報錯" },
+    "summary": { "en": "Key Finder no longer checks for the optional local YouTube helper while the page loads, which had logged a console error on every visit.", "zhTW": "調性偵測器不再於頁面載入時檢查選用的本機 YouTube 輔助程式，先前這項檢查在每次造訪都會留下主控台錯誤。" },
+    "details": { "en": "The site's security policy blocks those checks, so they never succeeded on the public site. The YouTube status now shows the site analyzer straight away, which is what visitors already saw once the check failed. The helper is still tried when you ask for it, and the security policy stayed unchanged. No tools, content or layouts changed.", "zhTW": "網站的安全政策會擋下這些檢查，所以它們在公開網站上從未成功。YouTube 狀態現在直接顯示網站分析器，這也是檢查失敗後訪客原本就會看到的內容。使用者主動要求時仍會嘗試使用輔助程式，安全政策也維持不變。沒有變更任何工具、內容或版面。" },
+    "kind": "product_update",
+    "level": "normal",
+    "categoryId": "release",
+    "productIds": ["product-key-finder"],
+    "status": "released",
+    "releaseId": "release-v4.1.1",
+    "keywords": ["Key Finder", "console", "YouTube helper"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #130", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/130" },
+      { "kind": "commit", "label": "Commit e00292c", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/e00292c872d8f38bcbb42a5455cb90e039758207" },
+      { "kind": "release", "label": "Release v4.1.1", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.1.1" }
+    ]
   }
 ]

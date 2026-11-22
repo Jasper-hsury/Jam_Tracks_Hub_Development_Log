@@ -3,7 +3,7 @@
   "productId": "product-tracks",
   "slug": "tracks",
   "status": "published",
-  "latestSignificantUpdate": "2026-10-18",
+  "latestSignificantUpdate": "2026-10-19",
   "hero": { "classification": "verified", "text": { "en": "The recurring backing-track library and downloadable slide collection at the center of Jam Tracks Hub.", "zhTW": "Jam Tracks Hub 核心的持續更新伴奏音軌資料庫與可下載投影片集合。" } },
   "overview": { "classification": "verified", "text": { "en": "Tracks presents backing tracks as filterable, sortable cards with playable or linked media, musical metadata, and slide downloads. Canonical track records live in data/tracks.json.", "zhTW": "音軌頁以可篩選、排序的卡片呈現伴奏音軌，包含可播放或連結媒體、音樂中繼資料與投影片下載。正式音軌紀錄位於 data/tracks.json。" } },
   "purpose": [
@@ -50,14 +50,14 @@
       { "date": "2026-10-18", "eventId": "event-20261018-release-v4-0-0", "impact": "direct", "title": { "en": "Jazz Stage restyle", "zhTW": "Jazz Stage 改版" }, "body": { "classification": "verified", "text": { "en": "v4.0.0 (PR #97) moved the catalog to the Jazz Stage colours and type; the record sleeves and sliding records stayed.", "zhTW": "v4.0.0（PR #97）將目錄改為 Jazz Stage 的配色與字體，唱片封套與滑出的唱片維持不變。" } } }
     ] }
   ],
-  "currentState": { "classification": "verified", "text": { "en": "Tracks is a Vue-owned bilingual public library backed by structured records, filter/sort controls, track links, and downloadable supporting slides across all 18 supported entries through confirmed W19; no W9 record is asserted. Since v3.1.0 (PR #85), the library is a compact Liner Notes catalog list in which each cover acts as a record sleeve, shown in the Jazz Stage design since v4.0.0 (PR #97).", "zhTW": "音軌目前是由 Vue 管理的雙語公開資料庫，由結構化紀錄、篩選／排序控制、音軌連結與可下載配套投影片支援，涵蓋已確認至 W19 的全部 18 個支援項目；不主張存在 W9 紀錄。自 v3.1.0（PR #85）起，資料庫改為精簡的 Liner Notes 目錄清單，每張封面化為一張唱片封套；自 v4.0.0（PR #97）起改以 Jazz Stage 設計呈現。" } },
+  "currentState": { "classification": "verified", "text": { "en": "Tracks is a Vue-owned bilingual public library backed by structured records, filter/sort controls, track links, and downloadable supporting slides across all 18 supported entries through confirmed W19; no W9 record is asserted. Since v3.1.0 (PR #85), the library is a compact Liner Notes catalog list in which each cover acts as a record sleeve, shown in the Jazz Stage design since v4.0.0 (PR #97). Since v4.0.3 (PR #101), track slide pages use the v4 night stage.", "zhTW": "音軌目前是由 Vue 管理的雙語公開資料庫，由結構化紀錄、篩選／排序控制、音軌連結與可下載配套投影片支援，涵蓋已確認至 W19 的全部 18 個支援項目；不主張存在 W9 紀錄。自 v3.1.0（PR #85）起，資料庫改為精簡的 Liner Notes 目錄清單，每張封面化為一張唱片封套；自 v4.0.0（PR #97）起改以 Jazz Stage 設計呈現。自 v4.0.3（PR #101）起，音軌投影片頁改用 v4 的夜晚舞台。" } },
   "lessons": [
     { "classification": "reconstructed", "text": { "en": "Recurring content benefits from structured records and grouping; the public history can preserve meaningful collection growth without turning every item into a separate product launch.", "zhTW": "持續內容受益於結構化紀錄與分組；公開歷史可保留有意義的集合成長，而不把每項都當成獨立產品推出。" } }
   ],
   "unknowns": [
     { "classification": "unknown", "text": { "en": "No public record establishes why no W9 entry exists, so this dossier does not speculate.", "zhTW": "沒有公開紀錄說明為何不存在 W9，因此本檔案不做推測。" } }
   ],
-  "relatedEventIds": ["event-20260606-jam-tracks-hub-begins", "event-20260606-first-backing-track-library", "event-20260718-homepage-and-track-evolution", "event-20260727-responsive-refinement-and-w16", "event-20260816-w19-backing-track", "event-20260830-responsive-content-polish", "event-20260903-release-v2-0-4", "event-20260905-release-v2-0-5", "event-20261014-release-v3-1-0", "event-20261015-release-v3-2-0", "event-20261016-release-v3-5-2", "event-20261017-release-v3-5-3", "event-20261018-release-v4-0-0"],
+  "relatedEventIds": ["event-20260606-jam-tracks-hub-begins", "event-20260606-first-backing-track-library", "event-20260718-homepage-and-track-evolution", "event-20260727-responsive-refinement-and-w16", "event-20260816-w19-backing-track", "event-20260830-responsive-content-polish", "event-20260903-release-v2-0-4", "event-20260905-release-v2-0-5", "event-20261014-release-v3-1-0", "event-20261015-release-v3-2-0", "event-20261016-release-v3-5-2", "event-20261017-release-v3-5-3", "event-20261018-release-v4-0-0", "event-20261019-release-v4-0-3"],
   "sourceRefs": [
     { "kind": "commit", "label": { "en": "Initial site deployment 1ad1d86", "zhTW": "最初網站部署 1ad1d86" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/1ad1d86" },
     { "kind": "file", "label": { "en": "Current Tracks HTML mount shell", "zhTW": "目前音軌 HTML 掛載外殼" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/866946f4d51231bb2d25ce656e5050956d475b83/tracks.html", "path": "tracks.html" },

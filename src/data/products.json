@@ -60,13 +60,23 @@
     "href": "https://jamtrackshub.com/chord-dictionary.html"
   },
   {
+    "id": "product-chord-lab",
+    "name": { "en": "Chord Lab", "zhTW": "和弦實驗室" },
+    "description": { "en": "Finds playable guitar shapes for any chord symbol, including rootless shapes and simpler alternatives.", "zhTW": "為任何和弦符號找出好按的吉他指型，包含無根音指型與簡化建議。" },
+    "kind": "tool",
+    "classification": "PRIMARY_PUBLIC_PRODUCT",
+    "status": "active",
+    "displayOrder": 7,
+    "href": "https://jamtrackshub.com/chord-lab.html"
+  },
+  {
     "id": "product-chord-progressions",
     "name": { "en": "Chord Progressions", "zhTW": "和弦進行" },
     "description": { "en": "A reference library of practical chord progressions.", "zhTW": "實用和弦進行的參考資料庫。" },
     "kind": "content-library",
     "classification": "PRIMARY_PUBLIC_PRODUCT",
     "status": "active",
-    "displayOrder": 7,
+    "displayOrder": 8,
     "href": "https://jamtrackshub.com/chord-progressions.html"
   },
   {
@@ -76,7 +86,7 @@
     "kind": "tool",
     "classification": "PRIMARY_PUBLIC_PRODUCT",
     "status": "active",
-    "displayOrder": 8,
+    "displayOrder": 9,
     "href": "https://jamtrackshub.com/fretboard-trainer.html"
   },
   {
@@ -86,7 +96,7 @@
     "kind": "tool",
     "classification": "PRIMARY_PUBLIC_PRODUCT",
     "status": "active",
-    "displayOrder": 9,
+    "displayOrder": 10,
     "href": "https://jamtrackshub.com/progression-writer.html"
   },
   {
@@ -96,7 +106,7 @@
     "kind": "workspace",
     "classification": "PRIMARY_PUBLIC_PRODUCT",
     "status": "active",
-    "displayOrder": 10,
+    "displayOrder": 11,
     "href": "https://jamtrackshub.com/song-workspace.html"
   },
   {
@@ -106,7 +116,7 @@
     "kind": "workspace",
     "classification": "SECONDARY_PUBLIC_PAGE",
     "status": "active",
-    "displayOrder": 11
+    "displayOrder": 12
   },
   {
     "id": "product-feedback",
@@ -115,7 +125,7 @@
     "kind": "page",
     "classification": "SECONDARY_PUBLIC_PAGE",
     "status": "active",
-    "displayOrder": 12,
+    "displayOrder": 13,
     "href": "https://jamtrackshub.com/feedback.html"
   },
   {
@@ -125,7 +135,7 @@
     "kind": "page",
     "classification": "SECONDARY_PUBLIC_PAGE",
     "status": "active",
-    "displayOrder": 13,
+    "displayOrder": 14,
     "href": "https://jamtrackshub.com/legal.html"
   },
   {
@@ -135,7 +145,7 @@
     "kind": "page",
     "classification": "SECONDARY_PUBLIC_PAGE",
     "status": "active",
-    "displayOrder": 14,
+    "displayOrder": 15,
     "href": "https://jamtrackshub.com/privacy-policy.html"
   },
   {
@@ -145,6 +155,6 @@
     "kind": "page",
     "classification": "SYSTEM_SUPPORT_PAGE",
     "status": "active",
-    "displayOrder": 15
+    "displayOrder": 16
   }
 ]

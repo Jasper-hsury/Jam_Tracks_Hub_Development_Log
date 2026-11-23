@@ -1,0 +1,65 @@
+{
+  "id": "dossier-chord-lab",
+  "productId": "product-chord-lab",
+  "slug": "chord-lab",
+  "status": "published",
+  "latestSignificantUpdate": "2026-11-23",
+  "hero": { "classification": "verified", "text": { "en": "Type any chord symbol and get playable guitar shapes, including rootless shapes and simpler alternatives.", "zhTW": "輸入任何和弦符號，取得好按的吉他指型，包含無根音指型與簡化建議。" } },
+  "overview": { "classification": "verified", "text": { "en": "Chord Lab reads a free-form chord symbol, spells its tones in the site chord-tone colors, searches the neck for shapes, and shows the five best spread across the neck. Filters re-rank them near a fret or by root, a full list shows every playable shape, and a separate panel suggests simpler chords. Shapes can be played and the top five downloaded as an image.", "zhTW": "和弦實驗室讀取自由輸入的和弦符號，以網站的和弦音配色拼出組成音，在指板上搜尋指型，並列出分散在指板各處、最好按的五個。篩選可改為以某個琴格附近或依根音重新排序，完整清單列出所有可彈的指型，另有面板提供簡化和弦建議。每個指型都能播放，前五個可下載成圖片。" } },
+  "purpose": [
+    { "label": { "en": "Problem", "zhTW": "問題" }, "body": { "classification": "verified", "text": { "en": "The Chord Dictionary covers a fixed set of chord types. Symbols such as Gmaj7add13, D/F#, E7b9b13 or G7alt fall outside it, so players had no shapes for them on the site.", "zhTW": "和弦字典涵蓋固定的和弦類型。Gmaj7add13、D/F#、E7b9b13 或 G7alt 等符號不在其中，使用者在網站上找不到這些和弦的指型。" } } },
+    { "label": { "en": "Target use case", "zhTW": "目標使用情境" }, "body": { "classification": "verified", "text": { "en": "Type the chord from a chart, pick a shape near where the hand already is, and fall back to a slightly simpler chord when the full voicing is too hard to play.", "zhTW": "輸入譜上的和弦，選一個靠近手目前位置的指型；完整的配置太難按時，改用稍微簡化的和弦。" } } }
+  ],
+  "originalVersion": {
+    "date": "2026-11-22",
+    "summary": { "classification": "verified", "text": { "en": "PR #129 added Chord Lab as a separate page in the header and the Tools menu, released as v4.1.0.", "zhTW": "PR #129 將和弦實驗室新增為獨立頁面，並加入頁首與工具選單，於 v4.1.0 發佈。" } },
+    "features": [
+      { "classification": "verified", "text": { "en": "A parser for sevenths, add, sus, 9, 11 and 13, #11, b9 and b13, slash chords, omit, alt, 6 and 6/9, m(maj7), dim and aug, with one or two examples of each next to the field.", "zhTW": "解析七和弦、add、sus、9／11／13、#11、b9、b13、分割和弦、omit、alt、6 與 6/9、m(maj7)、dim 與 aug，並在輸入框旁為每種寫法附上一到兩個範例。" } },
+      { "classification": "verified", "text": { "en": "Five best shapes, Near fret (Best, Open, 3, 5, 7, 9, 12) and Root (All, With root, Rootless) filters, and a View all shapes list.", "zhTW": "五個最佳指型、「靠近琴格」（推薦、空弦、3、5、7、9、12）與「根音」（全部、含根音、無根音）篩選，以及「查看所有按法」清單。" } },
+      { "classification": "verified", "text": { "en": "Rootless shapes, common in funk and jazz, are included and labelled, because every other shape on the site includes the root.", "zhTW": "收錄 Funk 與爵士常用的無根音指型並清楚標示，因為網站其他指型都含根音。" } },
+      { "classification": "verified", "text": { "en": "Playback for every shape, a PNG download of the top five in the day or night style, and a shareable address that keeps the chord.", "zhTW": "每個指型都能播放，前五個可依白天或夜晚風格下載成 PNG，網址也會保留和弦以便分享。" } },
+      { "classification": "verified", "text": { "en": "A “Too hard to play?” panel with three levels: the same chord with fewer notes, a close relative, and an easier chord with a different color, each change spelled out.", "zhTW": "「覺得太難按嗎？」面板提供三個層級：同一個和弦但省略部分音、相近的和弦，以及色彩不同但更好按的和弦，並寫出每個變動。" } }
+    ],
+    "structure": [
+      { "classification": "verified", "text": { "en": "Heading → chord input and examples → chord name and tones → filters and download → five shapes or the full list → simpler chords → tone-color legend.", "zhTW": "標題 → 和弦輸入與範例 → 和弦名稱與組成音 → 篩選與下載 → 五個指型或完整清單 → 簡化和弦 → 和弦音配色說明。" } }
+    ]
+  },
+  "sections": [
+    { "id": "technical-structure", "type": "architecture", "title": { "en": "Technical structure", "zhTW": "技術結構" }, "items": [
+      { "label": { "en": "Page", "zhTW": "頁面" }, "body": { "classification": "verified", "text": { "en": "chord-lab.html is the document and Vue mount shell. src/views/ChordLabView.vue owns the input, filters, shape grid, simpler-chord panel and playback, and src/components/chords/ChordLabShapeCard.vue draws each shape with the Chord Dictionary diagram markup.", "zhTW": "chord-lab.html 是文件與 Vue 掛載外殼。src/views/ChordLabView.vue 負責輸入、篩選、指型格線、簡化和弦面板與播放，src/components/chords/ChordLabShapeCard.vue 則沿用和弦字典的和弦圖結構繪製每個指型。" } } },
+      { "label": { "en": "Chord engine", "zhTW": "和弦引擎" }, "body": { "classification": "verified", "text": { "en": "src/music/chordLab.mjs parses the symbol into tones with roles, searches fret windows up to the 15th fret for shapes that span at most three frets and need at most four fingers, scores them on completeness, stretch and finger count, and spreads the top five across the neck. A slash chord keeps its bass note lowest, and rootless shapes are limited to seventh and sixth chords without open strings.", "zhTW": "src/music/chordLab.mjs 把符號解析成帶有角色的組成音，在第 15 格以內的琴格範圍搜尋最多跨三格、最多四指的指型，依完整度、伸展幅度與手指數評分，再把前五名分散到指板各處。分割和弦會讓低音維持在最低音，無根音指型則只用於七和弦與六和弦，且不含空弦。" } } },
+      { "label": { "en": "Image download", "zhTW": "圖片下載" }, "body": { "classification": "verified", "text": { "en": "src/services/chordLabExport.mjs draws the five shapes on a navy band in the site style and saves a PNG, with an SVG fallback.", "zhTW": "src/services/chordLabExport.mjs 以網站風格在深藍色帶上繪出五個指型並存成 PNG，必要時改存 SVG。" } } },
+      { "label": { "en": "Presentation", "zhTW": "呈現" }, "body": { "classification": "verified", "text": { "en": "styles/chord-lab.css adds the input, filters, grid and simpler-chord tiers on top of the Chord Dictionary card and diagram styles, using the same type scale as the other tool pages.", "zhTW": "styles/chord-lab.css 在和弦字典的卡片與和弦圖樣式之上，加入輸入區、篩選、格線與簡化層級，字級與其他工具頁一致。" } } }
+    ] },
+    { "id": "responsive-strategy", "type": "responsive", "title": { "en": "Responsive strategy", "zhTW": "響應式策略" }, "items": [
+      { "label": { "en": "Desktop", "zhTW": "桌面" }, "body": { "classification": "verified", "text": { "en": "Five shape cards fit in one row beside the filters and download button.", "zhTW": "五張指型卡在一列中排開，篩選與下載按鈕位於上方。" } } },
+      { "label": { "en": "Tablet", "zhTW": "平板" }, "body": { "classification": "verified", "text": { "en": "The card grid reflows into fewer columns, each at least 214px wide.", "zhTW": "卡片格線改為較少欄，每欄至少 214px。" } } },
+      { "label": { "en": "Mobile", "zhTW": "行動裝置" }, "body": { "classification": "verified", "text": { "en": "Cards stack in one column at full width; a fix before release kept them from shrinking to their content on phones.", "zhTW": "卡片改為單欄全寬排列；發佈前也修正了手機上卡片縮成內容寬度的問題。" } } }
+    ] },
+    { "id": "decisions", "type": "decision", "title": { "en": "Decisions & trade-offs", "zhTW": "決策與取捨" }, "items": [
+      { "title": { "en": "A separate page", "zhTW": "獨立頁面" }, "body": { "classification": "verified", "text": { "en": "Chord Lab became its own page next to Chord Dictionary instead of a mode inside it, so the dictionary keeps its curated list while Chord Lab handles any symbol.", "zhTW": "和弦實驗室成為和弦字典旁的獨立頁面，而不是字典裡的一個模式，讓字典維持精選清單，任意符號則交給和弦實驗室處理。" } } },
+      { "title": { "en": "One rootless shape by default", "zhTW": "預設一個無根音指型" }, "body": { "classification": "verified", "text": { "en": "The default five include at most one rootless shape, and include one when the chord allows it, so players see the option without losing the standard shapes; the Rootless filter shows only rootless shapes.", "zhTW": "預設的五個指型最多只含一個無根音指型，和弦允許時也一定會放一個，讓使用者看到這個選擇，又不會擠掉標準指型；「無根音」篩選則只顯示無根音指型。" } } },
+      { "title": { "en": "Simpler chords in three levels", "zhTW": "三個層級的簡化" }, "body": { "classification": "verified", "text": { "en": "Simplifications go from keeping the same chord with fewer notes, to a close relative, to a different color such as maj7 to 7 or sus4, and each change is written out so the player knows what was given up.", "zhTW": "簡化從「同一個和弦但省略部分音」、到「相近的和弦」、再到「色彩不同的和弦」（例如 maj7 改為 7 或 sus4），並寫出每個變動，讓使用者知道捨棄了什麼。" } } }
+    ] },
+    { "id": "evolution", "type": "timeline", "title": { "en": "Evolution", "zhTW": "演進" }, "items": [
+      { "date": "2026-11-22", "eventId": "event-20261122-release-v4-1-0", "impact": "direct", "title": { "en": "Chord Lab launches", "zhTW": "和弦實驗室推出" }, "body": { "classification": "verified", "text": { "en": "v4.1.0 (PR #129) added the page to the header and the Tools menu, which on mid-size desktop screens grew to 1460px wide.", "zhTW": "v4.1.0（PR #129）將此頁面加入頁首與工具選單，中等寬度桌機螢幕的工具選單範圍也延伸到 1460px。" } } },
+      { "date": "2026-11-23", "eventId": "event-20261123-release-v4-1-2", "impact": "shared", "title": { "en": "Grouped with the chord tools", "zhTW": "與和弦工具並列" }, "body": { "classification": "verified", "text": { "en": "v4.1.2 (PR #132) placed Chord Lab right after Chord Dictionary in the header and added it to the homepage tracklist as A4.", "zhTW": "v4.1.2（PR #132）把和弦實驗室排在頁首的和弦圖鑑之後，並以 A4 加入首頁曲目表。" } } }
+    ] }
+  ],
+  "currentState": { "classification": "verified", "text": { "en": "Chord Lab is a Vue-owned bilingual page at /chord-lab.html in the Jazz Stage design, with English and Traditional Chinese, day and night themes, free-form chord input, five ranked shapes, filters, the full shape list, rootless shapes, simpler chords, playback and a PNG download. Since v4.1.2 (PR #132) it sits right after Chord Dictionary in the header and appears on the homepage.", "zhTW": "和弦實驗室目前是由 Vue 管理、位於 /chord-lab.html 的雙語頁面，採用 Jazz Stage 設計，支援英文與繁體中文、白天與夜晚主題、自由輸入和弦、五個排序後的指型、篩選、完整指型清單、無根音指型、簡化和弦、播放與 PNG 下載。自 v4.1.2（PR #132）起，它在頁首緊接在和弦圖鑑之後，也出現在首頁。" } },
+  "lessons": [
+    { "classification": "reconstructed", "text": { "en": "Showing a few good shapes spread across the neck is more useful than a long ranked list, as long as the full list stays one click away.", "zhTW": "與其列出一長串排名，不如先給幾個分散在指板各處的好指型，只要完整清單隨時一鍵可得。" } },
+    { "classification": "reconstructed", "text": { "en": "Reusing the Chord Dictionary cards and tone colors let a new tool look native from its first release.", "zhTW": "沿用和弦字典的卡片與和弦音配色，讓新工具一推出就與網站風格一致。" } }
+  ],
+  "unknowns": [
+    { "classification": "unknown", "text": { "en": "The scoring weights are a hand-tuned heuristic; no study with players or comparison against published chord books was found.", "zhTW": "評分權重是人工調整的經驗法則；未找到與演奏者一起進行的研究，或與已出版和弦書的比較。" } }
+  ],
+  "relatedEventIds": ["event-20261122-release-v4-1-0", "event-20261123-release-v4-1-2"],
+  "sourceRefs": [
+    { "kind": "pr", "label": { "en": "Chord Lab PR #129", "zhTW": "和弦實驗室 PR #129" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/129" },
+    { "kind": "release", "label": { "en": "Release v4.1.0", "zhTW": "版本 v4.1.0" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.1.0" },
+    { "kind": "file", "label": { "en": "Current Chord Lab Vue interface", "zhTW": "目前和弦實驗室 Vue 介面" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/7e9e005455e82ba4356cd48a3b4fec6861347176/src/views/ChordLabView.vue", "path": "src/views/ChordLabView.vue" },
+    { "kind": "file", "label": { "en": "Current chord engine", "zhTW": "目前和弦引擎" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/7e9e005455e82ba4356cd48a3b4fec6861347176/src/music/chordLab.mjs", "path": "src/music/chordLab.mjs" },
+    { "kind": "file", "label": { "en": "Current image export", "zhTW": "目前圖片匯出" }, "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/blob/7e9e005455e82ba4356cd48a3b4fec6861347176/src/services/chordLabExport.mjs", "path": "src/services/chordLabExport.mjs" }
+  ]
+}

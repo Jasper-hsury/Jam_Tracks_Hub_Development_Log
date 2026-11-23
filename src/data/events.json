@@ -1001,5 +1001,25 @@
       { "kind": "commit", "label": "Commit e00292c", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/e00292c872d8f38bcbb42a5455cb90e039758207" },
       { "kind": "release", "label": "Release v4.1.1", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.1.1" }
     ]
+  },
+  {
+    "id": "event-20261123-release-v4-1-2",
+    "date": "2026-11-23",
+    "sequence": 10,
+    "title": { "en": "v4.1.2 groups the tools by task", "zhTW": "v4.1.2 依用途重新排列工具" },
+    "summary": { "en": "The header now reads play, chords, then fretboard and key, and the homepage tracklist follows the same order with Chord Lab added.", "zhTW": "頁首改為依演奏、和弦、指板與調性的順序排列，首頁曲目表也採用相同順序並加入和弦實驗室。" },
+    "details": { "en": "The header lists Home, Tracks and Song Workspace, then Chord Dictionary, Chord Lab and Chord Progressions, then Scale Explorer, Fretboard Trainer and Key Finder, then About. On mid-size desktop screens the Tools menu now holds that last group instead of four unrelated pages, and the phone menu uses the same order. On the homepage, Side A is Play & Chords and Side B is Fretboard & Key, and Chord Lab, which had been missing there, has its own entry. No tools or content were removed.", "zhTW": "頁首依序為首頁、即興伴奏、歌曲工作區，接著是和弦圖鑑、和弦實驗室、和弦進行，再來是音階、指板練習、調性分析，最後是關於。在中等寬度的桌機螢幕上，工具選單改為收納最後這一組，而不是四個彼此無關的頁面；手機選單也採用相同順序。首頁的 A 面改為「演奏與和弦」、B 面改為「指板與調性」，先前首頁上沒有的和弦實驗室也有了自己的項目。沒有移除任何工具或內容。" },
+    "kind": "site_update",
+    "level": "primary",
+    "categoryId": "release",
+    "productIds": ["product-jam-tracks-hub", "product-homepage", "product-chord-lab"],
+    "status": "released",
+    "releaseId": "release-v4.1.2",
+    "keywords": ["navigation", "homepage", "Chord Lab", "Tools menu"],
+    "sourceRefs": [
+      { "kind": "pr", "label": "PR #132", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/pull/132" },
+      { "kind": "commit", "label": "Commit 7e9e005", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/commit/7e9e005455e82ba4356cd48a3b4fec6861347176" },
+      { "kind": "release", "label": "Release v4.1.2", "url": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.1.2" }
+    ]
   }
 ]

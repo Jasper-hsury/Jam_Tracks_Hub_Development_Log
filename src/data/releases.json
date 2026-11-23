@@ -403,5 +403,19 @@
     "title": { "en": "Quieter Key Finder Console", "zhTW": "調性偵測器主控台不再報錯" },
     "summary": { "en": "Key Finder no longer checks for the optional local YouTube helper as the page loads, removing a console error on every visit.", "zhTW": "調性偵測器不再於頁面載入時檢查選用的本機 YouTube 輔助程式，每次造訪都會出現的主控台錯誤因此消失。" },
     "featured": true
+  },
+  {
+    "id": "release-v4.1.2",
+    "version": "v4.1.2",
+    "date": "2026-11-23",
+    "sequence": 10,
+    "tag": "v4.1.2",
+    "tagCommit": "7e9e005455e82ba4356cd48a3b4fec6861347176",
+    "status": "published",
+    "releaseUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/releases/tag/v4.1.2",
+    "tagUrl": "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v4.1.2",
+    "title": { "en": "Tools Grouped by Task", "zhTW": "工具依用途分組" },
+    "summary": { "en": "The header and the homepage list the tools by what you want to do, and Chord Lab joins the homepage.", "zhTW": "頁首與首頁改依用途排列工具，和弦實驗室也加入首頁。" },
+    "featured": true
   }
 ]

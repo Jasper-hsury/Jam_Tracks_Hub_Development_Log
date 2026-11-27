@@ -5,6 +5,16 @@ import { CATEGORY_LABELS, compareEventsNewest, deriveData } from "./site-core.mj
 const root = new URL("../", import.meta.url);
 const dataUrl = (name) => new URL(`src/data/${name}.json`, root);
 
+export function compareVersions(a, b) {
+  const parts = (version) => version.replace(/^v/, "").split(".").map(Number);
+  const [left, right] = [parts(a), parts(b)];
+  for (let index = 0; index < Math.max(left.length, right.length); index += 1) {
+    const difference = (left[index] ?? 0) - (right[index] ?? 0);
+    if (difference) return difference;
+  }
+  return 0;
+}
+
 export async function loadData() {
   const readJson = async (name) => JSON.parse(await readFile(dataUrl(name), "utf8"));
   const dossierDirectory = new URL("src/data/dossiers/", root);
@@ -270,11 +280,17 @@ export function validateData(data) {
   assert(releases.find((release) => release.version === "v2.0.4")?.status === "published", "v2.0.4 must be published", errors);
   assert(releases.find((release) => release.version === "v2.0.5")?.status === "published", "v2.0.5 must be published", errors);
   assert(releases.find((release) => release.version === "v2.0.6")?.status === "published", "v2.0.6 must be published", errors);
-  for (const version of ["v3.0.0", "v3.1.0", "v3.2.0", "v3.3.0", "v3.4.0", "v3.5.0", "v3.5.1", "v3.5.2", "v3.5.3", "v4.0.0", "v4.0.1", "v4.0.2", "v4.0.3", "v4.0.4", "v4.0.5", "v4.1.0", "v4.1.1", "v4.1.2"]) {
-    assert(releases.find((release) => release.version === version)?.status === "published", `${version} must be published`, errors);
+  for (const release of releases.filter((item) => compareVersions(item.version, "v3.0.0") >= 0)) {
+    assert(release.status === "published", `${release.version} must be published`, errors);
   }
+  // The newest release by date and sequence must also be the highest version, so a
+  // new release with a wrong date or sequence cannot hide behind an older one.
   const derived = deriveData(data);
-  assert(derived.latestPublishedRelease?.version === "v4.1.2", "latest published release must be v4.1.2", errors);
+  const published = releases.filter((release) => release.status === "published");
+  const highest = published.reduce((best, release) => (!best || compareVersions(release.version, best.version) > 0 ? release : best), null);
+  assert(derived.latestPublishedRelease?.version === highest?.version, `latest published release must be the highest version ${highest?.version}, found ${derived.latestPublishedRelease?.version}`, errors);
+  const latestEventId = highest && `event-${highest.date.replaceAll("-", "")}-release-${highest.version.replaceAll(".", "-")}`;
+  assert(!highest || events.some((event) => event.id === latestEventId), `latest release ${highest?.version} needs its release event ${latestEventId}`, errors);
   const findings = scanPublicContent(data);
   for (const finding of findings) errors.push(`public-content disclosure scan: ${finding}`);
   return errors;

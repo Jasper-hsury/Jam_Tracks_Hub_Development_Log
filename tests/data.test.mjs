@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { deriveData } from "../scripts/site-core.mjs";
-import { loadData, scanPublicContent, validateData } from "../scripts/validate-data.mjs";
+import { compareVersions, loadData, scanPublicContent, validateData } from "../scripts/validate-data.mjs";
 
 const clone = (value) => structuredClone(value);
 
@@ -74,16 +74,39 @@ test("security events require high-level disclosure markers", async () => {
   assert.deepEqual(scanPublicContent(data), []);
 });
 
-test("release rules preserve tag-only v1.4.0 and latest published v4.1.2", async () => {
+test("release rules preserve tag-only v1.4.0 and pick the highest published version as latest", async () => {
   const data = await loadData();
   const tagOnly = data.releases.find((release) => release.version === "v1.4.0");
   assert.equal(tagOnly.status, "tag_only");
   assert.equal(tagOnly.releaseUrl, undefined);
   assert.equal(tagOnly.tagUrl, "https://github.com/Jasper-hsury/Jam_Tracks_Hub/tree/v1.4.0");
-  assert.equal(deriveData(data).latestPublishedRelease.version, "v4.1.2");
+  const versions = data.releases.filter((release) => release.status === "published").map((release) => release.version);
+  const highest = [...versions].sort(compareVersions).at(-1);
+  assert.equal(deriveData(data).latestPublishedRelease.version, highest);
   const brokenPublished = clone(data);
   delete brokenPublished.releases.find((release) => release.status === "published").releaseUrl;
   assert.match(validateData(brokenPublished).join("\n"), /published release URL required/);
+});
+
+test("compareVersions orders release versions numerically", () => {
+  assert.ok(compareVersions("v4.1.10", "v4.1.9") > 0);
+  assert.ok(compareVersions("v4.0.0", "v3.5.3") > 0);
+  assert.equal(compareVersions("v4.1.2", "v4.1.2"), 0);
+});
+
+test("validation flags a newer release whose date or sequence hides it behind an older one", async () => {
+  const data = await loadData();
+  const latest = deriveData(data).latestPublishedRelease;
+  const misdated = clone(data);
+  const next = { ...clone(latest), id: "release-v99.0.0", version: "v99.0.0", tag: "v99.0.0", date: "2026-01-01" };
+  misdated.releases.push(next);
+  assert.match(validateData(misdated).join("\n"), /latest published release must be the highest version v99\.0\.0/);
+  const withoutEvent = clone(data);
+  withoutEvent.releases.push({ ...next, date: "2099-01-01", sequence: 10 });
+  assert.match(validateData(withoutEvent).join("\n"), /latest release v99\.0\.0 needs its release event event-20990101-release-v99-0-0/);
+  const unpublished = clone(data);
+  unpublished.releases.find((release) => release.id === latest.id).status = "tag_only";
+  assert.match(validateData(unpublished).join("\n"), new RegExp(`${latest.version.replaceAll(".", "\\.")} must be published`));
 });
 
 test("v2.0.2 through v2.0.5 preserve stable release and event relationships", async () => {

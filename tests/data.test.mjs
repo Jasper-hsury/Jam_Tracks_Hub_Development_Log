@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readdir } from "node:fs/promises";
 import { deriveData } from "../scripts/site-core.mjs";
 import { compareVersions, loadData, scanPublicContent, validateData } from "../scripts/validate-data.mjs";
 
@@ -18,8 +19,13 @@ test("IDs are unique across canonical entity types", async () => {
 
 test("product dossiers have unique routes and resolve products and history", async () => {
   const data = await loadData();
-  assert.equal(data.dossiers.length, 10);
-  assert.equal(new Set(data.dossiers.map((dossier) => dossier.slug)).size, data.dossiers.length);
+  const files = (await readdir(new URL("../src/data/dossiers/", import.meta.url))).filter((name) => name.endsWith(".json")).sort();
+  assert.deepEqual(data.dossiers.map((dossier) => `${dossier.slug}.json`), files);
+  const slugs = new Set(data.dossiers.map((dossier) => dossier.slug));
+  assert.equal(slugs.size, data.dossiers.length);
+  // Published dossiers are never removed; new ones need no change here.
+  ["homepage", "tracks", "fretboard-trainer", "chord-progressions", "scale-explorer", "chord-dictionary", "chord-lab", "progression-writer", "key-finder", "song-workspace"]
+    .forEach((slug) => assert.ok(slugs.has(slug), slug));
   const productIds = new Set(data.products.map((product) => product.id));
   const eventIds = new Set(data.events.map((event) => event.id));
   for (const dossier of data.dossiers) {
